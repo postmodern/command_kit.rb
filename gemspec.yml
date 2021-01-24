@@ -1,0 +1,14 @@
+name: command_kit
+summary: "TODO: Summary"
+description: "TODO: Description"
+license: MIT
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://github.com/postmodern/command_kit#readme
+
+development_dependencies:
+  bundler: ~> 1.10
+  rake: ~> 10.0
+  rspec: ~> 3.0
+  rubygems-tasks: ~> 0.2
+  yard: ~> 0.8
