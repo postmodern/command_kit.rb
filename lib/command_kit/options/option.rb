@@ -179,6 +179,21 @@ module CommandKit
         end
       end
 
+      #
+      # The option description.
+      #
+      # @return [String]
+      #
+      # @note
+      #   If {#default} is set, the description will contain the `Default:`
+      #   value.
+      #
+      def desc
+        if @default then "#{super} (Default: #{default_value})"
+        else             super
+        end
+      end
+
     end
   end
 end
