@@ -26,7 +26,7 @@ module CommandKit
   #       end
   #     end
   #
-  module OptParser
+  module Parser
     #
     # Includes {Main}, {Usage}, defines a default usage (`[options]`), and
     # prepends {OptParser::Main}.
@@ -39,7 +39,7 @@ module CommandKit
       command.include Usage
       command.usage '[options]'
 
-      command.prepend OptParser::Main
+      command.prepend Parser::Main
     end
 
     #
@@ -70,7 +70,7 @@ module CommandKit
     # The option parser.
     #
     # @return [OptionParser]
-    attr_reader :opts
+    attr_reader :option_parser
 
     #
     # The option parser.
@@ -78,7 +78,7 @@ module CommandKit
     # @return [OptionParser]
     #
     def initialize
-      @opts = OptionParser.new do |opts|
+      @option_parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{usage}"
 
         opts.separator ''
@@ -97,7 +97,7 @@ module CommandKit
     # Prints the `--help` output.
     #
     def help
-      puts opts
+      puts option_parser
     end
   end
 end

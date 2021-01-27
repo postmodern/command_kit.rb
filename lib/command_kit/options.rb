@@ -1,5 +1,5 @@
 require 'command_kit/options/option'
-require 'command_kit/opt_parser'
+require 'command_kit/options/parser'
 
 module CommandKit
   #
@@ -37,7 +37,7 @@ module CommandKit
     #   The command class which is including {Options}.
     #
     def self.included(command)
-      command.include OptParser
+      command.include Parser
       command.extend ClassMethods
     end
 
@@ -89,7 +89,7 @@ module CommandKit
           @options[option.name] = value
         end
 
-        opts.on(*option.usage,*option.type,option.desc) do |arg|
+        option_parser.on(*option.usage,*option.type,option.desc) do |arg|
           @options[option.name] = arg
 
           option.block.call(arg) if option.block
