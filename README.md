@@ -30,6 +30,8 @@ classes.
 
 ## Examples
 
+### lib/foo/my_cmd.rb
+
     require 'command_kit'
 
     module Foo
