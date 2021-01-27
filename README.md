@@ -38,7 +38,7 @@ classes.
       module CLI
         class MyCmd < CommandKit::Command
     
-          usage "[OPTIONS] [-o OUTPUT] FILE"
+          usage '[OPTIONS] [-o OUTPUT] FILE'
     
           option :count, type: Integer,
                          default: 1,
@@ -60,11 +60,11 @@ classes.
                           desc: "Input file"
 
           examples [
-            "-o path/to/output.txt path/to/input.txt",
-            "-v -c 2 -o path/to/output.txt path/to/input.txt",
+            '-o path/to/output.txt path/to/input.txt',
+            '-v -c 2 -o path/to/output.txt path/to/input.txt',
           ]
 
-          description "Example command"
+          description 'Example command'
     
           def initialize
             super
