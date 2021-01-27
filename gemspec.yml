@@ -1,6 +1,6 @@
 name: command_kit
-summary: A toolkit for building Ruby commands
-description: A Ruby toolkit for building complete and robust commands.
+summary: A toolkit for building Ruby CLI commands
+description: A Ruby toolkit for building complete and robust CLI commands.
 license: MIT
 authors: Postmodern
 email: postmodern.mod3@gmail.com
