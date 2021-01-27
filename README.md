@@ -57,6 +57,8 @@ A Ruby toolkit for building complete and robust commands.
                           desc: "Input file"
     
           def initialize
+            super
+    
             @verbose = 0
           end
     
