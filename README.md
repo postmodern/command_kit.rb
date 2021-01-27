@@ -7,7 +7,8 @@
 
 ## Description
 
-A Ruby toolkit for building complete and robust CLI commands.
+A Ruby toolkit for building clean, correct, and robust CLI commands as Ruby
+classes.
 
 ## Features
 
