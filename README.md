@@ -63,6 +63,8 @@ classes.
             '-o path/to/output.txt path/to/input.txt',
             '-v -c 2 -o path/to/output.txt path/to/input.txt',
           ]
+
+          description "Example command"
     
           def initialize
             super
