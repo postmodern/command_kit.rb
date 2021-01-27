@@ -121,11 +121,11 @@ module CommandKit
       #
       # The usage string for the argument.
       #
-      # @return [String]
+      # @return [String, nil]
       #
       def usage
         if required? then @usage
-        else              "[#{@usage}]"
+        elsif @usage then "[#{@usage}]"
         end
       end
 

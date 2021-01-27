@@ -128,10 +128,12 @@ module CommandKit
       #
       # @param [Class] type
       #
-      # @return [String]
+      # @return [String, nil]
       #
       def self.default_usage(name,type)
-        USAGES.fetch(type) { Name.upcase(name) }
+        if type
+          USAGES.fetch(type) { Name.upcase(name) }
+        end
       end
 
       #
