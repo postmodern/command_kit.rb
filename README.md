@@ -38,7 +38,7 @@ classes.
       module CLI
         class MyCmd < CommandKit::Command
     
-          usage 'mycmd [OPTIONS] [-o OUTPUT] FILE'
+          usage '[OPTIONS] [-o OUTPUT] FILE'
     
           option :count, type: Integer,
                          default: 1,
