@@ -58,6 +58,11 @@ classes.
                           required: true,
                           usage: 'FILE',
                           desc: "Input file"
+
+          examples [
+            '-o path/to/output.txt path/to/input.txt',
+            '-v -c 2 -o path/to/output.txt path/to/input.txt',
+          ]
     
           def initialize
             super
