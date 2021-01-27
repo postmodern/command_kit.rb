@@ -85,6 +85,10 @@ module CommandKit
       @options = {}
 
       self.class.options.each_value do |option|
+        if (value = option.default_value)
+          @options[option.name] = value
+        end
+
         opts.on(*option.usage,*option.type,option.desc) do |arg|
           @options[option.name] = arg
 

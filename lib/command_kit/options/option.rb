@@ -88,6 +88,9 @@ module CommandKit
       #
       # @param [Boolean] equals
       #
+      # @param [Proc, Object, nil] default
+      #   The default value for the option.
+      #
       # @note `usage` will be assigned a default value based on `type`.
       #
       def initialize(name, type:    nil,
@@ -95,6 +98,7 @@ module CommandKit
                            long:    self.class.default_long_opt(name),
                            equals:  false,
                            usage:   self.class.default_usage(name,type),
+                           default: nil,
                            **kwargs,
                            &block)
         super(name, type: type, usage: usage, **kwargs, &block)
@@ -102,6 +106,7 @@ module CommandKit
         @short   = short
         @long    = long
         @equals  = equals
+        @default = default
       end
 
       #
@@ -157,6 +162,21 @@ module CommandKit
       #
       def usage
         [*@short, "#{@long}#{separator}#{super}"]
+      end
+
+      #
+      # The default value for the option.
+      #
+      # @return [Object]
+      #
+      # @note
+      #   If the default value responds to the method `#call`, the `#call`
+      #   method will be called and it's return value will be returned.
+      #
+      def default_value
+        if @default.respond_to?(:call) then @default.call
+        else                                @default.dup
+        end
       end
 
     end
