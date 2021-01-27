@@ -25,7 +25,7 @@ A Ruby toolkit for building complete and robust CLI commands.
 
 * No additional runtime dependencies.
 * Does not implement it's own option parser.
-* Not named after a Superhero.
+* Not named after a comic-book Superhero.
 
 ## Examples
 
