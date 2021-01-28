@@ -60,14 +60,20 @@ module CommandKit
           required: required
         )
 
-        @pattern, @parser = self.class.optparse(@type)
+        @pattern, @parser = self.class.parser(@type)
         @block = block
       end
 
       #
-      # @return [(Regexp, Proc), nil]
+      # Looks up the option parser for the given `OptionParser` type.
       #
-      def self.optparse(type)
+      # @param [Class] type
+      #   The `OptionParser` type class.
+      #
+      # @return [(Regexp, Proc), nil]
+      #   The matching pattern and converter proc.
+      #
+      def self.parser(type)
         OptionParser::DefaultList.search(:atype,type)
       end
 
