@@ -40,14 +40,18 @@ classes.
     
           usage '[OPTIONS] [-o OUTPUT] FILE'
     
-          option :count, type: Integer,
-                         default: 1,
-                         short: '-c',
+          option :count, short: '-c',
+                         value: {
+                           type: Integer,
+                           default: 1
+                         },
                          desc: "Number of times"
     
-          option :output, type: String,
-                          usage: 'FILE',
-                          short: '-o',
+          option :output, short: '-o',
+                          value: {
+                            type: String,
+                            usage: 'FILE'
+                          },
                           desc: "Optional output file"
     
           option :verbose, short: '-v', desc: "Increase verbose level" do

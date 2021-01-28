@@ -1,4 +1,4 @@
-require 'command_kit/arguments/argument'
+require 'command_kit/options/option_value'
 
 require 'optparse'
 require 'date'
@@ -8,65 +8,10 @@ require 'shellwords'
 
 module CommandKit
   module Options
-    class Option < Arguments::Argument
+    class Option
 
-      module Name
-        #
-        # Upcases the option name.
-        #
-        # @param [Symbol] name
-        #   The option name.
-        #
-        # @return [String]
-        #
-        def self.upcase(name)
-          Arguments::Argument::Name.upcase(name)
-        end
-
-        #
-        # Replaces all underscores with dashes.
-        #
-        # @param [Symbol] name
-        #   The option name.
-        #
-        # @return [String]
-        #
-        def self.dasherize(name)
-          name.to_s.tr('_','-')
-        end
-
-        #
-        # Converts the option name into a long option (ex: `--long-opt`).
-        #
-        # @param [Symbol] name
-        #   The option name.
-        #
-        # @return [String]
-        #
-        def self.long_opt(name)
-          "--#{dasherize(name)}"
-        end
-      end
-
-      USAGES = {
-        # NOTE: NilClass and Object are intentionally omitted
-        Date       => 'DATE',
-        DateTime   => 'DATE_TIME',
-        Time       => 'TIME',
-        URI        => 'URI',
-        Shellwords => 'STR',
-        String     => 'STR',
-        Integer    => 'INT',
-        Float      => 'DEC',
-        Numeric    => 'NUM',
-        OptionParser::DecimalInteger => 'INT',
-        OptionParser::OctalInteger   => 'OCT',
-        OptionParser::DecimalNumeric => 'NUM|DEC',
-        TrueClass  => 'BOOL',
-        FalseClass => 'BOOL',
-        Array      => 'LIST,...',
-        Regexp     => '/REGEXP/'
-      }
+      # @return [Symbol]
+      attr_reader :name
 
       # @return [String, nil]
       attr_reader :short
@@ -74,8 +19,14 @@ module CommandKit
       # @return [String]
       attr_reader :long
 
-      # @return [Object, Proc, nil]
-      attr_reader :default
+      # @return [Value, nil]
+      attr_reader :value
+
+      # @return [String]
+      attr_reader :desc
+
+      # @return [Proc, nil]
+      attr_reader :block
 
       #
       # Initializes the option.
@@ -91,22 +42,19 @@ module CommandKit
       # @param [Proc, Object, nil] default
       #   The default value for the option.
       #
-      # @note `usage` will be assigned a default value based on `type`.
-      #
-      def initialize(name, type:    nil,
-                           short:   nil,
+      def initialize(name, short:   nil,
                            long:    self.class.default_long_opt(name),
                            equals:  false,
-                           usage:   self.class.default_usage(name,type),
-                           default: nil,
-                           **kwargs,
+                           value:   nil,
+                           desc:    ,
                            &block)
-        super(name, type: type, usage: usage, **kwargs, &block)
-
+        @name    = name
         @short   = short
         @long    = long
         @equals  = equals
-        @default = default
+        @value   = OptionValue.new(**value) if value
+        @desc    = desc
+        @block   = block
       end
 
       #
@@ -118,22 +66,7 @@ module CommandKit
       # @return [String]
       #
       def self.default_long_opt(name)
-        Name.long_opt(name)
-      end
-
-      #
-      # The default usage string (ex: `NUM`) for the given option name and type.
-      #
-      # @param [Symbol] name
-      #
-      # @param [Class] type
-      #
-      # @return [String, nil]
-      #
-      def self.default_usage(name,type)
-        if type
-          USAGES.fetch(type) { Name.upcase(name) }
-        end
+        "--#{Inflector.dasherize(name)}"
       end
 
       #
@@ -163,22 +96,29 @@ module CommandKit
       #   The usage strings.
       #
       def usage
-        [*@short, "#{@long}#{separator}#{super}"]
+        [*@short, "#{@long}#{separator}#{@value && @value.usage}"]
       end
 
       #
-      # The default value for the option.
+      # The option value's type.
       #
-      # @return [Object]
+      # @return [Class, nil]
       #
-      # @note
-      #   If the default value responds to the method `#call`, the `#call`
-      #   method will be called and it's return value will be returned.
+      # @see OptionValue#type
+      #
+      def type
+        @value && @value.type
+      end
+
+      #
+      # The option value's default value.
+      #
+      # @return [Object, nil]
+      #
+      # @see OptionValue#default_value
       #
       def default_value
-        if @default.respond_to?(:call) then @default.call
-        else                                @default.dup
-        end
+        @value && @value.default_value
       end
 
       #
@@ -191,8 +131,10 @@ module CommandKit
       #   value.
       #
       def desc
-        if @default then "#{super} (Default: #{default_value})"
-        else             super
+        if (value = default_value)
+          "#{@desc} (Default: #{value})"
+        else
+          @desc
         end
       end
 
