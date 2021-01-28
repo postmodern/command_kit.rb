@@ -30,7 +30,7 @@ module CommandKit
         OptionParser::DecimalNumeric => 'NUM|DEC',
         TrueClass  => 'BOOL',
         FalseClass => 'BOOL',
-        Array      => 'LIST,...',
+        Array      => 'LIST[,...]',
         Regexp     => '/REGEXP/'
       }
 
