@@ -18,11 +18,11 @@ module CommandKit
       #
       # @param [Boolean] required
       #
-      # @param [String, nil] usage
+      # @param [String] usage
       #
       # @param [Object, Proc, nil] default
       #
-      def initialize(type: nil, required: true, default: nil, usage: nil)
+      def initialize(type: nil, required: true, default: nil, usage: )
         @type     = type
         @required = required
         @default  = default
@@ -53,10 +53,8 @@ module CommandKit
       # @return [String, nil]
       #
       def usage
-        if (string = @usage)
-          string = "[#{string}]" if optional?
-          string
-        end
+        string = "[#{string}]" if optional?
+        string
       end
 
       #
