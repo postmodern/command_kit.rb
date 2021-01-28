@@ -1,3 +1,5 @@
+require 'command_kit/inflector'
+
 module CommandKit
   #
   # Defines or derives a command class'es command-name.
@@ -30,11 +32,7 @@ module CommandKit
         if new_command_name
           @command_name = new_command_name
         else
-          @command_anme ||
-            name.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2') \
-                .gsub(/([a-z\d])([A-Z])/, '\1_\2') \
-                .downcase
-          # sourced from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L286-L287
+          @command_anme || Inflector.underscore(name)
         end
       end
     end
