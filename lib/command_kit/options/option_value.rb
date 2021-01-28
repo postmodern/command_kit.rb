@@ -37,7 +37,7 @@ module CommandKit
       #
       # Initializes the option value.
       #
-      # @param [Class, nil] type
+      # @param [Class] type
       #
       # @param [String, nil] usage
       #
@@ -47,7 +47,7 @@ module CommandKit
       #
       # @yieldparam [Object, nil] value
       #
-      def initialize(type: nil,
+      def initialize(type: String,
                      usage: self.class.default_usage(type),
                      **kwargs, &block)
         super(type: type, usage: usage, **kwargs, &block)
@@ -56,15 +56,13 @@ module CommandKit
       #
       # Returns the default option value usage for the given type.
       #
-      # @param [Class, nil] type
+      # @param [Class] type
       #
       # @return [String, nil]
       #
       def self.default_usage(type)
-        if !type.nil?
-          USAGES.fetch(type) do
-            Inflector.underscore(type.name).upcase
-          end
+        USAGES.fetch(type) do
+          Inflector.underscore(type.name).upcase
         end
       end
 
