@@ -56,7 +56,7 @@ module CommandKit
       #
       def main(*argv)
         argv = begin
-                 @opts.parse(argv)
+                 option_parser.parse(argv)
                rescue OptionParser::ParseError => error
                  option_parser_error(error)
                end
