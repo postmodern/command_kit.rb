@@ -57,10 +57,8 @@ module CommandKit
       def main(*argv)
         argv = begin
                  @opts.parse(argv)
-               rescue OptionParser::InvalidOption,
-                      OptionParser::InvalidArgument => error
-                 print_error(error.message)
-                 exit(1)
+               rescue OptionParser::ParseError => error
+                 option_parser_error(error)
                end
 
         super(*argv)
@@ -98,6 +96,17 @@ module CommandKit
     #
     def help
       puts option_parser
+    end
+
+    #
+    # Prints an option parsing error.
+    #
+    # @param [OptionParser::ParseError] error
+    #   The error from `OptionParser`.
+    #
+    def option_parser_error(error)
+      print_error(error.message)
+      exit(1)
     end
   end
 end
