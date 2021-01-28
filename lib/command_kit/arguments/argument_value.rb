@@ -26,9 +26,10 @@ module CommandKit
                      required: true,
                      default:  nil,
                      usage:    nil)
-        @type    = type
-        @default = default
-        @usage   = usage
+        @type     = type
+        @required = required
+        @default  = default
+        @usage    = usage
       end
 
       #
