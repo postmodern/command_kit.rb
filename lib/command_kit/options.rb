@@ -31,7 +31,7 @@ module CommandKit
   #
   module Options
     #
-    # Includes {OptParser} and extends {ClassMethods}.
+    # Includes {Parser} and extends {ClassMethods}.
     #
     # @param [Class] command
     #   The command class which is including {Options}.
@@ -77,7 +77,8 @@ module CommandKit
     attr_reader :options
 
     #
-    # Initializes {#options} and populates the {OptParser#opts option parser}.
+    # Initializes {#options} and populates the
+    # {Parser#option_parser option parser}.
     #
     def initialize
       super

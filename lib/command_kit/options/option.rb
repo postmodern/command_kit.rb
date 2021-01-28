@@ -19,7 +19,7 @@ module CommandKit
       # @return [String]
       attr_reader :long
 
-      # @return [Value, nil]
+      # @return [OptionValue, nil]
       attr_reader :value
 
       # @return [String]
@@ -39,8 +39,9 @@ module CommandKit
       #
       # @param [Boolean] equals
       #
-      # @param [Proc, Object, nil] default
-      #   The default value for the option.
+      # @param [Hash{Symbol => Object}, nil] value
+      #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
+      #   has no additional value.
       #
       def initialize(name, short:   nil,
                            long:    self.class.default_long_opt(name),
@@ -127,8 +128,8 @@ module CommandKit
       # @return [String]
       #
       # @note
-      #   If {#default} is set, the description will contain the `Default:`
-      #   value.
+      #   If {#default_value} returns a value, the description will contain the
+      #   `Default:` value the option will be initialized with.
       #
       def desc
         if (value = default_value)

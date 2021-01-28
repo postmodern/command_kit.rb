@@ -28,11 +28,11 @@ module CommandKit
   #
   module Parser
     #
-    # Includes {Main}, {Usage}, defines a default usage (`[options]`), and
-    # prepends {OptParser::Main}.
+    # Includes {CommandKit::Main}, {Usage}, defines a default usage
+    # (`[options]`), and prepends {Parser::Main}.
     #
     # @param [Class] command
-    #   The class including {OptParser}.
+    #   The class including {Parser}.
     #
     def self.included(command)
       command.include CommandKit::Main

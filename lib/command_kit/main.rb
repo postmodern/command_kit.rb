@@ -10,7 +10,7 @@ module CommandKit
   #
   module Main
     #
-    # Extends {ClassMethods} and prepends {Main::Exit}.
+    # Extends {ClassMethods} and prepends {Exit}.
     #
     # @param [Class] command
     #   The command class which is including {Main}.

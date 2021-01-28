@@ -14,7 +14,7 @@ module CommandKit
     #
     # Includes {Help} and extends {Examples::ClassMethods}.
     #
-    # @param [Class] base
+    # @param [Class] command
     #   The command class which is including {Examples}.
     #
     def self.included(command)
