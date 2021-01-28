@@ -22,10 +22,7 @@ module CommandKit
       #
       # @param [Object, Proc, nil] default
       #
-      def initialize(type:     nil,
-                     required: true,
-                     default:  nil,
-                     usage:    nil)
+      def initialize(type: nil, required: true, default: nil, usage: nil)
         @type     = type
         @required = required
         @default  = default
@@ -42,13 +39,23 @@ module CommandKit
       end
 
       #
+      # Determines whether the argument can be omitted.
+      #
+      # @return [Boolean]
+      #
+      def optional?
+        !@required
+      end
+
+      #
       # The usage string for the argument.
       #
       # @return [String, nil]
       #
       def usage
-        if required? then @usage
-        elsif @usage then "[#{@usage}]"
+        if (string = @usage)
+          string = "[#{string}]" if optional?
+          string
         end
       end
 
