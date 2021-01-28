@@ -2,6 +2,9 @@ require 'command_kit/arguments/argument_value'
 
 module CommandKit
   module Arguments
+    #
+    # Represents a defined argument.
+    #
     class Argument < ArgumentValue
 
       # @return [Symbol]
@@ -26,22 +29,26 @@ module CommandKit
       #
       # @param [Class] type
       #
-      # @param [String] desc
-      #
       # @param [String, nil] usage
       #
       # @param [Object, Proc, nil] default
       #
       # @param [Boolean] required
       #
+      # @param [String] desc
+      #
       # @note `usage` will be assigned a default value based on `type` and
       # `name`.
       #
+      # @yield [(value)]
+      #
+      # @yieldparam [Object, nil] value
+      #
       def initialize(name, type:     String,
-                           desc:     ,
                            usage:    name.upcase,
                            default:  nil,
                            required: false,
+                           desc:     ,
                            &block)
         @name = name
         @desc = desc

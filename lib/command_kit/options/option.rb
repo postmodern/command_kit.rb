@@ -8,6 +8,9 @@ require 'shellwords'
 
 module CommandKit
   module Options
+    #
+    # Represents a defined option.
+    #
     class Option
 
       # @return [Symbol]
@@ -42,6 +45,12 @@ module CommandKit
       # @param [Hash{Symbol => Object}, nil] value
       #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
       #   has no additional value.
+      #
+      # @param [String] desc
+      #
+      # @yield [(value)]
+      #
+      # @yieldparam [Object, nil] value
       #
       def initialize(name, short:   nil,
                            long:    self.class.default_long_opt(name),

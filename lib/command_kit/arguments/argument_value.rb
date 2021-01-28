@@ -1,6 +1,10 @@
 module CommandKit
   module Arguments
+    #
+    # Represents an individual argument value.
+    #
     class ArgumentValue
+
       # @return [Class, nil]
       attr_reader :type
 

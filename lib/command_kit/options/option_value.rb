@@ -9,6 +9,9 @@ require 'shellwords'
 
 module CommandKit
   module Options
+    #
+    # Represents an additional argument associated with an option flag.
+    #
     class OptionValue < Arguments::ArgumentValue
 
       USAGES = {
@@ -34,12 +37,29 @@ module CommandKit
       #
       # Initializes the option value.
       #
+      # @param [Class, nil] type
+      #
+      # @param [String, nil] usage
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #
+      # @yield [(value)]
+      #
+      # @yieldparam [Object, nil] value
+      #
       def initialize(type: nil,
                      usage: self.class.default_usage(type),
                      **kwargs, &block)
         super(type: type, usage: usage, **kwargs, &block)
       end
 
+      #
+      # Returns the default option value usage for the given type.
+      #
+      # @param [Class, nil] type
+      #
+      # @return [String, nil]
+      #
       def self.default_usage(type)
         if !type.nil?
           USAGES.fetch(type) do
