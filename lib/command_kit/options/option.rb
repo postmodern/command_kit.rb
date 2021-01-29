@@ -110,6 +110,15 @@ module CommandKit
       end
 
       #
+      # Determines if the option has a value.
+      #
+      # @return [Boolean]
+      #
+      def value?
+        !@value.nil?
+      end
+
+      #
       # The option value's type.
       #
       # @return [Class, nil]
