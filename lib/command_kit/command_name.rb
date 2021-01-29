@@ -32,7 +32,7 @@ module CommandKit
         if new_command_name
           @command_name = new_command_name
         else
-          @command_anme || Inflector.underscore(name)
+          @command_name || Inflector.underscore(name)
         end
       end
     end
