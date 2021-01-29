@@ -30,7 +30,7 @@ module CommandKit
       #
       def command_name(new_command_name=nil)
         if new_command_name
-          @command_name = new_command_name
+          @command_name = new_command_name.to_s
         else
           @command_name || Inflector.underscore(name)
         end
