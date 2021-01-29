@@ -34,11 +34,7 @@ module CommandKit
         if new_usage
           @usage = new_usage
         else
-          if @usage
-            "#{command_name} #{@usage}"
-          elsif superclass.include?(ClassMethods)
-            superclass.usage
-          end
+          @usage || (superclass.usage if superclass.include?(ClassMethods))
         end
       end
     end
