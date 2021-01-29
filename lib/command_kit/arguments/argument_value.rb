@@ -5,7 +5,7 @@ module CommandKit
     #
     class ArgumentValue
 
-      # @return [Class, nil]
+      # @return [Class, Hash, Array, Regexp, nil]
       attr_reader :type
 
       # @return [Object, Proc, nil]
@@ -14,7 +14,7 @@ module CommandKit
       #
       # Initializes the argument value.
       #
-      # @param [Class] type
+      # @param [Class, Hash, Array, Regexp] type
       #
       # @param [Boolean] required
       #
