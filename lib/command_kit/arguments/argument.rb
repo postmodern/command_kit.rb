@@ -35,6 +35,8 @@ module CommandKit
       #
       # @param [Boolean] required
       #
+      # @param [Boolean] repeats
+      #
       # @param [String] desc
       #
       # @note `usage` will be assigned a default value based on `type` and
@@ -48,11 +50,9 @@ module CommandKit
                            usage:    name.upcase,
                            default:  nil,
                            required: false,
+                           repeats:  false,
                            desc:     ,
                            &block)
-        @name = name
-        @desc = desc
-
         super(
           type:     type,
           usage:    usage,
@@ -60,7 +60,12 @@ module CommandKit
           required: required
         )
 
+        @name    = name
+        @repeats = repeats
+        @desc    = desc
+
         @pattern, @parser = self.class.parser(@type)
+
         @block = block
       end
 
@@ -75,6 +80,27 @@ module CommandKit
       #
       def self.parser(type)
         OptionParser::DefaultList.search(:atype,type)
+      end
+
+      #
+      # Specifies whether the argument can be repeated repeat times.
+      #
+      # @return [Boolean]
+      #
+      def repeats?
+        @repeats
+      end
+
+      #
+      # The usage string for the argument.
+      #
+      # @return [String]
+      #
+      def usage
+        string = @usage
+        string = "#{string} ..." if repeats?
+        string = "[#{string}]" if optional?
+        string
       end
 
       #
