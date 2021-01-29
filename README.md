@@ -98,6 +98,24 @@ classes.
     
     Foo::CLI::MyCmd.start
 
+#### --help
+
+    Usage: my_cmd [OPTIONS] [-o OUTPUT] FILE
+    
+    Options:
+        -c, --count INT                  Number of times (Default: 1)
+        -o, --output FILE                Optional output file
+        -v, --verbose                    Increase verbose level
+        -h, --help                       Print help information
+    
+    Arguments:
+        FILE                             Input file
+    
+    Examples:
+        my_cmd my_cmd -c 1 -o path/to/output.txt path/to/input.txt
+    
+    Example command
+
 ### Options
 
     option :foo, desc: "Foo option"
