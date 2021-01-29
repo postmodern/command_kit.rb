@@ -77,4 +77,14 @@ describe CommandName do
       end
     end
   end
+
+  describe "#command_name" do
+    let(:subject_class) { SimpleCmd }
+
+    subject { subject_class.new }
+
+    it "must be the same as .command_name" do
+      expect(subject.command_name).to eq(subject_class.command_name)
+    end
+  end
 end
