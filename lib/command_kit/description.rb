@@ -46,12 +46,19 @@ module CommandKit
     end
 
     #
+    # @see ClassMethods#description
+    #
+    def description
+      self.class.description
+    end
+
+    #
     # Prints the {ClassMethods#description description}, if set.
     #
     def help
       super if defined?(super)
 
-      if (description = self.class.description)
+      if (description = self.description)
         puts
         puts description
       end
