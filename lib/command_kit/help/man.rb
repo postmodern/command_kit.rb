@@ -68,8 +68,9 @@ module CommandKit
       # @param [String] page
       #   The man page file name.
       #
-      # @return [Boolean]
+      # @return [Boolean, nil]
       #   Specifies whether the `man` command was successful or not.
+      #   Returns `nil` when the `man` command is not installed.
       #
       def man(page=man_page)
         system('man',page)
