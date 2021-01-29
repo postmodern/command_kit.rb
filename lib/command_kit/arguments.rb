@@ -58,6 +58,34 @@ module CommandKit
       # @return [Argument]
       #   The newly defined argument.
       #
+      # @example Define an argument:
+      #     argument :bar, desc: "Bar argument"
+      #
+      # @example With a custom usage string:
+      #     option :bar, usage: 'BAR',
+      #                  desc: "Bar argument"
+      #
+      # @example With a custom block:
+      #     argument :bar, desc: "Bar argument" do |bar|
+      #       # ...
+      #     end
+      #
+      # @example With a custom type:
+      #     argument :bar, type: Integer,
+      #                    desc: "Bar argument"
+      #
+      # @example With a default value:
+      #     argument :bar, default: "bar.txt",
+      #                    desc: "Bar argument"
+      #
+      # @example An optional argument:
+      #     argument :bar, required: true,
+      #                    desc: "Bar argument"
+      #
+      # @example A repeating argument:
+      #     argument :bar, repeats: true,
+      #                    desc: "Bar argument"
+      #
       def argument(name,**kwargs,&block)
         arguments[name] = Argument.new(name,**kwargs,&block)
       end

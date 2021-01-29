@@ -72,6 +72,59 @@ module CommandKit
       #
       # @return [Option]
       #
+      # @example Define an option:
+      #     option :foo, desc: "Foo option"
+      #
+      # @example With a custom short option:
+      #     option :foo, short: '-f',
+      #                  desc: "Foo option"
+      #
+      # @example With a custom long option:
+      #     option :foo, short: '--foo-opt',
+      #                  desc: "Foo option"
+      #
+      # @example With a custom usage string:
+      #     option :foo, value: {usage: 'FOO'},
+      #                  desc: "Foo option"
+      #
+      # @example With a custom block:
+      #     option :foo, desc: "Foo option" do |value|
+      #       @foo = Foo.new(value)
+      #     end
+      #
+      # @example With a custom type:
+      #     option :foo, value: {type: Integer},
+      #                  desc: "Foo option"
+      #
+      # @example With a default value:
+      #     option :foo, value: {type: Integer, default: 1},
+      #                  desc: "Foo option"
+      #
+      # @example With a required value:
+      #     option :foo, value: {type: String, required: true},
+      #                  desc: "Foo option"
+      #
+      # @example With a custom option value Hash map:
+      #     option :flag, value: {
+      #                     type: {
+      #                       'enabled'  => :enabled,
+      #                       'yes'      => :enabled,
+      #                       'disabled' => :disabled,
+      #                       'no'       => :disabled
+      #                     }
+      #                   },
+      #                   desc: "Flag option"
+      #
+      # @example With a custom option value Array enum:
+      #     option :enum, value: {type: %w[yes no]},
+      #                   desc: "Enum option"
+      #
+      # @example With a custom option value Regexp:
+      #     option :date, value: {type: /(\d+)-(\d+)-(\d{2,4})/},
+      #                   desc: "Regexp optin" do |date,d,m,y|
+      #       # ...
+      #     end
+      #
       def option(name,**kwargs,&block)
         options[name] = Option.new(name,**kwargs,&block)
       end
