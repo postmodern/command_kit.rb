@@ -64,7 +64,7 @@ module CommandKit
         puts
         puts "Examples:"
         examples.each do |command|
-          puts "    #{command_name} #{command}"
+          puts "    #{command}"
         end
       end
     end
