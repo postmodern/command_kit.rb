@@ -119,6 +119,8 @@ classes.
 
 ### Options
 
+Define an option:
+
     option :foo, desc: "Foo option"
 
 With a custom short option:
@@ -182,6 +184,8 @@ With a custom option value Regexp:
     end
 
 ### Arguments
+
+Define an argument:
 
     argument :bar, desc: "Bar argument"
 
