@@ -91,11 +91,13 @@ module CommandKit
       #
       # The separator characer between the option and option value.
       #
-      # @return ['=', ' ']
+      # @return ['=', ' ', nil]
       #
       def separator
-        if equals? then '='
-        else            ' '
+        if @value
+          if equals? then '='
+          else            ' '
+          end
         end
       end
 
