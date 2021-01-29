@@ -48,16 +48,6 @@ module CommandKit
       end
 
       #
-      # The usage string for the argument.
-      #
-      # @return [String, nil]
-      #
-      def usage
-        string = "[#{string}]" if optional?
-        string
-      end
-
-      #
       # Returns a new default value.
       #
       # @return [Object]

@@ -66,6 +66,17 @@ module CommandKit
         end
       end
 
+      #
+      # The usage string for the argument.
+      #
+      # @return [String, nil]
+      #
+      def usage
+        string = @usage
+        string = "[#{string}]" if optional?
+        string
+      end
+
     end
   end
 end
