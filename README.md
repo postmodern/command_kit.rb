@@ -79,7 +79,10 @@ classes.
           end
     
           def main(file)
-            # ...
+            puts "count=#{options[:count].inspect}"
+            puts "output=#{options[:output].inspect}"
+            puts "file=#{file.inspect}"
+            puts "verbose=#{@verbose.inspect}"
           end
     
         end
