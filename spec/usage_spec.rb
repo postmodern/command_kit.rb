@@ -139,7 +139,7 @@ describe Usage do
       let(:subject_class) { SingleUsage }
       subject { subject_class.new }
 
-      it "must print out only one usage" do
+      it "must print out 'usage:' and only one usage" do
         expect { subject.help }.to output(
           "usage: #{subject.command_name} #{subject.usage}#{$/}"
         ).to_stdout
@@ -160,7 +160,7 @@ describe Usage do
       let(:subject_class) { MultipleUsage }
       subject { subject_class.new }
 
-      it "must print out all usage Strings" do
+      it "must print out the 'usage:' and all usage Strings" do
         expect { subject.help }.to output(
           [
             "usage: #{subject.command_name} #{subject.usage[0]}",
