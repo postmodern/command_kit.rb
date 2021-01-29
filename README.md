@@ -112,7 +112,8 @@ classes.
         FILE                             Input file
     
     Examples:
-        my_cmd my_cmd -c 1 -o path/to/output.txt path/to/input.txt
+        my_cmd -o path/to/output.txt path/to/input.txt
+        my_cmd -v -c 2 -o path/to/output.txt path/to/input.txt
     
     Example command
 
