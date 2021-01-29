@@ -58,7 +58,7 @@ module CommandKit
           puts "       #{command_name} #{command}"
         end
       when String
-        puts "usage: #{comand_name} #{usage}"
+        puts "usage: #{command_name} #{usage}"
       end
     end
   end
