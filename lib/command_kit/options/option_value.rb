@@ -37,7 +37,7 @@ module CommandKit
       #
       # Initializes the option value.
       #
-      # @param [Class] type
+      # @param [Class, Hash, Array, Regexp] type
       #
       # @param [String, nil] usage
       #

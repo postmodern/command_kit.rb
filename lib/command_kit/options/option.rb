@@ -46,6 +46,10 @@ module CommandKit
       #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
       #   has no additional value.
       #
+      # @option value [Class, Hash, Array, Regexp] type
+      #
+      # @option value [String, nil] usage
+      #
       # @param [String] desc
       #
       # @yield [(value)]
