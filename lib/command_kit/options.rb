@@ -86,12 +86,12 @@ module CommandKit
       @options = {}
 
       self.class.options.each_value do |option|
-        if (value = option.default_value)
-          @options[option.name] = value
-        end
-
         option_parser.on(*option.usage,*option.type,option.desc) do |arg|
-          @options[option.name] = arg
+          @options[option.name] = if arg.nil?
+                                    option.default_value
+                                  else
+                                    arg
+                                  end
 
           option.block.call(arg) if option.block
         end
