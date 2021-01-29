@@ -99,7 +99,7 @@ module CommandKit
                                     arg
                                   end
 
-          option.block.call(arg) if option.block
+          instance_exec(arg,&option.block) if option.block
         end
       end
     end
