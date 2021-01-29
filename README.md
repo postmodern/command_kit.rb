@@ -16,7 +16,35 @@ classes.
 * Supports defining options and arguments as attributes.
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
 * Correctly handles broken pipes (aka quitting `mycmd | less`).
-* Provides a simple DSL around [OptionParser][optparse].
+* Uses [OptionParser][optparse]:
+  * Supports [OptionParser] types
+
+        option :count, value: {type: Integer}
+
+  * Supports option Hash maps
+
+        option :flag, value: {
+                        type: {
+                          'enabled'  => :enabled,
+                          'yes'      => :enabled,
+                          'disabled' => :disabled,
+                          'no'       => :disabled
+                        }
+                      },
+                      desc: "Flag option"
+
+  * Supports option Array enums:
+
+        option :enum, value: {type: %w[yes no]},
+                      desc: "Enum option"
+
+  * Supports option Regexp pattern matching:
+
+        option :date, value: {type: /(\d+)-(\d+)-(\d{2,4})/},
+                      desc: "Regexp optin" do |date,d,m,y|
+          # ...
+        end
+
 * Provides ANSI coloring support.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
