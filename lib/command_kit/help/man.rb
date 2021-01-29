@@ -39,6 +39,17 @@ module CommandKit
       end
 
       #
+      # Determines if displaying man pages is supported.
+      #
+      # @return [Boolean]
+      #   Indicates whether the `$TERM` environment variable is not `dumb`
+      #   and `$stdout` is a TTY.
+      #
+      def self.supported?
+        ENV['TERM'] != 'dumb' && $stdout.tty?
+      end
+
+      #
       # Returns the man-page file name for the given command name.
       #
       # @param [String] command
@@ -75,7 +86,7 @@ module CommandKit
       #   the usual `--help` output.
       #
       def help
-        if ENV['TERM'] != 'dumb' && $stdout.tty?
+        if Man.supported?
           unless self.class.man_dir
             raise(NotImplementedError,"#{self.class}.man_dir not set")
           end
