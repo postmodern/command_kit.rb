@@ -53,10 +53,15 @@ describe CommandName do
         class ImplicitInheritedCmd < ExplicitBaseCmd
         end
 
+        let(:super_subject) { ExplicitBaseCmd }
         subject { ImplicitInheritedCmd }
 
         it "must return the subclass'es command_name, not the superclass'es" do
           expect(subject.command_name).to eq('implicit_inherited_cmd')
+        end
+
+        it "must not change the superclass'es command_name" do
+          expect(super_subject.command_name).to eq('explicit')
         end
       end
 
@@ -69,10 +74,15 @@ describe CommandName do
           command_name :explicit
         end
 
+        let(:super_subject) { ImplicitBaseCmd }
         subject { ExplicitInheritedCmd }
 
         it "must return the subclass'es command_name, not the superclass'es" do
           expect(subject.command_name).to eq('explicit')
+        end
+
+        it "must not change the superclass'es command_name" do
+          expect(super_subject.command_name).to eq('implicit_base_cmd')
         end
       end
     end
