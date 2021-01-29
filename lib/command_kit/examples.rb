@@ -53,6 +53,13 @@ module CommandKit
     end
 
     #
+    # @see ClassMethods#examples
+    #
+    def examples
+      self.class.examples
+    end
+
+    #
     # Prints the command class'es example commands.
     #
     def help
