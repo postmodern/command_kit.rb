@@ -56,13 +56,23 @@ module CommandKit
       #
       # Returns the default option value usage for the given type.
       #
-      # @param [Class] type
+      # @param [Class, Hash, Array, Regexp] type
       #
       # @return [String, nil]
       #
+      # @raise [TypeError]
+      #   The given type was not a Class, Hash, Array, or Regexp.
+      #
       def self.default_usage(type)
         USAGES.fetch(type) do
-          Inflector.underscore(type.name).upcase
+          case type
+          when Class  then Inflector.underscore(type.name).upcase
+          when Hash   then type.keys.join('|')
+          when Array  then type.join('|')
+          when Regexp then type.source
+          else
+            raise(TypeError,"unsupported option type: #{type.inspect}")
+          end
         end
       end
 
