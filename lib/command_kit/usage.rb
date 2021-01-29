@@ -52,7 +52,7 @@ module CommandKit
     def help
       case usage
       when Array
-        puts "usage: #{usage[0]}"
+        puts "usage: #{command_name} #{usage[0]}"
 
         usage[1..].each do |command|
           puts "       #{command_name} #{command}"
