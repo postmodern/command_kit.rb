@@ -1,4 +1,5 @@
 require 'command_kit/help'
+require 'command_kit/command_name'
 
 module CommandKit
   #
@@ -19,6 +20,7 @@ module CommandKit
     #
     def self.included(command)
       command.include Help
+      command.include CommandName
       command.extend ClassMethods
     end
 
