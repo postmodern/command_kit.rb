@@ -34,7 +34,7 @@ module CommandKit
         if new_usage
           @usage = new_usage
         else
-          @usage || (superclass.usage if superclass.include?(ClassMethods))
+          @usage || (superclass.usage if superclass.kind_of?(ClassMethods))
         end
       end
     end

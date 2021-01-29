@@ -33,7 +33,7 @@ module CommandKit
           if new_man_dir
             @man_dir = File.expand_path(new_man_dir)
           else
-            @man_dir || (superclass.man_dir if superclass.include?(ClassMethods))
+            @man_dir || (superclass.man_dir if superclass.kind_of?(ClassMethods))
           end
         end
       end

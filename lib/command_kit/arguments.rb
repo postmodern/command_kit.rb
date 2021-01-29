@@ -36,7 +36,7 @@ module CommandKit
       #   The defined argument for the class and it's superclass.
       #
       def arguments
-        @arguments ||= if superclass.include?(ClassMethods)
+        @arguments ||= if superclass.kind_of?(ClassMethods)
                          superclass.arguments.dup
                        else
                          {}

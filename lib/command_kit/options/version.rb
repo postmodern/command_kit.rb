@@ -39,7 +39,7 @@ module CommandKit
           if new_version
             @version = new_version
           else
-            @version || (superclass.version if superclass.include?(ClassMethods))
+            @version || (superclass.version if superclass.kind_of?(ClassMethods))
           end
         end
       end

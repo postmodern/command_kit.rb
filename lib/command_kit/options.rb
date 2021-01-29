@@ -51,7 +51,7 @@ module CommandKit
       # @return [Hash{Symbol => Option}]
       #
       def options
-        @options ||= if superclass.include?(ClassMethods)
+        @options ||= if superclass.kind_of?(ClassMethods)
                        superclass.options.dup
                      else
                        {}

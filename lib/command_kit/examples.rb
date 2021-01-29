@@ -47,7 +47,7 @@ module CommandKit
         else
           if @examples
             @examples.map { |command| "#{command_name} #{command}" }
-          elsif superclass.include?(ClassMethods)
+          elsif superclass.kind_of?(ClassMethods)
             superclass.examples
           end
         end
