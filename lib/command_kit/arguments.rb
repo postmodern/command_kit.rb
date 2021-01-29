@@ -95,7 +95,7 @@ module CommandKit
     # Prints any defined arguments, along with the usual `--help` information.
     #
     def help
-      super
+      super if defined?(super)
 
       unless (arguments = self.class.arguments).empty?
         puts

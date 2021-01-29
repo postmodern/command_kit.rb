@@ -63,7 +63,7 @@ module CommandKit
     # Prints the command class'es example commands.
     #
     def help
-      super
+      super if defined?(super)
 
       if (examples = self.examples)
         puts

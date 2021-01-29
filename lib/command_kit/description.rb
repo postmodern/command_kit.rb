@@ -49,7 +49,7 @@ module CommandKit
     # Prints the {ClassMethods#description description}, if set.
     #
     def help
-      super
+      super if defined?(super)
 
       if (description = self.class.description)
         puts
