@@ -55,13 +55,7 @@ module CommandKit
       #   The given arguments Array.
       #
       def main(*argv)
-        argv = begin
-                 option_parser.parse(argv)
-               rescue OptionParser::ParseError => error
-                 option_parser_error(error)
-               end
-
-        super(*argv)
+        super(*parse_options(argv))
       end
     end
 
@@ -89,6 +83,23 @@ module CommandKit
       end
 
       super
+    end
+
+    #
+    # Parses the given options.
+    #
+    # @param [Array<String>] argv
+    #   The given command-line arguments.
+    #
+    # @return [Array<String>]
+    #   The remaining non-option arguments.
+    #
+    def parse_options(argv)
+      begin
+        option_parser.parse(argv)
+      rescue OptionParser::ParseError => error
+        option_parser_error(error)
+      end
     end
 
     #
