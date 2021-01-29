@@ -16,35 +16,7 @@ classes.
 * Supports defining options and arguments as attributes.
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
 * Correctly handles broken pipes (aka quitting `mycmd | less`).
-* Uses [OptionParser][optparse]:
-  * Supports [OptionParser] types
-
-        option :count, value: {type: Integer}
-
-  * Supports option Hash maps
-
-        option :flag, value: {
-                        type: {
-                          'enabled'  => :enabled,
-                          'yes'      => :enabled,
-                          'disabled' => :disabled,
-                          'no'       => :disabled
-                        }
-                      },
-                      desc: "Flag option"
-
-  * Supports option Array enums:
-
-        option :enum, value: {type: %w[yes no]},
-                      desc: "Enum option"
-
-  * Supports option Regexp pattern matching:
-
-        option :date, value: {type: /(\d+)-(\d+)-(\d{2,4})/},
-                      desc: "Regexp optin" do |date,d,m,y|
-          # ...
-        end
-
+* Uses [OptionParser][optparse] for option parsing.
 * Provides ANSI coloring support.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
@@ -58,7 +30,9 @@ classes.
 
 ## Examples
 
-### lib/foo/my_cmd.rb
+### Command
+
+#### lib/foo/cli/my_cmd.rb
 
     require 'command_kit'
 
@@ -112,10 +86,113 @@ classes.
       end
     end
 
-### bin/mycmd
+#### bin/mycmd
 
+    #!/usr/bin/env ruby
+    
+    $LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
     require 'foo/cli/my_cmd'
+    
     Foo::CLI::MyCmd.start
+
+### Options
+
+    option :foo, desc: "Foo option"
+
+With a custom short option:
+
+    option :foo, short: '-f',
+                 desc: "Foo option"
+
+With a custom long option:
+
+    option :foo, short: '--foo-opt',
+                 desc: "Foo option"
+
+With a custom usage string:
+
+    option :foo, value: {usage: 'FOO'},
+                 desc: "Foo option"
+
+With a custom block:
+
+    option :foo, desc: "Foo option" do |value|
+      @foo = Foo.new(value)
+    end
+
+With a custom type:
+
+    option :foo, value: {type: Integer},
+                 desc: "Foo option"
+
+With a default value:
+
+    option :foo, value: {type: Integer, default: 1},
+                 desc: "Foo option"
+
+With a required value:
+
+    option :foo, value: {type: String, required: true},
+                 desc: "Foo option"
+
+With a custom option value Hash map:
+
+    option :flag, value: {
+                    type: {
+                      'enabled'  => :enabled,
+                      'yes'      => :enabled,
+                      'disabled' => :disabled,
+                      'no'       => :disabled
+                    }
+                  },
+                  desc: "Flag option"
+
+With a custom option value Array enum:
+
+    option :enum, value: {type: %w[yes no]},
+                  desc: "Enum option"
+
+With a custom option value Regexp:
+
+    option :date, value: {type: /(\d+)-(\d+)-(\d{2,4})/},
+                  desc: "Regexp optin" do |date,d,m,y|
+      # ...
+    end
+
+### Arguments
+
+    argument :bar, desc: "Bar argument"
+
+With a custom usage string:
+
+    option :bar, usage: 'BAR',
+                 desc: "Bar argument"
+
+With a custom block:
+
+    argument :bar, desc: "Bar argument" do |bar|
+      # ...
+    end
+
+With a custom type:
+
+    argument :bar, type: Integer,
+                   desc: "Bar argument"
+
+With a default value:
+
+    argument :bar, default: "bar.txt",
+                   desc: "Bar argument"
+
+An optional argument:
+
+    argument :bar, required: true,
+                   desc: "Bar argument"
+
+A repeating argument:
+
+    argument :bar, repeats: true,
+                   desc: "Bar argument"
 
 ## Requirements
 
