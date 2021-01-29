@@ -50,7 +50,7 @@ module CommandKit
     # Prints the `usage: ...` output.
     #
     def help
-      case usage
+      case (usage = self.usage)
       when Array
         puts "usage: #{command_name} #{usage[0]}"
 
