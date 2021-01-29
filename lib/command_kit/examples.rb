@@ -45,11 +45,7 @@ module CommandKit
         if new_examples
           @examples = Array(new_examples)
         else
-          if @examples
-            @examples.map { |command| "#{command_name} #{command}" }
-          elsif superclass.kind_of?(ClassMethods)
-            superclass.examples
-          end
+          @examples || (superclass.examples if superclass.kind_of?(ClassMethods))
         end
       end
     end
@@ -64,7 +60,7 @@ module CommandKit
         puts
         puts "Examples:"
         examples.each do |command|
-          puts "    #{command}"
+          puts "    #{command_name} #{command}"
         end
       end
     end
