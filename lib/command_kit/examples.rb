@@ -65,7 +65,7 @@ module CommandKit
     def help
       super
 
-      if (examples = self.class.examples)
+      if (examples = self.examples)
         puts
         puts "Examples:"
         examples.each do |command|
