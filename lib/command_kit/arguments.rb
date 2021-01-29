@@ -49,11 +49,17 @@ module CommandKit
       # @param [Symbol] name
       #   The argument name.
       #
+      # @yield [(arg)]
+      #   If a block is given, it will be passed the parsed argument.
+      #
+      # @yieldparam [Object, nil] arg
+      #   The parsed argument.
+      #
       # @return [Argument]
       #   The newly defined argument.
       #
-      def argument(name,**kwargs)
-        arguments[name] = Argument.new(name,**kwargs)
+      def argument(name,**kwargs,&block)
+        arguments[name] = Argument.new(name,**kwargs,&block)
       end
     end
 

@@ -64,10 +64,16 @@ module CommandKit
       # @param [Symbol] name
       #   The option name.
       #
+      # @yield [(value)]
+      #   If a block is given, it will be passed the parsed option value.
+      #
+      # @yieldparam [Object, nil] value
+      #   The parsed option value.
+      #
       # @return [Option]
       #
-      def option(name,**kwargs)
-        options[name] = Option.new(name,**kwargs)
+      def option(name,**kwargs,&block)
+        options[name] = Option.new(name,**kwargs,&block)
       end
     end
 
