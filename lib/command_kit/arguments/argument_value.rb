@@ -11,6 +11,9 @@ module CommandKit
       # @return [Object, Proc, nil]
       attr_reader :default
 
+      # @return [Boolean]
+      attr_reader :required
+
       #
       # Initializes the argument value.
       #
