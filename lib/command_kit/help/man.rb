@@ -80,7 +80,9 @@ module CommandKit
             raise(NotImplementedError,"#{self.class}.man_dir not set")
           end
 
-          if man(File.join(self.class.man_dir,man_page)).nil?
+          man_path = File.join(self.class.man_dir,man_page)
+
+          if man(man_path).nil?
             super
           end
         else
