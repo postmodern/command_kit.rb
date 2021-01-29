@@ -2,18 +2,18 @@ require 'spec_helper'
 require 'command_kit/command_name'
 
 describe CommandName do
-  class SimpleCmd
+  class ImplicitCmd
     include CommandKit::CommandName
   end
 
-  let(:subject_class) { SimpleCmd }
+  let(:subject_class) { ImplicitCmd }
 
   describe ".command_name" do
-    subject { SimpleCmd }
+    subject { ImplicitCmd }
 
     context "when no command_name has been set" do
       it "should underscore the class'es name" do
-        expect(subject.command_name).to eq('simple_cmd')
+        expect(subject.command_name).to eq('implicit_cmd')
       end
     end
 
@@ -89,7 +89,7 @@ describe CommandName do
   end
 
   describe "#command_name" do
-    let(:subject_class) { SimpleCmd }
+    let(:subject_class) { ImplicitCmd }
 
     subject { subject_class.new }
 
