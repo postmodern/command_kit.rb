@@ -89,7 +89,7 @@ classes.
       end
     end
 
-#### bin/mycmd
+#### bin/my_cmd
 
     #!/usr/bin/env ruby
     
