@@ -116,6 +116,19 @@ describe Usage do
   end
 
   describe "#help" do
+    context "when #usage is nil" do
+      class NoUsage
+        include CommandKit::Usage
+      end
+
+      let(:subject_class) { NoUsage }
+      subject { subject_class.new }
+
+      it "must not print anything" do
+        expect { subject.help }.to_not output.to_stdout
+      end
+    end
+
     context "when #usage is a String" do
       class SingleUsage
         include CommandKit::Usage
