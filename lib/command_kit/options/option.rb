@@ -22,6 +22,9 @@ module CommandKit
       # @return [String]
       attr_reader :long
 
+      # @return [Boolean]
+      attr_reader :equals
+
       # @return [OptionValue, nil]
       attr_reader :value
 
