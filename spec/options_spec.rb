@@ -9,6 +9,7 @@ describe Options do
   end
 
   let(:subject_class) { TestOptions::ImplicitCmd }
+  subject { subject_class.new }
 
   describe ".options" do
     subject { TestOptions::ImplicitCmd }
@@ -125,6 +126,12 @@ describe Options do
           expect(super_subject.options[:bar].desc).to eq("Bar option")
         end
       end
+    end
+  end
+
+  describe "#initialize" do
+    it "must initialize #options" do
+      expect(subject.options).to eq({})
     end
   end
 end
