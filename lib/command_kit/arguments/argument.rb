@@ -52,7 +52,7 @@ module CommandKit
       def initialize(name, type:     String,
                            usage:    name.to_s.upcase,
                            default:  nil,
-                           required: false,
+                           required: true,
                            repeats:  false,
                            desc:     ,
                            &block)
