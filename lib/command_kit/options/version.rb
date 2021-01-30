@@ -10,14 +10,14 @@ module CommandKit
       # Includes {Options}, extends {Version::ClassMethods}, and defines a
       # `-V, --version` option.
       #
-      def self.included(base)
-        base.include Options
-        base.extend ClassMethods
+      def self.included(command)
+        command.include Options
+        command.extend ClassMethods
 
-        base.option :version, short: '-V',
-                              desc: 'Prints the version and exits' do
-          base.print_version
-          base.exit(0)
+        command.option :version, short: '-V',
+                                 desc: 'Prints the version and exits' do
+          print_version
+          exit(0)
         end
       end
 
