@@ -76,13 +76,13 @@ describe CommandKit::Arguments::ArgumentValue do
     context "when required: is initialized with true" do
       let(:required) { true }
 
-      it { expect(subject).to be_required }
+      it { expect(subject.required?).to be(true) }
     end
 
     context "when required: is initialized with false" do
       let(:required) { false }
 
-      it { expect(subject).to_not be_required }
+      it { expect(subject.required?).to be(false) }
     end
   end
 
@@ -90,13 +90,13 @@ describe CommandKit::Arguments::ArgumentValue do
     context "when required: is initialized with true" do
       let(:required) { true }
 
-      it { expect(subject).to_not be_optional }
+      it { expect(subject.optional?).to be(false) }
     end
 
     context "when required: is initialized with false" do
       let(:required) { false }
 
-      it { expect(subject).to be_optional }
+      it { expect(subject.optional?).to be(true) }
     end
   end
 
