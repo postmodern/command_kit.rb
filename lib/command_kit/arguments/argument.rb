@@ -50,7 +50,7 @@ module CommandKit
       # @yieldparam [Object, nil] value
       #
       def initialize(name, type:     String,
-                           usage:    name.upcase,
+                           usage:    name.to_s.upcase,
                            default:  nil,
                            required: false,
                            repeats:  false,
