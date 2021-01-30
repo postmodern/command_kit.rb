@@ -2,14 +2,16 @@ require 'spec_helper'
 require 'command_kit/usage'
 
 describe Usage do
-  class ImplicitCmd
-    include CommandKit::Usage
+  module TestUsage
+    class ImplicitCmd
+      include CommandKit::Usage
+    end
   end
 
-  let(:subject_class) { ImplicitCmd }
+  let(:subject_class) { TestUsage::ImplicitCmd }
 
   describe ".usage" do
-    subject { ImplicitCmd }
+    subject { TestUsage::ImplicitCmd }
 
     context "when no usage has been set" do
       it "should default to nil" do
@@ -18,12 +20,14 @@ describe Usage do
     end
 
     context "when a usage is explicitly set" do
-      class ExplicitCmd
-        include CommandKit::Usage
-        usage 'EXPLICIT'
+      module TestUsage
+        class ExplicitCmd
+          include CommandKit::Usage
+          usage 'EXPLICIT'
+        end
       end
 
-      subject { ExplicitCmd }
+      subject { TestUsage::ExplicitCmd }
 
       it "must return the explicitly set usage" do
         expect(subject.usage).to eq("EXPLICIT")
@@ -32,31 +36,37 @@ describe Usage do
 
     context "when the command class inherites from another class" do
       context "but no usage is set" do
-        class BaseCmd
-          include CommandKit::Usage
+        module TestUsage
+          class BaseCmd
+            include CommandKit::Usage
+          end
+
+          class InheritedCmd < BaseCmd
+          end
         end
 
-        class InheritedCmd < BaseCmd
-        end
-
-        subject { InheritedCmd }
+        subject { TestUsage::InheritedCmd }
 
         it "must search each class then return nil "do
           expect(subject.usage).to be_nil
         end
       end
 
-      class ExplicitBaseCmd
-        include CommandKit::Usage
-        usage 'EXPLICIT'
+      module TestUsage
+        class ExplicitBaseCmd
+          include CommandKit::Usage
+          usage 'EXPLICIT'
+        end
       end
 
       context "when the superclass defines an explicit usage" do
-        class ImplicitInheritedCmd < ExplicitBaseCmd
+        module TestUsage
+          class ImplicitInheritedCmd < ExplicitBaseCmd
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ImplicitInheritedCmd }
+        let(:super_subject) { TestUsage::ExplicitBaseCmd }
+        subject { TestUsage::ImplicitInheritedCmd }
 
         it "must inherit the superclass'es usage" do
           expect(subject.usage).to eq(super_subject.usage)
@@ -68,16 +78,18 @@ describe Usage do
       end
 
       context "when the subclass defines an explicit usage" do
-        class ImplicitBaseCmd
-          include CommandKit::Usage
+        module TestUsage
+          class ImplicitBaseCmd
+            include CommandKit::Usage
+          end
+
+          class ExplicitInheritedCmd < ImplicitBaseCmd
+            usage 'EXPLICIT'
+          end
         end
 
-        class ExplicitInheritedCmd < ImplicitBaseCmd
-          usage 'EXPLICIT'
-        end
-
-        let(:super_subject) { ImplicitBaseCmd }
-        subject { ExplicitInheritedCmd }
+        let(:super_subject) { TestUsage::ImplicitBaseCmd }
+        subject { TestUsage::ExplicitInheritedCmd }
 
         it "must return the subclass'es usage" do
           expect(subject.usage).to eq("EXPLICIT")
@@ -89,12 +101,14 @@ describe Usage do
       end
 
       context "when both the subclass overrides the superclass's usages" do
-        class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
-          usage 'EXPLICIT_OVERRIDE'
+        module TestUsage
+          class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
+            usage 'EXPLICIT_OVERRIDE'
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ExplicitOverridingInheritedCmd }
+        let(:super_subject) { TestUsage::ExplicitBaseCmd }
+        subject { TestUsage::ExplicitOverridingInheritedCmd }
 
         it "must return the subclass'es usage" do
           expect(subject.usage).to eq("EXPLICIT_OVERRIDE")
@@ -117,11 +131,13 @@ describe Usage do
 
   describe "#help" do
     context "when #usage is nil" do
-      class NoUsage
-        include CommandKit::Usage
+      module TestUsage
+        class NoUsage
+          include CommandKit::Usage
+        end
       end
 
-      let(:subject_class) { NoUsage }
+      let(:subject_class) { TestUsage::NoUsage }
       subject { subject_class.new }
 
       it "must not print anything" do
@@ -130,13 +146,15 @@ describe Usage do
     end
 
     context "when #usage is a String" do
-      class SingleUsage
-        include CommandKit::Usage
+      module TestUsage
+        class SingleUsage
+          include CommandKit::Usage
 
-        usage 'ONE USAGE'
+          usage 'ONE USAGE'
+        end
       end
 
-      let(:subject_class) { SingleUsage }
+      let(:subject_class) { TestUsage::SingleUsage }
       subject { subject_class.new }
 
       it "must print out 'usage:' and only one usage" do
@@ -147,17 +165,19 @@ describe Usage do
     end
 
     context "when #usage is an Array of Strings" do
-      class MultipleUsage
-        include CommandKit::Usage
+      module TestUsage
+        class MultipleUsage
+          include CommandKit::Usage
 
-        usage [
-          'ONE USAGE',
-          'TWO USAGE',
-          'THREE USAGE'
-        ]
+          usage [
+            'ONE USAGE',
+            'TWO USAGE',
+            'THREE USAGE'
+          ]
+        end
       end
 
-      let(:subject_class) { MultipleUsage }
+      let(:subject_class) { TestUsage::MultipleUsage }
       subject { subject_class.new }
 
       it "must print out the 'usage:' and all usage Strings" do

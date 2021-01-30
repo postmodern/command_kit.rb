@@ -2,14 +2,16 @@ require 'spec_helper'
 require 'command_kit/examples'
 
 describe Examples do
-  class ImplicitCmd
-    include CommandKit::Examples
+  module TestExamples
+    class ImplicitCmd
+      include CommandKit::Examples
+    end
   end
 
-  let(:subject_class) { ImplicitCmd }
+  let(:subject_class) { TestExamples::ImplicitCmd }
 
   describe ".examples" do
-    subject { ImplicitCmd }
+    subject { TestExamples::ImplicitCmd }
 
     context "when no examples have been set" do
       it "should default to nil" do
@@ -18,15 +20,17 @@ describe Examples do
     end
 
     context "when a examples is explicitly set" do
-      class ExplicitCmd
-        include CommandKit::Examples
-        examples [
-          '--example 1',
-          '--example 2'
-        ]
+      module TestExamples
+        class ExplicitCmd
+          include CommandKit::Examples
+          examples [
+            '--example 1',
+            '--example 2'
+          ]
+        end
       end
 
-      subject { ExplicitCmd }
+      subject { TestExamples::ExplicitCmd }
 
       it "must return the explicitly set examples" do
         expect(subject.examples).to eq([
@@ -38,34 +42,40 @@ describe Examples do
 
     context "when the command class inherites from another class" do
       context "but no examples is set" do
-        class BaseCmd
-          include CommandKit::Examples
+        module TestExamples
+          class BaseCmd
+            include CommandKit::Examples
+          end
+
+          class InheritedCmd < BaseCmd
+          end
         end
 
-        class InheritedCmd < BaseCmd
-        end
-
-        subject { InheritedCmd }
+        subject { TestExamples::InheritedCmd }
 
         it "must search each class then return nil "do
           expect(subject.examples).to be_nil
         end
       end
 
-      class ExplicitBaseCmd
-        include CommandKit::Examples
-        examples [
-          '--example 1',
-          '--example 2'
-        ]
+      module TestExamples
+        class ExplicitBaseCmd
+          include CommandKit::Examples
+          examples [
+            '--example 1',
+            '--example 2'
+          ]
+        end
       end
 
       context "when the superclass defines an explicit examples" do
-        class ImplicitInheritedCmd < ExplicitBaseCmd
+        module TestExamples
+          class ImplicitInheritedCmd < ExplicitBaseCmd
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ImplicitInheritedCmd }
+        let(:super_subject) { TestExamples::ExplicitBaseCmd }
+        subject { TestExamples::ImplicitInheritedCmd }
 
         it "must inherit the superclass'es examples" do
           expect(subject.examples).to eq(super_subject.examples)
@@ -80,19 +90,21 @@ describe Examples do
       end
 
       context "when the subclass defines an explicit examples" do
-        class ImplicitBaseCmd
-          include CommandKit::Examples
+        module TestExamples
+          class ImplicitBaseCmd
+            include CommandKit::Examples
+          end
+
+          class ExplicitInheritedCmd < ImplicitBaseCmd
+            examples [
+              '--example 1',
+              '--example 2'
+            ]
+          end
         end
 
-        class ExplicitInheritedCmd < ImplicitBaseCmd
-          examples [
-            '--example 1',
-            '--example 2'
-          ]
-        end
-
-        let(:super_subject) { ImplicitBaseCmd }
-        subject { ExplicitInheritedCmd }
+        let(:super_subject) { TestExamples::ImplicitBaseCmd }
+        subject { TestExamples::ExplicitInheritedCmd }
 
         it "must return the subclass'es examples" do
           expect(subject.examples).to eq([
@@ -107,14 +119,16 @@ describe Examples do
       end
 
       context "when both the subclass overrides the superclass's exampless" do
-        class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
-          examples [
-            '--example override'
-          ]
+        module TestExamples
+          class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
+            examples [
+              '--example override'
+            ]
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ExplicitOverridingInheritedCmd }
+        let(:super_subject) { TestExamples::ExplicitBaseCmd }
+        subject { TestExamples::ExplicitOverridingInheritedCmd }
 
         it "must return the subclass'es examples" do
           expect(subject.examples).to eq([
@@ -142,11 +156,13 @@ describe Examples do
 
   describe "#help" do
     context "when #examples returns nil" do
-      class NoExamples
-        include CommandKit::Examples
+      module TestExamples
+        class NoExamples
+          include CommandKit::Examples
+        end
       end
 
-      let(:subject_class) { NoExamples }
+      let(:subject_class) { TestExamples::NoExamples }
       subject { subject_class.new }
 
       it "must print out the examples" do
@@ -155,17 +171,19 @@ describe Examples do
     end
 
     context "when #examples returns an Array" do
-      class MultipleExamples
-        include CommandKit::Examples
+      module TestExamples
+        class MultipleExamples
+          include CommandKit::Examples
 
-        examples [
-          '--example 1',
-          '--example 2',
-          '--example 3'
-        ]
+          examples [
+            '--example 1',
+            '--example 2',
+            '--example 3'
+          ]
+        end
       end
 
-      let(:subject_class) { MultipleExamples }
+      let(:subject_class) { TestExamples::MultipleExamples }
       subject { subject_class.new }
 
       it "must print out the 'Examples:' section header and the examples" do

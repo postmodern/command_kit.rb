@@ -2,14 +2,16 @@ require 'spec_helper'
 require 'command_kit/arguments'
 
 describe Arguments do
-  class ImplicitCmd
-    include CommandKit::Arguments
+  module TestArguments
+    class ImplicitCmd
+      include CommandKit::Arguments
+    end
   end
 
-  let(:subject_class) { ImplicitCmd }
+  let(:subject_class) { TestArguments::ImplicitCmd }
 
   describe ".arguments" do
-    subject { ImplicitCmd }
+    subject { TestArguments::ImplicitCmd }
 
     context "when no arguments have been defined" do
       it "should default to nil" do
@@ -18,13 +20,15 @@ describe Arguments do
     end
 
     context "when a arguments is explicitly set" do
-      class ExplicitCmd
-        include CommandKit::Arguments
-        argument :foo, desc: 'Foo option'
-        argument :bar, desc: 'Bar option'
+      module TestArguments
+        class ExplicitCmd
+          include CommandKit::Arguments
+          argument :foo, desc: 'Foo option'
+          argument :bar, desc: 'Bar option'
+        end
       end
 
-      subject { ExplicitCmd }
+      subject { TestArguments::ExplicitCmd }
 
       it "must return the explicitly set arguments" do
         expect(subject.arguments.keys).to eq([:foo, :bar])
@@ -33,32 +37,38 @@ describe Arguments do
 
     context "when the command class inherites from another class" do
       context "but no arguments are defined" do
-        class BaseCmd
-          include CommandKit::Arguments
+        module TestArguments
+          class BaseCmd
+            include CommandKit::Arguments
+          end
+
+          class InheritedCmd < BaseCmd
+          end
         end
 
-        class InheritedCmd < BaseCmd
-        end
-
-        subject { InheritedCmd }
+        subject { TestArguments::InheritedCmd }
 
         it "must search each class then return nil "do
           expect(subject.arguments).to eq({})
         end
       end
 
-      class ExplicitBaseCmd
-        include CommandKit::Arguments
-        argument :foo, desc: 'Foo option'
-        argument :bar, desc: 'Bar option'
+      module TestArguments
+        class ExplicitBaseCmd
+          include CommandKit::Arguments
+          argument :foo, desc: 'Foo option'
+          argument :bar, desc: 'Bar option'
+        end
       end
 
       context "when the superclass defines arguments" do
-        class ImplicitInheritedCmd < ExplicitBaseCmd
+        module TestArguments
+          class ImplicitInheritedCmd < ExplicitBaseCmd
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ImplicitInheritedCmd }
+        let(:super_subject) { TestArguments::ExplicitBaseCmd }
+        subject { TestArguments::ImplicitInheritedCmd }
 
         it "must inherit the superclass'es arguments" do
           expect(subject.arguments).to eq(super_subject.arguments)
@@ -70,17 +80,19 @@ describe Arguments do
       end
 
       context "when the subclass defines arguments" do
-        class ImplicitBaseCmd
-          include CommandKit::Arguments
+        module TestArguments
+          class ImplicitBaseCmd
+            include CommandKit::Arguments
+          end
+
+          class ExplicitInheritedCmd < ImplicitBaseCmd
+            argument :baz, desc: 'Baz option'
+            argument :qux, desc: 'Qux option'
+          end
         end
 
-        class ExplicitInheritedCmd < ImplicitBaseCmd
-          argument :baz, desc: 'Baz option'
-          argument :qux, desc: 'Qux option'
-        end
-
-        let(:super_subject) { ImplicitBaseCmd }
-        subject { ExplicitInheritedCmd }
+        let(:super_subject) { TestArguments::ImplicitBaseCmd }
+        subject { TestArguments::ExplicitInheritedCmd }
 
         it "must return the subclass'es arguments" do
           expect(subject.arguments.keys).to eq([:baz, :qux])
@@ -92,12 +104,14 @@ describe Arguments do
       end
 
       context "when subclass overrides the superclass's argumentss" do
-        class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
-          argument :foo, desc: "Overriden foo option"
+        module TestArguments
+          class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
+            argument :foo, desc: "Overriden foo option"
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ExplicitOverridingInheritedCmd }
+        let(:super_subject) { TestArguments::ExplicitBaseCmd }
+        subject { TestArguments::ExplicitOverridingInheritedCmd }
 
         it "must combine the superclass'es arguments with the subclass'es" do
           expect(subject.arguments.keys).to eq([:foo, :bar])
@@ -116,11 +130,13 @@ describe Arguments do
 
   describe "#help" do
     context "when #arguments returns nil" do
-      class NoArguments
-        include CommandKit::Arguments
+      module TestArguments
+        class NoArguments
+          include CommandKit::Arguments
+        end
       end
 
-      let(:subject_class) { NoArguments }
+      let(:subject_class) { TestArguments::NoArguments }
       subject { subject_class.new }
 
       it "must print out the arguments" do
@@ -129,15 +145,17 @@ describe Arguments do
     end
 
     context "when #arguments returns an Array" do
-      class MultipleArguments
-        include CommandKit::Arguments
+      module TestArguments
+        class MultipleArguments
+          include CommandKit::Arguments
 
-        argument :foo, desc: "Foo option"
-        argument :bar, desc: "Bar option"
-        argument :baz, desc: "Baz option"
+          argument :foo, desc: "Foo option"
+          argument :bar, desc: "Bar option"
+          argument :baz, desc: "Baz option"
+        end
       end
 
-      let(:subject_class) { MultipleArguments }
+      let(:subject_class) { TestArguments::MultipleArguments }
       subject { subject_class.new }
 
       let(:foo_argument) { subject_class.arguments[:foo] }

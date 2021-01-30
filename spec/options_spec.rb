@@ -2,14 +2,16 @@ require 'spec_helper'
 require 'command_kit/options'
 
 describe Options do
-  class ImplicitCmd
-    include CommandKit::Options
+  module TestOptions
+    class ImplicitCmd
+      include CommandKit::Options
+    end
   end
 
-  let(:subject_class) { ImplicitCmd }
+  let(:subject_class) { TestOptions::ImplicitCmd }
 
   describe ".options" do
-    subject { ImplicitCmd }
+    subject { TestOptions::ImplicitCmd }
 
     context "when no options have been defined" do
       it "should default to nil" do
@@ -18,13 +20,15 @@ describe Options do
     end
 
     context "when a options is explicitly set" do
-      class ExplicitCmd
-        include CommandKit::Options
-        option :foo, desc: 'Foo option'
-        option :bar, desc: 'Bar option'
+      module TestOptions
+        class ExplicitCmd
+          include CommandKit::Options
+          option :foo, desc: 'Foo option'
+          option :bar, desc: 'Bar option'
+        end
       end
 
-      subject { ExplicitCmd }
+      subject { TestOptions::ExplicitCmd }
 
       it "must return the explicitly set options" do
         expect(subject.options.keys).to eq([:foo, :bar])
@@ -33,32 +37,38 @@ describe Options do
 
     context "when the command class inherites from another class" do
       context "but no options are defined" do
-        class BaseCmd
-          include CommandKit::Options
+        module TestOptions
+          class BaseCmd
+            include CommandKit::Options
+          end
+
+          class InheritedCmd < BaseCmd
+          end
         end
 
-        class InheritedCmd < BaseCmd
-        end
-
-        subject { InheritedCmd }
+        subject { TestOptions::InheritedCmd }
 
         it "must search each class then return nil "do
           expect(subject.options).to eq({})
         end
       end
 
-      class ExplicitBaseCmd
-        include CommandKit::Options
-        option :foo, desc: 'Foo option'
-        option :bar, desc: 'Bar option'
+      module TestOptions
+        class ExplicitBaseCmd
+          include CommandKit::Options
+          option :foo, desc: 'Foo option'
+          option :bar, desc: 'Bar option'
+        end
       end
 
       context "when the superclass defines options" do
-        class ImplicitInheritedCmd < ExplicitBaseCmd
+        module TestOptions
+          class ImplicitInheritedCmd < ExplicitBaseCmd
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ImplicitInheritedCmd }
+        let(:super_subject) { TestOptions::ExplicitBaseCmd }
+        subject { TestOptions::ImplicitInheritedCmd }
 
         it "must inherit the superclass'es options" do
           expect(subject.options).to eq(super_subject.options)
@@ -70,17 +80,19 @@ describe Options do
       end
 
       context "when the subclass defines options" do
-        class ImplicitBaseCmd
-          include CommandKit::Options
+        module TestOptions
+          class ImplicitBaseCmd
+            include CommandKit::Options
+          end
+
+          class ExplicitInheritedCmd < ImplicitBaseCmd
+            option :baz, desc: 'Baz option'
+            option :qux, desc: 'Qux option'
+          end
         end
 
-        class ExplicitInheritedCmd < ImplicitBaseCmd
-          option :baz, desc: 'Baz option'
-          option :qux, desc: 'Qux option'
-        end
-
-        let(:super_subject) { ImplicitBaseCmd }
-        subject { ExplicitInheritedCmd }
+        let(:super_subject) { TestOptions::ImplicitBaseCmd }
+        subject { TestOptions::ExplicitInheritedCmd }
 
         it "must return the subclass'es options" do
           expect(subject.options.keys).to eq([:baz, :qux])
@@ -92,12 +104,14 @@ describe Options do
       end
 
       context "when subclass overrides the superclass's optionss" do
-        class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
-          option :foo, desc: "Overriden foo option"
+        module TestOptions
+          class ExplicitOverridingInheritedCmd < ExplicitBaseCmd
+            option :foo, desc: "Overriden foo option"
+          end
         end
 
-        let(:super_subject) { ExplicitBaseCmd }
-        subject { ExplicitOverridingInheritedCmd }
+        let(:super_subject) { TestOptions::ExplicitBaseCmd }
+        subject { TestOptions::ExplicitOverridingInheritedCmd }
 
         it "must combine the superclass'es options with the subclass'es" do
           expect(subject.options.keys).to eq([:foo, :bar])
