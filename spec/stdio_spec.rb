@@ -201,4 +201,36 @@ describe CommandKit::Stdio do
       expect(subject.stderr).to eq(stderr)
     end
   end
+
+  [:gets, :readline, :readlines].each do |method|
+    describe "##{method}" do
+      let(:stdin) { StringIO.new }
+      let(:args) { [double(:arg1), double(:arg2)] }
+      let(:ret)  { double(:return_value) }
+
+      subject { command_class.new(stdin: stdin) }
+
+      it "must pass all arguments ot stdin.#{method}" do
+        expect(stdin).to receive(method).with(*args).and_return(ret)
+
+        expect(subject.send(method,*args)).to be(ret)
+      end
+    end
+  end
+
+  [:putc, :puts, :print, :printf].each do |method|
+    describe "##{method}" do
+      let(:stdout) { StringIO.new }
+      let(:args) { [double(:arg1), double(:arg2)] }
+      let(:ret)  { double(:return_value) }
+
+      subject { command_class.new(stdout: stdout) }
+
+      it "must pass all arguments ot stdout.#{method}" do
+        expect(stdout).to receive(method).with(*args).and_return(ret)
+
+        expect(subject.send(method,*args)).to be(ret)
+      end
+    end
+  end
 end

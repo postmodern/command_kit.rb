@@ -71,5 +71,57 @@ module CommandKit
     #
     # @return [$stderr, IO]
     attr_reader :stderr
+
+    #
+    # Calls `stdin.gets`.
+    #
+    def gets(*arguments)
+      stdin.gets(*arguments)
+    end
+
+    #
+    # Calls `stdin.readline`.
+    #
+    def readline(*arguments)
+      stdin.readline(*arguments)
+    end
+
+    #
+    # Calls `stdin.readlines`.
+    #
+    def readlines(*arguments)
+      stdin.readlines(*arguments)
+    end
+
+    # NOTE: intentionally do not override `Kenrel#p` or `Kernel#pp` to not
+    # hijack echo-debugging.
+
+    #
+    # Calls `stdout.putc`.
+    #
+    def putc(*arguments)
+      stdout.putc(*arguments)
+    end
+
+    #
+    # Calls `stdout.puts`.
+    #
+    def puts(*arguments)
+      stdout.puts(*arguments)
+    end
+
+    #
+    # Calls `stdout.print`.
+    #
+    def print(*arguments)
+      stdout.print(*arguments)
+    end
+
+    #
+    # Calls `stdout.printf`.
+    #
+    def printf(*arguments)
+      stdout.printf(*arguments)
+    end
   end
 end
