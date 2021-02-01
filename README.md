@@ -224,7 +224,7 @@ A repeating argument:
 
 ## Requirements
 
-* [ruby] >= 2.0.0
+* [ruby] >= 2.7.0
 
 ## Install
 
