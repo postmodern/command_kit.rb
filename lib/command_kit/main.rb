@@ -31,15 +31,6 @@ module CommandKit
       # @param [Array<String>] argv
       #   The Array of command-line arguments.
       #
-      # @param [IO] stdin
-      #   `stdin` input stream.
-      #
-      # @param [IO] stdout
-      #   `stdout` output stream.
-      #
-      # @param [IO] stderr
-      #   `stderr` erorr stream.
-      #
       def start(argv=ARGV, **kwargs)
         begin
           exit run(argv, **kwargs)
@@ -84,18 +75,6 @@ module CommandKit
     #
     # @param [Array<String>] argv
     #   The Array of command-line arguments.
-    #
-    # @param [IO] stdin
-    #   `stdin` input stream.
-    #
-    # @param [IO] stdout
-    #   `stdout` output stream.
-    #
-    # @param [IO] stderr
-    #   `stderr` erorr stream.
-    #
-    # @return [Integer]
-    #   The exit status code.
     #
     # @note
     #   If `$stdin`, `$stdout`, `$stderr` will be temporarily overriden before

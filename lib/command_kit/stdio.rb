@@ -33,7 +33,7 @@ module CommandKit
     end
 
     #
-    # Defines an {Initializer#initialize #initialize} method.
+    # Defines an {Prepend#initialize #initialize} method.
     #
     module Prepend
       #

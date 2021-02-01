@@ -36,7 +36,7 @@ module CommandKit
     attr_reader :env
 
     #
-    # Prepends the {Initializer#initialize #initialize} method.
+    # Prepends the {Prepend#initialize #initialize} method.
     #
     module Prepend
       #
