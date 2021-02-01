@@ -88,13 +88,33 @@ describe CommandName do
     end
   end
 
+  describe "#initialize" do
+    context "when given no keyword arguments" do
+      subject { subject_class.new }
+
+      it "must set #command_name to .command_name" do
+        expect(subject.command_name).to eq(subject_class.command_name)
+      end
+    end
+
+    context "when given the command_name: keyword argument" do
+      let(:command_name) { 'foo' }
+
+      subject { subject_class.new(command_name: command_name) }
+
+      it "must set #command_name to the command_name: keyword argument" do
+        expect(subject.command_name).to eq(command_name)
+      end
+    end
+  end
+
   describe "#command_name" do
-    let(:subject_class) { ImplicitCmd }
+    let(:command_name) { 'foo' }
 
-    subject { subject_class.new }
+    subject { subject_class.new(command_name: command_name) }
 
-    it "must be the same as .command_name" do
-      expect(subject.command_name).to eq(subject_class.command_name)
+    it "must return the initialized command_name: value" do
+      expect(subject.command_name).to eq(command_name)
     end
   end
 end
