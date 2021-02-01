@@ -1,7 +1,20 @@
 # frozen_string_literal: true
 
+require 'command_kit/stdio'
+
 module CommandKit
+  #
+  # Provides printing methods.
+  #
   module Printing
+    #
+    # Includes {Stdio} into the command class which is also including
+    # {Printing}.
+    #
+    def self.included(command)
+      command.include Stdio
+    end
+
     #
     # Prints the error to `$stderr`.
     #
@@ -9,7 +22,7 @@ module CommandKit
     #   The error message.
     #
     def print_error(error)
-      $stderr.puts error
+      stderr.puts error
     end
 
     #
@@ -18,9 +31,9 @@ module CommandKit
     # @param [Exception] error
     #
     def print_backtrace(error)
-      $stderr.puts "Backtrace:"
+      stderr.puts "Backtrace:"
       error.backtrace.reverse_each do |line|
-        $stderr.puts "\t#{line}"
+        stderr.puts "\t#{line}"
       end
     end
 
