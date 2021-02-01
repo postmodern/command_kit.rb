@@ -17,19 +17,24 @@ module CommandKit
   #
   module Env
     #
-    # Prepends {Initializer}.
+    # Prepends the {Prepend} module.
     #
     # @param [Class] command
     #   The command class including {Env}.
     #
     def self.included(command)
-      command.prepend Initializer
+      command.prepend Prepend
     end
 
+    # The environment variables hash.
     #
-    # Defines an {Initializer#initialize #initialize method}.
+    # @return [Hash{String => String}]
+    attr_reader :env
+
     #
-    module Initializer
+    # Prepends the {Initializer#initialize #initialize} method.
+    #
+    module Prepend
       #
       # Initializes {#env}.
       #
@@ -49,10 +54,5 @@ module CommandKit
         end
       end
     end
-
-    # The environment variables hash.
-    #
-    # @return [Hash{String => String}]
-    attr_reader :env
   end
 end

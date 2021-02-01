@@ -19,19 +19,19 @@ module CommandKit
   #
   module Stdio
     #
-    # Prepends {Initializer}.
+    # Prepends the {Prepend} module.
     #
     # @param [Class] command
     #   The command class including {Stdio}.
     #
     def self.included(command)
-      command.prepend Initializer
+      command.prepend Prepend
     end
 
     #
-    # Defines an {Initializer#initialize #initialize method}.
+    # Defines an {Initializer#initialize #initialize} method.
     #
-    module Initializer
+    module Prepend
       #
       # Initializes {#stdin}, {#stdout}, and {#stderr}.
       #
