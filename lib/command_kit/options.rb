@@ -31,7 +31,8 @@ module CommandKit
   #
   module Options
     #
-    # Includes {Parser} and extends {ClassMethods}.
+    # Includes {Parser}, extends {ClassMethods}, and prepends the {Prepend}
+    # module.
     #
     # @param [Class] command
     #   The command class which is including {Options}.
@@ -39,6 +40,7 @@ module CommandKit
     def self.included(command)
       command.include Parser
       command.extend ClassMethods
+      command.prepend Prepend
     end
 
     #
@@ -136,24 +138,29 @@ module CommandKit
     attr_reader :options
 
     #
-    # Initializes {#options} and populates the
-    # {Parser#option_parser option parser}.
+    # Methods that are prepended to the including class.
     #
-    def initialize
-      super
+    module Prepend
+      #
+      # Initializes {#options} and populates the
+      # {Parser#option_parser option parser}.
+      #
+      def initialize(options: {}, **kwargs)
+        @options = options
 
-      @options = {}
+        super(**kwargs)
 
-      self.class.options.each_value do |option|
-        option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
-          @options[option.name] = if arg.nil?
-                                    option.default_value
-                                  else
-                                    arg
-                                  end
+        self.class.options.each_value do |option|
+          option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
+            @options[option.name] = if arg.nil?
+                                      option.default_value
+                                    else
+                                      arg
+                                    end
 
-          if option.block
-            instance_exec(*arg,*captures,&option.block)
+            if option.block
+              instance_exec(*arg,*captures,&option.block)
+            end
           end
         end
       end
