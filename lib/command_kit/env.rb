@@ -51,11 +51,7 @@ module CommandKit
       def initialize(env: ENV, **kwargs)
         @env = env
 
-        if self.class.instance_method(:initialize).arity == 0
-          super()
-        else
-          super(**kwargs)
-        end
+        super(**kwargs)
       end
     end
   end

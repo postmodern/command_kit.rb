@@ -53,11 +53,7 @@ module CommandKit
         @stdout = stdout
         @stderr = stderr
 
-        if self.class.instance_method(:initialize).arity == 0
-          super()
-        else
-          super(**kwargs)
-        end
+        super(**kwargs)
       end
     end
 

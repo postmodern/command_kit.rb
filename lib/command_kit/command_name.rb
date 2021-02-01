@@ -68,13 +68,7 @@ module CommandKit
       def initialize(command_name: self.class.command_name, **kwargs)
         @command_name = command_name
 
-        if defined?(super)
-          if self.class.instance_method(:initialize).arity == -1
-            super(**kwargs)
-          else
-            super()
-          end
-        end
+        super(**kwargs)
       end
     end
   end
