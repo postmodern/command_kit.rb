@@ -1,4 +1,7 @@
 require 'command_kit/main'
+require 'command_kit/env'
+require 'command_kit/stdio'
+require 'command_kit/printing'
 require 'command_kit/usage'
 require 'command_kit/arguments'
 require 'command_kit/options'
@@ -21,6 +24,9 @@ module CommandKit
 
     def self.inherited(subclass)
       subclass.include Main
+      subclass.include Env
+      subclass.include Stdio
+      subclass.include Printing
       subclass.include Help
       subclass.include Usage
       subclass.include Options
