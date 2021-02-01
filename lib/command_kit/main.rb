@@ -38,9 +38,9 @@ module CommandKit
       # @param [IO] stderr
       #   `stderr` erorr stream.
       #
-      def start(argv: ARGV, stdin: $stdin, stdout: $stdout, stderr: $stderr)
+      def start(argv=ARGV, **kwargs)
         begin
-          run(*argv, stdin: stdin, stdout: stdout, stderr: stderr)
+          run(argv, **kwargs)
         rescue Interrupt
           exit 130
         rescue Errno::EPIPE
@@ -52,8 +52,28 @@ module CommandKit
       #
       # @see Main#run
       #
-      def run(*argv, stdin: $stdin, stdout: $stdout, stderr: $stderr)
-        new().run(*argv)
+      # @param [Array<String>] argv
+      #   The Array of command-line arguments.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments to initialize the command class with.
+      #
+      def run(argv, **kwargs)
+        new(**kwargs).run(argv)
+      end
+
+      #
+      # Initializes the command class with the given keyword arguments, then
+      # calls {Main#main main} with the given `argv`.
+      #
+      # @param [Array<String>] argv
+      #   The Array of command-line arguments.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments to initialize the command class with.
+      #
+      def main(*argv, **kwargs)
+        new(**kwargs).main(*argv)
       end
     end
 
@@ -79,20 +99,8 @@ module CommandKit
     #   If `$stdin`, `$stdout`, `$stderr` will be temporarily overriden before
     #   calling `main` and then restored to their original values.
     #
-    def run(*argv, stdin: $stdin, stdout: $stdout, stderr: $stderr)
-      orig_stdin  = $stdin
-      orig_stdout = $stdout
-      orig_stderr = $stderr
-
-      $stdin  = stdin
-      $stdout = stdout
-      $stderr = stderr
-
+    def run(argv)
       main(*argv) || 0
-    ensure
-      $stdin  = orig_stdin
-      $stdout = orig_stdout
-      $stderr = orig_stderr
     end
 
     #

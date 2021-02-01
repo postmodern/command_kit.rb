@@ -19,11 +19,28 @@ module CommandKit
 
     module Catcher
       #
-      # Calls the `super` `main()` but catches any `exit()` calls, returning
-      # the exit status instead.
+      # Calls the `super` `#run` method but catches any `exit()` calls,
+      # returning the exit status instead.
       #
       # @param [Array<String>] argv
-      #   The command-line arguments.
+      #   Arguments for `#main`.
+      #
+      # @return [Integer]
+      #   The exit status. Defaults to `0`.
+      #
+      def run(argv)
+        catch(:exit) do
+          super(argv)
+          0
+        end
+      end
+
+      #
+      # Calls the `super` `#main` method but catches any `exit()` calls,
+      # returning the exit status instead.
+      #
+      # @param [Array<String>] argv
+      #   Arguments for `#main`.
       #
       # @return [Integer]
       #   The exit status. Defaults to `0`.

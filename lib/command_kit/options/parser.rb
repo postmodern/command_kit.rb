@@ -29,7 +29,7 @@ module CommandKit
   module Parser
     #
     # Includes {CommandKit::Main}, {Usage}, defines a default usage
-    # (`[options]`), and prepends {Parser::Main}.
+    # (`[options]`), and prepends {Prepend}.
     #
     # @param [Class] command
     #   The class including {Parser}.
@@ -39,24 +39,7 @@ module CommandKit
       command.include Usage
       command.usage '[options]'
 
-      command.prepend Parser::Main
-    end
-
-    #
-    # Overrides the `main` method to automatically parse the options in the
-    # given `argv` Array.
-    #
-    module Main
-      #
-      # Parses the options and passes any additional non-option arguments
-      # to the `super` `main`.
-      #
-      # @param [Array<String>] argv
-      #   The given arguments Array.
-      #
-      def main(*argv)
-        super(*parse_options(argv))
-      end
+      command.prepend Prepend
     end
 
     # The option parser.
@@ -65,24 +48,40 @@ module CommandKit
     attr_reader :option_parser
 
     #
-    # The option parser.
+    # Methods that are prepended to the including class.
     #
-    # @return [OptionParser]
-    #
-    def initialize
-      @option_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: #{usage}"
-
-        opts.separator ''
-        opts.separator 'Options:'
-
-        opts.on_tail('-h','--help','Print help information') do
-          help
-          exit(0)
-        end
+    module Prepend
+      #
+      # Parses the options and passes any additional non-option arguments
+      # to the `super` `main`.
+      #
+      # @param [Array<String>] argv
+      #   The given arguments Array.
+      #
+      def run(argv)
+        super(parse_options(argv))
       end
 
-      super
+      #
+      # The option parser.
+      #
+      # @return [OptionParser]
+      #
+      def initialize
+        @option_parser = OptionParser.new do |opts|
+          opts.banner = "Usage: #{usage}"
+
+          opts.separator ''
+          opts.separator 'Options:'
+
+          opts.on_tail('-h','--help','Print help information') do
+            help
+            exit(0)
+          end
+        end
+
+        super
+      end
     end
 
     #
