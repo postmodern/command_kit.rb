@@ -5,6 +5,16 @@ module CommandKit
     #
     # Defines a `-q`,`--quiet` option.
     #
+    # ## Examples
+    #
+    #     include CommandKit::Options::Quiet
+    #     
+    #     def main(*argv)
+    #       # ...
+    #       puts "verbose output" unless quiet?
+    #       # ...
+    #     end
+    #
     module Quiet
       #
       # Includes {Options} and defines a `-q, --quiet` option.
