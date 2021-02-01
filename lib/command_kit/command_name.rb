@@ -58,7 +58,7 @@ module CommandKit
         @command_name = command_name
 
         if defined?(super)
-          if superclass.instance_method(:initialize).arity == -1
+          if self.class.instance_method(:initialize).arity == -1
             super(**kwargs)
           else
             super()
