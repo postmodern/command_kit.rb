@@ -14,6 +14,8 @@ module CommandKit
   #
   # The command class base-class.
   #
+  # ## Examples
+  #
   #     class MyCmd < CommandKit::Command
   #     
   #       # ...

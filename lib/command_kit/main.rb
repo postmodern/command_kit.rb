@@ -2,6 +2,8 @@ module CommandKit
   #
   # Defines a `main` method.
   #
+  # ## Examples
+  #
   #     include CommandKit::Main
   #     
   #     def main(*argv)

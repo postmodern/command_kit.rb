@@ -4,6 +4,8 @@ module CommandKit
   #
   # Adds exception handling and backtrace printing.
   #
+  # ## Examples
+  #
   #     include CommandKit::Backtrace
   #
   module Backtrace

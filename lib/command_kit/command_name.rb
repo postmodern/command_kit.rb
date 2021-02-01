@@ -4,6 +4,17 @@ module CommandKit
   #
   # Defines or derives a command class'es command-name.
   #
+  # ## Examples
+  #
+  #     class MyCmd
+  #
+  #       include CommandKit::CommandName
+  #
+  #     end
+  #
+  #     MyCmd.command_name
+  #     # => "my_cmd"
+  #
   module CommandName
     #
     # Extends {ClassMethods} and prepends {Prepend}.

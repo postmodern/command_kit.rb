@@ -2,6 +2,8 @@ module CommandKit
   #
   # Provides access to environment variables.
   #
+  # ## Examples
+  #
   #     class MyCmd
   #       include CommandKit::Env
   #
@@ -10,6 +12,8 @@ module CommandKit
   #         # ...
   #       end
   #     end
+  #
+  # ## Testing
   #
   # Can be initialized with a custom `env` hash for testing purposes.
   #

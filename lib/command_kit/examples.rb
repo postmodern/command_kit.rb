@@ -5,6 +5,8 @@ module CommandKit
   #
   # Allows defining example commands for the command class.
   #
+  # ## Examples
+  #
   #     include CommandKit::Examples
   #     
   #     examples [

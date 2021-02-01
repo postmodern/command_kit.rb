@@ -4,6 +4,8 @@ module CommandKit
   #
   # Allows adding a description to a command's class.
   #
+  # ## Examples
+  #
   #     include CommandKit::Description
   #
   #     description "Does things and stuff"

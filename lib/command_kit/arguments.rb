@@ -5,6 +5,8 @@ module CommandKit
   #
   # Provides a thin DSL for defining arguments as attributes.
   #
+  # ## Examples
+  #
   #     include CommandKit::Arguments
   #     
   #     argument :output, type: String,

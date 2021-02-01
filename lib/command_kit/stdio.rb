@@ -2,12 +2,16 @@ module CommandKit
   #
   # Provides access to stdin, stdout, and stderr streams.
   #
+  # ## Examples
+  #
   #     class MyCmd
   #       include CommandKit::Stdio
   #
   #       def main
   #       end
   #     end
+  #
+  # ## Testing
   #
   # Can be initialized with custom stdin, stdout, and stderr streams for testing
   # purposes.

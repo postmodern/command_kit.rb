@@ -5,6 +5,8 @@ module CommandKit
   #
   # Provides a thin DSL for defining options as attributes.
   #
+  # ## Examples
+  #
   #     include CommandKit::Options
   #     
   #     option :foo, type: String,

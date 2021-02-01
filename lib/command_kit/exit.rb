@@ -5,6 +5,16 @@ module CommandKit
   # Catches any calls to `exit` within `main` and returns the exit status code
   # instead.
   #
+  # ## Examples
+  #
+  #     include CommandKit::Exit
+  #     
+  #     def main(*argv)
+  #       # ...
+  #     
+  #       exit(0)
+  #     end
+  #
   module Exit
     #
     # Prepends {Catcher}.

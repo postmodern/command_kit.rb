@@ -2,6 +2,18 @@ module CommandKit
   #
   # Defines a place-holder {Help#help help} method.
   #
+  # ## Examples
+  #
+  #     class MyCmd
+  #       include CommandKit::Help
+  #     
+  #       def help
+  #         puts "..."
+  #       end
+  #     end
+  #     
+  #     MyCmd.help
+  #
   module Help
     #
     # Extends {ClassMethods}.

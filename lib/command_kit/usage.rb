@@ -4,6 +4,12 @@ module CommandKit
   #
   # Defines the usage string for a command class.
   #
+  # ## Examples
+  #
+  #     include CommandKit::Usage
+  #
+  #     usage "[options] ARG1 ARG2 [ARG3 ...]"
+  #
   module Usage
     #
     # Includes {CommandName} and extends {Usage::ClassMethods}.
