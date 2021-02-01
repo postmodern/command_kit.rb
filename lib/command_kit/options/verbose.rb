@@ -5,6 +5,16 @@ module CommandKit
     #
     # Defines a `-v`,`--verbose` option.
     #
+    # ## Examples
+    #
+    #     include Options::Verbose
+    #
+    #     def main(*argv)
+    #       # ...
+    #       puts "verbose output" if verbose?
+    #       # ...
+    #     end
+    #
     module Verbose
       #
       # Includes {Options} and defines a `-v, --verbose` option.
