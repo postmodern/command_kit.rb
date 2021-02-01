@@ -6,13 +6,14 @@ module CommandKit
   #
   module CommandName
     #
-    # Extends {ClassMethods}.
+    # Extends {ClassMethods} and prepends {Prepend}.
     #
     # @param [Class] command
     #   The command class which is including {CommandName}.
     #
     def self.included(command)
       command.extend ClassMethods
+      command.prepend Prepend
     end
 
     #
@@ -37,11 +38,33 @@ module CommandKit
       end
     end
 
+    # The commands name.
     #
-    # @see ClassMethods#command_name
+    # @return [String]
+    attr_reader :command_name
+
     #
-    def command_name
-      self.class.command_name
+    # Methods that are prepended to the including class.
+    #
+    module Prepend
+      #
+      # Initializes command_name.
+      #
+      # @param [String] command_name
+      #   Overrides the command name. Defaults to
+      #   {ClassMethods#command_name self.class.command_name}.
+      #
+      def initialize(command_name: self.class.command_name, **kwargs)
+        @command_name = command_name
+
+        if defined?(super)
+          if superclass.instance_method(:initialize).arity == -1
+            super(**kwargs)
+          else
+            super()
+          end
+        end
+      end
     end
   end
 end
