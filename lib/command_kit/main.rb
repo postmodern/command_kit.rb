@@ -40,7 +40,7 @@ module CommandKit
       #
       def start(argv=ARGV, **kwargs)
         begin
-          run(argv, **kwargs)
+          exit run(argv, **kwargs)
         rescue Interrupt
           exit 130
         rescue Errno::EPIPE
