@@ -8,7 +8,7 @@ describe Examples do
     end
   end
 
-  let(:subject_class) { TestExamples::ImplicitCmd }
+  let(:command_class) { TestExamples::ImplicitCmd }
 
   describe ".examples" do
     subject { TestExamples::ImplicitCmd }
@@ -147,10 +147,10 @@ describe Examples do
   end
 
   describe "#examples" do
-    subject { subject_class.new }
+    subject { command_class.new }
 
     it "must be the same as .examples" do
-      expect(subject.examples).to eq(subject_class.examples)
+      expect(subject.examples).to eq(command_class.examples)
     end
   end
 
@@ -162,8 +162,8 @@ describe Examples do
         end
       end
 
-      let(:subject_class) { TestExamples::NoExamples }
-      subject { subject_class.new }
+      let(:command_class) { TestExamples::NoExamples }
+      subject { command_class.new }
 
       it "must print out the examples" do
         expect { subject.help }.to_not output.to_stdout
@@ -183,8 +183,8 @@ describe Examples do
         end
       end
 
-      let(:subject_class) { TestExamples::MultipleExamples }
-      subject { subject_class.new }
+      let(:command_class) { TestExamples::MultipleExamples }
+      subject { command_class.new }
 
       it "must print out the 'Examples:' section header and the examples" do
         expect { subject.help }.to output(

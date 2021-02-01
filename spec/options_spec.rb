@@ -8,8 +8,8 @@ describe Options do
     end
   end
 
-  let(:subject_class) { TestOptions::ImplicitCmd }
-  subject { subject_class.new }
+  let(:command_class) { TestOptions::ImplicitCmd }
+  subject { command_class.new }
 
   describe ".options" do
     subject { TestOptions::ImplicitCmd }

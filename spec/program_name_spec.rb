@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'command_kit/program_name'
 
 describe ProgramName do
-  let(:subject_class) do
+  let(:command_class) do
     Class.new.tap do |klass|
       klass.include(described_class)
     end
@@ -17,7 +17,7 @@ describe ProgramName do
   end
 
   describe ".program_name" do
-    subject { subject_class }
+    subject { command_class }
 
     it "must return the basename of $0" do
       expect(subject.program_name).to eq(program_name)
@@ -25,10 +25,10 @@ describe ProgramName do
   end
 
   describe "#program_name" do
-    subject { subject_class.new }
+    subject { command_class.new }
 
     it "should be the same as .program_name" do
-      expect(subject.program_name).to eq(subject_class.program_name)
+      expect(subject.program_name).to eq(command_class.program_name)
     end
   end
 

@@ -8,7 +8,7 @@ describe Arguments do
     end
   end
 
-  let(:subject_class) { TestArguments::ImplicitCmd }
+  let(:command_class) { TestArguments::ImplicitCmd }
 
   describe ".arguments" do
     subject { TestArguments::ImplicitCmd }
@@ -136,8 +136,8 @@ describe Arguments do
         end
       end
 
-      let(:subject_class) { TestArguments::NoArguments }
-      subject { subject_class.new }
+      let(:command_class) { TestArguments::NoArguments }
+      subject { command_class.new }
 
       it "must print out the arguments" do
         expect { subject.help }.to_not output.to_stdout
@@ -155,12 +155,12 @@ describe Arguments do
         end
       end
 
-      let(:subject_class) { TestArguments::MultipleArguments }
-      subject { subject_class.new }
+      let(:command_class) { TestArguments::MultipleArguments }
+      subject { command_class.new }
 
-      let(:foo_argument) { subject_class.arguments[:foo] }
-      let(:bar_argument) { subject_class.arguments[:bar] }
-      let(:baz_argument) { subject_class.arguments[:baz] }
+      let(:foo_argument) { command_class.arguments[:foo] }
+      let(:bar_argument) { command_class.arguments[:bar] }
+      let(:baz_argument) { command_class.arguments[:baz] }
 
       it "must print out the 'Arguments:' section header and the arguments" do
         expect { subject.help }.to output(

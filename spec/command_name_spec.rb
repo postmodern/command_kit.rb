@@ -6,7 +6,7 @@ describe CommandName do
     include CommandKit::CommandName
   end
 
-  let(:subject_class) { ImplicitCmd }
+  let(:command_class) { ImplicitCmd }
 
   describe ".command_name" do
     subject { ImplicitCmd }
@@ -90,17 +90,17 @@ describe CommandName do
 
   describe "#initialize" do
     context "when given no keyword arguments" do
-      subject { subject_class.new }
+      subject { command_class.new }
 
       it "must set #command_name to .command_name" do
-        expect(subject.command_name).to eq(subject_class.command_name)
+        expect(subject.command_name).to eq(command_class.command_name)
       end
     end
 
     context "when given the command_name: keyword argument" do
       let(:command_name) { 'foo' }
 
-      subject { subject_class.new(command_name: command_name) }
+      subject { command_class.new(command_name: command_name) }
 
       it "must set #command_name to the command_name: keyword argument" do
         expect(subject.command_name).to eq(command_name)
@@ -111,7 +111,7 @@ describe CommandName do
   describe "#command_name" do
     let(:command_name) { 'foo' }
 
-    subject { subject_class.new(command_name: command_name) }
+    subject { command_class.new(command_name: command_name) }
 
     it "must return the initialized command_name: value" do
       expect(subject.command_name).to eq(command_name)

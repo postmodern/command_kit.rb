@@ -8,7 +8,7 @@ describe Usage do
     end
   end
 
-  let(:subject_class) { TestUsage::ImplicitCmd }
+  let(:command_class) { TestUsage::ImplicitCmd }
 
   describe ".usage" do
     subject { TestUsage::ImplicitCmd }
@@ -122,10 +122,10 @@ describe Usage do
   end
 
   describe "#usage" do
-    subject { subject_class.new }
+    subject { command_class.new }
 
     it "must be the same as .usage" do
-      expect(subject.usage).to eq(subject_class.usage)
+      expect(subject.usage).to eq(command_class.usage)
     end
   end
 
@@ -137,8 +137,8 @@ describe Usage do
         end
       end
 
-      let(:subject_class) { TestUsage::NoUsage }
-      subject { subject_class.new }
+      let(:command_class) { TestUsage::NoUsage }
+      subject { command_class.new }
 
       it "must not print anything" do
         expect { subject.help }.to_not output.to_stdout
@@ -154,8 +154,8 @@ describe Usage do
         end
       end
 
-      let(:subject_class) { TestUsage::SingleUsage }
-      subject { subject_class.new }
+      let(:command_class) { TestUsage::SingleUsage }
+      subject { command_class.new }
 
       it "must print out 'usage:' and only one usage" do
         expect { subject.help }.to output(
@@ -177,8 +177,8 @@ describe Usage do
         end
       end
 
-      let(:subject_class) { TestUsage::MultipleUsage }
-      subject { subject_class.new }
+      let(:command_class) { TestUsage::MultipleUsage }
+      subject { command_class.new }
 
       it "must print out the 'usage:' and all usage Strings" do
         expect { subject.help }.to output(

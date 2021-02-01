@@ -8,7 +8,7 @@ describe Description do
     end
   end
 
-  let(:subject_class) { TestDescription::ImplicitCmd }
+  let(:command_class) { TestDescription::ImplicitCmd }
 
   describe ".description" do
     subject { TestDescription::ImplicitCmd }
@@ -122,10 +122,10 @@ describe Description do
   end
 
   describe "#description" do
-    subject { subject_class.new }
+    subject { command_class.new }
 
     it "must be the same as .description" do
-      expect(subject.description).to eq(subject_class.description)
+      expect(subject.description).to eq(command_class.description)
     end
   end
 
@@ -137,8 +137,8 @@ describe Description do
         end
       end
 
-      let(:subject_class) { TestDescription::NoDescription }
-      subject { subject_class.new }
+      let(:command_class) { TestDescription::NoDescription }
+      subject { command_class.new }
 
       it "must print out the description" do
         expect { subject.help }.to_not output.to_stdout
@@ -154,8 +154,8 @@ describe Description do
         end
       end
 
-      let(:subject_class) { TestDescription::DefinesDescription }
-      subject { subject_class.new }
+      let(:command_class) { TestDescription::DefinesDescription }
+      subject { command_class.new }
 
       it "must print out the description" do
         expect { subject.help }.to output(
