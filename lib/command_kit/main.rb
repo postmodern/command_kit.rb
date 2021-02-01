@@ -58,7 +58,7 @@ module CommandKit
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments to initialize the command class with.
       #
-      def run(argv, **kwargs)
+      def run(argv=[], **kwargs)
         new(**kwargs).run(argv)
       end
 
@@ -99,7 +99,7 @@ module CommandKit
     #   If `$stdin`, `$stdout`, `$stderr` will be temporarily overriden before
     #   calling `main` and then restored to their original values.
     #
-    def run(argv)
+    def run(argv=[])
       main(*argv) || 0
     end
 
