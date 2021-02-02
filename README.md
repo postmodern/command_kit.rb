@@ -24,6 +24,26 @@ classes.
   * `MyCmd.run(['--foo', foo, arg1, arg2])`
   * `MyCmd.main(arg1, arg2, options: {foo: foo})`
 
+### Modules
+
+* {CommandKit::ANSI}
+* {CommandKit::Arguments}
+* {CommandKit::Backtrace}
+* {CommandKit::CommandName}
+* {CommandKit::Description}
+* {CommandKit::Env}
+  * {CommandKit::Env::Home}
+* {CommandKit::Examples}
+* {CommandKit::Exit}
+* {CommandKit::Help}
+  * {CommandKit::Help::Man}
+* {CommandKit::Main}
+* {CommandKit::Options}
+* {CommandKit::Printing}
+* {CommandKit::ProgramName}
+* {CommandKit::Stdio}
+* {CommandKit::Usage}
+
 ## Anti-Features
 
 * No additional runtime dependencies.
