@@ -1,3 +1,4 @@
+require 'command_kit/command_name'
 require 'command_kit/env/home'
 
 module CommandKit
@@ -9,6 +10,7 @@ module CommandKit
     #   The command class which is including {XDG}.
     #
     def self.included(command)
+      command.include CommandName
       command.include Env::Home
       command.prepend Prepend
     end
@@ -18,7 +20,7 @@ module CommandKit
         if new_dir
           @xdg_dir = new_dir
         else
-          @xdg_dir || (superclass.xdg_dir if superclass.kind_of?(ClassMethods) || program_name)
+          @xdg_dir || (superclass.xdg_dir if superclass.kind_of?(ClassMethods)) || command_name
         end
       end
     end
