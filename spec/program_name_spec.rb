@@ -9,17 +9,16 @@ describe ProgramName do
   end
 
   let(:program_name) { 'foo' }
-  let(:program_path) { "/path/to/#{program_name}" }
 
   before do
-    @original_0 = $0
-    $0 = program_path
+    @original_program_name = $PROGRAM_NAME
+    $PROGRAM_NAME = program_name
   end
 
   describe ".program_name" do
     subject { command_class }
 
-    it "must return the basename of $0" do
+    it "must return $PROGRAM_NAME" do
       expect(subject.program_name).to eq(program_name)
     end
   end
@@ -33,6 +32,6 @@ describe ProgramName do
   end
 
   after do
-    $0 = @original_0
+    $PROGRAM_NAME = @original_program_name
   end
 end

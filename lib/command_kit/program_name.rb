@@ -1,6 +1,6 @@
 module CommandKit
   #
-  # Retrieves the current program name.
+  # Retrieves the current program name (`$PROGRAM_NAME`).
   #
   module ProgramName
     #
@@ -18,13 +18,13 @@ module CommandKit
     #
     module ClassMethods
       #
-      # The current program name derived from `$0`.
+      # The current program name (`$PROGRAM_NAME`).
       #
       # @return [String]
-      #   The basename of `$0`.
+      #   `$PROGRAM_NAME`
       #
       def program_name
-        File.basename($0)
+        $PROGRAM_NAME
       end
     end
 
