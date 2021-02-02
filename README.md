@@ -20,6 +20,7 @@ classes.
 * Provides ANSI coloring support.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
+* Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
 * Easy to test:
   * `MyCmd.run(['--foo', foo, arg1, arg2])`
   * `MyCmd.main(arg1, arg2, options: {foo: foo})`
@@ -43,6 +44,7 @@ classes.
 * {CommandKit::ProgramName}
 * {CommandKit::Stdio}
 * {CommandKit::Usage}
+* {CommandKit::XDG}
 
 ## Anti-Features
 
