@@ -22,18 +22,19 @@ module CommandKit
         #
         # @return [String]
         #
-        def home
+        def home_dir
           Gem.user_home
         end
       end
 
       #
-      # The value of the `env['HOME']` variable or {ClassMethods#home .home}.
+      # The value of the `env['HOME']` variable or
+      # {ClassMethods#home_dir .home_dir}.
       #
       # @return [String]
       #
-      def home
-        env.fetch('HOME') { self.class.home }
+      def home_dir
+        env.fetch('HOME') { self.class.home_dir }
       end
     end
   end
