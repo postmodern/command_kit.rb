@@ -25,7 +25,7 @@ module CommandKit
       #
       module ClassMethods
         #
-        # Home directory.
+        # The default home directory.
         #
         # @return [String]
         #
