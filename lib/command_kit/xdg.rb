@@ -99,17 +99,17 @@ module CommandKit
       end
     end
 
-    # The `~/.config/` directory.
+    # The `~/.config/<xdg_namespace>` directory.
     #
     # @return [String]
     attr_reader :config_dir
 
-    # The `~/.local/share/` directory.
+    # The `~/.local/share/<xdg_namespace>` directory.
     #
     # @return [String]
     attr_reader :local_share_dir
 
-    # The `~/.cache/` directory.
+    # The `~/.cache/<xdg_namespace>` directory.
     #
     # @return [String]
     attr_reader :cache_dir
