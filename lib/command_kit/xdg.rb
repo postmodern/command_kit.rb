@@ -11,16 +11,29 @@ module CommandKit
     #
     def self.included(command)
       command.include CommandName
+      command.extend ClassMethods
       command.include Env::Home
       command.prepend Prepend
     end
 
     module ClassMethods
-      def xdg_dir(new_dir=nil)
-        if new_dir
-          @xdg_dir = new_dir
+      #
+      # Gets or sets the XDG sub-directory name used by the command.
+      #
+      # @param [#to_s, nil] new_namespace
+      #   If a new_namespace argument is given, it will set the class'es
+      #   {#xdg_namespace} string.
+      #
+      # @return [String]
+      #   The class'es or superclass'es {#xdg_namespace}. Defaults to
+      #   {CommandName::ClassMethods#command_name} if no {#xdg_namespace} has
+      #   been defined.
+      #
+      def xdg_namespace(new_namespace=nil)
+        if new_namespace
+          @xdg_namespace = new_namespace.to_s
         else
-          @xdg_dir || (superclass.xdg_dir if superclass.kind_of?(ClassMethods)) || command_name
+          @xdg_namespace || (superclass.xdg_namespace if superclass.kind_of?(ClassMethods)) || command_name
         end
       end
     end
@@ -30,8 +43,9 @@ module CommandKit
     #
     module Prepend
       #
-      # Initializes {#config_dir}, {#local_share_dir}, and {#cache_dir},
-      # based on {Env::Home#home_dir #home_dir}.
+      # Initializes {#config_dir}, {#local_share_dir}, and {#cache_dir} to
+      # `~/.config/<xdg_namespace>`, `~/.local/share/<xdg_namespace>`,
+      # `~/.cache/<xdg_namespace>`, respectively.
       #
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments.
@@ -39,17 +53,23 @@ module CommandKit
       def initialize(**kwargs)
         super(**kwargs)
 
-        @config_dir = env.fetch('XDG_CONFIG_HOME') do
-          File.join(home_dir,'.config')
-        end
+        @config_dir = File.join(
+          env.fetch('XDG_CONFIG_HOME') {
+            File.join(home_dir,'.config')
+          }, xdg_namespace
+        )
 
-        @local_share_dir = env.fetch('XDG_DATA_HOME') do
-          File.join(home_dir,'.local','share')
-        end
+        @local_share_dir = File.join(
+          env.fetch('XDG_DATA_HOME') {
+            File.join(home_dir,'.local','share')
+          }, xdg_namespace
+        )
 
-        @cache_dir = env.fetch('XDG_CACHE_HOME') do
-          File.join(home_dir,'.cache')
-        end
+        @cache_dir = File.join(
+          env.fetch('XDG_CACHE_HOME') {
+            File.join(home_dir,'.cache')
+          }, xdg_namespace
+        )
       end
     end
 
@@ -67,5 +87,9 @@ module CommandKit
     #
     # @return [String]
     attr_reader :cache_dir
+
+    def xdg_namespace
+      self.class.xdg_namespace
+    end
   end
 end
