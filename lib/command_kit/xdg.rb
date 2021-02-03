@@ -13,7 +13,8 @@ module CommandKit
   #
   module XDG
     #
-    # Includes {Env::Home} and prepends {Prepend}.
+    # Includes {CommandName}, extends {ClassMethods}, includes {Env::Home}, and
+    # prepends {Prepend}.
     #
     # @param [Class] command
     #   The command class which is including {XDG}.
