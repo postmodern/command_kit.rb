@@ -43,12 +43,28 @@ module CommandKit
     #
     module Prepend
       #
-      # Initializes {#config_dir}, {#local_share_dir}, and {#cache_dir} to
-      # `~/.config/<xdg_namespace>`, `~/.local/share/<xdg_namespace>`,
-      # `~/.cache/<xdg_namespace>`, respectively.
+      # Initializes {#config_dir}, {#local_share_dir}, and {#cache_dir}.
       #
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments.
+      #
+      # @note
+      #   If the `$XDG_CONFIG_HOME` env variable is set, then {#config_dir} will
+      #   be initialized to effectively `$XDG_CONFIG_HOME/<xdg_namespace>`.
+      #   Otherwise {#config_dir} will be initialized to
+      #   `~/.config/<xdg_namespace>`.
+      #
+      # @note
+      #   If the `$XDG_DATA_HOME` env variable is set, then {#local_share_dir}
+      #   will be initialized to effectively `$XDG_DATA_HOME/<xdg_namespace>`.
+      #   Otherwise {#local_share_dir} will be initialized to
+      #   `~/.local/share/<xdg_namespace>`.
+      #
+      # @note
+      #   If the `$XDG_CACHE_HOME` env variable is set, then {#cache_dir} will
+      #   be initialized to effectively `$XDG_CACHE_HOME/<xdg_namespace>`.
+      #   Otherwise {#cache_dir} will be initialized to
+      #   `~/.cache/<xdg_namespace>`.
       #
       def initialize(**kwargs)
         super(**kwargs)
