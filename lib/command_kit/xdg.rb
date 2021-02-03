@@ -2,6 +2,15 @@ require 'command_kit/command_name'
 require 'command_kit/env/home'
 
 module CommandKit
+  #
+  # Provides access to [XDG directories].
+  #
+  # * `~/.config`
+  # * `~/.local/share`
+  # * `~/.cache`
+  #
+  # [XDG directories]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+  #
   module XDG
     #
     # Includes {Env::Home} and prepends {Prepend}.
