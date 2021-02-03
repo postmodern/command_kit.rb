@@ -104,6 +104,9 @@ module CommandKit
     # @return [String]
     attr_reader :cache_dir
 
+    #
+    # @see ClassMethods#xdg_namespace
+    #
     def xdg_namespace
       self.class.xdg_namespace
     end
