@@ -40,6 +40,8 @@ classes.
   * {CommandKit::Help::Man}
 * {CommandKit::Main}
 * {CommandKit::Options}
+  * {CommandKit::Options::Quiet}
+  * {CommandKit::Options::Verbose}
 * {CommandKit::Printing}
 * {CommandKit::ProgramName}
 * {CommandKit::Stdio}
