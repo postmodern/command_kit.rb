@@ -37,6 +37,7 @@ module CommandKit
 
       name.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
       name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      name.tr!('-','_')
       name.downcase!
 
       name

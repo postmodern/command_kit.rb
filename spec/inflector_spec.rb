@@ -39,6 +39,10 @@ describe Inflector do
       expect(subject.underscore('CAMEL')).to eq('camel')
     end
 
+    it "must replace dashes with underscores" do
+      expect(subject.underscore('foo-bar')).to eq('foo_bar')
+    end
+
     context "when given a non-String" do
       it "must convert it to a String" do
         expect(subject.underscore(:CamelCase)).to eq('camel_case')
