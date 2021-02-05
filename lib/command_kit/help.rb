@@ -29,10 +29,13 @@ module CommandKit
       #
       # Prints `--help` information.
       #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments for `#initialize`.
+      #
       # @see Help#help
       #
-      def help
-        new().help
+      def help(**kwargs)
+        new(**kwargs).help
       end
     end
 
