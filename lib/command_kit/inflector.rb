@@ -69,7 +69,7 @@ module CommandKit
 
       # sourced from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L329-L334
       name.sub!(/^[a-z\d]*/,&:capitalize)
-      name.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do |match|
+      name.gsub!(%r{(?:[_-]|(/))([a-z\d]*)}i) do |match|
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
 

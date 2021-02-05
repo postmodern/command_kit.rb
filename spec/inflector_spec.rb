@@ -70,5 +70,11 @@ describe Inflector do
         expect(subject.camelize('foo_bar')).to eq('FooBar')
       end
     end
+
+    context "when given a string with dashes" do
+      it "must capitalize each word and remove all dashes" do
+        expect(subject.camelize('foo-bar')).to eq('FooBar')
+      end
+    end
   end
 end
