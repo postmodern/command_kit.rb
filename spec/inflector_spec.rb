@@ -57,4 +57,18 @@ describe Inflector do
       end
     end
   end
+
+  describe ".camelize" do
+    context "when given a string with no underscores" do
+      it "must capitalize the string" do
+        expect(subject.camelize('foo')).to eq('Foo')
+      end
+    end
+
+    context "when given a string with underscores" do
+      it "must capitalize each word and remove all underscores" do
+        expect(subject.camelize('foo_bar')).to eq('FooBar')
+      end
+    end
+  end
 end
