@@ -10,6 +10,19 @@ module CommandKit
   #
   module Inflector
     #
+    # Removes the namespace from a constant name.
+    #
+    # @param [#to_s] name
+    #   The constant name.
+    #
+    # @return [String]
+    #   The class or module's name, without the namespace.
+    #
+    def self.demodularize(name)
+      name.to_s.split('::').last
+    end
+
+    #
     # Converts a CamelCased name to an under_scored name.
     #
     # @param [#to_s] name

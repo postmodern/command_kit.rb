@@ -2,6 +2,26 @@ require 'spec_helper'
 require 'command_kit/inflector'
 
 describe Inflector do
+  describe ".demodularize" do
+    context "when given a single class or module name" do
+      let(:name) { 'Foo' }
+
+      it "must return the class or module name unchanged" do
+        expect(subject.demodularize(name)).to eq(name)
+      end
+    end
+
+    context "when given a class or module name with a leading namespace" do
+      let(:namespace) { 'Foo::Bar' }
+      let(:constant)  { "Baz" }
+      let(:name) { "#{namespace}::#{constant}" }
+
+      it "must return the constant name, without the leading namespace" do
+        expect(subject.demodularize(name)).to eq(constant)
+      end
+    end
+  end
+
   describe ".underscore" do
     it "must convert CamelCase to camel_case" do
       expect(subject.underscore('CamelCase')).to eq('camel_case')
