@@ -76,5 +76,11 @@ describe Inflector do
         expect(subject.camelize('foo-bar')).to eq('FooBar')
       end
     end
+
+    context "when given a string containing '/' characters" do
+      it "must replace the '/' characters with '::' strings" do
+        expect(subject.camelize('foo_bar/baz_quox')).to eq('FooBar::BazQuox')
+      end
+    end
   end
 end

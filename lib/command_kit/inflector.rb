@@ -67,13 +67,16 @@ module CommandKit
     def self.camelize(name)
       name = name.to_s.dup
 
-      # adapted from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L329-L334
+      # sourced from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L329-L334
       name.sub!(/^[a-z\d]*/,&:capitalize)
-      name.gsub!(/[_-]([a-z\d]*)/i) do
-        word = Regexp.last_match(1)
-        word.capitalize
+      name.gsub!(%r{(?:[_-]|(/))([a-z\d]*)}i) do |match|
+        slash = Regexp.last_match(1)
+        word  = Regexp.last_match(2)
+
+        "#{slash}#{word.capitalize}"
       end
 
+      name.gsub!('/','::')
       name
     end
   end
