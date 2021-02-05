@@ -20,6 +20,12 @@ describe Inflector do
         expect(subject.demodularize(name)).to eq(constant)
       end
     end
+
+    context "when given a non-String" do
+      it "must convert it to a String" do
+        expect(subject.demodularize(:"Foo::Bar")).to eq('Bar')
+      end
+    end
   end
 
   describe ".underscore" do
@@ -39,8 +45,10 @@ describe Inflector do
       expect(subject.underscore('CAMEL')).to eq('camel')
     end
 
-    it "must replace dashes with underscores" do
-      expect(subject.underscore('foo-bar')).to eq('foo_bar')
+    context "when given a String containing '/' characters" do
+      it "must replace dashes with underscores" do
+        expect(subject.underscore('foo-bar')).to eq('foo_bar')
+      end
     end
 
     context "when given a non-String" do
@@ -84,6 +92,12 @@ describe Inflector do
     context "when given a string containing '/' characters" do
       it "must replace the '/' characters with '::' strings" do
         expect(subject.camelize('foo_bar/baz_quox')).to eq('FooBar::BazQuox')
+      end
+    end
+
+    context "when given a non-String" do
+      it "must convert it to a String" do
+        expect(subject.camelize(:foo_bar)).to eq('FooBar')
       end
     end
   end
