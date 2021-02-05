@@ -71,8 +71,7 @@ module CommandKit
       name.sub!(/^[a-z\d]*/,&:capitalize)
       name.gsub!(/[_-]([a-z\d]*)/i) do
         word = Regexp.last_match(1)
-
-        "#{word.capitalize}"
+        word.capitalize
       end
 
       name
