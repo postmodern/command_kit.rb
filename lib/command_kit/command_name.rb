@@ -44,7 +44,7 @@ module CommandKit
         if new_command_name
           @command_name = new_command_name.to_s
         else
-          @command_name || Inflector.underscore(name)
+          @command_name || Inflector.underscore(Inflector.demodularize(name))
         end
       end
     end
