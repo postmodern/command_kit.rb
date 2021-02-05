@@ -33,9 +33,13 @@ module CommandKit
     #
     def self.underscore(name)
       # sourced from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L286-L287
-      name.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2') \
-               .gsub(/([a-z\d])([A-Z])/, '\1_\2') \
-               .downcase
+      name = name.to_s.dup
+
+      name.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+      name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      name.downcase!
+
+      name
     end
 
     #
