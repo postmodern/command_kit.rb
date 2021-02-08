@@ -5,15 +5,23 @@ module CommandKit
     #
     class ArgumentValue
 
+      # The desired type of the argument value.
+      #
       # @return [Class, Hash, Array, Regexp, nil]
       attr_reader :type
 
+      # The default parsed value for the argument value.
+      #
       # @return [Object, Proc, nil]
       attr_reader :default
 
+      # Specifies whether the argument value is required or optional.
+      #
       # @return [Boolean]
       attr_reader :required
 
+      # The usage string to describe the argument value.
+      #
       # @return [String]
       attr_reader :usage
 
