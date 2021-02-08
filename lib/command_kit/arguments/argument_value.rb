@@ -18,12 +18,16 @@ module CommandKit
       # Initializes the argument value.
       #
       # @param [Class, Hash, Array, Regexp] type
+      #   The type of the argument value.
       #
       # @param [Boolean] required
+      #   Specifies whether the argument value is required or optional.
       #
       # @param [String] usage
+      #   The usage string to represent the argument value.
       #
       # @param [Object, Proc, nil] default
+      #   The default parsed value for the argument value.
       #
       def initialize(type: nil, required: true, default: nil, usage: )
         @type     = type
