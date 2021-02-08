@@ -6,6 +6,10 @@ module CommandKit
     # Provides Hash-like access to the classes defined within a module or a
     # class.
     #
+    # ## Examples
+    #
+    #     self.commands = Namespace.new(CLI::Commands)
+    #
     class Namespace
 
       # The namespace module or class.
