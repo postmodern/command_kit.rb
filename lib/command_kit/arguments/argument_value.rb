@@ -14,6 +14,9 @@ module CommandKit
       # @return [Boolean]
       attr_reader :required
 
+      # @return [String]
+      attr_reader :usage
+
       #
       # Initializes the argument value.
       #
