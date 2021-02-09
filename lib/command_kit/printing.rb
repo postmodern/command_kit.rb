@@ -43,8 +43,11 @@ module CommandKit
     #
     # @param [Exception] error
     #
-    def print_exception(error)
-      print_backtrace(error)
+    # @param [boolean] backtrace
+    #   Controls whether or not to print the full backtrace.
+    #
+    def print_exception(error, backtrace: true)
+      print_backtrace(error) if backtrace
       print_error "#{error.class}: #{error.message}"
     end
   end
