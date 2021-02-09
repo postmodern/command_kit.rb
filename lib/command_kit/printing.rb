@@ -32,8 +32,9 @@ module CommandKit
     #
     def print_backtrace(error)
       stderr.puts "Backtrace:"
-      error.backtrace.reverse_each do |line|
-        stderr.puts "\t#{line}"
+      error.backtrace.each_with_index.reverse_each do |(line,index)|
+        line_number = (index+1).to_s
+        stderr.puts "#{line_number.rjust(8)}: #{line}"
       end
     end
 
