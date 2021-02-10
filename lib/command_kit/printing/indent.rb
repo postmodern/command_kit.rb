@@ -39,13 +39,22 @@ module CommandKit
       #   The given block will be called after the indentation level has been
       #   increased.
       #
+      # @return [Integer]
+      #   If no block is given, the indententation level will be returned.
+      #
       def indent(n=2)
-        original_indent = @indent
-        @indent += n
+        if block_given?
+          begin
+            original_indent = @indent
+            @indent += n
 
-        yield
-      ensure
-        @indent = original_indent
+            yield
+          ensure
+            @indent = original_indent
+          end
+        else
+          @indent
+        end
       end
 
       #
