@@ -214,24 +214,32 @@ describe Commands::Namespace do
 
   describe "#each_key" do
     it "must yield an under_scored key for each constant defined in the namespace" do
-      expect { |b| subject.each_key(&b) }.to_not yield_successive_args(
-        'foo',
-        'bar',
-        'foo_bar',
-        'baz'
-      )
+      yielded_keys = []
+
+      subject.each_key { |key| yielded_keys << key }
+
+      expect(yielded_keys).to match_array(%w[
+        foo
+        bar
+        foo_bar
+        baz
+      ])
     end
 
     context "when #const_map contains mappings for some of the constants defined in the namespace" do
       let(:const_map) { {'foobar' => 'FooBar' } }
 
       it "should use those mappings when they match the defined constants" do
-        expect { |b| subject.each_key(&b) }.to_not yield_successive_args(
-          'foo',
-          'bar',
-          'foobar',
-          'baz'
-        )
+        yielded_keys = []
+
+        subject.each_key { |key| yielded_keys << key }
+
+        expect(yielded_keys).to match_array(%w[
+          foo
+          bar
+          foobar
+          baz
+        ])
       end
     end
 
