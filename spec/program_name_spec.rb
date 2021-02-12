@@ -21,6 +21,30 @@ describe ProgramName do
     it "must return $PROGRAM_NAME" do
       expect(subject.program_name).to eq(program_name)
     end
+
+    context "when $PROGRAM_NAME is '-e'" do
+      let(:program_name) { '-e' }
+
+      it "must return nil" do
+        expect(subject.program_name).to be(nil)
+      end
+    end
+
+    context "when $PROGRAM_NAME is 'irb'" do
+      let(:program_name) { 'irb' }
+
+      it "must return nil" do
+        expect(subject.program_name).to be(nil)
+      end
+    end
+
+    context "when $PROGRAM_NAME is 'rspec'" do
+      let(:program_name) { 'rspec' }
+
+      it "must return nil" do
+        expect(subject.program_name).to be(nil)
+      end
+    end
   end
 
   describe "#program_name" do
