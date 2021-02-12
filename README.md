@@ -258,6 +258,11 @@ A repeating argument:
 
     gem 'command_kit', '~> 0.1'
 
+## Alternatives
+
+* [dry-cli](https://dry-rb.org/gems/dry-cli/0.6/)
+* [cmdparse](https://cmdparse.gettalong.org/)
+
 ## Copyright
 
 Copyright (c) 2021 Hal Brodigan
