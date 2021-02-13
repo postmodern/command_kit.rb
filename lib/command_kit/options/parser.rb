@@ -96,16 +96,19 @@ module CommandKit
     def parse_options(argv)
       begin
         option_parser.parse(argv)
-      rescue OptionParser::ParseError => error
-        option_parser_error(error)
+      rescue OptionParser::InvalidOption => error
+        on_invalid_option(error)
+      rescue OptionParser::AmbiguousOption => error
+        on_ambiguous_option(error)
+      rescue OptionParser::InvalidArgument => error
+        on_invalid_argument(error)
+      rescue OptionParser::MissingArgument => error
+        on_missing_argument(error)
+      rescue OptionParser::NeedlessArgument => error
+        on_needless_argument(error)
+      rescue OptionParser::AmbiguousArgument => error
+        on_ambiguous_argument(error)
       end
-    end
-
-    #
-    # Prints the `--help` output.
-    #
-    def help
-      puts option_parser
     end
 
     #
@@ -114,9 +117,87 @@ module CommandKit
     # @param [OptionParser::ParseError] error
     #   The error from `OptionParser`.
     #
-    def option_parser_error(error)
+    def on_parse_error(error)
       print_error(error.message)
       exit(1)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::InvalidOption` exceptions.
+    #
+    # @param [OptionParser::InvalidOption] error
+    #
+    # @see on_parse_error
+    #
+    def on_invalid_option(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::AmbiguousOption`
+    # exceptions.
+    #
+    # @param [OptionParser::AmbiguousOption] error
+    #
+    # @see on_parse_error
+    #
+    def on_ambiguous_option(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::InvalidArgument`
+    # exceptions.
+    #
+    # @param [OptionParser::InvalidArgument] error
+    #
+    # @see on_parse_error
+    #
+    def on_invalid_argument(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::MissingArgument`
+    # exceptions.
+    #
+    # @param [OptionParser::MissingArgument] error
+    #
+    # @see on_parse_error
+    #
+    def on_missing_argument(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::NeedlessArgument`
+    # exceptions.
+    #
+    # @param [OptionParser::NeedlessArgument] error
+    #
+    # @see on_parse_error
+    #
+    def on_needless_argument(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Place-holder method for handling `OptionParser::AmbiguousArgument`
+    # exceptions.
+    #
+    # @param [OptionParser::AmbiguousArgument] error
+    #
+    # @see on_parse_error
+    #
+    def on_ambiguous_argument(error)
+      on_parse_error(error)
+    end
+
+    #
+    # Prints the `--help` output.
+    #
+    def help
+      puts option_parser
     end
   end
 end
