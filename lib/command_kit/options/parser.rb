@@ -108,6 +108,8 @@ module CommandKit
         on_needless_argument(error)
       rescue OptionParser::AmbiguousArgument => error
         on_ambiguous_argument(error)
+      rescue OptionParser::ParseError => error
+        on_parse_error(error)
       end
     end
 
