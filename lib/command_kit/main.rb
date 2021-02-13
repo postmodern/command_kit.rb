@@ -35,6 +35,7 @@ module CommandKit
         begin
           exit run(argv, **kwargs)
         rescue Interrupt
+          # https://tldp.org/LDP/abs/html/exitcodes.html
           exit 130
         rescue Errno::EPIPE
           # STDOUT pipe broken
