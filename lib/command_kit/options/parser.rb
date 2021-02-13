@@ -52,17 +52,6 @@ module CommandKit
     #
     module Prepend
       #
-      # Parses the options and passes any additional non-option arguments
-      # to the `super` `main`.
-      #
-      # @param [Array<String>] argv
-      #   The given arguments Array.
-      #
-      def run(argv)
-        super(parse_options(argv))
-      end
-
-      #
       # The option parser.
       #
       # @return [OptionParser]
@@ -81,6 +70,17 @@ module CommandKit
         end
 
         super
+      end
+
+      #
+      # Parses the options and passes any additional non-option arguments
+      # to the `super` `main`.
+      #
+      # @param [Array<String>] argv
+      #   The given arguments Array.
+      #
+      def run(argv)
+        super(parse_options(argv))
       end
     end
 
