@@ -31,12 +31,12 @@ module CommandKit
     # @param [Exception] error
     #
     def print_backtrace(error)
-      stderr.puts "Backtrace:"
+      print_error "Backtrace:"
 
       error.backtrace.each_with_index.reverse_each do |(line,index)|
         line_number = (index+1).to_s
 
-        stderr.puts "#{line_number.rjust(9)}: #{line}"
+        print_error "#{line_number.rjust(9)}: #{line}"
       end
     end
 
