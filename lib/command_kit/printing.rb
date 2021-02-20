@@ -11,6 +11,9 @@ module CommandKit
     # Includes {Stdio} into the command class which is also including
     # {Printing}.
     #
+    # @param [Class] command
+    #   The command class including {Printing}.
+    #
     def self.included(command)
       command.include Stdio
     end
