@@ -45,14 +45,10 @@ module CommandKit
       #
       # @param [Hash{Symbol => Object}] kwargs
       #
-      # @yield [(value)]
-      #
-      # @yieldparam [Object, nil] value
-      #
       def initialize(type: String,
                      usage: self.class.default_usage(type),
-                     **kwargs, &block)
-        super(type: type, usage: usage, **kwargs, &block)
+                     **kwargs)
+        super(type: type, usage: usage, **kwargs)
       end
 
       #
