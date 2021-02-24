@@ -100,15 +100,39 @@ describe Main do
   describe ".run" do
     subject { command_class }
 
+    it "must return 0 by default" do
+      expect(subject.run()).to eq(0)
+    end
+
+    context "when #main raises SystemExit" do
+      module TestMain
+        class TestCommandWithSystemExit
+
+          include CommandKit::Main
+
+          def main(*argv)
+            raise(SystemExit.new(-1))
+          end
+
+        end
+      end
+
+      let(:command_class) { TestMain::TestCommandWithSystemExit }
+
+      it "must rescue SystemExit and return the exit status code" do
+        expect(subject.run()).to eq(-1)
+      end
+    end
+
     context "when given a custom argv" do
       let(:command_class) { TestMain::TestCommandWithInitialize }
       let(:instance) { TestMain::TestCommandWithInitialize.new }
 
       let(:argv) { %w[one two three] }
 
-      it "must call #run with the custom argv" do
+      it "must call #main with the custom argv" do
         expect(subject).to receive(:new).with(no_args).and_return(instance)
-        expect(instance).to receive(:run).with(argv)
+        expect(instance).to receive(:main).with(*argv)
 
         subject.run(argv)
       end
@@ -120,9 +144,9 @@ describe Main do
       let(:kwargs) { {foo: 'custom foo', bar: 'custom bar'} }
       let(:instance) { TestMain::TestCommandWithInitialize.new(**kwargs) }
 
-      it "must pass the keyword arguments .new then call #run" do
+      it "must pass the keyword arguments .new then call #main" do
         expect(subject).to receive(:new).with(**kwargs).and_return(instance)
-        expect(instance).to receive(:run).with([])
+        expect(instance).to receive(:main).with(no_args)
 
         subject.run(**kwargs)
       end
@@ -157,32 +181,6 @@ describe Main do
         expect(instance).to receive(:main).with(no_args)
 
         subject.main(**kwargs)
-      end
-    end
-  end
-
-  describe "#run" do
-    subject { command_class.new }
-
-    it "must return 0 by default" do
-      expect(subject.run).to eq(0)
-    end
-
-    context "when main returns an exit code" do
-      module TestMain
-        class TestCommandWithExplicitReturn
-          include CommandKit::Main
-
-          def main(*argv)
-            return 1
-          end
-        end
-      end
-
-      let(:command_class) { TestMain::TestCommandWithExplicitReturn }
-
-      it "must return the main's returned exit code" do
-        expect(subject.run).to eq(subject.main)
       end
     end
   end

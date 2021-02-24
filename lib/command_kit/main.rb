@@ -52,8 +52,14 @@ module CommandKit
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments to initialize the command class with.
       #
+      # @return [Integer]
+      #   The exit status of the command.
+      #
       def run(argv=[], **kwargs)
-        new(**kwargs).run(argv)
+        main(*argv, **kwargs)
+        0
+      rescue SystemExit => system_exit
+        system_exit.status
       end
 
       #
@@ -69,20 +75,6 @@ module CommandKit
       def main(*argv, **kwargs)
         new(**kwargs).main(*argv)
       end
-    end
-
-    #
-    # Runs the command instance.
-    #
-    # @param [Array<String>] argv
-    #   The Array of command-line arguments.
-    #
-    # @note
-    #   If `$stdin`, `$stdout`, `$stderr` will be temporarily overriden before
-    #   calling `main` and then restored to their original values.
-    #
-    def run(argv=[])
-      main(*argv) || 0
     end
 
     #

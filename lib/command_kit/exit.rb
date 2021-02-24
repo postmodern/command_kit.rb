@@ -24,47 +24,6 @@ module CommandKit
     #
     def self.included(command)
       command.include Main
-      command.prepend Catcher
-    end
-
-    module Catcher
-      #
-      # Calls the `super` `#run` method but catches any `exit()` calls,
-      # returning the exit status instead.
-      #
-      # @param [Array<String>] argv
-      #   Arguments for `#main`.
-      #
-      # @return [Integer]
-      #   The exit status. Defaults to `0`.
-      #
-      def run(argv)
-        begin
-          super(argv)
-          0
-        rescue SystemExit => system_exit
-          system_exit.status
-        end
-      end
-
-      #
-      # Calls the `super` `#main` method but catches any `exit()` calls,
-      # returning the exit status instead.
-      #
-      # @param [Array<String>] argv
-      #   Arguments for `#main`.
-      #
-      # @return [Integer]
-      #   The exit status. Defaults to `0`.
-      #
-      def main(*argv)
-        begin
-          super(*argv)
-          0
-        rescue SystemExit => system_exit
-          system_exit.status
-        end
-      end
     end
 
     #
