@@ -17,16 +17,6 @@ module CommandKit
   #
   module Exit
     #
-    # Prepends {Catcher}.
-    #
-    # @param [Class] command
-    #   The command class which is including {Exit}.
-    #
-    def self.included(command)
-      command.include Main
-    end
-
-    #
     # Exits the `main()` method with the given exit status.
     #
     # @param [Integer] status
