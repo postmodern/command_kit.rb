@@ -39,9 +39,11 @@ module CommandKit
       #   The exit status. Defaults to `0`.
       #
       def run(argv)
-        catch(:exit) do
+        begin
           super(argv)
           0
+        rescue SystemExit => system_exit
+          system_exit.status
         end
       end
 
@@ -56,9 +58,11 @@ module CommandKit
       #   The exit status. Defaults to `0`.
       #
       def main(*argv)
-        catch(:exit) do
+        begin
           super(*argv)
           0
+        rescue SystemExit => system_exit
+          system_exit.status
         end
       end
     end
@@ -74,7 +78,7 @@ module CommandKit
     #   exitting the ruby process.
     #
     def exit(status=0)
-      throw :exit, status
+      raise(SystemExit.new(status))
     end
 
     #
