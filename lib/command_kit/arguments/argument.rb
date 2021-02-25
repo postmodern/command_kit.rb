@@ -114,7 +114,11 @@ module CommandKit
       # @return [Boolean]
       #
       def match(arg)
-        @pattern.match(arg)
+        if @type.kind_of?(Regexp)
+          @type.match(arg)
+        else
+          @pattern.match(arg)
+        end
       end
 
       #

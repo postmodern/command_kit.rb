@@ -175,5 +175,15 @@ describe Arguments::Argument do
 
       subject.match(arg)
     end
+
+    context "when type is a Regexp" do
+      let(:type) { /foo/ }
+
+      it "must call #match on the type Regexp" do
+        expect(subject.type).to receive(:match).with(arg)
+
+        subject.match(arg)
+      end
+    end
   end
 end
