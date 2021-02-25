@@ -135,10 +135,6 @@ module CommandKit
           arg = @parser.call(arg)
         end
 
-        if @block
-          arg = @block.call(arg)
-        end
-
         return arg
       end
 
