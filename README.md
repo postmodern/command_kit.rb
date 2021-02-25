@@ -263,6 +263,11 @@ A repeating argument:
 * [dry-cli](https://dry-rb.org/gems/dry-cli/0.6/)
 * [cmdparse](https://cmdparse.gettalong.org/)
 
+## Special Thanks
+
+Special thanks to everyone who answered my questions and gave feedback on
+Twitter.
+
 ## Copyright
 
 Copyright (c) 2021 Hal Brodigan
