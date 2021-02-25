@@ -131,11 +131,8 @@ module CommandKit
       #   The parsed argument.
       #
       def parse(arg)
-        if @parser
-          arg = @parser.call(arg)
-        end
-
-        return arg
+        arg = @parser.call(arg) if @parser
+        arg
       end
 
     end
