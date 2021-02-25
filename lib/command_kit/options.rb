@@ -33,8 +33,7 @@ module CommandKit
   #
   module Options
     #
-    # Includes {Parser}, extends {ClassMethods}, and prepends the {Prepend}
-    # module.
+    # Includes {Parser} and extends {ClassMethods}.
     #
     # @param [Class] command
     #   The command class which is including {Options}.
@@ -42,7 +41,6 @@ module CommandKit
     def self.included(command)
       command.include Parser
       command.extend ClassMethods
-      command.prepend Prepend
     end
 
     #
@@ -140,32 +138,27 @@ module CommandKit
     attr_reader :options
 
     #
-    # Methods that are prepended to the including class.
+    # Initializes {#options} and populates the
+    # {Parser#option_parser option parser}.
     #
-    module Prepend
-      #
-      # Initializes {#options} and populates the
-      # {Parser#option_parser option parser}.
-      #
-      # @param [Hash{Symbol => Object}] options
-      #   Optional pre-populated options hash.
-      #
-      def initialize(options: {}, **kwargs)
-        @options = options
+    # @param [Hash{Symbol => Object}] options
+    #   Optional pre-populated options hash.
+    #
+    def initialize(options: {}, **kwargs)
+      @options = options
 
-        super(**kwargs)
+      super(**kwargs)
 
-        self.class.options.each_value do |option|
-          option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
-            @options[option.name] = if arg.nil?
-                                      option.default_value
-                                    else
-                                      arg
-                                    end
+      self.class.options.each_value do |option|
+        option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
+          @options[option.name] = if arg.nil?
+                                    option.default_value
+                                  else
+                                    arg
+                                  end
 
-            if option.block
-              instance_exec(*arg,*captures,&option.block)
-            end
+          if option.block
+            instance_exec(*arg,*captures,&option.block)
           end
         end
       end

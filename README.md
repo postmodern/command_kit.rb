@@ -98,8 +98,8 @@ classes.
 
           description 'Example command'
     
-          def initialize
-            super
+          def initialize(**kwargs)
+            super(**kwargs)
     
             @verbose = 0
           end

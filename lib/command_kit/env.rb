@@ -20,39 +20,24 @@ module CommandKit
   #     MyCmd.new(env: {...})
   #
   module Env
-    #
-    # Prepends the {Prepend} module.
-    #
-    # @param [Class] command
-    #   The command class including {Env}.
-    #
-    def self.included(command)
-      command.prepend Prepend
-    end
-
     # The environment variables hash.
     #
     # @return [Hash{String => String}]
     attr_reader :env
 
     #
-    # Prepends the {Prepend#initialize #initialize} method.
+    # Initializes {#env}.
     #
-    module Prepend
-      #
-      # Initializes {#env}.
-      #
-      # @param [Hash{String => String}] env
-      #   The given environment for the command. Defaults to the global `ENV`.
-      #
-      # @param [Hash{Symbol => Object}] kwargs
-      #   Additional keyword arguments.
-      #
-      def initialize(env: ENV, **kwargs)
-        @env = env
+    # @param [Hash{String => String}] env
+    #   The given environment for the command. Defaults to the global `ENV`.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    def initialize(env: ENV, **kwargs)
+      @env = env
 
-        super(**kwargs)
-      end
+      super(**kwargs)
     end
   end
 end

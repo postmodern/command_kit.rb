@@ -17,7 +17,9 @@ describe CommandKit::Env do
 
         attr_reader :var
 
-        def initialize
+        def initialize(**kwargs)
+          super(**kwargs)
+
           @var = 'foo'
         end
       end
@@ -27,7 +29,9 @@ describe CommandKit::Env do
 
         attr_reader :var
 
-        def initialize(var: "foo")
+        def initialize(var: "foo", **kwargs)
+          super(**kwargs)
+
           @var = var
         end
       end

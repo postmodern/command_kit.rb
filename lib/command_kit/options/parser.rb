@@ -42,36 +42,10 @@ module CommandKit
       command.prepend Prepend
     end
 
-    # The option parser.
-    #
-    # @return [OptionParser]
-    attr_reader :option_parser
-
     #
     # Methods that are prepended to the including class.
     #
     module Prepend
-      #
-      # The option parser.
-      #
-      # @return [OptionParser]
-      #
-      def initialize
-        @option_parser = OptionParser.new do |opts|
-          opts.banner = "Usage: #{usage}"
-
-          opts.separator ''
-          opts.separator 'Options:'
-
-          opts.on_tail('-h','--help','Print help information') do
-            help
-            exit(0)
-          end
-        end
-
-        super
-      end
-
       #
       # Parses the options and passes any additional non-option arguments
       # to the `super` `main`.
@@ -82,6 +56,32 @@ module CommandKit
       def run(argv)
         super(parse_options(argv))
       end
+    end
+
+    # The option parser.
+    #
+    # @return [OptionParser]
+    attr_reader :option_parser
+
+    #
+    # The option parser.
+    #
+    # @return [OptionParser]
+    #
+    def initialize(**kwargs)
+      @option_parser = OptionParser.new do |opts|
+        opts.banner = "Usage: #{usage}"
+
+        opts.separator ''
+        opts.separator 'Options:'
+
+        opts.on_tail('-h','--help','Print help information') do
+          help
+          exit(0)
+        end
+      end
+
+      super(**kwargs)
     end
 
     #

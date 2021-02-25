@@ -9,7 +9,7 @@ module CommandKit
     #
     module Home
       #
-      # Includes {Env}, extends {ClassMethods}, and prepends {Prepend}.
+      # Includes {Env} and extends {ClassMethods}.
       #
       # @param [Class] command
       #   The command class which is including {Home}.
@@ -17,7 +17,6 @@ module CommandKit
       def self.included(command)
         command.include Env
         command.extend ClassMethods
-        command.prepend Prepend
       end
 
       #
@@ -34,28 +33,23 @@ module CommandKit
         end
       end
 
-      #
-      # Methods that are prepended to the including class.
-      #
-      module Prepend
-        #
-        # Initializes {#home_dir} to either `env['HOME']` or
-        # {ClassMethods#home_dir self.class.home_dir}.
-        #
-        # @param [Hash{Symbol => Object}] kwargs
-        #   Additional keyword arguments.
-        #
-        def initialize(**kwargs)
-          super(**kwargs)
-
-          @home_dir = env.fetch('HOME') { self.class.home_dir }
-        end
-      end
-
       # The home directory.
       #
       # @return [String]
       attr_reader :home_dir
+
+      #
+      # Initializes {#home_dir} to either `env['HOME']` or
+      # {ClassMethods#home_dir self.class.home_dir}.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments.
+      #
+      def initialize(**kwargs)
+        @home_dir = env.fetch('HOME') { self.class.home_dir }
+
+        super(**kwargs)
+      end
     end
   end
 end

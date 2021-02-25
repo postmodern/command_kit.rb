@@ -23,38 +23,23 @@ module CommandKit
   #
   module Stdio
     #
-    # Prepends the {Prepend} module.
+    # Initializes {#stdin}, {#stdout}, and {#stderr}.
     #
-    # @param [Class] command
-    #   The command class including {Stdio}.
+    # @param [IO] stdin
+    #   The stdin input stream. Defaults to `$stdin`.
     #
-    def self.included(command)
-      command.prepend Prepend
-    end
+    # @param [IO] stdout
+    #   The stdout output stream. Defaults to `$stdout`.
+    #
+    # @param [IO] stderr
+    #   The stderr error output stream. Defaults to `$stderr`.
+    #
+    def initialize(stdin: $stdin, stdout: $stdout, stderr: $stderr, **kwargs)
+      @stdin  = stdin
+      @stdout = stdout
+      @stderr = stderr
 
-    #
-    # Defines an {Prepend#initialize #initialize} method.
-    #
-    module Prepend
-      #
-      # Initializes {#stdin}, {#stdout}, and {#stderr}.
-      #
-      # @param [IO] stdin
-      #   The stdin input stream. Defaults to `$stdin`.
-      #
-      # @param [IO] stdout
-      #   The stdout output stream. Defaults to `$stdout`.
-      #
-      # @param [IO] stderr
-      #   The stderr error output stream. Defaults to `$stderr`.
-      #
-      def initialize(stdin: $stdin, stdout: $stdout, stderr: $stderr, **kwargs)
-        @stdin  = stdin
-        @stdout = stdout
-        @stderr = stderr
-
-        super(**kwargs)
-      end
+      super(**kwargs)
     end
 
     # The stdin input stream.
