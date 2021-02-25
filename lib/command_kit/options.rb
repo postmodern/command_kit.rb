@@ -147,6 +147,9 @@ module CommandKit
       # Initializes {#options} and populates the
       # {Parser#option_parser option parser}.
       #
+      # @param [Hash{Symbol => Object}] options
+      #   Optional pre-populated options hash.
+      #
       def initialize(options: {}, **kwargs)
         @options = options
 
