@@ -166,4 +166,14 @@ describe Arguments::Argument do
       end
     end
   end
+
+  describe "#match" do
+    let(:arg) { 'foo' }
+
+    it "must call the #match method of the OptionParser accept pattern" do
+      expect(subject.pattern).to receive(:match).with(arg)
+
+      subject.match(arg)
+    end
+  end
 end

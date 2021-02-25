@@ -107,6 +107,17 @@ module CommandKit
       end
 
       #
+      # Determines if the given arg value matches the argument's pattern.
+      #
+      # @param [String] arg
+      #
+      # @return [Boolean]
+      #
+      def match(arg)
+        @pattern.match(arg)
+      end
+
+      #
       # Parses the given argument.
       #
       # @param [Stirng, nil] arg
