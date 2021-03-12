@@ -26,7 +26,8 @@ module CommandKit
     #
     module Main
       #
-      # Calls `main` but catches and prints any uncaught exceptions.
+      # Calls `#main` but catches and calls
+      # {Backtrace#on_exception #on_exception} any uncaught exceptions.
       #
       # @param [Array<String>] argv
       #   The given arguments Array.
@@ -36,9 +37,19 @@ module CommandKit
       rescue Interrupt, Errno::EPIPE => error
         raise(error)
       rescue Exception => error
-        print_exception(error)
-        exit(1)
+        on_exception(error)
       end
+    end
+
+    #
+    # Default method for handling when an exception is raised by `#main`.
+    #
+    # @param [Exception] error
+    #   The raised exception.
+    #
+    def on_exception(error)
+      print_exception(error)
+      exit(1)
     end
   end
 end
