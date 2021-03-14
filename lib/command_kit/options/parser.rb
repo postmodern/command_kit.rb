@@ -28,8 +28,8 @@ module CommandKit
   #
   module Parser
     #
-    # Includes {CommandKit::Main}, {Usage}, defines a default usage
-    # (`[options]`), and prepends {Prepend}.
+    # Includes {CommandKit::Main}, {Usage}, and defines a default usage
+    # (`[options]`).
     #
     # @param [Class] command
     #   The class including {Parser}.
@@ -38,24 +38,6 @@ module CommandKit
       command.include CommandKit::Main
       command.include Usage
       command.usage '[options]'
-
-      command.prepend Prepend
-    end
-
-    #
-    # Methods that are prepended to the including class.
-    #
-    module Prepend
-      #
-      # Parses the options and passes any additional non-option arguments
-      # to the `super` `main`.
-      #
-      # @param [Array<String>] argv
-      #   The given arguments Array.
-      #
-      def run(argv)
-        super(parse_options(argv))
-      end
     end
 
     # The option parser.
@@ -82,6 +64,20 @@ module CommandKit
       end
 
       super(**kwargs)
+    end
+
+    #
+    # Parses the options and passes any additional non-option arguments
+    # to the superclass'es `#main` method.
+    #
+    # @param [Array<String>] argv
+    #   The given arguments Array.
+    #
+    # @return [Integer]
+    #   The exit status code.
+    #
+    def main(argv=[])
+      super(parse_options(argv))
     end
 
     #

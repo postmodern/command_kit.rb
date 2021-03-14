@@ -6,13 +6,14 @@ module CommandKit
   #
   #     include CommandKit::Main
   #     
-  #     def main(*argv)
+  #     def main(argv=[])
   #       # ...
+  #       return 0
   #     end
   #
   module Main
     #
-    # Extends {ClassMethods} and prepends {Exit}.
+    # Extends {ClassMethods}.
     #
     # @param [Class] command
     #   The command class which is including {Main}.
@@ -33,7 +34,7 @@ module CommandKit
       #
       def start(argv=ARGV, **kwargs)
         begin
-          exit run(argv, **kwargs)
+          exit main(argv, **kwargs)
         rescue Interrupt
           # https://tldp.org/LDP/abs/html/exitcodes.html
           exit 130
@@ -41,25 +42,6 @@ module CommandKit
           # STDOUT pipe broken
           exit 0
         end
-      end
-
-      #
-      # @see Main#run
-      #
-      # @param [Array<String>] argv
-      #   The Array of command-line arguments.
-      #
-      # @param [Hash{Symbol => Object}] kwargs
-      #   Additional keyword arguments to initialize the command class with.
-      #
-      # @return [Integer]
-      #   The exit status of the command.
-      #
-      def run(argv=[], **kwargs)
-        main(*argv, **kwargs)
-        0
-      rescue SystemExit => system_exit
-        system_exit.status
       end
 
       #
@@ -72,23 +54,39 @@ module CommandKit
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments to initialize the command class with.
       #
-      def main(*argv, **kwargs)
-        new(**kwargs).main(*argv)
+      # @return [Integer]
+      #   The exit status of the command.
+      #
+      def main(argv=[], **kwargs)
+        new(**kwargs).main(argv)
       end
     end
 
     #
-    # Place-holder `main` method.
+    # Place-holder `main` method, which parses options, before calling {#run}.
     #
     # @param [Array<String>] argv
     #   The Array of command-line arguments.
     #
-    # @return [Integer, nil]
+    # @return [Integer]
     #   The exit status code.
     #
+    def main(argv=[])
+      run(*argv)
+      return 0
+    rescue SystemExit => system_exit
+      return system_exit.status
+    end
+
+    #
+    # Place-holder method for command business logic.
+    #
+    # @param [Array<Object>] args
+    #   Additional arguments for the command.
+    #   
     # @abstract
     #
-    def main(*argv)
+    def run(*args)
     end
   end
 end

@@ -12,33 +12,21 @@ module CommandKit
     include Printing
 
     #
-    # Prepends {Backtrace::Main}.
+    # Calls superclass'es `#main` method, but rescues any uncaught exceptions
+    # and passes them to {#on_exception}.
     #
-    # @param [Class] command
-    #   The command class which is including {Backtrace}.
+    # @param [Array<String>] argv
+    #   The given arguments Array.
     #
-    def self.included(command)
-      command.prepend Backtrace::Main
-    end
-
+    # @return [Integer]
+    #   The exit status of the command.
     #
-    # Overrides `main` to catch any uncaught exceptions and print them.
-    #
-    module Main
-      #
-      # Calls `#main` but catches and calls
-      # {Backtrace#on_exception #on_exception} any uncaught exceptions.
-      #
-      # @param [Array<String>] argv
-      #   The given arguments Array.
-      #
-      def main(*argv)
-        super(*argv)
-      rescue Interrupt, Errno::EPIPE => error
-        raise(error)
-      rescue Exception => error
-        on_exception(error)
-      end
+    def main(argv=[])
+      super(argv)
+    rescue Interrupt, Errno::EPIPE => error
+      raise(error)
+    rescue Exception => error
+      on_exception(error)
     end
 
     #

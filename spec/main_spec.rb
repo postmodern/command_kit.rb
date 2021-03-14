@@ -35,8 +35,8 @@ describe Main do
     context "when given an argv argument" do
       let(:argv) { %w[one two three] }
 
-      it "must pass argv to .run" do
-        expect(subject).to receive(:run).with(argv)
+      it "must pass argv to .main" do
+        expect(subject).to receive(:main).with(argv)
         allow(subject).to receive(:exit)
 
         subject.start(argv)
@@ -48,8 +48,8 @@ describe Main do
 
       let(:kwargs) { {foo: 'custom foo', bar: 'custom bar'} }
 
-      it "must pass the keyword arguments down to .run" do
-        expect(subject).to receive(:run).with(ARGV, **kwargs)
+      it "must pass the keyword arguments down to .main" do
+        expect(subject).to receive(:main).with(ARGV, **kwargs)
         allow(subject).to receive(:exit)
 
         subject.start(**kwargs)
@@ -97,65 +97,25 @@ describe Main do
     end
   end
 
-  describe ".run" do
-    subject { command_class }
+  module TestMain
+    class TestCommandWithSystemExit
 
-    it "must return 0 by default" do
-      expect(subject.run()).to eq(0)
-    end
+      include CommandKit::Main
 
-    context "when #main raises SystemExit" do
-      module TestMain
-        class TestCommandWithSystemExit
-
-          include CommandKit::Main
-
-          def main(*argv)
-            raise(SystemExit.new(-1))
-          end
-
-        end
+      def main(*argv)
+        raise(SystemExit.new(-1))
       end
 
-      let(:command_class) { TestMain::TestCommandWithSystemExit }
-
-      it "must rescue SystemExit and return the exit status code" do
-        expect(subject.run()).to eq(-1)
-      end
-    end
-
-    context "when given a custom argv" do
-      let(:command_class) { TestMain::TestCommandWithInitialize }
-      let(:instance) { TestMain::TestCommandWithInitialize.new }
-
-      let(:argv) { %w[one two three] }
-
-      it "must call #main with the custom argv" do
-        expect(subject).to receive(:new).with(no_args).and_return(instance)
-        expect(instance).to receive(:main).with(*argv)
-
-        subject.run(argv)
-      end
-    end
-
-    context "when given keyword arguments" do
-      let(:command_class) { TestMain::TestCommandWithInitialize }
-
-      let(:kwargs) { {foo: 'custom foo', bar: 'custom bar'} }
-      let(:instance) { TestMain::TestCommandWithInitialize.new(**kwargs) }
-
-      it "must pass the keyword arguments .new then call #main" do
-        expect(subject).to receive(:new).with(**kwargs).and_return(instance)
-        expect(instance).to receive(:main).with(no_args)
-
-        subject.run(**kwargs)
-      end
     end
   end
 
   describe ".main" do
     subject { command_class }
 
+    it "must return 0 by default" do
+      expect(subject.main).to eq(0)
+    end
+
     context "when given a custom argv" do
       let(:command_class) { TestMain::TestCommandWithInitialize }
       let(:instance) { TestMain::TestCommandWithInitialize.new }
@@ -164,9 +124,9 @@ describe Main do
 
       it "must call #main with the custom argv" do
         expect(subject).to receive(:new).with(no_args).and_return(instance)
-        expect(instance).to receive(:main).with(*argv)
+        expect(instance).to receive(:main).with(argv)
 
-        subject.main(*argv)
+        subject.main(argv)
       end
     end
 
@@ -178,9 +138,17 @@ describe Main do
 
       it "must pass the keyword arguments .new then call #main" do
         expect(subject).to receive(:new).with(**kwargs).and_return(instance)
-        expect(instance).to receive(:main).with(no_args)
+        expect(instance).to receive(:main).with([])
 
         subject.main(**kwargs)
+      end
+    end
+
+    context "when #main raises SystemExit" do
+      let(:command_class) { TestMain::TestCommandWithSystemExit }
+
+      it "must rescue SystemExit and return the exit status code" do
+        expect(subject.main()).to eq(-1)
       end
     end
   end
@@ -189,8 +157,23 @@ describe Main do
     subject { command_class.new }
 
     it "must provide a default #main" do
-      expect(subject.main).to eq(nil)
-      expect(subject.main(1,2,3)).to eq(nil)
+      expect(subject).to respond_to(:main)
+    end
+
+    it "must return 0 by default" do
+      expect(subject.main).to eq(0)
+    end
+
+    it "must accept arbitrary argv" do
+      expect { subject.main([1,2,3]) }.to_not raise_error
+    end
+
+    context "when #main raises SystemExit" do
+      let(:command_class) { TestMain::TestCommandWithSystemExit }
+
+      it "must rescue SystemExit and return the exit status code" do
+        expect(subject.main()).to eq(-1)
+      end
     end
   end
 end

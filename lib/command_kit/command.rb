@@ -31,8 +31,8 @@ module CommandKit
       subclass.include Printing
       subclass.include Help
       subclass.include Usage
-      subclass.include Options
       subclass.include Arguments
+      subclass.include Options
       subclass.include Examples
       subclass.include Description
       subclass.include Backtrace
