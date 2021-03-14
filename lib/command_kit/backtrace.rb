@@ -8,6 +8,15 @@ module CommandKit
   #
   #     include CommandKit::Backtrace
   #
+  # ### Custom Exception Handling
+  #
+  #     include CommandKit::Backtrace
+  #     
+  #     def on_exception(error)
+  #       print_error "error: #{error.message}"
+  #       exit(1)
+  #     end
+  #
   module Backtrace
     include Printing
 
