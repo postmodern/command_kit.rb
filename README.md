@@ -22,8 +22,7 @@ classes.
   (see {CommandKit::Help::Man}).
 * Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
 * Easy to test:
-  * `MyCmd.run(['--foo', foo, arg1, arg2])`
-  * `MyCmd.main(arg1, arg2, options: {foo: foo})`
+  * `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`
 
 ### Modules
 
@@ -104,7 +103,7 @@ classes.
             @verbose = 0
           end
     
-          def main(file)
+          def run(file)
             puts "count=#{options[:count].inspect}"
             puts "output=#{options[:output].inspect}"
             puts "file=#{file.inspect}"
