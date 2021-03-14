@@ -2,22 +2,22 @@ require 'command_kit/printing'
 
 module CommandKit
   #
-  # Adds exception handling and backtrace printing.
+  # Adds exception handling and printing.
   #
   # ## Examples
   #
-  #     include CommandKit::Backtrace
+  #     include CommandKit::ExceptionHandler
   #
   # ### Custom Exception Handling
   #
-  #     include CommandKit::Backtrace
+  #     include CommandKit::ExceptionHandler
   #     
   #     def on_exception(error)
   #       print_error "error: #{error.message}"
   #       exit(1)
   #     end
   #
-  module Backtrace
+  module ExceptionHandler
     include Printing
 
     #

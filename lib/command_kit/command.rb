@@ -7,7 +7,7 @@ require 'command_kit/arguments'
 require 'command_kit/options'
 require 'command_kit/examples'
 require 'command_kit/description'
-require 'command_kit/backtrace'
+require 'command_kit/exception_handler'
 require 'command_kit/exit'
 
 module CommandKit
@@ -35,7 +35,7 @@ module CommandKit
       subclass.include Options
       subclass.include Examples
       subclass.include Description
-      subclass.include Backtrace
+      subclass.include ExceptionHandler
       subclass.include Exit
     end
 
