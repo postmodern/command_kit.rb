@@ -1,3 +1,4 @@
+require 'command_kit/main'
 require 'command_kit/printing'
 
 module CommandKit
@@ -18,7 +19,16 @@ module CommandKit
   #     end
   #
   module ExceptionHandler
-    include Printing
+    #
+    # Includes {Main} and {Printing}.
+    #
+    # @param [Class] command
+    #   The command class which is including {ExceptionHandler}.
+    #
+    def self.included(command)
+      command.include Main
+      command.include Printing
+    end
 
     #
     # Calls superclass'es `#main` method, but rescues any uncaught exceptions
