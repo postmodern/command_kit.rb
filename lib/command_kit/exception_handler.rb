@@ -7,10 +7,12 @@ module CommandKit
   #
   # ## Examples
   #
+  #     include CommandKit::Main
   #     include CommandKit::ExceptionHandler
   #
   # ### Custom Exception Handling
   #
+  #     include CommandKit::Main
   #     include CommandKit::ExceptionHandler
   #     
   #     def on_exception(error)
@@ -26,7 +28,6 @@ module CommandKit
     #   The command class which is including {ExceptionHandler}.
     #
     def self.included(command)
-      command.include Main
       command.include Printing
     end
 
