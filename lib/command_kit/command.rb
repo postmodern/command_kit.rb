@@ -26,6 +26,7 @@ module CommandKit
 
     def self.inherited(subclass)
       subclass.include Main
+      subclass.include Exit
       subclass.include Env
       subclass.include Stdio
       subclass.include Printing
@@ -36,7 +37,6 @@ module CommandKit
       subclass.include Examples
       subclass.include Description
       subclass.include ExceptionHandler
-      subclass.include Exit
     end
 
   end
