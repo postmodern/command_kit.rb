@@ -28,7 +28,7 @@ classes.
 
 * {CommandKit::ANSI}
 * {CommandKit::Arguments}
-* {CommandKit::Backtrace}
+* {CommandKit::ExceptionHandler}
 * {CommandKit::CommandName}
 * {CommandKit::Description}
 * {CommandKit::Env}
