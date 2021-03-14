@@ -34,7 +34,6 @@ classes.
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
 * {CommandKit::Examples}
-* {CommandKit::Exit}
 * {CommandKit::Help}
   * {CommandKit::Help::Man}
 * {CommandKit::Main}

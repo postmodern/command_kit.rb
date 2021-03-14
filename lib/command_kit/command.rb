@@ -8,7 +8,6 @@ require 'command_kit/options'
 require 'command_kit/examples'
 require 'command_kit/description'
 require 'command_kit/exception_handler'
-require 'command_kit/exit'
 
 module CommandKit
   #
@@ -26,7 +25,6 @@ module CommandKit
 
     def self.inherited(subclass)
       subclass.include Main
-      subclass.include Exit
       subclass.include Env
       subclass.include Stdio
       subclass.include Printing
