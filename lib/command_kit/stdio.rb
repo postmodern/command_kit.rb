@@ -108,5 +108,16 @@ module CommandKit
     def printf(*arguments)
       stdout.printf(*arguments)
     end
+
+    #
+    # Overrides abort to call our {#exit} instead.
+    #
+    # @param [String, nil] message
+    #   The optional abort message.
+    #
+    def abort(message=nil)
+      stderr.puts(message) if message
+      exit(1)
+    end
   end
 end

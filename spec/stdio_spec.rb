@@ -237,4 +237,28 @@ describe CommandKit::Stdio do
       end
     end
   end
+
+  describe "#abort" do
+    let(:stderr) { StringIO.new }
+    subject { command_class.new(stderr: stderr) }
+
+    context "when given an abort message" do
+      let(:message) { 'fail' }
+
+      it "must print the message to stderr and exit with 1" do
+        expect(subject.stderr).to receive(:puts).with(message)
+        expect(subject).to receive(:exit).with(1)
+
+        subject.abort(message)
+      end
+    end
+
+    context "when called without any arguments" do
+      it "must exit with 1" do
+        expect(subject).to receive(:exit).with(1)
+
+        subject.abort
+      end
+    end
+  end
 end
