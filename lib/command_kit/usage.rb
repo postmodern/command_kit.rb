@@ -46,10 +46,18 @@ module CommandKit
     end
 
     #
-    # @see ClassMethods#usage
+    # Similar to {ClassMethods#usage .usage}, but prepends
+    # {CommandName#command_name command_name}.
+    #
+    # @return [Array<String>, String, nil]
     #
     def usage
-      self.class.usage
+      case (usage = self.class.usage)
+      when Array
+        usage.map { |command| "#{command_name} #{command}" }
+      when String
+        "#{command_name} #{usage}"
+      end
     end
 
     #
@@ -58,13 +66,13 @@ module CommandKit
     def help
       case (usage = self.usage)
       when Array
-        puts "usage: #{command_name} #{usage[0]}"
+        puts "usage: #{usage[0]}"
 
         usage[1..].each do |command|
-          puts "       #{command_name} #{command}"
+          puts "       #{command}"
         end
       when String
-        puts "usage: #{command_name} #{usage}"
+        puts "usage: #{usage}"
       end
     end
   end
