@@ -116,7 +116,7 @@ module CommandKit
     #   The error from `OptionParser`.
     #
     def on_parse_error(error)
-      print_error(error.message)
+      print_error("#{command_name}: #{error.message}")
       exit(1)
     end
 
