@@ -12,6 +12,7 @@ describe Usage do
 
   describe ".included" do
     it { expect(command_class).to include(CommandKit::CommandName) }
+    it { expect(command_class).to include(CommandKit::Help) }
   end
 
   describe ".usage" do

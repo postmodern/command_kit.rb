@@ -1,4 +1,5 @@
 require 'command_kit/command_name'
+require 'command_kit/help'
 
 module CommandKit
   #
@@ -12,13 +13,15 @@ module CommandKit
   #
   module Usage
     #
-    # Includes {CommandName} and extends {Usage::ClassMethods}.
+    # Includes {CommandName}, {Help}, and extends {Usage::ClassMethods}.
     #
     # @param [Class] command
     #   The class which is including {Usage}.
     #
     def self.included(command)
       command.include CommandName
+      command.include Help
+
       command.extend ClassMethods
     end
 
