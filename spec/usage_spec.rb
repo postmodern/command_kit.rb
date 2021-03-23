@@ -10,6 +10,10 @@ describe Usage do
 
   let(:command_class) { TestUsage::ImplicitCmd }
 
+  describe ".included" do
+    it { expect(command_class).to include(CommandKit::CommandName) }
+  end
+
   describe ".usage" do
     subject { TestUsage::ImplicitCmd }
 
