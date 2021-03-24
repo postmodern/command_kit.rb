@@ -6,6 +6,8 @@ module CommandKit
   #
   # ## Examples
   #
+  # ### Implicit
+  #
   #     class MyCmd
   #
   #       include CommandKit::CommandName
@@ -14,6 +16,19 @@ module CommandKit
   #
   #     MyCmd.command_name
   #     # => "my_cmd"
+  #
+  # ### Explicit
+  #
+  #     class MyCmd
+  #
+  #       include CommandKit::CommandName
+  #
+  #       commnad_name 'foo-cmd'
+  #
+  #     end
+  #
+  #     MyCmd.command_name
+  #     # => "foo-cmd"
   #
   module CommandName
     #
