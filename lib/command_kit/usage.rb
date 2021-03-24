@@ -66,7 +66,7 @@ module CommandKit
     #
     # Prints the `usage: ...` output.
     #
-    def help
+    def help_usage
       case (usage = self.usage)
       when Array
         puts "usage: #{usage[0]}"
@@ -77,6 +77,15 @@ module CommandKit
       when String
         puts "usage: #{usage}"
       end
+    end
+
+    #
+    # Prints the usage.
+    #
+    # @see #help_usage
+    #
+    def help
+      help_usage
     end
   end
 end

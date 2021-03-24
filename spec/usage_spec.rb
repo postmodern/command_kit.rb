@@ -152,9 +152,9 @@ describe Usage do
     end
   end
 
-  describe "#usage" do
-    subject { command_class.new }
+  subject { command_class.new }
 
+  describe "#usage" do
     context "when .usage is nil" do
       let(:command_class) { TestUsage::NoUsage }
       subject { command_class.new }
@@ -189,13 +189,13 @@ describe Usage do
     end
   end
 
-  describe "#help" do
+  describe "#help_usage" do
     context "when #usage is nil" do
       let(:command_class) { TestUsage::NoUsage }
       subject { command_class.new }
 
       it "must not print anything" do
-        expect { subject.help }.to_not output.to_stdout
+        expect { subject.help_usage }.to_not output.to_stdout
       end
     end
 
@@ -204,7 +204,7 @@ describe Usage do
       subject { command_class.new }
 
       it "must print out 'usage:' and only one usage" do
-        expect { subject.help }.to output(
+        expect { subject.help_usage }.to output(
           "usage: #{subject.usage}#{$/}"
         ).to_stdout
       end
@@ -215,7 +215,7 @@ describe Usage do
       subject { command_class.new }
 
       it "must print out the 'usage:' and all usage Strings" do
-        expect { subject.help }.to output(
+        expect { subject.help_usage }.to output(
           [
             "usage: #{subject.usage[0]}",
             "       #{subject.usage[1]}",
@@ -224,6 +224,14 @@ describe Usage do
           ].join($/)
         ).to_stdout
       end
+    end
+  end
+
+  describe "#help" do
+    it "must call #help_usage" do
+      expect(subject).to receive(:help_usage)
+
+      subject.help
     end
   end
 end
