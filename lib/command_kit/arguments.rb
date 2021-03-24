@@ -94,6 +94,35 @@ module CommandKit
     end
 
     #
+    # Checks the minimum/maximum number of arguments, then calls the
+    # superclass'es `#main`.
+    #
+    # @param [Array<String>] argv
+    #   The arguments passed to the program.
+    #
+    # @return [Integer]
+    #   The exit status code. If too few or too many arguments are given, then
+    #   an error message is printed and `1` is returned.
+    #
+    def main(argv=[])
+      required_args   = self.class.arguments.each_value.count(&:required?)
+      optional_args   = self.class.arguments.each_value.count(&:optional?)
+      has_repeats_arg = self.class.arguments.each_value.any?(&:repeats?)
+
+      if argv.length < required_args
+        print_error("insufficient number of arguments.")
+        print_error(usage)
+        return 1
+      elsif argv.length > (required_args + optional_args) && !has_repeats_arg
+        print_error("too many arguments given")
+        print_error(usage)
+        return 1
+      end
+
+      super(argv)
+    end
+
+    #
     # Prints any defined arguments, along with the usual `--help` information.
     #
     def help
