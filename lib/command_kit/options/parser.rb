@@ -78,6 +78,8 @@ module CommandKit
     #
     def main(argv=[])
       super(parse_options(argv))
+    rescue SystemExit => system_exit
+      system_exit.status
     end
 
     #
