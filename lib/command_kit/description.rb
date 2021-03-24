@@ -57,13 +57,21 @@ module CommandKit
     #
     # Prints the {ClassMethods#description description}, if set.
     #
-    def help
-      super if defined?(super)
-
+    def help_description
       if (description = self.description)
         puts
         puts description
       end
+    end
+
+    #
+    # Calls the superclass'es `#help` method, if it's defined, then calls
+    # {#help_description}.
+    #
+    def help
+      super if defined?(super)
+
+      help_description
     end
   end
 end

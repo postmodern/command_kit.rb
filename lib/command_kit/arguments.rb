@@ -125,9 +125,7 @@ module CommandKit
     #
     # Prints any defined arguments, along with the usual `--help` information.
     #
-    def help
-      super if defined?(super)
-
+    def help_arguments
       unless (arguments = self.class.arguments).empty?
         puts
         puts 'Arguments:'
@@ -136,6 +134,16 @@ module CommandKit
           puts "    #{arg.usage.ljust(33)}#{arg.desc}"
         end
       end
+    end
+
+    #
+    # Calls the superclass'es `#help` method, if it's defined, then calls
+    # {#help_arguments}.
+    #
+    def help
+      super if defined?(super)
+
+      help_arguments
     end
   end
 end

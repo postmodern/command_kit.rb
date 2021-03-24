@@ -128,7 +128,9 @@ describe Arguments do
     end
   end
 
-  describe "#help" do
+  subject { command_class.new }
+
+  describe "#help_arguments" do
     context "when #arguments returns nil" do
       module TestArguments
         class NoArguments
@@ -140,7 +142,7 @@ describe Arguments do
       subject { command_class.new }
 
       it "must print out the arguments" do
-        expect { subject.help }.to_not output.to_stdout
+        expect { subject.help_arguments }.to_not output.to_stdout
       end
     end
 
@@ -163,7 +165,7 @@ describe Arguments do
       let(:baz_argument) { command_class.arguments[:baz] }
 
       it "must print out the 'Arguments:' section header and the arguments" do
-        expect { subject.help }.to output(
+        expect { subject.help_arguments }.to output(
           [
             '',
             "Arguments:",
@@ -174,6 +176,14 @@ describe Arguments do
           ].join($/)
         ).to_stdout
       end
+    end
+  end
+
+  describe "#help" do
+    it "must call #help_arguments" do
+      expect(subject).to receive(:help_arguments)
+
+      subject.help
     end
   end
 end

@@ -121,15 +121,15 @@ describe Description do
     end
   end
 
-  describe "#description" do
-    subject { command_class.new }
+  subject { command_class.new }
 
+  describe "#description" do
     it "must be the same as .description" do
       expect(subject.description).to eq(command_class.description)
     end
   end
 
-  describe "#help" do
+  describe "#help_description" do
     context "when #description returns nil" do
       module TestDescription
         class NoDescription
@@ -141,7 +141,7 @@ describe Description do
       subject { command_class.new }
 
       it "must print out the description" do
-        expect { subject.help }.to_not output.to_stdout
+        expect { subject.help_description }.to_not output.to_stdout
       end
     end
 
@@ -158,7 +158,7 @@ describe Description do
       subject { command_class.new }
 
       it "must print out the description" do
-        expect { subject.help }.to output(
+        expect { subject.help_description }.to output(
           [
             '',
             subject.description,
@@ -166,6 +166,14 @@ describe Description do
           ].join($/)
         ).to_stdout
       end
+    end
+  end
+
+  describe "#help" do
+    it "must call #help_description" do
+      expect(subject).to receive(:help_description)
+
+      subject.help
     end
   end
 end

@@ -146,15 +146,15 @@ describe Examples do
     end
   end
 
-  describe "#examples" do
-    subject { command_class.new }
+  subject { command_class.new }
 
+  describe "#examples" do
     it "must be the same as .examples" do
       expect(subject.examples).to eq(command_class.examples)
     end
   end
 
-  describe "#help" do
+  describe "#help_examples" do
     context "when #examples returns nil" do
       module TestExamples
         class NoExamples
@@ -166,7 +166,7 @@ describe Examples do
       subject { command_class.new }
 
       it "must print out the examples" do
-        expect { subject.help }.to_not output.to_stdout
+        expect { subject.help_examples }.to_not output.to_stdout
       end
     end
 
@@ -187,7 +187,7 @@ describe Examples do
       subject { command_class.new }
 
       it "must print out the 'Examples:' section header and the examples" do
-        expect { subject.help }.to output(
+        expect { subject.help_examples }.to output(
           [
             '',
             "Examples:",
@@ -198,6 +198,14 @@ describe Examples do
           ].join($/)
         ).to_stdout
       end
+    end
+  end
+
+  describe "#help" do
+    it "must call #help_examples" do
+      expect(subject).to receive(:help_examples)
+
+      subject.help
     end
   end
 end

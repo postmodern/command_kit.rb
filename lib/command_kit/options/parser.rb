@@ -197,8 +197,15 @@ module CommandKit
     #
     # Prints the `--help` output.
     #
-    def help
+    def help_options
       puts option_parser
+    end
+
+    #
+    # @see #help_options
+    #
+    def help
+      help_options
     end
   end
 end

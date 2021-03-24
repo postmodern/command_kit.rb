@@ -64,9 +64,7 @@ module CommandKit
     #
     # Prints the command class'es example commands.
     #
-    def help
-      super if defined?(super)
-
+    def help_examples
       if (examples = self.examples)
         puts
         puts "Examples:"
@@ -74,6 +72,16 @@ module CommandKit
           puts "    #{command_name} #{command}"
         end
       end
+    end
+
+    #
+    # Calls the superclass'es `#help` method, if it's defined, then calls
+    # {#help_examples}.
+    #
+    def help
+      super if defined?(super)
+
+      help_examples
     end
   end
 end
