@@ -2,6 +2,7 @@
 
 require 'command_kit/main'
 require 'command_kit/usage'
+require 'command_kit/printing'
 
 require 'optparse'
 
@@ -30,6 +31,7 @@ module CommandKit
     module Parser
       include Usage
       include Main
+      include Printing
 
       module ModuleMethods
         #
