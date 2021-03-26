@@ -2,12 +2,13 @@ require 'spec_helper'
 require 'command_kit/program_name'
 
 describe ProgramName do
-  let(:command_class) do
-    Class.new.tap do |klass|
-      klass.include(described_class)
+  module TestProgramName
+    class TestCmd
+      include CommandKit::ProgramName
     end
   end
 
+  let(:command_class) { TestProgramName::TestCmd }
   let(:program_name) { 'foo' }
 
   before do
