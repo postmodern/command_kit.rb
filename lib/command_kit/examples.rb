@@ -14,17 +14,28 @@ module CommandKit
   #     ]
   #
   module Examples
-    #
-    # Includes {Help} and extends {Examples::ClassMethods}.
-    #
-    # @param [Class] command
-    #   The command class which is including {Examples}.
-    #
-    def self.included(command)
-      command.include Help
-      command.include CommandName
-      command.extend ClassMethods
+    include Help
+    include CommandName
+
+    module ModuleMethods
+      #
+      # Extends {Examples::ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {Examples}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Defines class-level methods.

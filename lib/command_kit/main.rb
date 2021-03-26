@@ -12,15 +12,25 @@ module CommandKit
   #     end
   #
   module Main
-    #
-    # Extends {ClassMethods}.
-    #
-    # @param [Class] command
-    #   The command class which is including {Main}.
-    #
-    def self.included(command)
-      command.extend ClassMethods
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {Main}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Class-level methods.

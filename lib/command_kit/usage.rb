@@ -12,18 +12,28 @@ module CommandKit
   #     usage "[options] ARG1 ARG2 [ARG3 ...]"
   #
   module Usage
-    #
-    # Includes {CommandName}, {Help}, and extends {Usage::ClassMethods}.
-    #
-    # @param [Class] command
-    #   The class which is including {Usage}.
-    #
-    def self.included(command)
-      command.include CommandName
-      command.include Help
+    include CommandName
+    include Help
 
-      command.extend ClassMethods
+    module ModuleMethods
+      #
+      # Includes {CommandName}, {Help}, and extends {Usage::ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {Usage}.
+      #
+      def included(context)
+        super
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Class-level methods.

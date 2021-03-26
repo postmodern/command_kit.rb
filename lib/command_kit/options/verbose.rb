@@ -16,16 +16,29 @@ module CommandKit
     #     end
     #
     module Verbose
-      #
-      # Includes {Options} and defines a `-v, --verbose` option.
-      #
-      def self.included(command)
-        command.include Options
+      include Options
 
-        command.option :verbose, short: '-v', desc: 'Enables verbose output' do
-          @verbose = true
+      module ModuleMethods
+        #
+        # Defines a `-v, --verbose` option.
+        #
+        # @param [Class, Module] context
+        #   The class or module including {Verbose}.
+        #
+        def included(context)
+          super(context)
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.option :verbose, short: '-v', desc: 'Enables verbose output' do
+              @verbose = true
+            end
+          end
         end
       end
+
+      extend ModuleMethods
 
       #
       # Determines if verbose mode is enabled.

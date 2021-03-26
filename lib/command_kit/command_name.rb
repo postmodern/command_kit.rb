@@ -31,15 +31,25 @@ module CommandKit
   #     # => "foo-cmd"
   #
   module CommandName
-    #
-    # Extends {ClassMethods}.
-    #
-    # @param [Class] command
-    #   The command class which is including {CommandName}.
-    #
-    def self.included(command)
-      command.extend ClassMethods
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {CommandName}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Defines class-level methods.

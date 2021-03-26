@@ -7,16 +7,7 @@ module CommandKit
   # Provides printing methods.
   #
   module Printing
-    #
-    # Includes {Stdio} into the command class which is also including
-    # {Printing}.
-    #
-    # @param [Class] command
-    #   The command class including {Printing}.
-    #
-    def self.included(command)
-      command.include Stdio
-    end
+    include Stdio
 
     #
     # Prints the error to `$stderr`.

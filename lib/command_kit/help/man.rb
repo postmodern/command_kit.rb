@@ -6,12 +6,25 @@ module CommandKit
     # Allows displaying a man-page instead of the usual `--help` output.
     #
     module Man
-      #
-      # Extends {ClassMethods}.
-      #
-      def self.included(base)
-        base.extend ClassMethods
+      module ModuleMethods
+        #
+        # Extends {ClassMethods}.
+        #
+        # @param [Class, Module] context
+        #   The class or module including {Man}.
+        #
+        def included(context)
+          super(context)
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.extend ClassMethods
+          end
+        end
       end
+
+      extend ModuleMethods
 
       #
       # Defines class-level methods.

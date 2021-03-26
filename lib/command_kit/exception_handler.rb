@@ -21,15 +21,7 @@ module CommandKit
   #     end
   #
   module ExceptionHandler
-    #
-    # Includes {Main} and {Printing}.
-    #
-    # @param [Class] command
-    #   The command class which is including {ExceptionHandler}.
-    #
-    def self.included(command)
-      command.include Printing
-    end
+    include Printing
 
     #
     # Calls superclass'es `#main` method, but rescues any uncaught exceptions

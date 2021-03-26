@@ -16,16 +16,29 @@ module CommandKit
     #     end
     #
     module Quiet
-      #
-      # Includes {Options} and defines a `-q, --quiet` option.
-      #
-      def self.included(command)
-        command.include Options
+      include Options
 
-        command.option :quiet, short: '-q', desc: 'Enables quiet output' do
-          @quiet = true
+      module ModuleMethods
+        #
+        # Defines a `-q, --quiet` option.
+        #
+        # @param [Class, Module] context
+        #   The class or module including {Quiet}.
+        #
+        def included(context)
+          super(context)
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.option :quiet, short: '-q', desc: 'Enables quiet output' do
+              @quiet = true
+            end
+          end
         end
       end
+
+      extend ModuleMethods
 
       #
       # Determines if quiet mode is enabled.

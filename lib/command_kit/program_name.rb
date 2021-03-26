@@ -3,15 +3,25 @@ module CommandKit
   # Retrieves the current program name (`$PROGRAM_NAME`).
   #
   module ProgramName
-    #
-    # Extends {ClassMethods}.
-    #
-    # @param [Class] command
-    #   The command class which is including {ProgramName}.
-    #
-    def self.included(command)
-      command.extend ClassMethods
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {ProgramName}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Class-level methods.

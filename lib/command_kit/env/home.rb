@@ -8,16 +8,27 @@ module CommandKit
     # Provides access to the `HOME` environment variable.
     #
     module Home
-      #
-      # Includes {Env} and extends {ClassMethods}.
-      #
-      # @param [Class] command
-      #   The command class which is including {Home}.
-      #
-      def self.included(command)
-        command.include Env
-        command.extend ClassMethods
+      include Env
+
+      module ModuleMethods
+        #
+        # Extends {ClassMethods}.
+        #
+        # @param [Class, Module] context
+        #   The class or module which is including {Home}.
+        #
+        def included(context)
+          super(context)
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.extend ClassMethods
+          end
+        end
       end
+
+      extend ModuleMethods
 
       #
       # Class-level methods.

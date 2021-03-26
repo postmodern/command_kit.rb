@@ -28,18 +28,29 @@ module CommandKit
     #     end
     #
     module Parser
-      #
-      # Includes {CommandKit::Main}, {Usage}, and defines a default usage
-      # (`[options]`).
-      #
-      # @param [Class] command
-      #   The class including {Parser}.
-      #
-      def self.included(command)
-        command.include CommandKit::Main
-        command.include Usage
-        command.usage '[options]'
+      include Usage
+      include Main
+
+      module ModuleMethods
+        #
+        # Includes {CommandKit::Main}, {Usage}, and defines a default usage
+        # (`[options]`).
+        #
+        # @param [Class, Module] context
+        #   The class or module including {Parser}.
+        #
+        def included(context)
+          super
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.usage '[options]'
+          end
+        end
       end
+
+      extend ModuleMethods
 
       # The option parser.
       #
@@ -52,6 +63,8 @@ module CommandKit
       # @return [OptionParser]
       #
       def initialize(**kwargs)
+        super(**kwargs)
+
         @option_parser = OptionParser.new do |opts|
           opts.banner = "Usage: #{usage}"
 
@@ -63,8 +76,6 @@ module CommandKit
             exit(0)
           end
         end
-
-        super(**kwargs)
       end
 
       #

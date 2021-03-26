@@ -11,16 +11,27 @@ module CommandKit
   #     description "Does things and stuff"
   #
   module Description
-    #
-    # Includes {Help} and extends {ClassMethods}.
-    #
-    # @param [Class] command
-    #   The command class which is including {Description}.
-    #
-    def self.included(command)
-      command.include Help
-      command.extend ClassMethods
+    include Help
+
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {Description}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     #
     # Defines class-level methods.

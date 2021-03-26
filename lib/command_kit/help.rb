@@ -15,15 +15,25 @@ module CommandKit
   #     MyCmd.help
   #
   module Help
-    #
-    # Extends {ClassMethods}.
-    #
-    # @param [Class] base
-    #   The command class which is extending {ClassMethods}.
-    #
-    def self.included(base)
-      base.extend ClassMethods
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] context
+      #   The class or module which is extending {ClassMethods}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     module ClassMethods
       #
