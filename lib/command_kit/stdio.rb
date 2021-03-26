@@ -34,7 +34,7 @@ module CommandKit
     # @param [IO] stderr
     #   The stderr error output stream. Defaults to `$stderr`.
     #
-    def initialize(stdin: $stdin, stdout: $stdout, stderr: $stderr, **kwargs)
+    def initialize(stdin: nil, stdout: nil, stderr: nil, **kwargs)
       @stdin  = stdin
       @stdout = stdout
       @stderr = stderr
@@ -42,20 +42,35 @@ module CommandKit
       super(**kwargs)
     end
 
-    # The stdin input stream.
+    #
+    # Returns the stdin input stream.
     #
     # @return [$stdin, IO]
-    attr_reader :stdin
+    #   The initialized `@stdin` value or `$stdin`.
+    #
+    def stdin
+      @stdin || $stdin
+    end
 
-    # The stdout output stream.
+    #
+    # Returns the stdout output stream.
     #
     # @return [$stdout, IO]
-    attr_reader :stdout
+    #   The initialized `@stdout` value or `$stdout`.
+    #
+    def stdout
+      @stdout || $stdout
+    end
 
-    # The stderr error output stream.
+    #
+    # Returns the stderr error output stream.
     #
     # @return [$stderr, IO]
-    attr_reader :stderr
+    #   The initialized `@stderr` value or `$stderr`.
+    #
+    def stderr
+      @stderr || $stderr
+    end
 
     #
     # Calls `stdin.gets`.
