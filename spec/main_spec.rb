@@ -118,11 +118,11 @@ describe Main do
       expect(subject.main).to eq(0)
     end
 
-    context "when given a custom argv" do
-      let(:command_class) { TestMain::TestCommandWithInitialize }
-      let(:instance) { TestMain::TestCommandWithInitialize.new }
+    let(:command_class) { TestMain::TestCommandWithInitialize }
 
-      let(:argv) { %w[one two three] }
+    context "when given a custom argv" do
+      let(:instance) { command_class.new }
+      let(:argv)     { %w[one two three] }
 
       it "must call #main with the custom argv" do
         expect(subject).to receive(:new).with(no_args).and_return(instance)
@@ -133,10 +133,8 @@ describe Main do
     end
 
     context "when given keyword arguments" do
-      let(:command_class) { TestMain::TestCommandWithInitialize }
-
-      let(:kwargs) { {foo: 'custom foo', bar: 'custom bar'} }
-      let(:instance) { TestMain::TestCommandWithInitialize.new(**kwargs) }
+      let(:kwargs)   { {foo: 'custom foo', bar: 'custom bar'} }
+      let(:instance) { command_class.new(**kwargs) }
 
       it "must pass the keyword arguments .new then call #main" do
         expect(subject).to receive(:new).with(**kwargs).and_return(instance)
