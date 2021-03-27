@@ -14,7 +14,9 @@ describe Main do
 
       attr_reader :bar
 
-      def initialize(foo: 'foo', bar: 'bar')
+      def initialize(foo: 'foo', bar: 'bar', **kwargs)
+        super(**kwargs)
+
         @foo = foo
         @bar = bar
       end
