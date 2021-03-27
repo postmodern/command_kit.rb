@@ -14,7 +14,7 @@ describe Arguments do
     subject { TestArguments::ImplicitCmd }
 
     context "when no arguments have been defined" do
-      it "should default to nil" do
+      it "should default to {}" do
         expect(subject.arguments).to eq({})
       end
     end
@@ -48,7 +48,7 @@ describe Arguments do
 
         subject { TestArguments::InheritedCmd }
 
-        it "must search each class then return nil "do
+        it "must search each class then return {}"do
           expect(subject.arguments).to eq({})
         end
       end
@@ -131,7 +131,7 @@ describe Arguments do
   subject { command_class.new }
 
   describe "#help_arguments" do
-    context "when #arguments returns nil" do
+    context "when #arguments returns {}" do
       module TestArguments
         class NoArguments
           include CommandKit::Arguments
