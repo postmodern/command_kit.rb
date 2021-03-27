@@ -15,7 +15,7 @@ describe Options do
     subject { TestOptions::ImplicitCmd }
 
     context "when no options have been defined" do
-      it "should default to nil" do
+      it "should default to {}" do
         expect(subject.options).to eq({})
       end
     end
@@ -49,7 +49,7 @@ describe Options do
 
         subject { TestOptions::InheritedCmd }
 
-        it "must search each class then return nil "do
+        it "must search each class then return {}"do
           expect(subject.options).to eq({})
         end
       end
