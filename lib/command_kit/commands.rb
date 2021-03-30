@@ -84,7 +84,7 @@ module CommandKit
       #
       # Mounts a command as a sub-command.
       #
-      # @param [#to_s] name
+      # @param [#to_s] command_name
       #   The optional name to mount the command as. Defaults to the command's
       #   {CommandName::ClassMethods#command_name command_name}.
       #
@@ -100,10 +100,10 @@ module CommandKit
       # @example
       #   command 'foo-bar', FooBar
       #
-      def command(name=nil, command_class, **kwargs)
-        name ||= command_class.command_name
+      def command(command_name=nil, command_class, **kwargs)
+        command_name ||= command_class.command_name
 
-        commands[name.to_s] = Subcommand.new(command_class, **kwargs)
+        commands[command_name.to_s] = Subcommand.new(command_class, **kwargs)
       end
     end
 
@@ -118,16 +118,16 @@ module CommandKit
     #
     # Looks up the given command name and initializes a subcommand.
     #
-    # @param [#to_s] name
+    # @param [#to_s] command_name
     #   The given command name.
     #
     # @return [Object#main, nil]
     #   The initialized subcommand.
     #
-    def command(name)
-      name = name.to_s
+    def command(command_name)
+      command_name = command_name.to_s
 
-      unless (subcommand = self.class.commands[name])
+      unless (subcommand = self.class.commands[command_name])
         return
       end
 
@@ -139,7 +139,7 @@ module CommandKit
       end
 
       if command.include?(CommandName)
-        kwargs[:command_name] = "#{command_name} #{command.command_name}"
+        kwargs[:command_name] = "#{self.command_name} #{command.command_name}"
       end
 
       if command.include?(Stdio)
@@ -162,7 +162,7 @@ module CommandKit
     #
     # Invokes the command with the given argv.
     #
-    # @param [String] name
+    # @param [String] command_name
     #   The name of the command to invoke.
     #
     # @param [Array<String>] argv
@@ -171,11 +171,11 @@ module CommandKit
     # @return [Integer]
     #   The exit status of the command.
     #
-    def invoke(name,*argv)
-      if (subcommand = command(name))
+    def invoke(command_name,*argv)
+      if (subcommand = command(command_name))
         subcommand.main(argv)
       else
-        on_unknown_command(name,argv)
+        on_unknown_command(command_name,argv)
       end
     end
 

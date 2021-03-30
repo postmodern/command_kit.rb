@@ -388,13 +388,13 @@ describe Commands do
 
   describe "#invoke" do
     context "when given a valid command name" do
-      let(:name) { 'test2' }
+      let(:command_name) { 'test2' }
       let(:argv) { %w[--opt arg1 arg2] }
 
       it "must call the command's #main method with the given argv" do
         expect_any_instance_of(command_class::Test2).to receive(:main).with(argv)
 
-        subject.invoke(name,*argv)
+        subject.invoke(command_name,*argv)
       end
 
       context "when the command returns a custom exit code" do
@@ -410,13 +410,13 @@ describe Commands do
     end
 
     context "when given an unknown command name" do
-      let(:name) { 'xxx' }
+      let(:command_name) { 'xxx' }
       let(:argv) { %w[--opt arg1 arg2] }
 
       it "must call #on_unknown_command with the given name and argv" do
-        expect(subject).to receive(:on_unknown_command).with(name,argv)
+        expect(subject).to receive(:on_unknown_command).with(command_name,argv)
 
-        subject.invoke(name,*argv)
+        subject.invoke(command_name,*argv)
       end
     end
   end
