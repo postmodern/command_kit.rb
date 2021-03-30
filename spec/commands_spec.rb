@@ -398,9 +398,6 @@ describe Commands do
       end
 
       context "when the command returns a custom exit code" do
-        module TestCommands
-        end
-
         let(:command_class) { TestCommands::TestCommandsWithCustomExitStatus }
 
         it "must return the exit code" do
