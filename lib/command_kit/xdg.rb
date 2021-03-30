@@ -12,17 +12,28 @@ module CommandKit
   # [XDG directories]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
   #
   module XDG
-    #
-    # Includes {CommandName}, extends {ClassMethods}, and includes {Env::Home}.
-    #
-    # @param [Class] command
-    #   The command class which is including {XDG}.
-    #
-    def self.included(command)
-      command.include CommandName
-      command.extend ClassMethods
-      command.include Env::Home
+    include CommandName
+    include Env::Home
+
+    module ModuleMethods
+      #
+      # Extends {ClassMethods}.
+      #
+      # @param [Class, Module] command
+      #   The class or module which is including {XDG}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
     end
+
+    extend ModuleMethods
 
     module ClassMethods
       #
@@ -86,6 +97,8 @@ module CommandKit
     #   `~/.cache/<xdg_namespace>`.
     #
     def initialize(**kwargs)
+      super(**kwargs)
+
       @config_dir = File.join(
         env.fetch('XDG_CONFIG_HOME') {
           File.join(home_dir,'.config')
@@ -103,8 +116,6 @@ module CommandKit
           File.join(home_dir,'.cache')
         }, xdg_namespace
       )
-
-      super(**kwargs)
     end
 
     #
