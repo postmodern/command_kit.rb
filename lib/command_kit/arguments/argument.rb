@@ -106,35 +106,6 @@ module CommandKit
         string
       end
 
-      #
-      # Determines if the given arg value matches the argument's pattern.
-      #
-      # @param [String] arg
-      #
-      # @return [Boolean]
-      #
-      def match(arg)
-        if @type.kind_of?(Regexp)
-          @type.match(arg)
-        else
-          @pattern.match(arg)
-        end
-      end
-
-      #
-      # Parses the given argument.
-      #
-      # @param [Stirng, nil] arg
-      #   The given argument.
-      #
-      # @return [Object]
-      #   The parsed argument.
-      #
-      def parse(arg)
-        arg = @parser.call(arg) if @parser
-        arg
-      end
-
     end
   end
 end
