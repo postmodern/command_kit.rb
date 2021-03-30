@@ -104,7 +104,7 @@ describe Main do
 
       include CommandKit::Main
 
-      def main(*argv)
+      def run(*argv)
         raise(SystemExit.new(-1))
       end
 
@@ -168,7 +168,7 @@ describe Main do
       expect { subject.main([1,2,3]) }.to_not raise_error
     end
 
-    context "when #main raises SystemExit" do
+    context "when #run raises SystemExit" do
       let(:command_class) { TestMain::TestCommandWithSystemExit }
 
       it "must rescue SystemExit and return the exit status code" do
