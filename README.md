@@ -30,6 +30,7 @@ classes.
 * {CommandKit::Arguments}
 * {CommandKit::ExceptionHandler}
 * {CommandKit::CommandName}
+* {CommandKit::Commands}
 * {CommandKit::Description}
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
