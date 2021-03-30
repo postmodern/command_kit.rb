@@ -125,7 +125,7 @@ module CommandKit
     end
 
     #
-    # Overrides abort to call our {#exit} instead.
+    # Overrides `Kernel.abort` to print to {#stderr}.
     #
     # @param [String, nil] message
     #   The optional abort message.

@@ -4,7 +4,7 @@ module CommandKit
 
       # The command class.
       #
-      # @param [Class]
+      # @return [Class]
       attr_reader :command
 
       # A short summary for the subcommand.
