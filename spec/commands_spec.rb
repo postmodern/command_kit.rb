@@ -84,6 +84,11 @@ describe Commands do
                    desc: "Global --foo option"
 
       option :bar, short: '-b',
+                   value: {
+                     required: true,
+                     type: String,
+                     usage: 'BAR'
+                   },
                    desc: "Global --bar option"
 
       command Test1
@@ -471,6 +476,33 @@ describe Commands do
     end
   end
 
+  describe "#option_parser" do
+    let(:command_argv) { %w[foo bar baz] }
+    let(:command_name) { 'test1' }
+    let(:argv) { [command_name, *command_argv] }
+
+    it "must stop before the first command-name argument" do
+      expect(subject.option_parser.parse(argv)).to eq(argv)
+    end
+
+    context "when additional global options are defined" do
+      let(:command_class) { TestCommands::TestCommandsWithGlobalOptions }
+      let(:bar) { '2' }
+      let(:argv) do
+        ['--foo', '--bar', bar.to_s, command_name, *command_argv]
+      end
+
+      it "must parse the global options, but stop before the command-name" do
+        expect(subject.option_parser.parse(argv)).to eq(
+          [command_name, *command_argv]
+        )
+
+        expect(subject.options[:foo]).to be(true)
+        expect(subject.options[:bar]).to eq(bar)
+      end
+    end
+  end
+
   describe "#help_commands" do
     it "must print usage and the list of available commands" do
       expect { subject.help_commands }.to output(
@@ -548,7 +580,7 @@ describe Commands do
             "",
             "Options:",
             "    -f, --foo                        Global --foo option",
-            "    -b, --bar                        Global --bar option",
+            "    -b, --bar BAR                    Global --bar option",
             "    -h, --help                       Print help information",
             "",
             "Commands:",
