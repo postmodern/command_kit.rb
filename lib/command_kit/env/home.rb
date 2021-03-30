@@ -57,9 +57,9 @@ module CommandKit
       #   Additional keyword arguments.
       #
       def initialize(**kwargs)
-        @home_dir = env.fetch('HOME') { self.class.home_dir }
-
         super(**kwargs)
+
+        @home_dir = env.fetch('HOME') { self.class.home_dir }
       end
     end
   end
