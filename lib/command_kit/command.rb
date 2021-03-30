@@ -21,6 +21,9 @@ module CommandKit
   #     
   #     end
   #
+  # @note Command classes are not required to inherit from {Command}. This class
+  # only exists as a convenience.
+  #
   class Command
 
     def self.inherited(subclass)
