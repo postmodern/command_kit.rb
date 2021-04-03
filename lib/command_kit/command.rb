@@ -26,19 +26,17 @@ module CommandKit
   #
   class Command
 
-    def self.inherited(subclass)
-      subclass.include Main
-      subclass.include Env
-      subclass.include Stdio
-      subclass.include Printing
-      subclass.include Help
-      subclass.include Usage
-      subclass.include Arguments
-      subclass.include Options
-      subclass.include Examples
-      subclass.include Description
-      subclass.include ExceptionHandler
-    end
+    include Main
+    include Env
+    include Stdio
+    include Printing
+    include Help
+    include Usage
+    include Arguments
+    include Options
+    include Examples
+    include Description
+    include ExceptionHandler
 
   end
 end
