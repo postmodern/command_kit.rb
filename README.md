@@ -14,6 +14,7 @@ classes.
 
 * Supports defining commands as Classes.
 * Supports defining options and arguments as attributes.
+* Supports subcommands (explicit or lazy-loaded).
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
 * Correctly handles broken pipes (aka quitting `mycmd | less`).
 * Uses [OptionParser][optparse] for option parsing.
