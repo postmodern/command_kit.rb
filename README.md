@@ -31,6 +31,7 @@ classes.
 * {CommandKit::ExceptionHandler}
 * {CommandKit::CommandName}
 * {CommandKit::Commands}
+  * {CommandKit::Commands::AutoLoad}
 * {CommandKit::Description}
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
