@@ -19,7 +19,7 @@ module CommandKit
       #
       # Extends {ClassMethods}.
       #
-      # @param [Class, Module] command
+      # @param [Class, Module] context
       #   The class or module which is including {XDG}.
       #
       def included(context)
