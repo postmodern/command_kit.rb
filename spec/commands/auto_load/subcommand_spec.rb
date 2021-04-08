@@ -51,6 +51,8 @@ describe Commands::AutoLoad::Subcommand do
   end
 
   describe "#const_get" do
+    before { subject.require! }
+
     it "must resolve #constant" do
       expect(subject.const_get).to eq(TestAutoLoad::CLI::Commands::Test1)
     end
