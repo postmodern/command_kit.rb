@@ -477,12 +477,23 @@ describe Commands do
   end
 
   describe "#option_parser" do
+    let(:command_name) { 'test1'     }
     let(:command_argv) { %w[foo bar baz] }
-    let(:command_name) { 'test1' }
     let(:argv) { [command_name, *command_argv] }
 
-    it "must stop before the first command-name argument" do
-      expect(subject.option_parser.parse(argv)).to eq(argv)
+    it "must stop before the first non-option argument" do
+      expect(subject.option_parser.parse(argv)).to eq(
+        [command_name, *command_argv]
+      )
+    end
+
+    context "when an unknown command name is given" do
+      let(:command_argv) { %w[bar baz] }
+      let(:argv) { ['foo', command_name, *command_argv] }
+
+      it "must stop before the first non-option argument" do
+        expect(subject.option_parser.parse(argv)).to eq(argv)
+      end
     end
 
     context "when additional global options are defined" do
@@ -492,7 +503,7 @@ describe Commands do
         ['--foo', '--bar', bar.to_s, command_name, *command_argv]
       end
 
-      it "must parse the global options, but stop before the command-name" do
+      it "must parse the global options, but stop before the first non-option associated argument" do
         expect(subject.option_parser.parse(argv)).to eq(
           [command_name, *command_argv]
         )

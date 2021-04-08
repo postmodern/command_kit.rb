@@ -110,7 +110,7 @@ module CommandKit
     def initialize(**kwargs)
       super(**kwargs)
 
-      @option_parser.on(Regexp.union(self.class.commands.keys)) do |command|
+      @option_parser.on(/^[^-].*$/) do |command|
         OptionParser.terminate(command)
       end
     end
