@@ -7,9 +7,9 @@ describe Commands::AutoLoad do
   let(:dir)       { File.join(fixtures_dir,'test_auto_load','cli','commands') }
   let(:namespace) { 'TestAutoLoad::CLI::Commands' }
 
-  describe "#initialize" do
-    subject { described_class.new(dir: dir, namespace: namespace) }
+  subject { described_class.new(dir: dir, namespace: namespace) }
 
+  describe "#initialize" do
     it "must set #dir" do
       expect(subject.dir).to eq(dir)
     end
@@ -77,8 +77,6 @@ describe Commands::AutoLoad do
       expect(command_class.commands).to include(autoload_module.commands)
     end
   end
-
-  subject { described_class.new(dir: dir, namespace: namespace) }
 
   describe "#join" do
     let(:path) { 'foo/bar' }
