@@ -3,7 +3,8 @@ require 'command_kit/commands/auto_load'
 
 describe Commands::AutoLoad do
   let(:fixtures_dir) { File.expand_path('../fixtures',__FILE__) }
-  let(:dir) { File.join(fixtures_dir,'test_auto_load','cli','commands') }
+
+  let(:dir)       { File.join(fixtures_dir,'test_auto_load','cli','commands') }
   let(:namespace) { 'TestAutoLoad::CLI::Commands' }
 
   describe "#initialize" do
@@ -62,7 +63,7 @@ describe Commands::AutoLoad do
     end
   end
 
-  let(:command_class) { TestAutoLoad::CLI }
+  let(:command_class)   { TestAutoLoad::CLI }
   let(:autoload_module) { command_class.included_modules.first }
 
   describe "#included" do
