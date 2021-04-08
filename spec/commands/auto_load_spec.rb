@@ -77,9 +77,7 @@ describe Commands::AutoLoad do
     end
   end
 
-  subject do
-    CommandKit::Commands::AutoLoad.new(dir: dir, namespace: namespace)
-  end
+  subject { described_class.new(dir: dir, namespace: namespace) }
 
   describe "#join" do
     let(:path) { 'foo/bar' }
