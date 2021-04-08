@@ -33,6 +33,7 @@ classes.
 * {CommandKit::CommandName}
 * {CommandKit::Commands}
   * {CommandKit::Commands::AutoLoad}
+  * {CommandKit::Commands::AutoRequire}
 * {CommandKit::Description}
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
