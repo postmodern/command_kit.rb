@@ -99,23 +99,23 @@ module CommandKit
     def initialize(**kwargs)
       super(**kwargs)
 
-      @config_dir = File.join(
-        env.fetch('XDG_CONFIG_HOME') {
-          File.join(home_dir,'.config')
-        }, xdg_namespace
-      )
+      xdg_config_home = env.fetch('XDG_CONFIG_HOME') do
+        File.join(home_dir,'.config')
+      end
 
-      @local_share_dir = File.join(
-        env.fetch('XDG_DATA_HOME') {
-          File.join(home_dir,'.local','share')
-        }, xdg_namespace
-      )
+      @config_dir = File.join(xdg_config_home,xdg_namespace)
 
-      @cache_dir = File.join(
-        env.fetch('XDG_CACHE_HOME') {
-          File.join(home_dir,'.cache')
-        }, xdg_namespace
-      )
+      xdg_data_home = env.fetch('XDG_DATA_HOME') do
+        File.join(home_dir,'.local','share')
+      end
+
+      @local_share_dir = File.join(xdg_data_home,xdg_namespace)
+
+      xdg_cache_home = env.fetch('XDG_CACHE_HOME') do
+        File.join(home_dir,'.cache')
+      end
+
+      @cache_dir = File.join(xdg_cache_home,xdg_namespace)
     end
 
     #
