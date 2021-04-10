@@ -20,7 +20,8 @@ module CommandKit
 
     module ModuleMethods
       #
-      # Extends {ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {Arguments} is being included into a class or module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {Arguments}.

@@ -20,7 +20,9 @@ module CommandKit
 
       module ModuleMethods
         #
-        # Defines a `-v, --verbose` option.
+        # Defines a `-v, --verbose` option or extends {ModuleMethods}, depending
+        # on whether {Options::Verbose} is being included into a class or a
+        # module.
         #
         # @param [Class, Module] context
         #   The class or module including {Verbose}.

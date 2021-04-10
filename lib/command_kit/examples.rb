@@ -19,7 +19,8 @@ module CommandKit
 
     module ModuleMethods
       #
-      # Extends {Examples::ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {Examples} is being included into a class or a module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {Examples}.

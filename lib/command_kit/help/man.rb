@@ -8,7 +8,8 @@ module CommandKit
     module Man
       module ModuleMethods
         #
-        # Extends {ClassMethods}.
+        # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+        # {Help::Man} is being included into a class or a module.
         #
         # @param [Class, Module] context
         #   The class or module including {Man}.

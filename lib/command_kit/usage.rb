@@ -17,7 +17,8 @@ module CommandKit
 
     module ModuleMethods
       #
-      # Includes {CommandName}, {Help}, and extends {Usage::ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether {Usage}
+      # is being included into a class or module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {Usage}.

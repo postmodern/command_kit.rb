@@ -5,7 +5,8 @@ module CommandKit
   module ProgramName
     module ModuleMethods
       #
-      # Extends {ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {ProgramName} is being included into a class or a module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {ProgramName}.

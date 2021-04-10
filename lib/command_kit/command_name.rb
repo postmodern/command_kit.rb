@@ -33,7 +33,8 @@ module CommandKit
   module CommandName
     module ModuleMethods
       #
-      # Extends {ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {CommandName} is being included into a class or a module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {CommandName}.

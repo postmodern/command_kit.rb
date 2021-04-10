@@ -43,8 +43,8 @@ module CommandKit
 
     module ModuleMethods
       #
-      # Includes {CommandName}, {Usage}, {Stdio}, {Env}, and extends
-      # {ClassMethods}.
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {Commands} is being included into a class or a module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {Commands}.
