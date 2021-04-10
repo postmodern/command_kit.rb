@@ -35,9 +35,9 @@ module CommandKit
 
       module ModuleMethods
         #
-        # Sets {Usage::ClassMethods#usage .usage} or extends {ModuleMethods},
-        # depending on whether {Options::Parser} is being included into a class
-        # or a module.
+        # Sets {CommandKit::Usage::ClassMethods#usage .usage} or extends
+        # {ModuleMethods}, depending on whether {Options::Parser} is being
+        # included into a class or a module.
         #
         # @param [Class, Module] context
         #   The class or module including {Parser}.
