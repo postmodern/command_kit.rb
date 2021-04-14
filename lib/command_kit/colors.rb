@@ -7,6 +7,22 @@ module CommandKit
   #
   # Defines ANSI color codes.
   #
+  # ## Examples
+  #
+  #     include CommandKit::Colors
+  #
+  #     def run
+  #       colors do |c|
+  #         puts c.green("hello world!")
+  #       end
+  #     end
+  #
+  # ### Printing color error messages
+  #
+  #     colors(stderr) do |c|
+  #       stderr.puts c.red("error!")
+  #     end
+  #
   module Colors
 
     include Stdio
