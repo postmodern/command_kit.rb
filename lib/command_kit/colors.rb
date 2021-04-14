@@ -23,6 +23,11 @@ module CommandKit
   #       stderr.puts c.red("error!")
   #     end
   #
+  # ## Alternatives
+  #
+  # * [ansi](http://rubyworks.github.io/ansi/)
+  # * [colorize](https://github.com/fazibear/colorize#readme)
+  #
   module Colors
 
     include Stdio
