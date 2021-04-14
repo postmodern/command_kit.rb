@@ -12,16 +12,12 @@ module CommandKit
   #     include CommandKit::Colors
   #
   #     def run
-  #       colors do |c|
-  #         puts c.green("hello world!")
-  #       end
+  #       puts colors.green("hello world")
   #     end
   #
   # ### Printing color error messages
   #
-  #     colors(stderr) do |c|
-  #       stderr.puts c.red("error!")
-  #     end
+  #     stderr.puts colors(stderr).red("error!")
   #
   # ## Alternatives
   #
