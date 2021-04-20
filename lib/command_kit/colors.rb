@@ -30,7 +30,7 @@ module CommandKit
     include Env
 
     #
-    # ANSI foreground color codes.
+    # Applies ANSI formatting to text.
     #
     module Color
       # ANSI color code for black
@@ -96,6 +96,14 @@ module CommandKit
       module_function
 
       #
+      # Sets the text color to black.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BLACK]
+      #   The colorized string or just {BLACK} if no arguments were given.
+      #
       # @see BLACK
       #
       def black(string=nil)
@@ -104,6 +112,14 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to red.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, RED]
+      #   The colorized string or just {RED} if no arguments were given.
       #
       # @see RED
       #
@@ -114,6 +130,14 @@ module CommandKit
       end
 
       #
+      # Sets the text color to green.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, GREEN]
+      #   The colorized string or just {GREEN} if no arguments were given.
+      #
       # @see GREEN
       #
       def green(string=nil)
@@ -122,6 +146,14 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to yellow.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, YELLOW]
+      #   The colorized string or just {YELLOW} if no arguments were given.
       #
       # @see YELLOW
       #
@@ -132,6 +164,14 @@ module CommandKit
       end
 
       #
+      # Sets the text color to blue.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BLUE]
+      #   The colorized string or just {BLUE} if no arguments were given.
+      #
       # @see BLUE
       #
       def blue(string=nil)
@@ -140,6 +180,14 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to magenta.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, MAGENTA]
+      #   The colorized string or just {MAGENTA} if no arguments were given.
       #
       # @see MAGENTA
       #
@@ -150,6 +198,14 @@ module CommandKit
       end
 
       #
+      # Sets the text color to cyan.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, CYAN]
+      #   The colorized string or just {CYAN} if no arguments were given.
+      #
       # @see CYAN
       #
       def cyan(string=nil)
@@ -158,6 +214,14 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to white.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, WHITE]
+      #   The colorized string or just {WHITE} if no arguments were given.
       #
       # @see WHITE
       #
@@ -168,6 +232,15 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright black.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_BLACK]
+      #   The colorized string or just {BRIGHT_BLACK} if no arguments were
+      #   given.
+      #
       # @see BRIGHT_BLACK
       #
       def bright_black(stirng=nil)
@@ -176,6 +249,15 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to bright gray.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_GRAY]
+      #   The colorized string or just {BRIGHT_GRAY} if no arguments were
+      #   given.
       #
       # @see BRIGHT_GRAY
       #
@@ -186,6 +268,15 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright red.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_RED]
+      #   The colorized string or just {BRIGHT_RED} if no arguments were
+      #   given.
+      #
       # @see BRIGHT_RED
       #
       def bright_red(string=nil)
@@ -194,6 +285,15 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to bright green.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_GREEN]
+      #   The colorized string or just {BRIGHT_GREEN} if no arguments were
+      #   given.
       #
       # @see BRIGHT_GREEN
       #
@@ -204,6 +304,15 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright yellow.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_YELLOW]
+      #   The colorized string or just {BRIGHT_YELLOW} if no arguments were
+      #   given.
+      #
       # @see BRIGHT_YELLOW
       #
       def bright_yellow(string=nil)
@@ -212,6 +321,15 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to bright blue.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_BLUE]
+      #   The colorized string or just {BRIGHT_BLUE} if no arguments were
+      #   given.
       #
       # @see BRIGHT_BLUE
       #
@@ -222,6 +340,15 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright magenta.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_MAGENTA]
+      #   The colorized string or just {BRIGHT_MAGENTA} if no arguments were
+      #   given.
+      #
       # @see BRIGHT_MEGENTA
       #
       def bright_magenta(string=nil)
@@ -230,6 +357,15 @@ module CommandKit
         end
       end
 
+      #
+      # Sets the text color to bright cyan.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_CYAN]
+      #   The colorized string or just {BRIGHT_CYAN} if no arguments were
+      #   given.
       #
       # @see BRIGHT_CYAN
       #
@@ -240,6 +376,15 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright white.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_WHITE]
+      #   The colorized string or just {BRIGHT_WHITE} if no arguments were
+      #   given.
+      #
       # @see BRIGHT_WHITE
       #
       def bright_white(string=nil)
@@ -248,6 +393,14 @@ module CommandKit
         end
       end
 
+      #
+      # Bolds the text.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BOLD]
+      #   The bolded string or just {BOLD} if no arguments were given.
       #
       # @see BOLD
       #
@@ -258,6 +411,10 @@ module CommandKit
       end
 
       #
+      # Resets text formatting.
+      #
+      # @return [RESET]
+      #
       # @see RESET
       #
       def reset
@@ -265,13 +422,16 @@ module CommandKit
       end
 
       #
-      # @see CLEAR
+      # @see reset
       #
       def clear
         reset
       end
     end
 
+    #
+    # Dummy module that appears no ANSI formatting to the text.
+    #
     module NoColor
       BLACK = RED = GREEN = YELLOW = BLUE = MAGENTA = CYAN = WHITE = \
         BRIGHT_BLACK = BRIGHT_GRAY = BRIGHT_RED = BRIGHT_GREEN = \
@@ -281,140 +441,248 @@ module CommandKit
       module_function
 
       #
-      # @see BLACK
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def black(string=nil)
         string || ''
       end
 
       #
-      # @see RED
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def red(string=nil)
         string || ''
       end
 
       #
-      # @see GREEN
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def green(string=nil)
         string || ''
       end
 
       #
-      # @see YELLOW
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def yellow(string=nil)
         string || ''
       end
 
       #
-      # @see BLUE
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def blue(string=nil)
         string || ''
       end
 
       #
-      # @see MAGENTA
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def magenta(string=nil)
         string || ''
       end
 
       #
-      # @see CYAN
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def cyan(string=nil)
         string || ''
       end
 
       #
-      # @see WHITE
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def white(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_BLACK
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_black(stirng=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_GRAY
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_gray(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_RED
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_red(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_GREEN
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_green(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_YELLOW
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_yellow(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_BLUE
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_blue(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_MEGENTA
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_magenta(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_CYAN
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_cyan(string=nil)
         string || ''
       end
 
       #
-      # @see BRIGHT_WHITE
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bright_white(string=nil)
         string || ''
       end
 
       #
-      # @see BOLD
+      # Dummy method.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, '']
+      #   The optional string or an empty String.
       #
       def bold(string=nil)
         string || ''
       end
 
       #
-      # @see RESET
+      # @return ['']
       #
       def reset
         RESET
       end
 
       #
-      # @see CLEAR
+      # @see reset
       #
       def clear
         reset
