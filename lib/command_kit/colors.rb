@@ -249,7 +249,8 @@ module CommandKit
     end
 
     #
-    # Dummy module that appears no ANSI formatting to the text.
+    # Dummy module with the same interface as {ANSI}, but for when ANSI is not
+    # supported.
     #
     module PlainText
       RESET = \
