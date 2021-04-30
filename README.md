@@ -30,6 +30,7 @@ classes.
 * {CommandKit::ANSI}
 * {CommandKit::Arguments}
 * {CommandKit::ExceptionHandler}
+* {CommandKit::Colors}
 * {CommandKit::CommandName}
 * {CommandKit::Commands}
   * {CommandKit::Commands::AutoLoad}
