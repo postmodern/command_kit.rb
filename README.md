@@ -29,7 +29,6 @@ classes.
 
 * {CommandKit::ANSI}
 * {CommandKit::Arguments}
-* {CommandKit::ExceptionHandler}
 * {CommandKit::Colors}
 * {CommandKit::CommandName}
 * {CommandKit::Commands}
@@ -39,6 +38,7 @@ classes.
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
 * {CommandKit::Examples}
+* {CommandKit::ExceptionHandler}
 * {CommandKit::Help}
   * {CommandKit::Help::Man}
 * {CommandKit::Main}
