@@ -34,6 +34,7 @@ classes.
 * {CommandKit::Commands}
   * {CommandKit::Commands::AutoLoad}
   * {CommandKit::Commands::AutoRequire}
+* {CommandKit::Console}
 * {CommandKit::Description}
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
