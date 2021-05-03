@@ -27,7 +27,6 @@ classes.
 
 ### Modules
 
-* {CommandKit::ANSI}
 * {CommandKit::Arguments}
 * {CommandKit::Colors}
 * {CommandKit::CommandName}
