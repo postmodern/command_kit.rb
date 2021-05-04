@@ -75,6 +75,8 @@ describe Pager do
       end
 
       it "must spawn a new process and yield an IO object" do
+        skip "STDOUT is not a TTY" unless STDOUT.tty?
+
         expect { |b|
           subject.pager(&b)
         }.to yield_with_args(pager_io)
@@ -82,6 +84,8 @@ describe Pager do
 
       context "when Errno::EPIPE is raised" do
         it "must return gracefully" do
+          skip "STDOUT is not a TTY" unless STDOUT.tty?
+
           expect {
             subject.pager do
               raise(Errno::EPIPE,"pipe broken")
