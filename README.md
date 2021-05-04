@@ -45,6 +45,7 @@ classes.
 * {CommandKit::Options}
   * {CommandKit::Options::Quiet}
   * {CommandKit::Options::Verbose}
+* {CommandKit::Pager}
 * {CommandKit::Printing}
 * {CommandKit::ProgramName}
 * {CommandKit::Stdio}
