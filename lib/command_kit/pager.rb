@@ -20,6 +20,13 @@ module CommandKit
   #
   #     end
   #
+  # ## Environment Variables
+  #
+  # * `PAGER` - The optional command to override the default pager (usually
+  #   `less -r` or `more -r`).
+  # * `PATH` - The list of directories to search for the default pager program
+  #   (either `less` or `more`).
+  #
   # ## Alternatives
   #
   # * [tty-pager](https://github.com/piotrmurach/tty-pager#readme)

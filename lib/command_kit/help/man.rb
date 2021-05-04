@@ -5,6 +5,11 @@ module CommandKit
     #
     # Allows displaying a man-page instead of the usual `--help` output.
     #
+    # ## Environment Variables
+    #
+    # * `TERM` - Specifies the type of terminal. When set to `DUMB`, it will
+    #   disable man-page help output.
+    #
     module Man
       module ModuleMethods
         #
@@ -56,7 +61,7 @@ module CommandKit
       # Determines if displaying man pages is supported.
       #
       # @return [Boolean]
-      #   Indicates whether the `$TERM` environment variable is not `dumb`
+      #   Indicates whether the `TERM` environment variable is not `dumb`
       #   and `$stdout` is a TTY.
       #
       def self.supported?

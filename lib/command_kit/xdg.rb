@@ -9,6 +9,15 @@ module CommandKit
   # * `~/.local/share`
   # * `~/.cache`
   #
+  # ## Environment Variables
+  #
+  # * `XDG_CONFIG_HOME` - The directory that should contain user-specific
+  #   configuration. Defaults to `~/.config/`.
+  # * `XDG_DATA_HOME` - The directory that should contain user-specific data.
+  #   Defaults to `~/.local/share/`.
+  # * `XDG_CACHE_HOME` - The directory that should contain user-specific cache
+  #   data. Defaults to `~/.cache/`.
+  #
   # [XDG directories]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
   #
   module XDG

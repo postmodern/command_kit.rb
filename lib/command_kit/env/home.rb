@@ -7,6 +7,10 @@ module CommandKit
     #
     # Provides access to the `HOME` environment variable.
     #
+    # ## Environment Variables
+    #
+    # * `HOME` - The absolute path to the user's home directory.
+    #
     module Home
       include Env
 

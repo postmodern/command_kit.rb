@@ -19,6 +19,11 @@ module CommandKit
   #
   #     stderr.puts colors(stderr).red("error!")
   #
+  # ## Environment Variables
+  #
+  # * `TERM` - Specifies the type of terminal. When set to `DUMB`, it will
+  #   disable color output.
+  #
   # ## Alternatives
   #
   # * [ansi](http://rubyworks.github.io/ansi/)
@@ -320,6 +325,11 @@ module CommandKit
     # @param [IO] stream
     #
     # @return [Boolean]
+    #
+    # @note
+    #   When the env variable `TERM` is set to `dumb`, it will disable color
+    #   output. Color output will also be disabled if the given stream is not
+    #   a TTY.
     #
     def ansi?(stream=stdout)
       env['TERM'] != 'dumb' && stream.tty?
