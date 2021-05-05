@@ -16,7 +16,7 @@ classes.
 * Supports defining options and arguments as attributes.
 * Supports subcommands (explicit or lazy-loaded).
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
-* Correctly handles broken pipes (aka quitting `mycmd | less`).
+* Correctly handles broken pipes (aka `mycmd | head`).
 * Uses [OptionParser][optparse] for option parsing.
 * Provides ANSI coloring support.
 * Supports optionally displaying a man-page instead of `--help`
