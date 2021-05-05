@@ -10,42 +10,23 @@ module CommandKit
     include Stdio
 
     #
-    # Prints the error to `$stderr`.
+    # Prints the error message to {Stdio#stderr stderr}.
     #
-    # @param [String] error
+    # @param [String] message
     #   The error message.
     #
-    def print_error(error)
-      stderr.puts error
+    def print_error(message)
+      stderr.puts message
     end
 
     #
-    # Prints the backtrace of an exception to `$stderr`.
+    # Prints an exception to {Stdio#stderr stderr}.
     #
     # @param [Exception] error
+    #   The error to print.
     #
-    def print_backtrace(error)
-      print_error "Backtrace:"
-
-      error.backtrace.each_with_index.reverse_each do |(line,index)|
-        line_number = (index+1).to_s
-
-        print_error "#{line_number.rjust(9)}: #{line}"
-      end
-    end
-
-    #
-    # Prints an exception to `$stderr`.
-    #
-    # @param [Exception] error
-    #
-    # @param [boolean] backtrace
-    #   Controls whether or not to print the full backtrace.
-    #
-    def print_exception(error, backtrace: true)
-      print_backtrace(error) if backtrace
-
-      print_error "#{error.class}: #{error.message}"
+    def print_exception(error)
+      print_error error.full_message(highlight: stderr.tty?)
     end
   end
 end
