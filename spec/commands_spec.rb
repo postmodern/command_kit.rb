@@ -720,6 +720,27 @@ describe Commands do
       ).to_stdout
     end
 
+    context "when the command has command alises" do
+      let(:command_class) { TestCommands::TestCommandsWithAliases }
+
+      it "must print the command names, along with their command aliases" do
+        expect { subject.help }.to output(
+          [
+            "Usage: #{subject.command_name} [options] [COMMAND [ARGS...]]",
+            "",
+            "Options:",
+            "    -h, --help                       Print help information",
+            "",
+            "Commands:",
+            "    help",
+            "    test1, t1",
+            "    test2, t2",
+            ""
+          ].join($/)
+        ).to_stdout
+      end
+    end
+
     context "when the command defines additional global options" do
       let(:command_class) { TestCommands::TestCommandsWithGlobalOptions }
 
