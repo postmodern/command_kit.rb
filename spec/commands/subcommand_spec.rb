@@ -51,6 +51,16 @@ describe Commands::Subcommand do
         expect(subject.summary).to eq(described_class.summary(command_class))
       end
     end
+
+    context "when given aliases:" do
+      let(:aliases) { %w[test t] }
+
+      subject { described_class.new(command_class, aliases: aliases) }
+
+      it "must initialize #aliases" do
+        expect(subject.aliases).to eq(aliases)
+      end
+    end
   end
 
   describe ".summary" do

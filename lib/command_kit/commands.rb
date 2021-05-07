@@ -57,6 +57,7 @@ module CommandKit
         else
           context.usage "[options] [COMMAND [ARGS...]]"
           context.extend ClassMethods
+          context.command Help
         end
       end
     end
@@ -77,19 +78,43 @@ module CommandKit
         @commands ||= if superclass.kind_of?(ClassMethods)
                          superclass.commands.dup
                        else
-                         {'help' => Subcommand.new(Help)}
+                         {}
                        end
+      end
+
+      #
+      # The registered command aliases.
+      #
+      # @return [Hash{String => String}]
+      #   The Hash of command aliases to primary command names.
+      # 
+      def command_aliases
+        @command_aliases ||= if superclass.kind_of?(ClassMethods)
+                               superclass.command_aliases.dup
+                             else
+                               {}
+                             end
       end
 
       #
       # Mounts a command as a sub-command.
       #
-      # @param [#to_s] command_name
+      # @param [#to_s] name
       #   The optional name to mount the command as. Defaults to the command's
       #   {CommandName::ClassMethods#command_name command_name}.
       #
-      # @param [Class<Subcommand>] command_class
+      # @param [Class#main] command_class
       #   The sub-command class.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Keyword arguments.
+      #
+      # @option kwargs [String, nil] summary
+      #   A short summary for the subcommand. Defaults to the first sentence
+      #   of the command.
+      #
+      # @option kwags [Array<String>] aliases
+      #   Optional alias names for the subcommand.
       #
       # @return [Subcommand]
       #   The registered sub-command class.
@@ -100,10 +125,36 @@ module CommandKit
       # @example
       #   command 'foo-bar', FooBar
       #
-      def command(command_name=nil, command_class, **kwargs)
-        command_name ||= command_class.command_name
+      def command(name=nil, command_class, **kwargs)
+        name = if name then name.to_s
+               else         command_class.command_name
+               end
 
-        commands[command_name.to_s] = Subcommand.new(command_class, **kwargs)
+        subcommand = Subcommand.new(command_class,**kwargs)
+
+        commands[name] = subcommand
+
+        subcommand.aliases.each do |command_alias|
+          command_aliases[command_alias] = name
+        end
+
+        return subcommand
+      end
+
+      #
+      # Gets the command.
+      #
+      # @param [String] name
+      #
+      # @return [Class#main, nil]
+      #
+      def get_command(name)
+        name = name.to_s
+        name = command_aliases.fetch(name,name)
+
+        if (subcommand = commands[name])
+          subcommand.command
+        end
       end
     end
 
@@ -118,51 +169,48 @@ module CommandKit
     #
     # Looks up the given command name and initializes a subcommand.
     #
-    # @param [#to_s] command_name
+    # @param [#to_s] name
     #   The given command name.
     #
     # @return [Object#main, nil]
     #   The initialized subcommand.
     #
-    def command(command_name)
-      command_name = command_name.to_s
-
-      unless (subcommand = self.class.commands[command_name])
+    def command(name)
+      unless (command_class = self.class.get_command(name))
         return
       end
 
-      command = subcommand.command
-      kwargs  = {}
+      kwargs = {}
 
-      if command.include?(ParentCommand)
+      if command_class.include?(ParentCommand)
         kwargs[:parent_command] = self
       end
 
-      if command.include?(CommandName)
-        kwargs[:command_name] = "#{self.command_name} #{command.command_name}"
+      if command_class.include?(CommandName)
+        kwargs[:command_name] = "#{command_name} #{command_class.command_name}"
       end
 
-      if command.include?(Stdio)
+      if command_class.include?(Stdio)
         kwargs[:stdin]  = stdin
         kwargs[:stdout] = stdout
         kwargs[:stderr] = stderr
       end
 
-      if command.include?(Env)
+      if command_class.include?(Env)
         kwargs[:env] = env.dup
       end
 
-      if command.include?(Options)
+      if command_class.include?(Options)
         kwargs[:options] = options.dup
       end
 
-      return command.new(**kwargs)
+      return command_class.new(**kwargs)
     end
 
     #
     # Invokes the command with the given argv.
     #
-    # @param [String] command_name
+    # @param [String] name
     #   The name of the command to invoke.
     #
     # @param [Array<String>] argv
@@ -171,11 +219,11 @@ module CommandKit
     # @return [Integer]
     #   The exit status of the command.
     #
-    def invoke(command_name,*argv)
-      if (subcommand = command(command_name))
-        subcommand.main(argv)
+    def invoke(name,*argv)
+      if (command = command(name))
+        command.main(argv)
       else
-        on_unknown_command(command_name,argv)
+        on_unknown_command(name,argv)
       end
     end
 
@@ -228,10 +276,12 @@ module CommandKit
         puts "Commands:"
 
         self.class.commands.sort.each do |name,subcommand|
+          names = [name, *subcommand.aliases].join(', ')
+
           if subcommand.summary
-            puts "    #{name}\t#{subcommand.summary}"
+            puts "    #{names}\t#{subcommand.summary}"
           else
-            puts "    #{name}"
+            puts "    #{names}"
           end
         end
       end

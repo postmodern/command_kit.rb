@@ -12,6 +12,11 @@ module CommandKit
       # @return [String, nil]
       attr_reader :summary
 
+      # Optional alias names for the subcommand.
+      #
+      # @return [Array<String>]
+      attr_reader :aliases
+
       #
       # Initializes the subcommand.
       #
@@ -22,9 +27,14 @@ module CommandKit
       #   A short summary for the subcommand. Defaults to the first sentence
       #   of the command.
       #
-      def initialize(command, summary: self.class.summary(command))
+      # @param [Array<String>] aliases
+      #   Optional alias names for the subcommand.
+      #
+      def initialize(command, summary: self.class.summary(command),
+                                   aliases: [])
         @command = command
         @summary = summary
+        @aliases = aliases.map(&:to_s)
       end
 
       def self.summary(command)

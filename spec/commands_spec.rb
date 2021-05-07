@@ -19,8 +19,24 @@ describe Commands do
       class Test2 < CommandKit::Command
       end
 
+      p method(:command).source_location
       command Test1
       command Test2
+
+    end
+
+    class TestCommandsWithAliases
+
+      include CommandKit::Commands
+
+      class Test1 < CommandKit::Command
+      end
+
+      class Test2 < CommandKit::Command
+      end
+
+      command Test1, aliases: %w[t1]
+      command Test2, aliases: %w[t2]
 
     end
 
@@ -38,7 +54,22 @@ describe Commands do
       command 'command-name-2', Test2
 
     end
-    
+
+    class TestCommandsWithExplicitNamesAndAliases
+
+      include CommandKit::Commands
+
+      class Test1 < CommandKit::Command
+      end
+
+      class Test2 < CommandKit::Command
+      end
+
+      command 'command-name-1', Test1, aliases: %w[t1]
+      command 'command-name-2', Test2, aliases: %w[t2]
+
+    end
+
     class TestCommandsWithExplicitSummaries
 
       include CommandKit::Commands
@@ -147,6 +178,59 @@ describe Commands do
     end
   end
 
+  describe ".command_aliases" do
+    subject { command_class }
+
+    it "must return an empty Hash by default" do
+      expect(subject.command_aliases).to eq({})
+    end
+
+    context "when commands have aliases" do
+      let(:command_class) { TestCommands::TestCommandsWithAliases }
+
+      it "must contain the mapping of aliases to command names" do
+      expect(subject.command_aliases).to eq({
+        't1' => 'test1',
+        't2' => 'test2',
+      })
+      end
+    end
+
+    context "when additional command aliases are defined in a superclass" do
+      module TestCommands
+        class TestInheritedCommandsWithAliases < TestCommandsWithAliases
+
+          class Test3 < CommandKit::Command
+
+            def run
+              puts 'test command three'
+            end
+
+          end
+
+          command :test3, Test3, aliases: %w[t3]
+
+        end
+      end
+
+      let(:command_superclass) { TestCommands::TestCommandsWithAliases }
+      let(:command_class)      { TestCommands::TestInheritedCommandsWithAliases }
+
+      it "must inherit the superclass'es command aliases" do
+        expect(subject.command_aliases['t1']).to eq(command_superclass.command_aliases['t1'])
+        expect(subject.command_aliases['t2']).to eq(command_superclass.command_aliases['t2'])
+      end
+
+      it "must allow defining additional command aliases in the subclass" do
+        expect(subject.command_aliases['t3']).to eq('test3')
+      end
+
+      it "must not change the superclass'es command aliases" do
+        expect(command_superclass.command_aliases['test3']).to be(nil)
+      end
+    end
+  end
+
   describe ".command" do
     subject { command_class }
 
@@ -168,6 +252,15 @@ describe Commands do
         expect(subject.commands['test']).to_not be_nil
         expect(subject.commands['test'].command).to eq(command_class::Test)
       end
+
+      context "and aliases:" do
+        let(:command_class) { TestCommands::TestCommandsWithAliases }
+
+        it "must populate aliases with the aliases and the command names" do
+          expect(subject.command_aliases['t1']).to eq(command_class::Test1.command_name)
+          expect(subject.command_aliases['t2']).to eq(command_class::Test2.command_name)
+        end
+      end
     end
 
     context "when given a command name and a command class" do
@@ -184,6 +277,15 @@ describe Commands do
 
         expect(subject.commands['command-name-2']).to_not be_nil
         expect(subject.commands['command-name-2'].command).to eq(command_class::Test2)
+      end
+
+      context "and aliases:" do
+        let(:command_class) { TestCommands::TestCommandsWithExplicitNamesAndAliases }
+
+        it "must populate aliases with the aliases and the explicit command names" do
+          expect(subject.command_aliases['t1']).to eq('command-name-1')
+          expect(subject.command_aliases['t2']).to eq('command-name-2')
+        end
       end
 
       context "when the command name is a Symbol" do
@@ -225,6 +327,34 @@ describe Commands do
     end
   end
 
+  describe ".get_command" do
+    subject { command_class }
+
+    context "when given a command name" do
+      let(:command_class) { TestCommands::TestCommands }
+
+      it "must return the command's class" do
+        expect(subject.get_command('test1')).to eq(command_class::Test1)
+        expect(subject.get_command('test2')).to eq(command_class::Test2)
+      end
+    end
+
+    context "when given a command's alias name" do
+      let(:command_class) { TestCommands::TestCommandsWithAliases }
+
+      it "must return the command's class associated with the alias" do
+        expect(subject.get_command('t1')).to eq(command_class::Test1)
+        expect(subject.get_command('t2')).to eq(command_class::Test2)
+      end
+    end
+
+    context "when given an unknown command name" do
+      it "must return nil" do
+        expect(subject.get_command('foo')).to be(nil)
+      end
+    end
+  end
+
   subject { command_class.new }
 
   describe "#command" do
@@ -245,6 +375,15 @@ describe Commands do
     context "when given a valid command name" do
       it "must lookup the command and initialize it" do
         expect(subject.command(subcommand_class.command_name)).to be_kind_of(subcommand_class)
+      end
+    end
+
+    context "when given a command alias" do
+      let(:command_class) { TestCommands::TestCommandsWithAliases }
+
+      it "must lookup the command and initialize it" do
+        expect(subject.command('t1')).to be_kind_of(command_class::Test1)
+        expect(subject.command('t2')).to be_kind_of(command_class::Test2)
       end
     end
 
