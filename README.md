@@ -48,6 +48,7 @@ classes.
   * [CommandKit::Options::Verbose](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options/Verbose)
 * [CommandKit::Pager](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Printing)
+  * [CommandKit::Printing::Indent](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Printing/Indent)
 * [CommandKit::ProgramName](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/ProgramName)
 * [CommandKit::Stdio](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Stdio)
 * [CommandKit::Usage](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Usage)
