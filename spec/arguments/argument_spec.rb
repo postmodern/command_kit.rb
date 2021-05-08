@@ -88,7 +88,7 @@ describe Arguments::Argument do
       subject { described_class.new(name, repeats: repeats, desc: desc) }
 
       it "must set #repeats" do
-        expect(subject.repeats).to eq(repeats)
+        expect(subject.repeats?).to eq(repeats)
       end
     end
 
@@ -96,7 +96,7 @@ describe Arguments::Argument do
       subject { described_class.new(name, desc: desc) }
 
       it "default #repeats to String" do
-        expect(subject.repeats).to eq(false)
+        expect(subject.repeats?).to eq(false)
       end
     end
 

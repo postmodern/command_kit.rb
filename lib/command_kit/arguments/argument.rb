@@ -10,9 +10,6 @@ module CommandKit
       # @return [Symbol]
       attr_reader :name
 
-      # @return [Boolean]
-      attr_reader :repeats
-
       # @return [String, nil]
       attr_reader :desc
 
