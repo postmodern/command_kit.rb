@@ -27,31 +27,31 @@ classes.
 
 ### Modules
 
-* {CommandKit::Arguments}
-* {CommandKit::Colors}
-* {CommandKit::CommandName}
-* {CommandKit::Commands}
-  * {CommandKit::Commands::AutoLoad}
-  * {CommandKit::Commands::AutoRequire}
-* {CommandKit::Console}
-* {CommandKit::Description}
-* {CommandKit::Env}
-  * {CommandKit::Env::Home}
-  * {CommandKit::Env::Path}
-* {CommandKit::Examples}
-* {CommandKit::ExceptionHandler}
-* {CommandKit::Help}
-  * {CommandKit::Help::Man}
-* {CommandKit::Main}
-* {CommandKit::Options}
-  * {CommandKit::Options::Quiet}
-  * {CommandKit::Options::Verbose}
-* {CommandKit::Pager}
-* {CommandKit::Printing}
-* {CommandKit::ProgramName}
-* {CommandKit::Stdio}
-* {CommandKit::Usage}
-* {CommandKit::XDG}
+* [CommandKit::Arguments](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Arguments)
+* [CommandKit::Colors](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Colors)
+* [CommandKit::CommandName](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/CommandName)
+* [CommandKit::Commands](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands)
+  * [CommandKit::Commands::AutoLoad](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands/AutoLoad)
+  * [CommandKit::Commands::AutoRequire](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands/AutoRequire)
+* [CommandKit::Console](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Console)
+* [CommandKit::Description](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Description)
+* [CommandKit::Env](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Env)
+  * [CommandKit::Env::Home](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Env::Home)
+  * [CommandKit::Env::Path](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Env::Path)
+* [CommandKit::Examples](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Examples)
+* [CommandKit::ExceptionHandler](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/ExceptionHandler)
+* [CommandKit::Help](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Help)
+  * [CommandKit::Help::Man](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Help/Man)
+* [CommandKit::Main](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Main)
+* [CommandKit::Options](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options)
+  * [CommandKit::Options::Quiet](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options/Quiet)
+  * [CommandKit::Options::Verbose](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options/Verbose)
+* [CommandKit::Pager](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Pager)
+* [CommandKit::Printing](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Printing)
+* [CommandKit::ProgramName](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/ProgramName)
+* [CommandKit::Stdio](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Stdio)
+* [CommandKit::Usage](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Usage)
+* [CommandKit::XDG](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/XDG)
 
 ## Anti-Features
 
