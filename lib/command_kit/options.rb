@@ -9,18 +9,20 @@ module CommandKit
   #
   #     include CommandKit::Options
   #     
-  #     option :foo, type: String,
-  #                  short: '-f',
-  #                  desc: "Foo option"
+  #     option :foo, short: '-f',
+  #                  value: {type: String},
+  #                  desc:  "Foo option"
   #     
-  #     option :bar, type: String,
-  #                  short: '-b',
-  #                  usage: 'STR:STR:...',
+  #     option :bar, short: '-b',
+  #                  value: {
+  #                    type:  String,
+  #                    usage: 'STR:STR:...'
+  #                  },
   #                  desc: "Bar option" do |arg|
   #       @bar = arg.split(':')
   #     end
   #     
-  #     option :number, type: Integer,
+  #     option :number, value: {type: Integer},
   #                     desc: 'Numbers' do |num|
   #       @numbers << num
   #     end
