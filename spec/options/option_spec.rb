@@ -65,14 +65,14 @@ describe Options::Option do
       subject { described_class.new(name, equals: equals, desc: desc) }
 
       it "must set #equals" do
-        expect(subject.equals).to eq(equals)
+        expect(subject.equals?).to eq(equals)
       end
     end
 
     context "when the equals: keyword is not given" do
       subject { described_class.new(name, desc: desc) }
 
-      it { expect(subject.equals).to be(false) }
+      it { expect(subject.equals?).to be(false) }
     end
 
     context "when the values: keyword is given" do

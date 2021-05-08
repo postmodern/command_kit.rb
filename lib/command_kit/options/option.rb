@@ -28,11 +28,6 @@ module CommandKit
       # @return [String]
       attr_reader :long
 
-      # Specifies whether the option is of the form (`--opt=value`).
-      #
-      # @return [Boolean]
-      attr_reader :equals
-
       # The option value's type.
       #
       # @return [OptionValue, nil]
