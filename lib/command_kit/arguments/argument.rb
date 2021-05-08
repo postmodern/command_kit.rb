@@ -7,18 +7,31 @@ module CommandKit
     #
     class Argument < ArgumentValue
 
+      # The argument's name.
+      #
       # @return [Symbol]
       attr_reader :name
 
-      # @return [String, nil]
+      # The argument's description.
+      #
+      # @return [String]
       attr_reader :desc
 
+      # The argument's pattern.
+      #
+      # @note Not currently used.
       # @return [Regexp, nil]
       attr_reader :pattern
 
+      # The argument's parser.
+      #
+      # @note Not currently used.
       # @return [Proc, nil]
       attr_reader :parser
 
+      # The argument's optional custom parsing logic.
+      #
+      # @note Not currently used.
       # @return [Proc, nil]
       attr_reader :block
 
@@ -26,23 +39,29 @@ module CommandKit
       # Initializes the argument.
       #
       # @param [Symbol] name
+      #   The name of the argument.
       #
       # @param [Class, Hash, Array, Regexp] type
+      #   The type of the argument. Note: not currently used.
       #
       # @param [String, nil] usage
+      #   The usage string for the argument. Defaults to the argument's name.
       #
       # @param [Object, Proc, nil] default
+      #   The default value or proc for the argument.
       #
       # @param [Boolean] required
+      #   Specifies whether the argument is required or optional.
       #
       # @param [Boolean] repeats
+      #   Specifies whether the argument can be repeated multiple times.
       #
       # @param [String] desc
-      #
-      # @note `usage` will be assigned a default value based on `type` and
-      # `name`.
+      #   The description for the argument.
       #
       # @yield [(value)]
+      #   If a block is given, it will be used to parse the argument's value.
+      #   Note: not currently used.
       #
       # @yieldparam [Object, nil] value
       #

@@ -61,7 +61,28 @@ module CommandKit
       # Defines an argument for the class.
       #
       # @param [Symbol] name
-      #   The argument name.
+      #   The name of the argument.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Keyword arguments.
+      #
+      # @option kwargs [Class, Hash, Array, Regexp] type
+      #   The type of the argument. Note: not currently used.
+      #
+      # @option kwargs [String, nil] usage
+      #   The usage string for the argument. Defaults to the argument's name.
+      #
+      # @option kwargs [Object, Proc, nil] default
+      #   The default value or proc for the argument.
+      #
+      # @option kwargs [Boolean] required
+      #   Specifies whether the argument is required or optional.
+      #
+      # @option kwargs [Boolean] repeats
+      #   Specifies whether the argument can be repeated multiple times.
+      #
+      # @option kwargs [String] desc
+      #   The description for the argument.
       #
       # @yield [(arg)]
       #   If a block is given, it will be passed the parsed argument.
