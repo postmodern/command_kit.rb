@@ -100,6 +100,27 @@ module CommandKit
       end
 
       #
+      # Provides help information by showing one of the man pages within
+      # {ClassMethods#man_dir .man_dir}.
+      #
+      # @param [String] page
+      #   The file name of the man page to display.
+      #
+      # @return [Boolean, nil]
+      #   Specifies whether the `man` command was successful or not.
+      #   Returns `nil` when the `man` command is not installed.
+      #
+      def help_man(page=man_page)
+        unless self.class.man_dir
+          raise(NotImplementedError,"#{self.class}.man_dir not set")
+        end
+
+        man_path = File.join(self.class.man_dir,man_page)
+
+        man(man_path).nil?
+      end
+
+      #
       # Displays the {#man_page} instead of the usual `--help` output.
       #
       # @raise [NotImplementedError]
@@ -111,13 +132,7 @@ module CommandKit
       #
       def help
         if Man.supported?
-          unless self.class.man_dir
-            raise(NotImplementedError,"#{self.class}.man_dir not set")
-          end
-
-          man_path = File.join(self.class.man_dir,man_page)
-
-          if man(man_path).nil?
+          unless help_man
             super
           end
         else
