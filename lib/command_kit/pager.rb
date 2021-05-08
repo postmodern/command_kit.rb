@@ -2,6 +2,7 @@
 
 require 'command_kit/stdio'
 require 'command_kit/env'
+require 'command_kit/env/path'
 
 module CommandKit
   #
@@ -34,6 +35,7 @@ module CommandKit
   module Pager
     include Stdio
     include Env
+    include Env::Path
 
     # Common pager commands.
     PAGERS = ['less -r', 'more -r']
@@ -52,9 +54,7 @@ module CommandKit
         PAGERS.find do |command|
           bin = command.split(' ',2).first
 
-          env.fetch('PATH','').split(File::PATH_SEPARATOR).any? do |bin_dir|
-            File.executable?(File.join(bin_dir,bin))
-          end
+          command_installed?(bin)
         end
       end
     end
