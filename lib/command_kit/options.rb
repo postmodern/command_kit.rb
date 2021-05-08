@@ -78,6 +78,31 @@ module CommandKit
       # @param [Symbol] name
       #   The option name.
       #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Keyword arguments.
+      #
+      # @option kwargs [String, nil] short
+      #   Optional short-flag for the option.
+      #
+      # @option kwargs [String, nil] long
+      #   Optional explicit long-flag for the option.
+      #
+      # @option kwargs [Boolean] equals
+      #   Specifies whether the option is of the form (`--opt=value`).
+      #
+      # @option kwargs [Hash{Symbol => Object}, nil] value
+      #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
+      #   has no additional value.
+      #
+      # @option value [Class, Hash, Array, Regexp] type
+      #   The type of the option's value.
+      #
+      # @option value [String, nil] usage
+      #   The usage string for the option's value.
+      #
+      # @option kwargs [String] desc
+      #   The description for the option.
+      #
       # @yield [(value)]
       #   If a block is given, it will be passed the parsed option value.
       #

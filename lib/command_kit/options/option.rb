@@ -13,24 +13,38 @@ module CommandKit
     #
     class Option
 
+      # The option's name.
+      #
       # @return [Symbol]
       attr_reader :name
 
+      # The option's optional short-flag.
+      #
       # @return [String, nil]
       attr_reader :short
 
+      # The option's long-flag.
+      #
       # @return [String]
       attr_reader :long
 
+      # Specifies whether the option is of the form (`--opt=value`).
+      #
       # @return [Boolean]
       attr_reader :equals
 
+      # The option value's type.
+      #
       # @return [OptionValue, nil]
       attr_reader :value
 
+      # The option's description.
+      #
       # @return [String]
       attr_reader :desc
 
+      # The optional block that will receive the parsed option value.
+      #
       # @return [Proc, nil]
       attr_reader :block
 
@@ -38,26 +52,35 @@ module CommandKit
       # Initializes the option.
       #
       # @param [Symbol] name
+      #   The name of the option.
       #
       # @param [String, nil] short
+      #   Optional short-flag for the option.
       #
       # @param [String, nil] long
+      #   Optional explicit long-flag for the option.
       #
       # @param [Boolean] equals
+      #   Specifies whether the option is of the form (`--opt=value`).
       #
       # @param [Hash{Symbol => Object}, nil] value
       #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
       #   has no additional value.
       #
       # @option value [Class, Hash, Array, Regexp] type
+      #   The type of the option's value.
       #
       # @option value [String, nil] usage
+      #   The usage string for the option's value.
       #
       # @param [String] desc
+      #   The description for the option.
       #
       # @yield [(value)]
+      #   If a block is given, it will be called when the option is parsed.
       #
       # @yieldparam [Object, nil] value
+      #   The given block will be passed the parsed option's value.
       #
       def initialize(name, short:   nil,
                            long:    self.class.default_long_opt(name),
@@ -79,8 +102,10 @@ module CommandKit
       # (ex: `:long_opt`).
       #
       # @param [Symbol] name
+      #   The option name.
       #
       # @return [String]
+      #   The long-flag for the option.
       #
       def self.default_long_opt(name)
         "--#{Inflector.dasherize(name)}"
