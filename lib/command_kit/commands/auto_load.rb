@@ -97,14 +97,20 @@ module CommandKit
       # @param [String] file
       #   The file name of the command class.
       #
-      # @param [String, nil] summary
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Keyword arguments.
+      #
+      # @option kwargs [String, nil] summary
       #   An optional summary for the command.
       #
-      def command(name, constant, file, summary: nil)
+      # @option kwargs [Array<String>] aliases
+      #   Optional alias names for the subcommand.
+      #
+      def command(name, constant, file, **kwargs)
         @commands[name.to_s] = Subcommand.new(
           "#{@namespace}::#{constant}",
           join(file),
-          summary:  summary
+          **kwargs
         )
       end
 

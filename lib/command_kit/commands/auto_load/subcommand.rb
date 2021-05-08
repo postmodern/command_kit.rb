@@ -28,12 +28,19 @@ module CommandKit
         # @param [String] constant
         #
         # @param [String, nil] summary
+        #   A short summary for the subcommand.
         #
-        def initialize(constant,path, summary: nil)
-          @constant   = constant
-          @path       = path
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Keyword arguments.
+        #
+        # @option kwargs [Array<String>] aliases
+        #   Optional alias names for the subcommand.
+        #
+        def initialize(constant, path, summary: nil, **kwargs)
+          @constant = constant
+          @path     = path
 
-          super(nil, summary: summary)
+          super(nil, summary: summary, **kwargs)
         end
 
         #
