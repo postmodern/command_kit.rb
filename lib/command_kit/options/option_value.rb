@@ -40,12 +40,21 @@ module CommandKit
       # Initializes the option value.
       #
       # @param [Class, Hash, Array, Regexp] type
+      #   The type of the option value.
       #
       # @param [String, nil] usage
+      #   The optional usage string for the option value.
       #
       # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments.
       #
-      def initialize(type: String,
+      # @option kwargs [Boolean] required
+      #   Specifies whether the option value is required or optional.
+      #
+      # @option kwargs [Object, Proc, nil] default
+      #   The default parsed value for the option value.
+      #
+      def initialize(type:  String,
                      usage: self.class.default_usage(type),
                      **kwargs)
         super(type: type, usage: usage, **kwargs)
@@ -55,8 +64,10 @@ module CommandKit
       # Returns the default option value usage for the given type.
       #
       # @param [Class, Hash, Array, Regexp] type
+      #   The option value type.
       #
       # @return [String, nil]
+      #   A default usage string based on the option value type.
       #
       # @raise [TypeError]
       #   The given type was not a Class, Hash, Array, or Regexp.
