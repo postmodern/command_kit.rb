@@ -183,6 +183,10 @@ module CommandKit
     # @param [Hash{Symbol => Object}] options
     #   Optional pre-populated options hash.
     #
+    # @note
+    #   The {#option_parser} will populate {#options} and also call any
+    #   {ClassMethods#option option} blocks with the parsed option values.
+    #
     def initialize(options: {}, **kwargs)
       @options = options
 
