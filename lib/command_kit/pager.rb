@@ -43,6 +43,9 @@ module CommandKit
     #
     # Initializes the pager.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Keyword arguments.
+    #
     # @note
     #   Respects the `PAGER` env variable, or attemps to find `less` or
     #   `more` by searching the `PATH` env variable.
