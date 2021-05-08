@@ -37,6 +37,7 @@ classes.
 * {CommandKit::Description}
 * {CommandKit::Env}
   * {CommandKit::Env::Home}
+  * {CommandKit::Env::Path}
 * {CommandKit::Examples}
 * {CommandKit::ExceptionHandler}
 * {CommandKit::Help}
