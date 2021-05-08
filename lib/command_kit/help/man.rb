@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'command_kit/help'
+
 module CommandKit
   module Help
     #
@@ -11,6 +13,8 @@ module CommandKit
     #   disable man-page help output.
     #
     module Man
+      include Help
+
       module ModuleMethods
         #
         # Extends {ClassMethods} or {ModuleMethods}, depending on whether
