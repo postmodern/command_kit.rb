@@ -17,6 +17,7 @@ module CommandKit
   #
   #       def run
   #         pager do |io|
+  #           io.puts "This goes into the pager screen"
   #         end
   #       end
   #
