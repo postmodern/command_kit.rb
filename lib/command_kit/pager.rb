@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'command_kit/stdio'
+require 'command_kit/console'
 require 'command_kit/env'
 require 'command_kit/env/path'
 
@@ -34,6 +35,7 @@ module CommandKit
   #
   module Pager
     include Stdio
+    include Console
     include Env
     include Env::Path
 
