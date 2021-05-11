@@ -76,11 +76,50 @@ describe Options::Option do
     end
 
     context "when the values: keyword is given" do
-      let(:value) { {} }
-      subject { described_class.new(name, value: {}, desc: desc) }
+      context "and it is a Hash" do
+        let(:type) { Integer }
 
-      it "must initialize #value" do
-        expect(subject.value).to be_kind_of(Options::OptionValue)
+        subject { described_class.new(name, value: {type: type}, desc: desc) }
+
+        it "must initialize #value" do
+          expect(subject.value).to      be_kind_of(Options::OptionValue)
+          expect(subject.value.type).to eq(type)
+        end
+      end
+
+      context "and it is true" do
+        subject { described_class.new(name, value: true, desc: desc) }
+
+        it "must initialize #value with defaults" do
+          expect(subject.value).to           be_kind_of(Options::OptionValue)
+          expect(subject.value.type).to      eq(String)
+          expect(subject.value.required?).to be(true)
+          expect(subject.value.usage).to     eq('STR')
+        end
+      end
+
+      context "and it is false" do
+        subject { described_class.new(name, value: false, desc: desc) }
+
+        it "must not initialize #value" do
+          expect(subject.value).to be(nil)
+        end
+      end
+
+      context "and it is nil" do
+        subject { described_class.new(name, value: nil, desc: desc) }
+
+        it "must not initialize #value" do
+          expect(subject.value).to be(nil)
+        end
+      end
+
+      context "when it is another type" do
+        it do
+          expect {
+            described_class.new(name, value: 'foo', desc: desc)
+          }.to raise_error(TypeError)
+        end
       end
     end
 

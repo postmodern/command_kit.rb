@@ -92,7 +92,7 @@ module CommandKit
       # @option kwargs [Boolean] equals
       #   Specifies whether the option is of the form (`--opt=value`).
       #
-      # @option kwargs [Hash{Symbol => Object}, nil] value
+      # @option kwargs [Hash{Symbol => Object}, true, false, nil] value
       #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
       #   has no additional value.
       #
@@ -112,6 +112,10 @@ module CommandKit
       #   The parsed option value.
       #
       # @return [Option]
+      #
+      # @raise [TypeError]
+      #   The `value` keyword argument was not a `Hash`, `true`, `false`, or
+      #   `nil`.
       #
       # @example Define an option:
       #     option :foo, desc: "Foo option"

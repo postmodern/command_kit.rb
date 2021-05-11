@@ -58,7 +58,7 @@ module CommandKit
       # @param [Boolean] equals
       #   Specifies whether the option is of the form (`--opt=value`).
       #
-      # @param [Hash{Symbol => Object}, nil] value
+      # @param [Hash{Symbol => Object}, true, false, nil] value
       #   Keyword arguments for {OptionValue#initialize}, or `nil` if the option
       #   has no additional value.
       #
@@ -77,6 +77,10 @@ module CommandKit
       # @yieldparam [Object, nil] value
       #   The given block will be passed the parsed option's value.
       #
+      # @raise [TypeError]
+      #   The `value` keyword argument was not a `Hash`, `true`, `false`, or
+      #   `nil`.
+      #
       def initialize(name, short:   nil,
                            long:    self.class.default_long_opt(name),
                            equals:  false,
@@ -87,7 +91,13 @@ module CommandKit
         @short   = short
         @long    = long
         @equals  = equals
-        @value   = OptionValue.new(**value) if value
+        @value   = case value
+                   when Hash       then OptionValue.new(**value)
+                   when true       then OptionValue.new()
+                   when false, nil then nil
+                   else
+                     raise(TypeError,"value: keyword must be Hash, true, false, or nil")
+                   end
         @desc    = desc
         @block   = block
       end
