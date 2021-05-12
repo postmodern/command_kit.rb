@@ -62,7 +62,11 @@ module CommandKit
         if new_namespace
           @xdg_namespace = new_namespace.to_s
         else
-          @xdg_namespace || (superclass.xdg_namespace if superclass.kind_of?(ClassMethods)) || command_name
+          @xdg_namespace || if superclass.kind_of?(ClassMethods)
+                              superclass.xdg_namespace
+                            else
+                              command_name
+                            end
         end
       end
     end

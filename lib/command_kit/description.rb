@@ -54,7 +54,9 @@ module CommandKit
         if new_description
           @description = new_description
         else
-          @description || (superclass.description if superclass.kind_of?(ClassMethods))
+          @description || if superclass.kind_of?(ClassMethods)
+                            superclass.description
+                          end
         end
       end
     end

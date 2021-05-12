@@ -61,7 +61,9 @@ module CommandKit
         if new_examples
           @examples = Array(new_examples)
         else
-          @examples || (superclass.examples if superclass.kind_of?(ClassMethods))
+          @examples || if superclass.kind_of?(ClassMethods)
+                         superclass.examples
+                       end
         end
       end
     end
