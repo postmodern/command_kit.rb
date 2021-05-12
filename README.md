@@ -62,9 +62,7 @@ classes.
 
 ## Examples
 
-### Command
-
-#### lib/foo/cli/my_cmd.rb
+### lib/foo/cli/my_cmd.rb
 
     require 'command_kit'
 
@@ -121,7 +119,7 @@ classes.
       end
     end
 
-#### bin/my_cmd
+### bin/my_cmd
 
     #!/usr/bin/env ruby
     
@@ -130,7 +128,7 @@ classes.
     
     Foo::CLI::MyCmd.start
 
-#### --help
+### --help
 
     Usage: my_cmd [OPTIONS] [-o OUTPUT] FILE
     
@@ -148,109 +146,6 @@ classes.
         my_cmd -v -c 2 -o path/to/output.txt path/to/input.txt
     
     Example command
-
-### Options
-
-Define an option:
-
-    option :foo, desc: "Foo option"
-
-With a custom short option:
-
-    option :foo, short: '-f',
-                 desc: "Foo option"
-
-With a custom long option:
-
-    option :foo, short: '--foo-opt',
-                 desc: "Foo option"
-
-With a custom usage string:
-
-    option :foo, value: {usage: 'FOO'},
-                 desc: "Foo option"
-
-With a custom block:
-
-    option :foo, desc: "Foo option" do |value|
-      @foo = Foo.new(value)
-    end
-
-With a custom type:
-
-    option :foo, value: {type: Integer},
-                 desc: "Foo option"
-
-With a default value:
-
-    option :foo, value: {type: Integer, default: 1},
-                 desc: "Foo option"
-
-With a required value:
-
-    option :foo, value: {type: String, required: true},
-                 desc: "Foo option"
-
-With a custom option value Hash map:
-
-    option :flag, value: {
-                    type: {
-                      'enabled'  => :enabled,
-                      'yes'      => :enabled,
-                      'disabled' => :disabled,
-                      'no'       => :disabled
-                    }
-                  },
-                  desc: "Flag option"
-
-With a custom option value Array enum:
-
-    option :enum, value: {type: %w[yes no]},
-                  desc: "Enum option"
-
-With a custom option value Regexp:
-
-    option :date, value: {type: /(\d+)-(\d+)-(\d{2,4})/},
-                  desc: "Regexp optin" do |date,d,m,y|
-      # ...
-    end
-
-### Arguments
-
-Define an argument:
-
-    argument :bar, desc: "Bar argument"
-
-With a custom usage string:
-
-    option :bar, usage: 'BAR',
-                 desc: "Bar argument"
-
-With a custom block:
-
-    argument :bar, desc: "Bar argument" do |bar|
-      # ...
-    end
-
-With a custom type:
-
-    argument :bar, type: Integer,
-                   desc: "Bar argument"
-
-With a default value:
-
-    argument :bar, default: "bar.txt",
-                   desc: "Bar argument"
-
-An optional argument:
-
-    argument :bar, required: true,
-                   desc: "Bar argument"
-
-A repeating argument:
-
-    argument :bar, repeats: true,
-                   desc: "Bar argument"
 
 ## Requirements
 
