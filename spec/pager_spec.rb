@@ -67,6 +67,8 @@ describe Pager do
       let(:pager_pid) { double('pid')  }
 
       before do
+        expect(subject.stdout).to receive(:tty?).and_return(true)
+
         expect(IO).to receive(:popen).with(pager,'w').and_return(pager_io)
         expect(pager_io).to receive(:pid).and_return(pager_pid)
 
@@ -75,8 +77,6 @@ describe Pager do
       end
 
       it "must spawn a new process and yield an IO object" do
-        skip "STDOUT is not a TTY" unless STDOUT.tty?
-
         expect { |b|
           subject.pager(&b)
         }.to yield_with_args(pager_io)
@@ -84,8 +84,6 @@ describe Pager do
 
       context "when Errno::EPIPE is raised" do
         it "must return gracefully" do
-          skip "STDOUT is not a TTY" unless STDOUT.tty?
-
           expect {
             subject.pager do
               raise(Errno::EPIPE,"pipe broken")
