@@ -3,25 +3,25 @@ require 'command_kit/help/man'
 
 describe Help::Man do
   module TestHelpMan
-    class ExplicitManDir
+    class TestCommand
       include CommandKit::Help::Man
 
       man_dir "#{__dir__}/fixtures/man"
     end
 
-    class ExplicitManDirAndManPage
+    class TestCommandWithManPage
       include CommandKit::Help::Man
 
       man_dir "#{__dir__}/fixtures/man"
       man_page 'foo.1'
     end
 
-    class WithoutAManDir
+    class EmptyCommand
       include CommandKit::Help::Man
     end
   end
 
-  let(:command_class) { TestHelpMan::ExplicitManDir }
+  let(:command_class) { TestHelpMan::TestCommand }
 
   describe ".included" do
     subject { command_class }
@@ -41,7 +41,7 @@ describe Help::Man do
 
   describe ".man_dir" do
     context "when no man_dir have been set" do
-      subject { TestHelpMan::WithoutAManDir }
+      subject { TestHelpMan::EmptyCommand }
 
       it "should default to nil" do
         expect(subject.man_dir).to be_nil
@@ -49,7 +49,7 @@ describe Help::Man do
     end
 
     context "when a man_dir is explicitly set" do
-      subject { TestHelpMan::ExplicitManDir }
+      subject { TestHelpMan::TestCommand }
 
       it "must return the explicitly set man_dir" do
         expect(subject.man_dir).to eq(File.expand_path('../fixtures/man',__FILE__))
@@ -146,7 +146,7 @@ describe Help::Man do
 
   describe ".man_page" do
     context "when no man_page has been set" do
-      subject { TestHelpMan::ExplicitManDir }
+      subject { TestHelpMan::TestCommand }
 
       it "should default to \"\#{command_name}.1\"" do
         expect(subject.man_page).to eq("#{subject.command_name}.1")
@@ -256,7 +256,8 @@ describe Help::Man do
 
   describe "#help_man" do
     context "when .man_dir is not set" do
-      subject { TestHelpMan::WithoutAManDir.new }
+      let(:command_class) { TestHelpMan::EmptyCommand }
+      subject { command_class.new }
 
       it do
         expect { subject.help_man }.to raise_error(NotImplementedError)
