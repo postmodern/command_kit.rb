@@ -19,11 +19,6 @@ module CommandKit
     #
     #     end
     #
-    # ## Environment Variables
-    #
-    # * `TERM` - Specifies the type of terminal. When set to `DUMB`, it will
-    #   disable man-page help output.
-    #
     module Man
       include CommandName
       include Help
