@@ -1,11 +1,23 @@
 # frozen_string_literal: true
 
+require 'command_kit/command_name'
 require 'command_kit/help'
+require 'command_kit/stdio'
 
 module CommandKit
   module Help
     #
     # Allows displaying a man-page instead of the usual `--help` output.
+    #
+    # ## Examples
+    #
+    #     class Foo < CommandKit::Command
+    #
+    #       include CommandKit::Help::Man
+    #
+    #       man_dir "#{__dir__}/../../man"
+    #
+    #     end
     #
     # ## Environment Variables
     #
@@ -13,7 +25,9 @@ module CommandKit
     #   disable man-page help output.
     #
     module Man
+      include CommandName
       include Help
+      include Stdio
 
       module ModuleMethods
         #
@@ -37,7 +51,7 @@ module CommandKit
       extend ModuleMethods
 
       #
-      # Defines class-level methods.
+      # Class-level methods.
       #
       module ClassMethods
         #
@@ -50,39 +64,34 @@ module CommandKit
         #   The class'es or superclass'es man-page directory.
         #
         # @example
-        #   man_dir File.expand_path('../../../man',__FILE__)
+        #   man_dir "#{__dir__}/../../man"
         #
         def man_dir(new_man_dir=nil)
           if new_man_dir
-            @man_dir = File.expand_path(new_man_dir)
+            @man_dir = new_man_dir
           else
-            @man_dir || (superclass.man_dir if superclass.kind_of?(ClassMethods))
+            @man_dir || if superclass.kind_of?(ClassMethods)
+                          superclass.man_dir
+                        end
           end
         end
-      end
 
-      #
-      # Determines if displaying man pages is supported.
-      #
-      # @return [Boolean]
-      #   Indicates whether the `TERM` environment variable is not `dumb`
-      #   and `$stdout` is a TTY.
-      #
-      def self.supported?
-        ENV['TERM'] != 'dumb' && $stdout.tty?
-      end
-
-      #
-      # Returns the man-page file name for the given command name.
-      #
-      # @param [String] command
-      #   The given command name.
-      #
-      # @return [String]
-      #   The man-page file name.
-      #
-      def man_page(command=command_name)
-        "#{command}.1"
+        #
+        # Gets or sets the class'es man-page file name.
+        #
+        # @param [String, nil] new_man_page
+        #   If a String is given, the class'es man-page file name will be set.
+        #
+        # @return [String]
+        #   The class'es or superclass'es man-page file name.
+        #
+        def man_page(new_man_page=nil)
+          if new_man_page
+            @man_page = new_man_page
+          else
+            @man_page || "#{command_name}.1"
+          end
+        end
       end
 
       #
@@ -91,12 +100,19 @@ module CommandKit
       # @param [String] page
       #   The man page file name.
       #
+      # @param [Integer, String, nil] section
+      #   The optional section number to specify.
+      #
       # @return [Boolean, nil]
       #   Specifies whether the `man` command was successful or not.
       #   Returns `nil` when the `man` command is not installed.
       #
-      def man(page=man_page)
-        system('man',page)
+      def man(page, section: nil)
+        if section
+          system('man',section.to_s,page)
+        else
+          system('man',page)
+        end
       end
 
       #
@@ -110,14 +126,14 @@ module CommandKit
       #   Specifies whether the `man` command was successful or not.
       #   Returns `nil` when the `man` command is not installed.
       #
-      def help_man(page=man_page)
+      def help_man(man_page=self.class.man_page)
         unless self.class.man_dir
           raise(NotImplementedError,"#{self.class}.man_dir not set")
         end
 
         man_path = File.join(self.class.man_dir,man_page)
 
-        man(man_path).nil?
+        man(man_path)
       end
 
       #
@@ -131,8 +147,9 @@ module CommandKit
       #   the usual `--help` output.
       #
       def help
-        if Man.supported?
-          unless help_man
+        if stdout.tty?
+          if help_man.nil?
+            # the `man` command is not installed
             super
           end
         else
