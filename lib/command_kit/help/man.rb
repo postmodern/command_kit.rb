@@ -119,12 +119,15 @@ module CommandKit
       # Provides help information by showing one of the man pages within
       # {ClassMethods#man_dir .man_dir}.
       #
-      # @param [String] page
+      # @param [String] man_page
       #   The file name of the man page to display.
       #
       # @return [Boolean, nil]
       #   Specifies whether the `man` command was successful or not.
       #   Returns `nil` when the `man` command is not installed.
+      #
+      # @raise [NotImplementedError]
+      #   {ClassMethods#man_dir .man_dir} does not have a value.
       #
       def help_man(man_page=self.class.man_page)
         unless self.class.man_dir
@@ -137,10 +140,11 @@ module CommandKit
       end
 
       #
-      # Displays the {#man_page} instead of the usual `--help` output.
+      # Displays the {ClassMethods#man_page .man_page} in
+      # {ClassMethods#man_dir .man_dir} instead of the usual `--help` output.
       #
       # @raise [NotImplementedError]
-      #   {ClassMethods#man_dir man_dir} does not have a value.
+      #   {ClassMethods#man_dir .man_dir} does not have a value.
       #
       # @note
       #   if `TERM` is `dumb` or `$stdout` is not a TTY, fallsback to printing
