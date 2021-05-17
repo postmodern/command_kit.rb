@@ -82,6 +82,8 @@ module CommandKit
     # @return [Integer]
     #   The exit status code.
     #
+    # @note `argv` is splatted into {#run}.
+    #
     def main(argv=[])
       run(*argv)
       return 0
