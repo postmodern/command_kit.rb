@@ -10,11 +10,37 @@ module CommandKit
   #
   #     include CommandKit::Arguments
   #     
-  #     argument :output, type: String,
-  #                       desc: 'The output file'
+  #     argument :output, desc: 'The output file'
   #     
-  #     argument :input, type: Array,
-  #                      desc: 'The input file(s)'
+  #     argument :input, desc: 'The input file(s)'
+  #     
+  #     def run(output,input)
+  #     end
+  #
+  # ### Optional Arguments
+  #
+  #     argument :dir, required: false,
+  #                    desc:     'Can be omitted'
+  #
+  #     def run(dir=nil)
+  #     end
+  #
+  # ### Repeating Arguments
+  #
+  #     argument :files, repeats: true,
+  #                      desc:    'Can be repeated one or more times'
+  #
+  #     def run(*files)
+  #     end
+  #
+  # ### Optional Repeating Arguments
+  #
+  #     argument :files, required: true,
+  #                      repeats:  true,
+  #                      desc:     'Can be repeated one or more times'
+  #
+  #     def run(*files)
+  #     end
   #
   module Arguments
     include Main
