@@ -25,10 +25,11 @@ classes.
 * Easy to test:
   * `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`
 
-### Modules
+### API
 
 * [CommandKit::Arguments](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Arguments)
 * [CommandKit::Colors](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Colors)
+* [CommandKit::Command](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Command)
 * [CommandKit::CommandName](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/CommandName)
 * [CommandKit::Commands](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands)
   * [CommandKit::Commands::AutoLoad](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands/AutoLoad)
