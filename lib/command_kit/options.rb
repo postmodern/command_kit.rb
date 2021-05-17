@@ -21,14 +21,16 @@ module CommandKit
   #                  desc: "Bar option" do |arg|
   #       @bar = arg.split(':')
   #     end
+  #
+  # ### initialize and using ivars
   #     
   #     option :number, value: {type: Integer},
   #                     desc: 'Numbers' do |num|
   #       @numbers << num
   #     end
   #     
-  #     def initialize
-  #       super
+  #     def initialize(**kwargs)
+  #       super(**kwargs)
   #     
   #       @numbers = []
   #     end
