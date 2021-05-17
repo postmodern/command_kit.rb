@@ -14,6 +14,7 @@ classes.
 
 * Supports defining commands as Classes.
 * Supports defining options and arguments as attributes.
+* Supports extending commands via inheritance.
 * Supports subcommands (explicit or lazy-loaded) and command aliases.
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
 * Correctly handles broken pipes (aka `mycmd | head`).
@@ -22,8 +23,8 @@ classes.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
 * Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
-* Easy to test:
-  * `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`
+* Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
+* Modular design (everything is a module).
 
 ### API
 
