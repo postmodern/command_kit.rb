@@ -1,3 +1,4 @@
+require 'command_kit/main'
 require 'command_kit/help'
 require 'command_kit/arguments/argument'
 
@@ -16,6 +17,7 @@ module CommandKit
   #                      desc: 'The input file(s)'
   #
   module Arguments
+    include Main
     include Help
 
     module ModuleMethods

@@ -10,6 +10,13 @@ describe Arguments do
 
   let(:command_class) { TestArguments::ImplicitCmd }
 
+  describe ".included" do
+    subject { command_class }
+
+    it { expect(subject).to include(Main) }
+    it { expect(subject).to include(Help) }
+  end
+
   describe ".arguments" do
     subject { TestArguments::ImplicitCmd }
 
