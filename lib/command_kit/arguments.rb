@@ -94,14 +94,8 @@ module CommandKit
       # @param [Hash{Symbol => Object}] kwargs
       #   Keyword arguments.
       #
-      # @option kwargs [Class, Hash, Array, Regexp] type
-      #   The type of the argument. Note: not currently used.
-      #
       # @option kwargs [String, nil] usage
       #   The usage string for the argument. Defaults to the argument's name.
-      #
-      # @option kwargs [Object, Proc, nil] default
-      #   The default value or proc for the argument.
       #
       # @option kwargs [Boolean] required
       #   Specifies whether the argument is required or optional.
@@ -111,12 +105,6 @@ module CommandKit
       #
       # @option kwargs [String] desc
       #   The description for the argument.
-      #
-      # @yield [(arg)]
-      #   If a block is given, it will be passed the parsed argument.
-      #
-      # @yieldparam [Object, nil] arg
-      #   The parsed argument.
       #
       # @return [Argument]
       #   The newly defined argument.
@@ -128,14 +116,8 @@ module CommandKit
       #     option :bar, usage: 'BAR',
       #                  desc: "Bar argument"
       #
-      # @example With a custom block:
-      #     argument :bar, desc: "Bar argument" do |bar|
-      #       # ...
-      #     end
-      #
       # @example With a custom type:
-      #     argument :bar, type: Integer,
-      #                    desc: "Bar argument"
+      #     argument :bar, desc: "Bar argument"
       #
       # @example With a default value:
       #     argument :bar, default: "bar.txt",
@@ -149,8 +131,8 @@ module CommandKit
       #     argument :bar, repeats: true,
       #                    desc: "Bar argument"
       #
-      def argument(name,**kwargs,&block)
-        arguments[name] = Argument.new(name,**kwargs,&block)
+      def argument(name,**kwargs)
+        arguments[name] = Argument.new(name,**kwargs)
       end
     end
 

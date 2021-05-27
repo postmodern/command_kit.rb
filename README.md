@@ -92,8 +92,7 @@ classes.
             @verbose += 1
           end
     
-          argument :file, type: String,
-                          required: true,
+          argument :file, required: true,
                           usage: 'FILE',
                           desc: "Input file"
 
