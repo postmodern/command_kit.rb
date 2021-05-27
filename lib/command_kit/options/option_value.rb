@@ -36,11 +36,24 @@ module CommandKit
         Regexp     => '/REGEXP/'
       }
 
+      # The desired type of the argument value.
+      #
+      # @return [Class, Hash, Array, Regexp, nil]
+      attr_reader :type
+
+      # The default parsed value for the argument value.
+      #
+      # @return [Object, Proc, nil]
+      attr_reader :default
+
       #
       # Initializes the option value.
       #
       # @param [Class, Hash, Array, Regexp] type
       #   The type of the option value.
+      #
+      # @param [Object, Proc, nil] default
+      #   The default parsed value for the option value.
       #
       # @param [String, nil] usage
       #   The optional usage string for the option value.
@@ -51,13 +64,14 @@ module CommandKit
       # @option kwargs [Boolean] required
       #   Specifies whether the option value is required or optional.
       #
-      # @option kwargs [Object, Proc, nil] default
-      #   The default parsed value for the option value.
-      #
-      def initialize(type:  String,
-                     usage: self.class.default_usage(type),
+      def initialize(type:    String,
+                     default: nil,
+                     usage:   self.class.default_usage(type),
                      **kwargs)
-        super(type: type, usage: usage, **kwargs)
+        super(usage: usage, **kwargs)
+
+        @type    = type
+        @default = default
       end
 
       #
@@ -94,6 +108,17 @@ module CommandKit
         string = @usage
         string = "[#{string}]" if optional?
         string
+      end
+
+      #
+      # Returns a new default value.
+      #
+      # @return [Object]
+      #
+      def default_value
+        if @default.respond_to?(:call) then @default.call
+        else                                @default.dup
+        end
       end
 
     end

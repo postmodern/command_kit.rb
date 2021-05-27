@@ -38,8 +38,7 @@ module CommandKit
   #                       },
   #                       desc: "Optional output file"
   #     
-  #       argument :file, type: String,
-  #                       required: true,
+  #       argument :file, required: true,
   #                       usage: 'FILE',
   #                       desc: "Input file"
   #     
