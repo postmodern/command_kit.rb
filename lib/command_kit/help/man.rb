@@ -104,9 +104,9 @@ module CommandKit
       #
       def man(page, section: nil)
         if section
-          system('man',section.to_s,page)
+          system('man',section.to_s,page.to_s)
         else
-          system('man',page)
+          system('man',page.to_s)
         end
       end
 
