@@ -17,24 +17,6 @@ module CommandKit
       # @return [String]
       attr_reader :desc
 
-      # The argument's pattern.
-      #
-      # @note Not currently used.
-      # @return [Regexp, nil]
-      attr_reader :pattern
-
-      # The argument's parser.
-      #
-      # @note Not currently used.
-      # @return [Proc, nil]
-      attr_reader :parser
-
-      # The argument's optional custom parsing logic.
-      #
-      # @note Not currently used.
-      # @return [Proc, nil]
-      attr_reader :block
-
       #
       # Initializes the argument.
       #
@@ -62,8 +44,7 @@ module CommandKit
       def initialize(name, usage:    name.to_s.upcase,
                            required: true,
                            repeats:  false,
-                           desc:     ,
-                           &block)
+                           desc:     )
         super(
           usage:    usage,
           required: required
@@ -72,23 +53,6 @@ module CommandKit
         @name    = name
         @repeats = repeats
         @desc    = desc
-
-        @pattern, @parser = self.class.parser(@type)
-
-        @block = block
-      end
-
-      #
-      # Looks up the option parser for the given `OptionParser` type.
-      #
-      # @param [Class] type
-      #   The `OptionParser` type class.
-      #
-      # @return [(Regexp, Proc), nil]
-      #   The matching pattern and converter proc.
-      #
-      def self.parser(type)
-        OptionParser::DefaultList.search(:atype,type)
       end
 
       #
