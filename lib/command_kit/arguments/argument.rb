@@ -41,14 +41,8 @@ module CommandKit
       # @param [Symbol] name
       #   The name of the argument.
       #
-      # @param [Class, Hash, Array, Regexp] type
-      #   The type of the argument. Note: not currently used.
-      #
       # @param [String, nil] usage
       #   The usage string for the argument. Defaults to the argument's name.
-      #
-      # @param [Object, Proc, nil] default
-      #   The default value or proc for the argument.
       #
       # @param [Boolean] required
       #   Specifies whether the argument is required or optional.
@@ -65,17 +59,13 @@ module CommandKit
       #
       # @yieldparam [Object, nil] value
       #
-      def initialize(name, type:     String,
-                           usage:    name.to_s.upcase,
-                           default:  nil,
+      def initialize(name, usage:    name.to_s.upcase,
                            required: true,
                            repeats:  false,
                            desc:     ,
                            &block)
         super(
-          type:     type,
           usage:    usage,
-          default:  default,
           required: required
         )
 

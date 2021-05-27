@@ -3,39 +3,19 @@ require 'command_kit/arguments/argument'
 
 describe Arguments::Argument do
   let(:name)     { :foo }
-  let(:type)     { String }
   let(:usage)    { 'FOO' }
-  let(:default)  { 'foo' }
   let(:required) { true }
   let(:repeats)  { false }
   let(:desc)     { 'Foo argument' }
 
   subject do
-    described_class.new name, type:     type,
-                              usage:    usage,
-                              default:  default,
+    described_class.new name, usage:    usage,
                               required: required,
                               repeats:  repeats,
                               desc:     desc
   end
 
   describe "#initialize" do
-    context "when the type: keyword is given" do
-      subject { described_class.new(name, type: type, desc: desc) }
-
-      it "must set #type" do
-        expect(subject.type).to eq(type)
-      end
-    end
-
-    context "when the type: keyword is not given" do
-      subject { described_class.new(name, desc: desc) }
-
-      it "default #type to String" do
-        expect(subject.type).to eq(String)
-      end
-    end
-
     context "when the usage: keyword is given" do
       subject { described_class.new(name, usage: usage, desc: desc) }
 
@@ -49,22 +29,6 @@ describe Arguments::Argument do
 
       it "should use uppercased argument name in #usage" do
         expect(subject.usage).to include(name.to_s.upcase)
-      end
-    end
-
-    context "when the default: keyword is given" do
-      subject { described_class.new(name, default: default, desc: desc) }
-
-      it "must set #default" do
-        expect(subject.default).to eq(default)
-      end
-    end
-
-    context "when the default: keyword is not given" do
-      subject { described_class.new(name, desc: desc) }
-
-      it "default #default to String" do
-        expect(subject.default).to eq(nil)
       end
     end
 

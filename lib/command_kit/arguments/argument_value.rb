@@ -5,16 +5,6 @@ module CommandKit
     #
     class ArgumentValue
 
-      # The desired type of the argument value.
-      #
-      # @return [Class, Hash, Array, Regexp, nil]
-      attr_reader :type
-
-      # The default parsed value for the argument value.
-      #
-      # @return [Object, Proc, nil]
-      attr_reader :default
-
       # Specifies whether the argument value is required or optional.
       #
       # @return [Boolean]
@@ -28,22 +18,14 @@ module CommandKit
       #
       # Initializes the argument value.
       #
-      # @param [Class, Hash, Array, Regexp] type
-      #   The type of the argument value.
-      #
       # @param [Boolean] required
       #   Specifies whether the argument value is required or optional.
       #
       # @param [String] usage
       #   The usage string to represent the argument value.
       #
-      # @param [Object, Proc, nil] default
-      #   The default parsed value for the argument value.
-      #
-      def initialize(type: nil, required: true, default: nil, usage: )
-        @type     = type
+      def initialize(required: true, usage: )
         @required = required
-        @default  = default
         @usage    = usage
       end
 
@@ -63,17 +45,6 @@ module CommandKit
       #
       def optional?
         !@required
-      end
-
-      #
-      # Returns a new default value.
-      #
-      # @return [Object]
-      #
-      def default_value
-        if @default.respond_to?(:call) then @default.call
-        else                                @default.dup
-        end
       end
 
     end
