@@ -158,6 +158,12 @@ module CommandKit
       end
     end
 
+    #
+    # Initializes the command.
+    #
+    # @note Adds a special rule to the {Options#option_parser #option_parser} to
+    # stop parsing options when the first non-option is encountered.
+    #
     def initialize(**kwargs)
       super(**kwargs)
 

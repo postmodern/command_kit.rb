@@ -3,6 +3,9 @@ require 'command_kit/commands/subcommand'
 module CommandKit
   module Commands
     class AutoLoad < Module
+      #
+      # Represents a registered subcommand that will be auto-loaded.
+      #
       class Subcommand < Commands::Subcommand
 
         # The fully qualified constant of the command class.

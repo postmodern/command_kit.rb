@@ -1,5 +1,8 @@
 module CommandKit
   module Commands
+    #
+    # Represents a registered subcommand.
+    #
     class Subcommand
 
       # The command class.

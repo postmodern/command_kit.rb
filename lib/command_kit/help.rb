@@ -36,6 +36,9 @@ module CommandKit
 
     extend ModuleMethods
 
+    #
+    # Class-level methods.
+    #
     module ClassMethods
       #
       # Prints `--help` information.

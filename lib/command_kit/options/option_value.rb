@@ -16,6 +16,7 @@ module CommandKit
     #
     class OptionValue < Arguments::ArgumentValue
 
+      # Maps OptionParser types to USAGE strings.
       USAGES = {
         # NOTE: NilClass and Object are intentionally omitted
         Date       => 'DATE',

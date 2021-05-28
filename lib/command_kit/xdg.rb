@@ -45,6 +45,9 @@ module CommandKit
 
     extend ModuleMethods
 
+    #
+    # Class-level methods.
+    #
     module ClassMethods
       #
       # Gets or sets the XDG sub-directory name used by the command.
