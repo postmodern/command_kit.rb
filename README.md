@@ -7,8 +7,8 @@
 
 ## Description
 
-A Ruby toolkit for building clean, correct, and robust CLI commands as Ruby
-classes.
+A Ruby toolkit for building clean, correct, and robust CLI commands as
+plain-old Ruby classes.
 
 ## Features
 
@@ -44,6 +44,7 @@ classes.
 * [CommandKit::ExceptionHandler](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/ExceptionHandler)
 * [CommandKit::Help](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Help)
   * [CommandKit::Help::Man](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Help/Man)
+* [CommandKit::Interactive](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Interactive)
 * [CommandKit::Main](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Main)
 * [CommandKit::Options](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options)
   * [CommandKit::Options::Quiet](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Options/Quiet)
