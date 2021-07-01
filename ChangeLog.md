@@ -3,6 +3,7 @@
 * Initial release:
   * {CommandKit::Arguments}
   * {CommandKit::Colors}
+  * {CommandKit::Command}
   * {CommandKit::CommandName}
   * {CommandKit::Commands}
     * {CommandKit::Commands::AutoLoad}
@@ -16,12 +17,14 @@
   * {CommandKit::ExceptionHandler}
   * {CommandKit::Help}
     * {CommandKit::Help::Man}
+  * {CommandKit::Interactive}
   * {CommandKit::Main}
   * {CommandKit::Options}
     * {CommandKit::Options::Quiet}
     * {CommandKit::Options::Verbose}
   * {CommandKit::Pager}
   * {CommandKit::Printing}
+    * {CommandKit::Printing::Indent}
   * {CommandKit::ProgramName}
   * {CommandKit::Stdio}
   * {CommandKit::Usage}
