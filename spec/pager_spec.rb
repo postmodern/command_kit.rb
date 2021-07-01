@@ -95,10 +95,10 @@ describe Pager do
   end
 
   describe "#print_or_page" do
-    let(:console_height) { 10 }
+    let(:terminal_height) { 10 }
 
     before do
-      expect(subject).to receive(:console_height).and_return(console_height)
+      expect(subject).to receive(:terminal_height).and_return(terminal_height)
     end
 
     context "when given a String" do
@@ -113,7 +113,7 @@ describe Pager do
       end
 
       context "and the number of lines is greater than the console's height" do
-        let(:string) { "foo#{$/}bar#{$/}" * console_height }
+        let(:string) { "foo#{$/}bar#{$/}" * terminal_height }
 
         it "must spawn a pager and puts the String to the pager" do
           pager = double('pager')
@@ -137,7 +137,7 @@ describe Pager do
       end
 
       context "and the number of lines is greater than the console's height" do
-        let(:array) { ['foo', 'bar'] * console_height }
+        let(:array) { ['foo', 'bar'] * terminal_height }
 
         it "must spawn a pager and puts the Array of Strings to the pager" do
           pager = double('pager')

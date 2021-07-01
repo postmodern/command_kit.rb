@@ -8,7 +8,6 @@
   * {CommandKit::Commands}
     * {CommandKit::Commands::AutoLoad}
     * {CommandKit::Commands::AutoRequire}
-  * {CommandKit::Console}
   * {CommandKit::Description}
   * {CommandKit::Env}
     * {CommandKit::Env::Home}
@@ -27,6 +26,7 @@
     * {CommandKit::Printing::Indent}
   * {CommandKit::ProgramName}
   * {CommandKit::Stdio}
+  * {CommandKit::Terminal}
   * {CommandKit::Usage}
   * {CommandKit::XDG}
 

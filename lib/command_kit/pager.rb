@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'command_kit/stdio'
-require 'command_kit/console'
 require 'command_kit/env'
 require 'command_kit/env/path'
+require 'command_kit/stdio'
+require 'command_kit/terminal'
 
 module CommandKit
   #
@@ -35,10 +35,10 @@ module CommandKit
   # * [tty-pager](https://github.com/piotrmurach/tty-pager#readme)
   #
   module Pager
-    include Stdio
-    include Console
     include Env
     include Env::Path
+    include Stdio
+    include Terminal
 
     # Common pager commands.
     PAGERS = ['less -r', 'more -r']
@@ -76,7 +76,7 @@ module CommandKit
     #
     def pager
       if !stdout.tty? || @pager.nil?
-        # fallback to stdout if the process does not have a console or we could
+        # fallback to stdout if the process does not have a terminal or we could
         # not find a suitable pager command.
         yield stdout
         return
@@ -99,7 +99,7 @@ module CommandKit
     end
 
     #
-    # Pages the data if it's longer the console's height, otherwise prints the
+    # Pages the data if it's longer the terminal's height, otherwise prints the
     # data to {Stdio#stdout stdout}.
     #
     # @param [Array<String>, #to_s] data
@@ -111,7 +111,7 @@ module CommandKit
                    else             data.to_s.each_line.count
                    end
 
-      if line_count > console_height
+      if line_count > terminal_height
         pager { |io| io.puts(data) }
       else
         stdout.puts(data)

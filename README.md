@@ -35,7 +35,6 @@ plain-old Ruby classes.
 * [CommandKit::Commands](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands)
   * [CommandKit::Commands::AutoLoad](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands/AutoLoad)
   * [CommandKit::Commands::AutoRequire](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Commands/AutoRequire)
-* [CommandKit::Console](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Console)
 * [CommandKit::Description](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Description)
 * [CommandKit::Env](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Env)
   * [CommandKit::Env::Home](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Env/Home)
@@ -54,6 +53,7 @@ plain-old Ruby classes.
   * [CommandKit::Printing::Indent](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Printing/Indent)
 * [CommandKit::ProgramName](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/ProgramName)
 * [CommandKit::Stdio](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Stdio)
+* [CommandKit::Terminal](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Terminal)
 * [CommandKit::Usage](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/Usage)
 * [CommandKit::XDG](https://rubydoc.info/github/postmodern/command_kit/main/CommandKit/XDG)
 

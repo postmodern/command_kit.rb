@@ -1,26 +1,26 @@
 require 'spec_helper'
-require 'command_kit/console'
+require 'command_kit/terminal'
 
 require 'stringio'
 
-describe Console do
-  module TestConsole
+describe Terminal do
+  module TestTerminal
     class TestCommand
-      include CommandKit::Console
+      include CommandKit::Terminal
     end
   end
 
-  let(:command_class) { TestConsole::TestCommand }
+  let(:command_class) { TestTerminal::TestCommand }
   subject { command_class.new }
 
-  describe "#console?" do
+  describe "#terminal?" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
 
       it do
         skip "STDOUT is not a TTY" unless STDOUT.tty?
 
-        expect(subject.console?).to be(true)
+        expect(subject.terminal?).to be(true)
       end
     end
 
@@ -28,7 +28,7 @@ describe Console do
       subject { command_class.new(stdout: StringIO.new) }
 
       it do
-        expect(subject.console?).to be(false)
+        expect(subject.terminal?).to be(false)
       end
     end
 
@@ -38,19 +38,19 @@ describe Console do
       end
 
       it do
-        expect(subject.console?).to be(false)
+        expect(subject.terminal?).to be(false)
       end
     end
   end
 
-  describe "#console" do
+  describe "#terminal" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
 
       it do
         skip "STDOUT is not a TTY" unless STDOUT.tty?
 
-        expect(subject.console).to eq(IO.console)
+        expect(subject.terminal).to eq(IO.console)
       end
     end
 
@@ -58,7 +58,7 @@ describe Console do
       subject { command_class.new(stdout: StringIO.new) }
 
       it do
-        expect(subject.console).to eq(nil)
+        expect(subject.terminal).to eq(nil)
       end
     end
 
@@ -68,27 +68,27 @@ describe Console do
       end
 
       it do
-        expect(subject.console).to be(nil)
+        expect(subject.terminal).to be(nil)
       end
     end
   end
 
-  describe "#console_height" do
+  describe "#terminal_height" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
 
       it do
         skip "STDOUT is not a TTY" unless STDOUT.tty?
 
-        expect(subject.console_height).to eq(STDOUT.winsize[0])
+        expect(subject.terminal_height).to eq(STDOUT.winsize[0])
       end
     end
 
     context "when stdout is not connected to a TTY" do
       subject { command_class.new(stdout: StringIO.new) }
 
-      it "must fallback to DEFAULT_HEIGHT" do
-        expect(subject.console_height).to eq(described_class::DEFAULT_HEIGHT)
+      it "must fallback to DEFAULT_TERMINAL_HEIGHT" do
+        expect(subject.terminal_height).to eq(described_class::DEFAULT_TERMINAL_HEIGHT)
       end
 
       context "but the LINES env variable was set" do
@@ -98,28 +98,28 @@ describe Console do
         subject { command_class.new(stdout: StringIO.new, env: env) }
 
         it "must fallback to the LINES environment variable" do
-          expect(subject.console_height).to eq(lines)
+          expect(subject.terminal_height).to eq(lines)
         end
       end
     end
   end
 
-  describe "#console_width" do
+  describe "#terminal_width" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
 
       it do
         skip "STDOUT is not a TTY" unless STDOUT.tty?
 
-        expect(subject.console_width).to eq(STDOUT.winsize[1])
+        expect(subject.terminal_width).to eq(STDOUT.winsize[1])
       end
     end
 
     context "when stdout is not connected to a TTY" do
       subject { command_class.new(stdout: StringIO.new) }
 
-      it "must fallback to DEFAULT_WIDTH" do
-        expect(subject.console_width).to eq(described_class::DEFAULT_WIDTH)
+      it "must fallback to DEFAULT_TERMINAL_WIDTH" do
+        expect(subject.terminal_width).to eq(described_class::DEFAULT_TERMINAL_WIDTH)
       end
 
       context "but the COLUMNS env variable was set" do
@@ -129,29 +129,29 @@ describe Console do
         subject { command_class.new(stdout: StringIO.new, env: env) }
 
         it "must fallback to the COLUMNS environment variable" do
-          expect(subject.console_width).to eq(columns)
+          expect(subject.terminal_width).to eq(columns)
         end
       end
     end
   end
 
-  describe "#console_size" do
+  describe "#terminal_size" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
 
       it do
         skip "STDOUT is not a TTY" unless STDOUT.tty?
 
-        expect(subject.console_size).to eq(STDOUT.winsize)
+        expect(subject.terminal_size).to eq(STDOUT.winsize)
       end
     end
 
     context "when stdout is not connected to a TTY" do
       subject { command_class.new(stdout: StringIO.new) }
 
-      it "must fallback to [DEFAULT_HEIGHT, DEFAULT_WIDTH]" do
-        expect(subject.console_size).to eq(
-          [described_class::DEFAULT_HEIGHT, described_class::DEFAULT_WIDTH]
+      it "must fallback to [DEFAULT_TERMINAL_HEIGHT, DEFAULT_TERMINAL_WIDTH]" do
+        expect(subject.terminal_size).to eq(
+          [described_class::DEFAULT_TERMINAL_HEIGHT, described_class::DEFAULT_TERMINAL_WIDTH]
         )
       end
 
@@ -161,9 +161,9 @@ describe Console do
 
         subject { command_class.new(stdout: StringIO.new, env: env) }
 
-        it "must fallback to the [$LINES, DEFAULT_WIDTH]" do
-          expect(subject.console_size).to eq(
-            [lines, described_class::DEFAULT_WIDTH]
+        it "must fallback to the [$LINES, DEFAULT_TERMINAL_WIDTH]" do
+          expect(subject.terminal_size).to eq(
+            [lines, described_class::DEFAULT_TERMINAL_WIDTH]
           )
         end
       end
@@ -174,9 +174,9 @@ describe Console do
 
         subject { command_class.new(stdout: StringIO.new, env: env) }
 
-        it "must fallback to the [DEFAULT_HEIGHT, COLUMNS]" do
-          expect(subject.console_size).to eq(
-            [described_class::DEFAULT_HEIGHT, columns]
+        it "must fallback to the [DEFAULT_TERMINAL_HEIGHT, COLUMNS]" do
+          expect(subject.terminal_size).to eq(
+            [described_class::DEFAULT_TERMINAL_HEIGHT, columns]
           )
         end
       end
@@ -191,7 +191,7 @@ describe Console do
         subject { command_class.new(stdout: StringIO.new, env: env) }
 
         it "must fallback to the [LINES, COLUMNS]" do
-          expect(subject.console_size).to eq(
+          expect(subject.terminal_size).to eq(
             [lines, columns]
           )
         end
