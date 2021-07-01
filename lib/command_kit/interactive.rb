@@ -90,8 +90,14 @@ module CommandKit
     # @param [Hash{String => String}, Array<String>] choices
     #   The choices to select from.
     #
-    # @param [String, nil] default
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments for {#ask}.
+    #
+    # @option kwargs [String, nil] default
     #   The default option to fallback to, if no input is given.
+    #
+    # @option kwargs [Boolean] required
+    #   Requires non-empty input.
     #
     # @return [String]
     #   The selected choice.
