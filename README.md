@@ -18,13 +18,13 @@ plain-old Ruby classes.
 * Supports subcommands (explicit or lazy-loaded) and command aliases.
 * Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
 * Correctly handles broken pipes (aka `mycmd | head`).
-* Uses [OptionParser][optparse] for option parsing.
-* Provides ANSI coloring support.
+* Correctly handles when stdout or stdin is redirected to a file.
+* Uses [OptionParser][optparse] for POSIX option parsing.
+* Supports optional ANSI coloring.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
 * Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
 * Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
-* Modular design (everything is a module).
 
 ### API
 
