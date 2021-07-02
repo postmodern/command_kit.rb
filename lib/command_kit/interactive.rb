@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'command_kit/stdio'
 
 module CommandKit
