@@ -13,8 +13,8 @@ describe CommandKit::Arguments do
   describe ".included" do
     subject { command_class }
 
-    it { expect(subject).to include(described_class) }
-    it { expect(subject).to include(described_class) }
+    it { expect(subject).to include(CommandKit::Main) }
+    it { expect(subject).to include(CommandKit::Help) }
   end
 
   describe ".arguments" do
