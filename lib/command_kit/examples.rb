@@ -93,7 +93,7 @@ module CommandKit
     # {#help_examples}.
     #
     def help
-      super if defined?(super)
+      super
 
       help_examples
     end

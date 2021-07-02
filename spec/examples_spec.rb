@@ -207,29 +207,5 @@ describe CommandKit::Examples do
 
       subject.help
     end
-
-    context "when the superclass defines it's own #help method" do
-      module TestDescription
-        class SuperclassHelpMethod
-          def help
-            puts 'superclass'
-          end
-        end
-
-        class InheritedHelpMethod < SuperclassHelpMethod
-          include CommandKit::Examples
-        end
-      end
-
-      let(:super_command_class) { TestDescription::SuperclassHelpMethod }
-      let(:command_class) { TestDescription::InheritedHelpMethod }
-
-      it "must call the superclass'es #help method first" do
-        expect_any_instance_of(super_command_class).to receive(:help)
-        expect(subject).to receive(:help_examples)
-
-        subject.help
-      end
-    end
   end
 end

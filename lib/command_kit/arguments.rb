@@ -186,7 +186,7 @@ module CommandKit
     # {#help_arguments}.
     #
     def help
-      super if defined?(super)
+      super
 
       help_arguments
     end

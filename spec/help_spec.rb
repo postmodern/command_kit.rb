@@ -90,30 +90,5 @@ describe CommandKit::Help do
         subject.help()
       end
     end
-
-    context "when the superclass defines it's own #help method" do
-      module TestHelp
-        class SuperclassWithHelp
-
-          def help
-            puts 'superclass'
-          end
-
-        end
-
-        class SubclassOfSuperclassWithHelp < SuperclassWithHelp
-          include CommandKit::Help
-        end
-      end
-
-      let(:command_superclass) { TestHelp::SuperclassWithHelp }
-      let(:command_class)      { TestHelp::SubclassOfSuperclassWithHelp }
-
-      it "must call the superclass'es #help" do
-        expect_any_instance_of(command_superclass).to receive(:help)
-
-        subject.help()
-      end
-    end
   end
 end

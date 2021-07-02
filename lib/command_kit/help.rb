@@ -59,7 +59,6 @@ module CommandKit
     # @abstract
     #
     def help
-      super if defined?(super)
     end
   end
 end
