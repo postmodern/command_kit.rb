@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/commands/auto_load'
 
-describe Commands::AutoLoad do
+describe CommandKit::Commands::AutoLoad do
   let(:fixtures_dir) { File.expand_path('../fixtures',__FILE__) }
 
   let(:dir)       { File.join(fixtures_dir,'test_auto_load','cli','commands') }

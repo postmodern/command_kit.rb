@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/options/option'
 
-describe Options::Option do
+describe CommandKit::Options::Option do
   let(:name)   { :foo    }
   let(:short)  { nil     }
   let(:long)   { '--foo' }
@@ -82,7 +82,7 @@ describe Options::Option do
         subject { described_class.new(name, value: {type: type}, desc: desc) }
 
         it "must initialize #value" do
-          expect(subject.value).to      be_kind_of(Options::OptionValue)
+          expect(subject.value).to      be_kind_of(CommandKit::Options::OptionValue)
           expect(subject.value.type).to eq(type)
         end
       end
@@ -91,7 +91,7 @@ describe Options::Option do
         subject { described_class.new(name, value: true, desc: desc) }
 
         it "must initialize #value with defaults" do
-          expect(subject.value).to           be_kind_of(Options::OptionValue)
+          expect(subject.value).to           be_kind_of(CommandKit::Options::OptionValue)
           expect(subject.value.type).to      eq(String)
           expect(subject.value.required?).to be(true)
           expect(subject.value.usage).to     eq('STR')

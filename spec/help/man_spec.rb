@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/help/man'
 
-describe Help::Man do
+describe CommandKit::Help::Man do
   module TestHelpMan
     class TestCommand
       include CommandKit::Help::Man

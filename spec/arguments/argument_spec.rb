@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/arguments/argument'
 
-describe Arguments::Argument do
+describe CommandKit::Arguments::Argument do
   let(:name)     { :foo }
   let(:usage)    { 'FOO' }
   let(:required) { true }

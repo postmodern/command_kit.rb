@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/program_name'
 
-describe ProgramName do
+describe CommandKit::ProgramName do
   module TestProgramName
     class TestCmd
       include CommandKit::ProgramName

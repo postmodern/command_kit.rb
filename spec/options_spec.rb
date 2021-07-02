@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/options'
 
-describe Options do
+describe CommandKit::Options do
   module TestOptions
     class ImplicitCmd
       include CommandKit::Options

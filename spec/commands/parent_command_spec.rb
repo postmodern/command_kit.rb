@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'command_kit/commands'
 require 'command_kit/commands/parent_command'
 
-describe Commands::ParentCommand do
+describe CommandKit::Commands::ParentCommand do
   module TestParentCommand
     class TestCommands
 

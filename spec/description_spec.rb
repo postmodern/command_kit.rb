@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/description'
 
-describe Description do
+describe CommandKit::Description do
   module TestDescription
     class ImplicitCmd
       include CommandKit::Description

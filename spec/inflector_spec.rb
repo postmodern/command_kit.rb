@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/inflector'
 
-describe Inflector do
+describe CommandKit::Inflector do
   describe ".demodularize" do
     context "when given a single class or module name" do
       let(:name) { 'Foo' }

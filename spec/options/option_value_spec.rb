@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/options/option_value'
 
-describe Options::OptionValue do
+describe CommandKit::Options::OptionValue do
   let(:type)     { Integer }
   let(:usage)    { 'COUNT' }
   let(:required) { true }

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/arguments'
 
-describe Arguments do
+describe CommandKit::Arguments do
   module TestArguments
     class ImplicitCmd
       include CommandKit::Arguments
@@ -13,8 +13,8 @@ describe Arguments do
   describe ".included" do
     subject { command_class }
 
-    it { expect(subject).to include(Main) }
-    it { expect(subject).to include(Help) }
+    it { expect(subject).to include(described_class) }
+    it { expect(subject).to include(described_class) }
   end
 
   describe ".arguments" do

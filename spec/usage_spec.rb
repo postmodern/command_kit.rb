@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/usage'
 
-describe Usage do
+describe CommandKit::Usage do
   module TestUsage
     class ImplicitCmd
       include CommandKit::Usage

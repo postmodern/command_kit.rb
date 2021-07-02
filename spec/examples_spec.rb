@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/examples'
 
-describe Examples do
+describe CommandKit::Examples do
   module TestExamples
     class ImplicitCmd
       include CommandKit::Examples

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/command'
 
-describe Command do
+describe CommandKit::Command do
   it "must include CommandKit::Main" do
     expect(described_class).to include(CommandKit::Main)
   end

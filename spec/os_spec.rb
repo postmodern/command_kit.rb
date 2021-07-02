@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/os'
 
-describe OS do
+describe CommandKit::OS do
   class TestOS
     include CommandKit::OS
   end

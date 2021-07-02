@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'command_kit/commands/subcommand'
 require 'command_kit/command'
 
-describe Commands::Subcommand do
+describe CommandKit::Commands::Subcommand do
   module TestSubcommands
     class TestCommand < CommandKit::Command
     end

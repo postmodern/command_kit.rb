@@ -3,7 +3,7 @@ require 'command_kit/printing'
 
 require 'stringio'
 
-describe Printing do
+describe CommandKit::Printing do
   module TestPrinting
     class TestCmd
 
@@ -18,7 +18,7 @@ describe Printing do
   describe ".included" do
     subject { command_class }
 
-    it { expect(command_class).to include(Stdio) }
+    it { expect(command_class).to include(CommandKit::Stdio) }
   end
 
   let(:nl) { $/ }

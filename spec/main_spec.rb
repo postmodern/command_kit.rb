@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/main'
 
-describe Main do
+describe CommandKit::Main do
   module TestMain
     class TestCommand
       include CommandKit::Main

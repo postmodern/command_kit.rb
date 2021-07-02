@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/commands'
 
-describe Commands do
+describe CommandKit::Commands do
   module TestCommands
     class TestEmptyCommands
 

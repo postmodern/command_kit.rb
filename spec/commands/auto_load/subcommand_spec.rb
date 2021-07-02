@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/commands/auto_load/subcommand'
 
-describe Commands::AutoLoad::Subcommand do
+describe CommandKit::Commands::AutoLoad::Subcommand do
   let(:fixtures_dir) { File.expand_path('../../fixtures',__FILE__) }
 
   let(:file) { 'test1.rb' }

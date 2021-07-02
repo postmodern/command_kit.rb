@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/env/path'
 
-describe Env::Path do
+describe CommandKit::Env::Path do
   module TestEnvPath
     class TestCommand
 

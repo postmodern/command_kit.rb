@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'command_kit/commands/help'
 require 'command_kit/commands'
 
-describe Commands::Help do
+describe CommandKit::Commands::Help do
   module TestHelpCommand
     class CLI
       include CommandKit::Commands

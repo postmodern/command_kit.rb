@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/commands/auto_require'
 
-describe Commands::AutoRequire do
+describe CommandKit::Commands::AutoRequire do
   let(:fixtures_dir) { File.expand_path('../fixtures',__FILE__) }
   let(:lib_dir)      { File.join(fixtures_dir,'test_auto_require','lib') }
   let(:dir)          { File.join('test_auto_require','cli','commands') }
@@ -126,7 +126,7 @@ describe Commands::AutoRequire do
 
       it "the .commands.default_proc must auto-require commands and return a Subcommand" do
         expect(command_class.commands[command_name]).to_not be(nil)
-        expect(command_class.commands[command_name]).to be_kind_of(Commands::Subcommand)
+        expect(command_class.commands[command_name]).to be_kind_of(CommandKit::Commands::Subcommand)
         expect(command_class.commands[command_name].command).to eq(TestAutoRequire::CLI::Commands::Test1)
       end
 

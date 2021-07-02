@@ -3,7 +3,7 @@ require 'command_kit/terminal'
 
 require 'stringio'
 
-describe Terminal do
+describe CommandKit::Terminal do
   module TestTerminal
     class TestCommand
       include CommandKit::Terminal

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/xdg'
 
-describe XDG do
+describe CommandKit::XDG do
   module TestXDG
     class TestCommand
       include CommandKit::XDG

@@ -3,7 +3,7 @@ require 'command_kit/pager'
 
 require 'stringio'
 
-describe Pager do
+describe CommandKit::Pager do
   module TestPager
     class TestCommand
       include CommandKit::Pager

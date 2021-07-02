@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/env/home'
 
-describe Env::Home do
+describe CommandKit::Env::Home do
   module TestEnvHome
     class TestCommand
       include CommandKit::Env::Home

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/colors'
 
-describe Colors do
+describe CommandKit::Colors do
   module TestColors
     class TestCommand
       include CommandKit::Colors
@@ -11,10 +11,10 @@ describe Colors do
   let(:command_class) { TestColors::TestCommand }
   subject { command_class.new }
 
-  it { expect(described_class).to include(Stdio) }
-  it { expect(described_class).to include(Env) }
+  it { expect(described_class).to include(CommandKit::Stdio) }
+  it { expect(described_class).to include(CommandKit::Env) }
 
-  describe Colors::ANSI do
+  describe CommandKit::Colors::ANSI do
     subject { described_class }
 
     describe "RESET" do
@@ -188,7 +188,7 @@ describe Colors do
     end
   end
 
-  describe Colors::PlainText do
+  describe CommandKit::Colors::PlainText do
     subject { described_class }
 
     let(:str) { 'foo' }
@@ -409,13 +409,15 @@ describe Colors do
 
       before { allow(stdout).to receive(:tty?).and_return(true) }
 
-      it { expect(subject.colors).to be(Colors::ANSI) }
+      it do
+        expect(subject.colors).to be(described_class::ANSI)
+      end
 
       context "when a block is given" do
         it do
           expect { |b|
             subject.colors(&b)
-          }.to yield_with_args(Colors::ANSI)
+          }.to yield_with_args(described_class::ANSI)
         end
       end
     end
@@ -424,13 +426,15 @@ describe Colors do
       let(:stdout) { StringIO.new }
       subject { command_class.new(stdout: stdout) }
 
-      it { expect(subject.colors).to be(Colors::PlainText) }
+      it do
+        expect(subject.colors).to be(described_class::PlainText)
+      end
 
       context "when a block is given" do
         it do
           expect { |b|
             subject.colors(&b)
-          }.to yield_with_args(Colors::PlainText)
+          }.to yield_with_args(described_class::PlainText)
         end
       end
     end
@@ -441,13 +445,15 @@ describe Colors do
 
         before { allow(stream).to receive(:tty?).and_return(true) }
 
-        it { expect(subject.colors(stream)).to be(Colors::ANSI) }
+        it do
+          expect(subject.colors(stream)).to be(described_class::ANSI)
+        end
 
         context "when a block is given" do
           it do
             expect { |b|
               subject.colors(stream,&b)
-            }.to yield_with_args(Colors::ANSI)
+            }.to yield_with_args(described_class::ANSI)
           end
         end
       end
@@ -455,13 +461,15 @@ describe Colors do
       context "but the alternate stream does not support ANSI" do
         let(:stream) { StringIO.new }
 
-        it { expect(subject.colors(stream)).to be(Colors::PlainText) }
+        it do
+          expect(subject.colors(stream)).to be(described_class::PlainText)
+        end
 
         context "when a block is given" do
           it do
             expect { |b|
               subject.colors(stream,&b)
-            }.to yield_with_args(Colors::PlainText)
+            }.to yield_with_args(described_class::PlainText)
           end
         end
       end

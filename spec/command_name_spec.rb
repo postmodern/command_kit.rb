@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/command_name'
 
-describe CommandName do
+describe CommandKit::CommandName do
   module TestCommandName
     class ImplicitCmd
       include CommandKit::CommandName

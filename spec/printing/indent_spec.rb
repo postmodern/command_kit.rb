@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'command_kit/printing/indent'
 
-describe Printing::Indent do
+describe CommandKit::Printing::Indent do
   module TestIndent
     class TestCommand
       include CommandKit::Printing::Indent
