@@ -156,16 +156,16 @@ describe CommandKit::Main do
   describe "#main" do
     subject { command_class.new }
 
-    it "must provide a default #main" do
-      expect(subject).to respond_to(:main)
-    end
-
     it "must return 0 by default" do
       expect(subject.main).to eq(0)
     end
 
-    it "must accept arbitrary argv" do
-      expect { subject.main([1,2,3]) }.to_not raise_error
+    it "must call #run with the given argv" do
+      argv = ["foo", "bar", "baz"]
+
+      expect(subject).to receive(:run).with(*argv)
+      
+      subject.main(argv)
     end
 
     context "when #run raises SystemExit" do
