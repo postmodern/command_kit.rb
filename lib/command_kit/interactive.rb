@@ -104,7 +104,7 @@ module CommandKit
     # @example
     #   ask_yes_or_no("Proceed anyways?")
     #   # Proceed anyways? (Y/N): Y
-    #   # => :yes
+    #   # => true
     #
     def ask_yes_or_no(prompt, default: nil, **kwargs)
       default = case default
