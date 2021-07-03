@@ -52,6 +52,21 @@ module CommandKit
     # @return [String]
     #   The user input.
     #
+    # @example
+    #   first_name = ask("First name")
+    #   last_name = ask("Last name")
+    #
+    # @example Default value:
+    #   ask("Country", default: "EU")
+    #   # Country [EU]: <enter>
+    #   # => "EU"
+    #
+    # @example Required non-empty input:
+    #   ask("Email", required: true)
+    #   # Email: <enter>
+    #   # Email: bob@example.com<enter>
+    #   # => "bob@example.com"
+    #
     def ask(prompt, default: nil, required: false)
       prompt = prompt.chomp
       prompt << " [#{default}]" if default
