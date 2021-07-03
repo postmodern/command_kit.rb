@@ -3,6 +3,37 @@
 require 'command_kit/stdio'
 
 module CommandKit
+  #
+  # Provides methods for asking the user for input.
+  #
+  # ## Examples
+  #
+  #     first_name = ask("First name")
+  #     last_name = ask("Last name")
+  #
+  # ### Asking for secret input
+  #
+  #     password = ask_secret("Password")
+  #
+  # ### Asking Y/N?
+  #
+  #     if ask_yes_or_no("Proceed anyways?")
+  #       # ...
+  #     else
+  #       stderr.puts "Aborting!"
+  #     end
+  #
+  # ### Asking multi-choice questions
+  #
+  #     ask_multiple_choice("Select a flavor", %w[Apple Orange Lemon Lime])
+  #     #   1) Apple
+  #     #   2) Orange
+  #     #   3) Lemon
+  #     #   4) Lime
+  #     #   Select a flavor: 4
+  #     #
+  #     # => "Lime"
+  #
   module Interactive
     include Stdio
 
