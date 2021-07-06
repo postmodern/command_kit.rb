@@ -7,7 +7,7 @@ description:
 license: MIT
 authors: Postmodern
 email: postmodern.mod3@gmail.com
-homepage: https://github.com/postmodern/command_kit#readme
+homepage: https://github.com/postmodern/command_kit.rb#readme
 
 required_ruby_version: ">= 2.7.0"
 
