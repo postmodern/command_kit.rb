@@ -14,6 +14,14 @@ describe CommandKit::Printing do
 
   let(:command_class) { TestPrinting::TestCmd }
   subject { command_class.new }
+  
+  describe "EOL" do
+    subject { described_class::EOL }
+
+    it "must equal $/" do
+      expect(subject).to eq($/)
+    end
+  end
 
   describe ".included" do
     subject { command_class }

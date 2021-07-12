@@ -9,6 +9,11 @@ module CommandKit
   module Printing
     include Stdio
 
+    # Platform independency new-line constant
+    #
+    # @return [String]
+    EOL = $/
+
     #
     # Prints the error message to {Stdio#stderr stderr}.
     #
