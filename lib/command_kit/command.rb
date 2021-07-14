@@ -9,6 +9,8 @@ require 'command_kit/examples'
 require 'command_kit/description'
 require 'command_kit/exception_handler'
 
+require 'fileutils'
+
 module CommandKit
   #
   # The command class base-class.
@@ -79,6 +81,7 @@ module CommandKit
     include Examples
     include Description
     include ExceptionHandler
+    include FileUtils
 
   end
 end
