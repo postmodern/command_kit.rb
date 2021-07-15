@@ -3,7 +3,6 @@
 * [Homepage](https://github.com/postmodern/command_kit.rb#readme)
 * [Issues](https://github.com/postmodern/command_kit.rb/issues)
 * [Documentation](http://rubydoc.info/gems/command_kit/frames)
-* [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
