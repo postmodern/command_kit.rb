@@ -20,6 +20,9 @@ module CommandKit
     # @param [String] message
     #   The error message.
     #
+    # @example
+    #   print_error "Error: invalid input"
+    #
     def print_error(message)
       stderr.puts message
     end
@@ -29,6 +32,15 @@ module CommandKit
     #
     # @param [Exception] error
     #   The error to print.
+    #
+    # @example
+    #   begin
+    #     # ...
+    #   rescue => error
+    #     print_error "Error encountered"
+    #     print_exception(error)
+    #     exit(1)
+    #   end
     #
     def print_exception(error)
       print_error error.full_message(highlight: stderr.tty?)
