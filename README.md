@@ -20,9 +20,12 @@ plain-old Ruby classes.
 * Correctly handles broken pipes (aka `mycmd | head`).
 * Correctly handles when stdout or stdin is redirected to a file.
 * Uses [OptionParser][optparse] for POSIX option parsing.
-* Supports optional ANSI coloring.
 * Supports optionally displaying a man-page instead of `--help`
   (see {CommandKit::Help::Man}).
+* Supports optional ANSI coloring.
+* Supports interactively prompting for user input.
+* Supports easily detecting the terminal size.
+* Supports paging output with `less` or `more`.
 * Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
 * Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
 
