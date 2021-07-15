@@ -74,6 +74,21 @@ module CommandKit
     # @yieldparam [IO]
     #   The IO pipe to the pager.
     #
+    # @example
+    #   pager do |io|
+    #     io.puts "Hello world"
+    #     # ...
+    #   end
+    #
+    # @example Piping a command into the pager:
+    #   IO.peopn(["ping", ip]) do |ping|
+    #     pager do |io|
+    #       ping.each_line do |line|
+    #         io.write line
+    #       end
+    #     end
+    #   end
+    #
     def pager
       if !stdout.tty? || @pager.nil?
         # fallback to stdout if the process does not have a terminal or we could
