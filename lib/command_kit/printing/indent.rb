@@ -42,6 +42,25 @@ module CommandKit
       # @return [Integer]
       #   If no block is given, the indententation level will be returned.
       #
+      # @example
+      #   puts "values:"
+      #   indent do
+      #     values.each do |key,value|
+      #       puts "#{key}: #{value}"
+      #     end
+      #   end
+      #
+      # @example
+      #   puts "Code:"
+      #   puts
+      #   puts "```"
+      #   indent(4) do
+      #     code.each_line do |line|
+      #       puts line
+      #     end
+      #   end
+      #   puts "```"
+      #
       def indent(n=2)
         if block_given?
           begin
