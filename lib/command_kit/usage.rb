@@ -50,6 +50,9 @@ module CommandKit
       # @return [String, Array<String>]
       #   The class'es or superclass'es usage string(s).
       #
+      # @example
+      #   usage "[options] ARG1 ARG2 [ARG3 ...]"
+      #
       def usage(new_usage=nil)
         if new_usage
           @usage = new_usage
