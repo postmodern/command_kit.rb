@@ -63,6 +63,13 @@ module CommandKit
       #   Specifies whether a command with the given name exists in one of the
       #   {#path_dirs}.
       #
+      # @example
+      #   if command_installed?("docker")
+      #     # ...
+      #   else
+      #     abort "Docker is not installed. Aborting"
+      #   end
+      #
       def command_installed?(name)
         !find_command(name).nil?
       end
