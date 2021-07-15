@@ -343,6 +343,12 @@ module CommandKit
     # @return [ANSI, PlainText]
     #   The ANSI module or PlainText dummy module.
     #
+    # @example
+    #   puts colors.green("Hello world")
+    #
+    # @example Using colors with stderr output:
+    #   stderr.puts colors(stderr).green("Hello world")
+    #
     def colors(stream=stdout)
       color = if ansi?(stream) then ANSI
               else                  PlainText
