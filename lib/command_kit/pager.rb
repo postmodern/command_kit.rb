@@ -120,6 +120,12 @@ module CommandKit
     # @param [Array<String>, #to_s] data
     #   The data to print.
     #
+    # @example
+    #   print_or_page(data)
+    #
+    # @example Print or pages the contents of a file:
+    #   print_or_page(File.read(file))
+    #
     def print_or_page(data)
       line_count = case data
                    when Array  then data.length
