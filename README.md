@@ -1,6 +1,7 @@
 # command_kit
 
 * [Homepage](https://github.com/postmodern/command_kit.rb#readme)
+* [Forum](https://github.com/postmodern/command_kit.rb/discussions)
 * [Issues](https://github.com/postmodern/command_kit.rb/issues)
 * [Documentation](http://rubydoc.info/gems/command_kit/frames)
 
