@@ -53,6 +53,8 @@ module CommandKit
       # @example
       #   usage "[options] ARG1 ARG2 [ARG3 ...]"
       #
+      # @api public
+      #
       def usage(new_usage=nil)
         if new_usage
           @usage = new_usage
@@ -68,6 +70,8 @@ module CommandKit
     #
     # @return [Array<String>, String, nil]
     #
+    # @api public
+    #
     def usage
       case (usage = self.class.usage)
       when Array
@@ -79,6 +83,8 @@ module CommandKit
 
     #
     # Prints the `usage: ...` output.
+    #
+    # @api semipublic
     #
     def help_usage
       case (usage = self.usage)
@@ -97,6 +103,8 @@ module CommandKit
     # Prints the usage.
     #
     # @see #help_usage
+    #
+    # @api public
     #
     def help
       help_usage

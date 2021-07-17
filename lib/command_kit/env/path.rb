@@ -17,6 +17,8 @@ module CommandKit
       # The home directory.
       #
       # @return [String]
+      #
+      # @api semipublic
       attr_reader :path_dirs
 
       #
@@ -24,6 +26,8 @@ module CommandKit
       #
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments.
+      #
+      # @api public
       #
       def initialize(**kwargs)
         super(**kwargs)
@@ -40,6 +44,8 @@ module CommandKit
       # @return [String, nil]
       #   The absolute path to the executable file, or `nil` if the command
       #   could not be found in any of the {#path_dirs}.
+      #
+      # @api public
       #
       def find_command(name)
         name = name.to_s
@@ -69,6 +75,8 @@ module CommandKit
       #   else
       #     abort "Docker is not installed. Aborting"
       #   end
+      #
+      # @api public
       #
       def command_installed?(name)
         !find_command(name).nil?

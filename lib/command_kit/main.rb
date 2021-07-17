@@ -43,6 +43,8 @@ module CommandKit
       # @param [Array<String>] argv
       #   The Array of command-line arguments.
       #
+      # @api public
+      #
       def start(argv=ARGV, **kwargs)
         begin
           exit main(argv, **kwargs)
@@ -68,6 +70,8 @@ module CommandKit
       # @return [Integer]
       #   The exit status of the command.
       #
+      # @api public
+      #
       def main(argv=[], **kwargs)
         new(**kwargs).main(argv)
       end
@@ -84,6 +88,8 @@ module CommandKit
     #
     # @note `argv` is splatted into {#run}.
     #
+    # @api public
+    #
     def main(argv=[])
       run(*argv)
       return 0
@@ -98,6 +104,8 @@ module CommandKit
     #   Additional arguments for the command.
     #   
     # @abstract
+    #
+    # @api public
     #
     def run(*args)
     end

@@ -34,6 +34,8 @@ module CommandKit
     # @param [IO] stderr
     #   The stderr error output stream. Defaults to `$stderr`.
     #
+    # @api public
+    #
     def initialize(stdin: nil, stdout: nil, stderr: nil, **kwargs)
       @stdin  = stdin
       @stdout = stdout
@@ -48,6 +50,8 @@ module CommandKit
     # @return [$stdin, IO]
     #   The initialized `@stdin` value or `$stdin`.
     #
+    # @api public
+    #
     def stdin
       @stdin || $stdin
     end
@@ -57,6 +61,8 @@ module CommandKit
     #
     # @return [$stdout, IO]
     #   The initialized `@stdout` value or `$stdout`.
+    #
+    # @api public
     #
     def stdout
       @stdout || $stdout
@@ -68,12 +74,16 @@ module CommandKit
     # @return [$stderr, IO]
     #   The initialized `@stderr` value or `$stderr`.
     #
+    # @api public
+    #
     def stderr
       @stderr || $stderr
     end
 
     #
     # Calls `stdin.gets`.
+    #
+    # @api public
     #
     def gets(*arguments)
       stdin.gets(*arguments)
@@ -82,12 +92,16 @@ module CommandKit
     #
     # Calls `stdin.readline`.
     #
+    # @api public
+    #
     def readline(*arguments)
       stdin.readline(*arguments)
     end
 
     #
     # Calls `stdin.readlines`.
+    #
+    # @api public
     #
     def readlines(*arguments)
       stdin.readlines(*arguments)
@@ -99,12 +113,16 @@ module CommandKit
     #
     # Calls `stdout.putc`.
     #
+    # @api public
+    #
     def putc(*arguments)
       stdout.putc(*arguments)
     end
 
     #
     # Calls `stdout.puts`.
+    #
+    # @api public
     #
     def puts(*arguments)
       stdout.puts(*arguments)
@@ -113,12 +131,16 @@ module CommandKit
     #
     # Calls `stdout.print`.
     #
+    # @api public
+    #
     def print(*arguments)
       stdout.print(*arguments)
     end
 
     #
     # Calls `stdout.printf`.
+    #
+    # @api public
     #
     def printf(*arguments)
       stdout.printf(*arguments)
@@ -129,6 +151,8 @@ module CommandKit
     #
     # @param [String, nil] message
     #   The optional abort message.
+    #
+    # @api public
     #
     def abort(message=nil)
       stderr.puts(message) if message

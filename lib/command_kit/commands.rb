@@ -73,6 +73,8 @@ module CommandKit
       #
       # @return [Hash{String => Subcommand}]
       #   The Hash of sub-command names and command classes.
+      #
+      # @api semipublic
       # 
       def commands
         @commands ||= if superclass.kind_of?(ClassMethods)
@@ -88,6 +90,8 @@ module CommandKit
       # @return [Hash{String => String}]
       #   The Hash of command aliases to primary command names.
       # 
+      # @api semipublic
+      #
       def command_aliases
         @command_aliases ||= if superclass.kind_of?(ClassMethods)
                                superclass.command_aliases.dup
@@ -125,6 +129,8 @@ module CommandKit
       # @example
       #   command 'foo-bar', FooBar
       #
+      # @api public
+      #
       def command(name=nil, command_class, **kwargs)
         name = if name then name.to_s
                else         command_class.command_name
@@ -148,6 +154,8 @@ module CommandKit
       #
       # @return [Class#main, nil]
       #
+      # @api private
+      #
       def get_command(name)
         name = name.to_s
         name = command_aliases.fetch(name,name)
@@ -163,6 +171,8 @@ module CommandKit
     #
     # @note Adds a special rule to the {Options#option_parser #option_parser} to
     # stop parsing options when the first non-option is encountered.
+    #
+    # @api public
     #
     def initialize(**kwargs)
       super(**kwargs)
@@ -180,6 +190,8 @@ module CommandKit
     #
     # @return [Object#main, nil]
     #   The initialized subcommand.
+    #
+    # @api private
     #
     def command(name)
       unless (command_class = self.class.get_command(name))
@@ -225,6 +237,8 @@ module CommandKit
     # @return [Integer]
     #   The exit status of the command.
     #
+    # @api semipublic
+    #
     def invoke(name,*argv)
       if (command = command(name))
         command.main(argv)
@@ -237,6 +251,8 @@ module CommandKit
     # Prints an error about an unknown command and exits with an error code.
     #
     # @param [String] name
+    #
+    # @api semipublic
     #
     def command_not_found(name)
       print_error "'#{name}' is not a #{command_name} command. See `#{command_name} help`"
@@ -256,6 +272,8 @@ module CommandKit
     #
     # @see command_not_found
     #
+    # @api semipublic
+    #
     def on_unknown_command(name,argv=[])
       command_not_found(name)
     end
@@ -264,6 +282,8 @@ module CommandKit
     # Runs the command or specified subcommand.
     #
     # @note If no subcommand is given, {#help} will be called.
+    #
+    # @api public
     #
     def run(command=nil,*argv)
       if command
@@ -275,6 +295,8 @@ module CommandKit
 
     #
     # Prints the available commands and their summaries.
+    #
+    # @api semipublic
     #
     def help_commands
       unless self.class.commands.empty?
@@ -295,6 +317,8 @@ module CommandKit
 
     #
     # Prints help information and available commands.
+    #
+    # @api public
     #
     def help
       super

@@ -68,6 +68,8 @@ module CommandKit
   #       @verbose = 0
   #     end
   #
+  # @api public
+  #
   class Command
 
     include Main

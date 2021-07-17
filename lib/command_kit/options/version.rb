@@ -35,6 +35,8 @@ module CommandKit
         # @return [String, nil]
         #   The classes version string.
         #
+        # @api public
+        #
         def version(new_version=nil)
           if new_version
             @version = new_version
@@ -47,12 +49,16 @@ module CommandKit
       #
       # @see ClassMethods#version
       #
+      # @api public
+      #
       def version
         self.class.version
       end
 
       #
       # Prints the version.
+      #
+      # @api public
       #
       def print_version
         puts "#{command_name} #{version}"

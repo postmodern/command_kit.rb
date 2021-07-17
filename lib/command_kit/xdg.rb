@@ -61,6 +61,8 @@ module CommandKit
       #   {CommandName::ClassMethods#command_name} if no {#xdg_namespace} has
       #   been defined.
       #
+      # @api public
+      #
       def xdg_namespace(new_namespace=nil)
         if new_namespace
           @xdg_namespace = new_namespace.to_s
@@ -77,16 +79,22 @@ module CommandKit
     # The `~/.config/<xdg_namespace>` directory.
     #
     # @return [String]
+    #
+    # @api public
     attr_reader :config_dir
 
     # The `~/.local/share/<xdg_namespace>` directory.
     #
     # @return [String]
+    #
+    # @api public
     attr_reader :local_share_dir
 
     # The `~/.cache/<xdg_namespace>` directory.
     #
     # @return [String]
+    #
+    # @api public
     attr_reader :cache_dir
 
     #
@@ -137,6 +145,8 @@ module CommandKit
 
     #
     # @see ClassMethods#xdg_namespace
+    #
+    # @api semipublic
     #
     def xdg_namespace
       self.class.xdg_namespace

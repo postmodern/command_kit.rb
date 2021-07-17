@@ -88,12 +88,16 @@ module CommandKit
       #
       # @see RESET
       #
+      # @api public
+      #
       def reset
         RESET
       end
 
       #
       # @see reset
+      #
+      # @api public
       #
       def clear
         reset
@@ -109,6 +113,8 @@ module CommandKit
       #   The bolded string or just {BOLD} if no arguments were given.
       #
       # @see BOLD
+      #
+      # @api public
       #
       def bold(string=nil)
         if string then "#{BOLD}#{string}#{RESET_INTENSITY}"
@@ -127,6 +133,8 @@ module CommandKit
       #
       # @see BLACK
       #
+      # @api public
+      #
       def black(string=nil)
         if string then "#{BLACK}#{string}#{RESET_COLOR}"
         else           BLACK
@@ -143,6 +151,8 @@ module CommandKit
       #   The colorized string or just {RED} if no arguments were given.
       #
       # @see RED
+      #
+      # @api public
       #
       def red(string=nil)
         if string then "#{RED}#{string}#{RESET_COLOR}"
@@ -161,6 +171,8 @@ module CommandKit
       #
       # @see GREEN
       #
+      # @api public
+      #
       def green(string=nil)
         if string then "#{GREEN}#{string}#{RESET_COLOR}"
         else           GREEN
@@ -177,6 +189,8 @@ module CommandKit
       #   The colorized string or just {YELLOW} if no arguments were given.
       #
       # @see YELLOW
+      #
+      # @api public
       #
       def yellow(string=nil)
         if string then "#{YELLOW}#{string}#{RESET_COLOR}"
@@ -195,6 +209,8 @@ module CommandKit
       #
       # @see BLUE
       #
+      # @api public
+      #
       def blue(string=nil)
         if string then "#{BLUE}#{string}#{RESET_COLOR}"
         else           BLUE
@@ -211,6 +227,8 @@ module CommandKit
       #   The colorized string or just {MAGENTA} if no arguments were given.
       #
       # @see MAGENTA
+      #
+      # @api public
       #
       def magenta(string=nil)
         if string then "#{MAGENTA}#{string}#{RESET_COLOR}"
@@ -229,6 +247,8 @@ module CommandKit
       #
       # @see CYAN
       #
+      # @api public
+      #
       def cyan(string=nil)
         if string then "#{CYAN}#{string}#{RESET_COLOR}"
         else           CYAN
@@ -245,6 +265,8 @@ module CommandKit
       #   The colorized string or just {WHITE} if no arguments were given.
       #
       # @see WHITE
+      #
+      # @api public
       #
       def white(string=nil)
         if string then "#{WHITE}#{string}#{RESET_COLOR}"
@@ -331,6 +353,8 @@ module CommandKit
     #   output. Color output will also be disabled if the given stream is not
     #   a TTY.
     #
+    # @api public
+    #
     def ansi?(stream=stdout)
       env['TERM'] != 'dumb' && stream.tty?
     end
@@ -348,6 +372,8 @@ module CommandKit
     #
     # @example Using colors with stderr output:
     #   stderr.puts colors(stderr).green("Hello world")
+    #
+    # @api public
     #
     def colors(stream=stdout)
       color = if ansi?(stream) then ANSI

@@ -57,6 +57,8 @@ module CommandKit
       #     "-o output.txt path/to/file"
       #   ]
       #   
+      # @api public
+      #
       def examples(new_examples=nil)
         if new_examples
           @examples = Array(new_examples)
@@ -71,12 +73,16 @@ module CommandKit
     #
     # @see ClassMethods#examples
     #
+    # @api semipublic
+    #
     def examples
       self.class.examples
     end
 
     #
     # Prints the command class'es example commands.
+    #
+    # @api semipublic
     #
     def help_examples
       if (examples = self.examples)
@@ -91,6 +97,8 @@ module CommandKit
     #
     # Calls the superclass'es `#help` method, if it's defined, then calls
     # {#help_examples}.
+    #
+    # @api public
     #
     def help
       super

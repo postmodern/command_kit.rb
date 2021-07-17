@@ -8,6 +8,8 @@ module CommandKit
     #
     # The default help command.
     #
+    # @api semipublic
+    #
     class Help < Command
 
       include ParentCommand

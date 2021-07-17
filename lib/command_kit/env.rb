@@ -23,6 +23,8 @@ module CommandKit
     # The environment variables hash.
     #
     # @return [Hash{String => String}]
+    #
+    # @api public
     attr_reader :env
 
     #
@@ -33,6 +35,8 @@ module CommandKit
     #
     # @param [Hash{Symbol => Object}] kwargs
     #   Additional keyword arguments.
+    #
+    # @api public
     #
     def initialize(env: ENV, **kwargs)
       @env = env

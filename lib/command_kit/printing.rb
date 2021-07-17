@@ -12,6 +12,8 @@ module CommandKit
     # Platform independency new-line constant
     #
     # @return [String]
+    #
+    # @api public
     EOL = $/
 
     #
@@ -22,6 +24,8 @@ module CommandKit
     #
     # @example
     #   print_error "Error: invalid input"
+    #
+    # @api public
     #
     def print_error(message)
       stderr.puts message
@@ -41,6 +45,8 @@ module CommandKit
     #     print_exception(error)
     #     exit(1)
     #   end
+    #
+    # @api public
     #
     def print_exception(error)
       print_error error.full_message(highlight: stderr.tty?)

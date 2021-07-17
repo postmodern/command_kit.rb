@@ -11,6 +11,8 @@ module CommandKit
     #
     # Represents a defined option.
     #
+    # @api private
+    #
     class Option
 
       # The option's name.

@@ -47,6 +47,8 @@ module CommandKit
       #
       # @return [Boolean]
       #
+      # @api public
+      #
       def verbose?
         @verbose
       end

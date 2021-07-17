@@ -27,11 +27,15 @@ module CommandKit
       # The directory to attempt to require command files within.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :dir
 
       # The namespace to lookup command classes within.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :namespace
 
       #
@@ -42,6 +46,8 @@ module CommandKit
       #
       # @param [String] namespace
       #   The namespace to search for command classes in.
+      #
+      # @api public
       #
       def initialize(dir: , namespace: )
         @dir       = dir
@@ -57,6 +63,8 @@ module CommandKit
       # @return [String]
       #   The path to the file that should contain the command.
       #
+      # @api private
+      #
       def join(name)
         File.join(@dir,name)
       end
@@ -69,6 +77,8 @@ module CommandKit
       # @return [Boolean]
       #
       # @raise [LoadError]
+      #
+      # @api private
       #
       def require(file_name)
         super(join(file_name))
@@ -86,6 +96,8 @@ module CommandKit
       # @raise [NameError]
       #   The command class could not be found within the {#namespace}.
       #
+      # @api private
+      #
       def const_get(constant)
         Object.const_get("::#{@namespace}::#{constant}",false)
       end
@@ -99,6 +111,8 @@ module CommandKit
       # @return [Class, nil]
       #   The command's class, or `nil` if the command cannot be loaded from
       #   {#dir} or found within {#namespace}.
+      #
+      # @api private
       #
       def command(command_name)
         file_name = Inflector.underscore(command_name)
@@ -124,6 +138,8 @@ module CommandKit
       #
       # @param [Class] command
       #   The command class including {AutoRequire}.
+      #
+      # @api private
       #
       def included(command)
         command.include Commands

@@ -40,16 +40,22 @@ module CommandKit
       # The auto-load subcommands.
       #
       # @return [Hash{String => Subcommand}]
+      #
+      # @api private
       attr_reader :commands
 
       # The path to the directory containing the command files.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :dir
 
       # The namespace that the will contain the command classes.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :namespace
 
       #
@@ -64,6 +70,8 @@ module CommandKit
       # @yield [self]
       #   If a block is given, it will be used to explicitly map the files
       #   within {#dir} as commands.
+      #
+      # @api public
       #
       def initialize(dir: , namespace: )
         @commands  = {}
@@ -106,6 +114,8 @@ module CommandKit
       # @option kwargs [Array<String>] aliases
       #   Optional alias names for the subcommand.
       #
+      # @api public
+      #
       def command(name, constant, file, **kwargs)
         @commands[name.to_s] = Subcommand.new(
           "#{@namespace}::#{constant}",
@@ -123,6 +133,8 @@ module CommandKit
       # @return [String]
       #   The joined absolute path.
       #
+      # @api private
+      #
       def join(path)
         File.join(@dir,path)
       end
@@ -132,6 +144,8 @@ module CommandKit
       #
       # @return [Array<String>]
       #   The paths to the `.rb` files in the directory.
+      #
+      # @api private
       #
       def files
         Dir.glob(join('*.rb'))
@@ -143,6 +157,8 @@ module CommandKit
       #
       # @param [Class] command
       #   The command class including {AutoLoad}.
+      #
+      # @api private
       #
       def included(command)
         command.include Commands

@@ -50,6 +50,8 @@ module CommandKit
       # @example
       #   description "Does things and stuff"
       #
+      # @api public
+      #
       def description(new_description=nil)
         if new_description
           @description = new_description
@@ -64,12 +66,16 @@ module CommandKit
     #
     # @see ClassMethods#description
     #
+    # @api semipublic
+    #
     def description
       self.class.description
     end
 
     #
     # Prints the {ClassMethods#description description}, if set.
+    #
+    # @api semipublic
     #
     def help_description
       if (description = self.description)
@@ -81,6 +87,8 @@ module CommandKit
     #
     # Calls the superclass'es `#help` method, if it's defined, then calls
     # {#help_description}.
+    #
+    # @api public
     #
     def help
       super

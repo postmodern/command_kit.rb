@@ -22,6 +22,8 @@ module CommandKit
     #
     # @return [Boolean]
     #
+    # @api public
+    #
     def linux?
       RUBY_PLATFORM.include?('linux')
     end
@@ -31,6 +33,8 @@ module CommandKit
     #
     # @return [Boolean]
     #
+    # @api public
+    #
     def macos?
       RUBY_PLATFORM.include?('darwin')
     end
@@ -39,6 +43,8 @@ module CommandKit
     # Determines if the current OS is Windows.
     #
     # @return [Boolean]
+    #
+    # @api public
     #
     def windows?
       Gem.win_platform?

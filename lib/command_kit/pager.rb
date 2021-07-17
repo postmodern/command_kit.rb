@@ -53,6 +53,8 @@ module CommandKit
     #   Respects the `PAGER` env variable, or attemps to find `less` or
     #   `more` by searching the `PATH` env variable.
     #
+    # @api public
+    #
     def initialize(**kwargs)
       super(**kwargs)
 
@@ -88,6 +90,8 @@ module CommandKit
     #       end
     #     end
     #   end
+    #
+    # @api public
     #
     def pager
       if !stdout.tty? || @pager.nil?
@@ -125,6 +129,8 @@ module CommandKit
     #
     # @example Print or pages the contents of a file:
     #   print_or_page(File.read(file))
+    #
+    # @api public
     #
     def print_or_page(data)
       line_count = case data

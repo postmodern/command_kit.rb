@@ -3,6 +3,8 @@ module CommandKit
     #
     # Represents an individual argument value.
     #
+    # @api private
+    #
     class ArgumentValue
 
       # Specifies whether the argument value is required or optional.

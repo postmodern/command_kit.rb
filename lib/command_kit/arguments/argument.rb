@@ -5,6 +5,8 @@ module CommandKit
     #
     # Represents a defined argument.
     #
+    # @api private
+    #
     class Argument < ArgumentValue
 
       # The argument's name.

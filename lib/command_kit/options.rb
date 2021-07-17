@@ -68,6 +68,8 @@ module CommandKit
       #
       # @return [Hash{Symbol => Option}]
       #
+      # @api semipublic
+      #
       def options
         @options ||= if superclass.kind_of?(ClassMethods)
                        superclass.options.dup
@@ -172,6 +174,8 @@ module CommandKit
       #       # ...
       #     end
       #
+      # @api public
+      #
       def option(name,**kwargs,&block)
         options[name] = Option.new(name,**kwargs,&block)
       end
@@ -180,6 +184,9 @@ module CommandKit
     # Hash of parsed option values.
     #
     # @return [Hash{Symbol => Object}]
+    #
+    # @api semipublic
+    #
     attr_reader :options
 
     #
@@ -192,6 +199,8 @@ module CommandKit
     # @note
     #   The {#option_parser} will populate {#options} and also call any
     #   {ClassMethods#option option} blocks with the parsed option values.
+    #
+    # @api public
     #
     def initialize(options: {}, **kwargs)
       @options = options

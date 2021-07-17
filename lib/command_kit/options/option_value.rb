@@ -14,6 +14,8 @@ module CommandKit
     #
     # Represents an additional argument associated with an option flag.
     #
+    # @api private
+    #
     class OptionValue < Arguments::ArgumentValue
 
       # Maps OptionParser types to USAGE strings.

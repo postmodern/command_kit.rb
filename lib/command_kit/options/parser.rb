@@ -58,12 +58,16 @@ module CommandKit
       # The option parser.
       #
       # @return [OptionParser]
+      #
+      # @api semipublic
       attr_reader :option_parser
 
       #
       # The option parser.
       #
       # @return [OptionParser]
+      #
+      # @api public
       #
       def initialize(**kwargs)
         super(**kwargs)
@@ -91,6 +95,8 @@ module CommandKit
       # @return [Integer]
       #   The exit status code.
       #
+      # @api public
+      #
       def main(argv=[])
         super(parse_options(argv))
       rescue SystemExit => system_exit
@@ -105,6 +111,8 @@ module CommandKit
       #
       # @return [Array<String>]
       #   The remaining non-option arguments.
+      #
+      # @api semipublic
       #
       def parse_options(argv)
         begin
@@ -132,6 +140,8 @@ module CommandKit
       # @param [OptionParser::ParseError] error
       #   The error from `OptionParser`.
       #
+      # @api semipublic
+      #
       def on_parse_error(error)
         print_error("#{command_name}: #{error.message}")
         print_error("Try '#{command_name} --help' for more information.")
@@ -145,6 +155,8 @@ module CommandKit
       #
       # @see on_parse_error
       #
+      # @api semipublic
+      #
       def on_invalid_option(error)
         on_parse_error(error)
       end
@@ -156,6 +168,8 @@ module CommandKit
       # @param [OptionParser::AmbiguousOption] error
       #
       # @see on_parse_error
+      #
+      # @api semipublic
       #
       def on_ambiguous_option(error)
         on_parse_error(error)
@@ -169,6 +183,8 @@ module CommandKit
       #
       # @see on_parse_error
       #
+      # @api semipublic
+      #
       def on_invalid_argument(error)
         on_parse_error(error)
       end
@@ -180,6 +196,8 @@ module CommandKit
       # @param [OptionParser::MissingArgument] error
       #
       # @see on_parse_error
+      #
+      # @api semipublic
       #
       def on_missing_argument(error)
         on_parse_error(error)
@@ -193,6 +211,8 @@ module CommandKit
       #
       # @see on_parse_error
       #
+      # @api semipublic
+      #
       def on_needless_argument(error)
         on_parse_error(error)
       end
@@ -205,6 +225,8 @@ module CommandKit
       #
       # @see on_parse_error
       #
+      # @api semipublic
+      #
       def on_ambiguous_argument(error)
         on_parse_error(error)
       end
@@ -212,12 +234,16 @@ module CommandKit
       #
       # Prints the `--help` output.
       #
+      # @api semipublic
+      #
       def help_options
         puts option_parser
       end
 
       #
       # @see #help_options
+      #
+      # @api public
       #
       def help
         help_options

@@ -41,6 +41,8 @@ module CommandKit
     #   If the `$COLUMNS` env variable is set, and is non-zero, it will be
     #   returned by {#terminal_width}.
     #
+    # @api public
+    #
     def initialize(**kwargs)
       super(**kwargs)
 
@@ -63,6 +65,8 @@ module CommandKit
     # @return [Boolean]
     #   Specifies whether {Stdio#stdout stdout} is connected to a terminal.
     #
+    # @api public
+    #
     def terminal?
       IO.respond_to?(:console) && stdout.tty?
     end
@@ -81,6 +85,8 @@ module CommandKit
     #
     # @see https://rubydoc.info/gems/io-console/IO
     #
+    # @api semipublic
+    #
     def terminal
       IO.console if terminal?
     end
@@ -94,6 +100,8 @@ module CommandKit
     # @example
     #   terminal_height
     #   # => 22
+    #
+    # @api public
     #
     def terminal_height
       if (terminal = self.terminal)
@@ -113,6 +121,8 @@ module CommandKit
     #   terminal_width
     #   # => 91
     #
+    # @api public
+    #
     def terminal_width
       if (terminal = self.terminal)
         terminal.winsize[1]
@@ -130,6 +140,8 @@ module CommandKit
     # @example
     #   terminal_size
     #   # => [23, 91]
+    #
+    # @api public
     #
     def terminal_size
       if (terminal = self.terminal)

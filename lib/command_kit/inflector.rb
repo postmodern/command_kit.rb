@@ -8,6 +8,8 @@ module CommandKit
   #   If you need something more powerful, checkout
   #   [dry-inflector](https://dry-rb.org/gems/dry-inflector/0.1/)
   #
+  # @api semipublic
+  #
   module Inflector
     #
     # Removes the namespace from a constant name.

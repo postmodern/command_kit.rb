@@ -48,6 +48,8 @@ module CommandKit
       #
       # @see Help#help
       #
+      # @api public
+      #
       def help(**kwargs)
         new(**kwargs).help
       end
@@ -57,6 +59,8 @@ module CommandKit
     # Prints `--help` information.
     #
     # @abstract
+    #
+    # @api public
     #
     def help
     end

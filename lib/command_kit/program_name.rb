@@ -42,6 +42,8 @@ module CommandKit
       #   The `$PROGRAM_NAME` or `nil` if the `$PROGRAM_NAME` is `-e`, `irb`,
       #   or `rspec`.
       #
+      # @api semipublic
+      #
       def program_name
         $PROGRAM_NAME unless IGNORED_PROGRAM_NAMES.include?($PROGRAM_NAME)
       end
@@ -49,6 +51,8 @@ module CommandKit
 
     #
     # @see ClassMethods#program_name
+    #
+    # @api public
     #
     def program_name
       self.class.program_name

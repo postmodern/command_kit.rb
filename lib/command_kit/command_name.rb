@@ -65,6 +65,8 @@ module CommandKit
       #
       # @return [String]
       #
+      # @api public
+      #
       def command_name(new_command_name=nil)
         if new_command_name
           @command_name = new_command_name.to_s
@@ -77,6 +79,8 @@ module CommandKit
     # The commands name.
     #
     # @return [String]
+    #
+    # @api public
     attr_reader :command_name
 
     #
@@ -85,6 +89,8 @@ module CommandKit
     # @param [String] command_name
     #   Overrides the command name. Defaults to
     #   {ClassMethods#command_name self.class.command_name}.
+    #
+    # @api public
     #
     def initialize(command_name: self.class.command_name, **kwargs)
       @command_name = command_name

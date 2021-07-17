@@ -3,6 +3,8 @@ module CommandKit
     #
     # Represents a registered subcommand.
     #
+    # @api private
+    #
     class Subcommand
 
       # The command class.

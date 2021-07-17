@@ -61,6 +61,8 @@ module CommandKit
       #   end
       #   puts "```"
       #
+      # @api public
+      #
       def indent(n=2)
         if block_given?
           begin
@@ -81,6 +83,8 @@ module CommandKit
       #
       # @param [Array<String>] lines
       #   The lines to indent and print.
+      #
+      # @api public
       #
       def puts(*lines)
         if (@indent > 0 && !lines.empty?)

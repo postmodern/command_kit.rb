@@ -33,6 +33,8 @@ module CommandKit
     # @return [Integer]
     #   The exit status of the command.
     #
+    # @api public
+    #
     def main(argv=[])
       super(argv)
     rescue Interrupt, Errno::EPIPE => error
@@ -46,6 +48,8 @@ module CommandKit
     #
     # @param [Exception] error
     #   The raised exception.
+    #
+    # @api semipublic
     #
     def on_exception(error)
       print_exception(error)

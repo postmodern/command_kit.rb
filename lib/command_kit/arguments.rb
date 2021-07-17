@@ -79,6 +79,8 @@ module CommandKit
       # @return [Hash{Symbol => Argument}]
       #   The defined argument for the class and it's superclass.
       #
+      # @api semipublic
+      #
       def arguments
         @arguments ||= if superclass.kind_of?(ClassMethods)
                          superclass.arguments.dup
@@ -133,6 +135,8 @@ module CommandKit
       #     argument :bar, repeats: true,
       #                    desc: "Bar argument"
       #
+      # @api public
+      #
       def argument(name,**kwargs)
         arguments[name] = Argument.new(name,**kwargs)
       end
@@ -148,6 +152,8 @@ module CommandKit
     # @return [Integer]
     #   The exit status code. If too few or too many arguments are given, then
     #   an error message is printed and `1` is returned.
+    #
+    # @api public
     #
     def main(argv=[])
       required_args   = self.class.arguments.each_value.count(&:required?)
@@ -170,6 +176,8 @@ module CommandKit
     #
     # Prints any defined arguments, along with the usual `--help` information.
     #
+    # @api semipublic
+    #
     def help_arguments
       unless (arguments = self.class.arguments).empty?
         puts
@@ -184,6 +192,8 @@ module CommandKit
     #
     # Calls the superclass'es `#help` method, if it's defined, then calls
     # {#help_arguments}.
+    #
+    # @api public
     #
     def help
       super

@@ -44,6 +44,8 @@ module CommandKit
         #
         # @return [String]
         #
+        # @api semipublic
+        #
         def home_dir
           Gem.user_home
         end
@@ -52,6 +54,8 @@ module CommandKit
       # The home directory.
       #
       # @return [String]
+      #
+      # @api public
       attr_reader :home_dir
 
       #
@@ -60,6 +64,8 @@ module CommandKit
       #
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments.
+      #
+      # @api public
       #
       def initialize(**kwargs)
         super(**kwargs)

@@ -67,6 +67,8 @@ module CommandKit
     #   # Email: bob@example.com<enter>
     #   # => "bob@example.com"
     #
+    # @api public
+    #
     def ask(prompt, default: nil, required: false)
       prompt = prompt.chomp
       prompt << " [#{default}]" if default
@@ -110,6 +112,8 @@ module CommandKit
     #   ask_yes_or_no("Proceed anyways?", default: true)
     #   # Proceed anyways? (Y/N) [Y]: <enter>
     #   # => true
+    #
+    # @api public
     #
     def ask_yes_or_no(prompt, default: nil, **kwargs)
       default = case default
@@ -176,6 +180,8 @@ module CommandKit
     #   #
     #   # => "All of the above"
     #
+    # @api public
+    #
     def ask_multiple_choice(prompt,choices,**kwargs)
       choices = case choices
                 when Array
@@ -216,6 +222,8 @@ module CommandKit
     #   ask_secret("Password")
     #   # Password: 
     #   # => "s3cr3t"
+    #
+    # @api public
     #
     def ask_secret(prompt, required: true)
       if stdin.respond_to?(:noecho)
