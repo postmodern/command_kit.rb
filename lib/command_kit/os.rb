@@ -40,6 +40,19 @@ module CommandKit
     end
 
     #
+    # Determines if the current OS is UNIX based.
+    #
+    # @return [Boolean]
+    #
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    def unix?
+      linux? || macos?
+    end
+
+    #
     # Determines if the current OS is Windows.
     #
     # @return [Boolean]
