@@ -40,6 +40,19 @@ module CommandKit
     end
 
     #
+    # Determines if the current OS is FreeBSD.
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    #
+    # @since 0.2.0
+    #
+    def freebsd?
+      RUBY_PLATFORM.include?('freebsd')
+    end
+
+    #
     # Determines if the current OS is UNIX based.
     #
     # @return [Boolean]

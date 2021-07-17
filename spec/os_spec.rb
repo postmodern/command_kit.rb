@@ -36,6 +36,20 @@ describe CommandKit::OS do
     end
   end
 
+  describe "#freebsd?" do
+    context "when RUBY_PLATFORM contains 'freebsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
+
+      it { expect(subject.freebsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM does not contain 'freebsd'" do
+      before { stub_const('RUBY_PLATFORM','mswin') }
+
+      it { expect(subject.freebsd?).to be(false) }
+    end
+  end
+
   describe "#unix?" do
     context "when RUBY_PLATFORM contains 'darwin'" do
       before { stub_const('RUBY_PLATFORM','aarch64-darwin') }
