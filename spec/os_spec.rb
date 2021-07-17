@@ -83,4 +83,40 @@ describe CommandKit::OS do
       subject.windows?
     end
   end
+
+  describe "#os" do
+    context "when RUBY_PLATFORM contains 'linux'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-linux') }
+
+      it { expect(subject.os).to eq(:linux) }
+    end
+
+    context "when RUBY_PLATFORM contains 'darwin'" do
+      before { stub_const('RUBY_PLATFORM','aarch64-darwin') }
+
+      it { expect(subject.os).to eq(:macos) }
+    end
+
+    context "when RUBY_PLATFORM contains 'freebsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
+
+      it { expect(subject.os).to eq(:freebsd) }
+    end
+
+    context "when Gem.win_platform? returns true" do
+      before { stub_const('RUBY_PLATFORM','mswin') }
+
+      before do
+        expect(Gem).to receive(:win_platform?).and_return(true)
+      end
+
+      it { expect(subject.os).to eq(:windows) }
+    end
+
+    context "when the OS cannot be identified" do
+      before { stub_const('RUBY_PLATFORM','foo') }
+
+      it { expect(subject.os).to be(nil) }
+    end
+  end
 end

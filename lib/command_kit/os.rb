@@ -77,5 +77,23 @@ module CommandKit
     def windows?
       Gem.win_platform?
     end
+
+    #
+    # Identifies the current OS.
+    #
+    # @return [:linux, :macos, :freebsd, :windows, nil]
+    #   The current OS or `nil` if the current OS cannot be identified.
+    #
+    # @api public
+    #
+    # @since 0.2.0
+    #
+    def os
+      if    linux?   then :linux
+      elsif macos?   then :macos
+      elsif freebsd? then :freebsd
+      elsif windows? then :windows
+      end
+    end
   end
 end
