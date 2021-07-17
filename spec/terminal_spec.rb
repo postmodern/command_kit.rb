@@ -43,6 +43,36 @@ describe CommandKit::Terminal do
     end
   end
 
+  describe "#tty?" do
+    context "when stdout is connected to a TTY" do
+      subject { command_class.new(stdout: STDOUT) }
+
+      it do
+        skip "STDOUT is not a TTY" unless STDOUT.tty?
+
+        expect(subject.tty?).to be(true)
+      end
+    end
+
+    context "when stdout is not connected to a TTY" do
+      subject { command_class.new(stdout: StringIO.new) }
+
+      it do
+        expect(subject.tty?).to be(false)
+      end
+    end
+
+    context "when IO.console is missing" do
+      before do
+        expect(IO).to receive(:respond_to?).with(:console).and_return(false)
+      end
+
+      it do
+        expect(subject.tty?).to be(false)
+      end
+    end
+  end
+
   describe "#terminal" do
     context "when stdout is connected to a TTY" do
       subject { command_class.new(stdout: STDOUT) }
