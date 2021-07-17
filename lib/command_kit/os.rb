@@ -62,7 +62,7 @@ module CommandKit
     # @api public
     #
     def unix?
-      linux? || macos?
+      linux? || macos? || freebsd?
     end
 
     #
