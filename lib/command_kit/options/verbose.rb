@@ -18,6 +18,9 @@ module CommandKit
     module Verbose
       include Options
 
+      #
+      # @api private
+      #
       module ModuleMethods
         #
         # Defines a `-v, --verbose` option or extends {ModuleMethods}, depending

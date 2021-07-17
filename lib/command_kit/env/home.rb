@@ -14,6 +14,9 @@ module CommandKit
     module Home
       include Env
 
+      #
+      # @api private
+      #
       module ModuleMethods
         #
         # Extends {ClassMethods} or {ModuleMethods}, depending on whether

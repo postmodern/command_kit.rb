@@ -17,6 +17,9 @@ module CommandKit
     include Help
     include CommandName
 
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

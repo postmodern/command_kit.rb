@@ -31,6 +31,9 @@ module CommandKit
   #     # => "foo-cmd"
   #
   module CommandName
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

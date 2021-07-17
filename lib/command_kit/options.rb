@@ -38,6 +38,9 @@ module CommandKit
   module Options
     include Parser
 
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

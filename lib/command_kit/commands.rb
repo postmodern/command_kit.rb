@@ -41,6 +41,9 @@ module CommandKit
     include Stdio
     include Env
 
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

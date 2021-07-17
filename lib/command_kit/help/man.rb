@@ -24,6 +24,9 @@ module CommandKit
       include Help
       include Stdio
 
+      #
+      # @api private
+      #
       module ModuleMethods
         #
         # Extends {ClassMethods} or {ModuleMethods}, depending on whether

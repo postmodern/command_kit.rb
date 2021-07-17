@@ -12,6 +12,9 @@ module CommandKit
   #     end
   #
   module Main
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether {Main}

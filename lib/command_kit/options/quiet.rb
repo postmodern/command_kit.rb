@@ -18,6 +18,9 @@ module CommandKit
     module Quiet
       include Options
 
+      #
+      # @api private
+      #
       module ModuleMethods
         #
         # Defines a `-q, --quiet` option.

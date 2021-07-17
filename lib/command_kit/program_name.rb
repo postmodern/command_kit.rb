@@ -3,6 +3,9 @@ module CommandKit
   # Retrieves the current program name (`$PROGRAM_NAME`).
   #
   module ProgramName
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

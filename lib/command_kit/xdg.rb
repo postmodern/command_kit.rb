@@ -24,6 +24,9 @@ module CommandKit
     include CommandName
     include Env::Home
 
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether {XDG} is

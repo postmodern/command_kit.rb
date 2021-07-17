@@ -15,6 +15,9 @@ module CommandKit
   #     MyCmd.help
   #
   module Help
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether {Help}

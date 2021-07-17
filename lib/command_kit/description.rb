@@ -13,6 +13,9 @@ module CommandKit
   module Description
     include Help
 
+    #
+    # @api private
+    #
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether

@@ -33,6 +33,9 @@ module CommandKit
       include Main
       include Printing
 
+      #
+      # @api private
+      #
       module ModuleMethods
         #
         # Sets {CommandKit::Usage::ClassMethods#usage .usage} or extends
