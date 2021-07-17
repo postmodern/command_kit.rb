@@ -64,6 +64,8 @@ module CommandKit
         # @example
         #   man_dir "#{__dir__}/../../man"
         #
+        # @api public
+        #
         def man_dir(new_man_dir=nil)
           if new_man_dir
             @man_dir = new_man_dir
@@ -82,6 +84,8 @@ module CommandKit
         #
         # @return [String]
         #   The class'es or superclass'es man-page file name.
+        #
+        # @api semipublic
         #
         def man_page(new_man_page=nil)
           if new_man_page
@@ -105,6 +109,8 @@ module CommandKit
       #   Specifies whether the `man` command was successful or not.
       #   Returns `nil` when the `man` command is not installed.
       #
+      # @api public
+      #
       def man(page, section: nil)
         if section
           system('man',section.to_s,page.to_s)
@@ -127,6 +133,8 @@ module CommandKit
       # @raise [NotImplementedError]
       #   {ClassMethods#man_dir .man_dir} does not have a value.
       #
+      # @api semipublic
+      #
       def help_man(man_page=self.class.man_page)
         unless self.class.man_dir
           raise(NotImplementedError,"#{self.class}.man_dir not set")
@@ -147,6 +155,8 @@ module CommandKit
       # @note
       #   if `TERM` is `dumb` or `$stdout` is not a TTY, fallsback to printing
       #   the usual `--help` output.
+      #
+      # @api public
       #
       def help
         if stdout.tty?
