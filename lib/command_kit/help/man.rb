@@ -85,7 +85,7 @@ module CommandKit
         # @return [String]
         #   The class'es or superclass'es man-page file name.
         #
-        # @api semipublic
+        # @api public
         #
         def man_page(new_man_page=nil)
           if new_man_page
