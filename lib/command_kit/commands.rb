@@ -151,8 +151,10 @@ module CommandKit
       # Gets the command.
       #
       # @param [String] name
+      #   The command name.
       #
       # @return [Class#main, nil]
+      #   The command class or `nil` if no command could be found.
       #
       # @api private
       #
@@ -251,6 +253,7 @@ module CommandKit
     # Prints an error about an unknown command and exits with an error code.
     #
     # @param [String] name
+    #   The command name.
     #
     # @api semipublic
     #

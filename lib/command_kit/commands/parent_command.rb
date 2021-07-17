@@ -1,5 +1,8 @@
 module CommandKit
   module Commands
+    #
+    # Allows a command to be aware of it's parent command.
+    #
     module ParentCommand
 
       # The parent command instance.

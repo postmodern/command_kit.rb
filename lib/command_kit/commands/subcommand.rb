@@ -42,6 +42,16 @@ module CommandKit
         @aliases = aliases.map(&:to_s)
       end
 
+      #
+      # Derives a summary from the command's description.
+      #
+      # @param [Class] command
+      #   The command class.
+      #
+      # @return [String, nil]
+      #   If the command responds to a `#description` method, the first sentence
+      #   of the description will be returned. Otherwise `nil` is returned.
+      #
       def self.summary(command)
         if command.respond_to?(:description)
           if (desc = command.description)
