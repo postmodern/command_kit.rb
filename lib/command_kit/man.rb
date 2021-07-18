@@ -4,6 +4,11 @@ module CommandKit
   #
   # Allows displaying man pages.
   #
+  # ## Examples
+  #
+  #     man "passwd"
+  #     man "passwd", section: 5
+  #
   # @since 0.2.0
   #
   module Man
@@ -19,6 +24,12 @@ module CommandKit
     # @return [Boolean, nil]
     #   Specifies whether the `man` command was successful or not.
     #   Returns `nil` when the `man` command is not installed.
+    #
+    # @example
+    #   man "passwd"
+    #
+    # @example Display a man-page from a specific section:
+    #   man "passwd", section: 5
     #
     # @api public
     #
