@@ -18,12 +18,12 @@ describe CommandKit::Options::Option do
   end
 
   subject do
-    described_class.new name, short:  short,
+    described_class.new(name, short:  short,
                               long:   long,
                               equals: equals,
                               desc:   desc,
                               value:  value,
-                              &block
+                              &block)
   end
 
   describe "#initialize" do
