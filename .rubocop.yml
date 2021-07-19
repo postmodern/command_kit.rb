@@ -3,8 +3,11 @@ AllCops:
   SuggestExtensions: false
   TargetRubyVersion: 2.7
 
+Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
+Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space }
 Metrics: { Enabled: false }
-Style/StringLiterals: { EnforcedStyle: double_quotes }
+Style/SymbolArray: { EnforcedStyle: brackets }
+# Style/StringLiterals: { EnforcedStyle: double_quotes }
 
 #
 # bundle exec rubocop --auto-gen-config --exclude-limit 1
@@ -13,10 +16,8 @@ Style/StringLiterals: { EnforcedStyle: double_quotes }
 # > 10 violations
 Layout/AssignmentIndentation: { Enabled: false } # Offense count: 11
 Layout/EmptyLinesAroundClassBody: { Enabled: false } # Offense count: 76
-Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent } # Offense count: 10
 Layout/HashAlignment: { Enabled: false } # Offense count: 28
 Layout/SpaceAfterComma: { Enabled: false } # Offense count: 141
-Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space } # Offense count: 41
 Layout/SpaceInsideHashLiteralBraces: { Enabled: false } # Offense count: 57
 Layout/TrailingWhitespace: { Enabled: false } # Offense count: 50
 Lint/ConstantDefinitionInBlock: { Enabled: false } # Offense count: 105
@@ -31,7 +32,6 @@ Style/IfUnlessModifier: { Enabled: false } # Offense count: 13
 Style/MethodCallWithoutArgsParentheses: { Enabled: false } # Offense count: 10
 Style/SpecialGlobalVars: { Enabled: false } # Offense count: 28
 Style/StringLiterals: { Enabled: false } # Offense count: 774
-Style/SymbolArray: { EnforcedStyle: brackets } # Offense count: 12
 
 # < 10 violations
 Layout/EmptyLinesAroundModuleBody: { Enabled: false } # Offense count: 5
