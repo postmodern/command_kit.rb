@@ -6,6 +6,7 @@ AllCops:
 Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
 Layout/LineLength: { Enabled: false }
 Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space }
+Lint/ConstantDefinitionInBlock: { Exclude: ['spec/**/*'] }
 Metrics: { Enabled: false }
 Style/SymbolArray: { EnforcedStyle: brackets }
 # Style/StringLiterals: { EnforcedStyle: double_quotes }
@@ -21,7 +22,6 @@ Layout/HashAlignment: { Enabled: false } # Offense count: 28
 Layout/SpaceAfterComma: { Enabled: false } # Offense count: 141
 Layout/SpaceInsideHashLiteralBraces: { Enabled: false } # Offense count: 57
 Layout/TrailingWhitespace: { Enabled: false } # Offense count: 50
-Lint/ConstantDefinitionInBlock: { Enabled: false } # Offense count: 105
 Naming/RescuedExceptionsVariableName: { Enabled: false } # Offense count: 11
 Style/BlockDelimiters: { Enabled: false } # Offense count: 17
 Style/ClassCheck: { Enabled: false } # Offense count: 10
