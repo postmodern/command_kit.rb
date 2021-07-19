@@ -182,7 +182,7 @@ describe CommandKit::Usage do
           [
             "#{subject.command_name} #{command_class.usage[0]}",
             "#{subject.command_name} #{command_class.usage[1]}",
-            "#{subject.command_name} #{command_class.usage[2]}",
+            "#{subject.command_name} #{command_class.usage[2]}"
           ]
         )
       end

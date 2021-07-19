@@ -16,7 +16,7 @@ class Command < CommandKit::Command
 
   option :output, value: {
                     type: String,
-                    usage: 'FILE',
+                    usage: 'FILE'
                   },
                   short: '-o',
                   desc: "Optional output file"
