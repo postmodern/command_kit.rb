@@ -1,0 +1,93 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.7
+
+Metrics: { Enabled: false }
+Style/StringLiterals: { EnforcedStyle: double_quotes }
+
+#
+# bundle exec rubocop --auto-gen-config --exclude-limit 1
+#
+
+# > 10 violations
+Layout/AssignmentIndentation: { Enabled: false } # Offense count: 11
+Layout/EmptyLinesAroundClassBody: { Enabled: false } # Offense count: 76
+Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent } # Offense count: 10
+Layout/HashAlignment: { Enabled: false } # Offense count: 28
+Layout/SpaceAfterComma: { Enabled: false } # Offense count: 141
+Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space } # Offense count: 41
+Layout/SpaceInsideHashLiteralBraces: { Enabled: false } # Offense count: 57
+Layout/TrailingWhitespace: { Enabled: false } # Offense count: 50
+Lint/ConstantDefinitionInBlock: { Enabled: false } # Offense count: 105
+Naming/RescuedExceptionsVariableName: { Enabled: false } # Offense count: 11
+Style/BlockDelimiters: { Enabled: false } # Offense count: 17
+Style/ClassCheck: { Enabled: false } # Offense count: 10
+Style/ClassEqualityComparison: { Enabled: false } # Offense count: 16
+Style/FrozenStringLiteralComment: { Enabled: false } # Offense count: 77
+Style/GlobalStdStream: { Enabled: false } # Offense count: 13
+Style/GuardClause: { Enabled: false } # Offense count: 10
+Style/IfUnlessModifier: { Enabled: false } # Offense count: 13
+Style/MethodCallWithoutArgsParentheses: { Enabled: false } # Offense count: 10
+Style/SpecialGlobalVars: { Enabled: false } # Offense count: 28
+Style/StringLiterals: { Enabled: false } # Offense count: 774
+Style/SymbolArray: { EnforcedStyle: brackets } # Offense count: 12
+
+# < 10 violations
+Layout/EmptyLinesAroundModuleBody: { Enabled: false } # Offense count: 5
+Layout/ExtraSpacing: { Enabled: false } # Offense count: 6
+Layout/FirstHashElementIndentation: { Enabled: false } # Offense count: 4
+Layout/ParameterAlignment: { Enabled: false } # Offense count: 9
+Layout/SpaceAroundKeyword: { Enabled: false } # Offense count: 7
+Layout/SpaceBeforeComma: { Enabled: false } # Offense count: 4
+Layout/SpaceInsideParens: { Enabled: false } # Offense count: 4
+Lint/EmptyClass: { Enabled: false } # Offense count: 3
+Lint/SuppressedException: { Enabled: false } # Offense count: 4
+Lint/UnusedMethodArgument: { Enabled: false } # Offense count: 5
+Style/AccessorGrouping: { Enabled: false } # Offense count: 7
+Style/Documentation: { Enabled: false } # Offense count: 3
+Style/ExpandPathArguments: { Enabled: false } # Offense count: 8
+Style/HashSyntax: { Enabled: false } # Offense count: 3
+Style/KeywordParametersOrder: { Enabled: false } # Offense count: 8
+Style/Lambda: { Enabled: false } # Offense count: 3
+Style/MutableConstant: { Enabled: false } # Offense count: 4
+Style/RaiseArgs: { Enabled: false } # Offense count: 4
+Style/RedundantReturn: { Enabled: false } # Offense count: 7
+Style/SafeNavigation: { Enabled: false } # Offense count: 5
+Style/StringConcatenation: { Enabled: false } # Offense count: 8
+Style/WordArray: { Enabled: false } # Offense count: 4
+
+# 1 or 2 violations
+Gemspec/DuplicatedAssignment: { Enabled: false } # Offense count: 1
+Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
+Layout/BlockAlignment: { Enabled: false } # Offense count: 1
+Layout/ElseAlignment: { Enabled: false } # Offense count: 1
+Layout/EndAlignment: { Enabled: false } # Offense count: 1
+Layout/IndentationWidth: { Enabled: false } # Offense count: 2
+Layout/LineLength: { Max: 137 } # Offense count: 2
+Layout/SpaceAroundOperators: { Enabled: false } # Offense count: 1
+Layout/SpaceBeforeBlockBraces: { Enabled: false } # Offense count: 1
+Lint/DuplicateMethods: { Enabled: false } # Offense count: 1
+Lint/MissingSuper: { Enabled: false } # Offense count: 2
+Lint/RescueException: { Enabled: false } # Offense count: 1
+Lint/UnreachableLoop: { Enabled: false } # Offense count: 1
+Lint/UnusedBlockArgument: { Enabled: false } # Offense count: 1
+Lint/UselessAssignment: { Enabled: false } # Offense count: 1
+Naming/MethodParameterName: { Enabled: false } # Offense count: 1
+Style/EmptyMethod: { Enabled: false } # Offense count: 2
+Style/Encoding: { Enabled: false } # Offense count: 2
+Style/HashConversion: { Enabled: false } # Offense count: 1
+Style/MultilineMemoization: { Enabled: false } # Offense count: 1
+Style/NumericPredicate: { Enabled: false } # Offense count: 1
+Style/OptionalArguments: { Enabled: false } # Offense count: 1
+Style/ParenthesesAroundCondition: { Enabled: false } # Offense count: 1
+Style/PreferredHashMethods: { Enabled: false } # Offense count: 1
+Style/QuotedSymbols: { Enabled: false } # Offense count: 1
+Style/RedundantBegin: { Enabled: false } # Offense count: 2
+Style/RedundantException: { Enabled: false } # Offense count: 1
+Style/RedundantInterpolation: { Enabled: false } # Offense count: 1
+Style/RedundantRegexpEscape: { Enabled: false } # Offense count: 1
+Style/RescueStandardError: { Enabled: false } # Offense count: 1
+Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
+Style/TrailingCommaInArrayLiteral: { Enabled: false } # Offense count: 1
+Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
