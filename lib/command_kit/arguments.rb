@@ -186,7 +186,7 @@ module CommandKit
         puts
         puts 'Arguments:'
 
-        self.class.arguments.each_value do |arg|
+        arguments.each_value do |arg|
           puts "    #{arg.usage.ljust(33)}#{arg.desc}"
         end
       end
