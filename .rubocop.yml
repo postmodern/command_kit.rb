@@ -4,6 +4,7 @@ AllCops:
   TargetRubyVersion: 2.7
 
 Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
+Layout/LineLength: { Enabled: false }
 Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space }
 Metrics: { Enabled: false }
 Style/SymbolArray: { EnforcedStyle: brackets }
@@ -64,7 +65,6 @@ Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Layout/ElseAlignment: { Enabled: false } # Offense count: 1
 Layout/EndAlignment: { Enabled: false } # Offense count: 1
 Layout/IndentationWidth: { Enabled: false } # Offense count: 2
-Layout/LineLength: { Max: 137 } # Offense count: 2
 Layout/SpaceAroundOperators: { Enabled: false } # Offense count: 1
 Layout/SpaceBeforeBlockBraces: { Enabled: false } # Offense count: 1
 Lint/DuplicateMethods: { Enabled: false } # Offense count: 1
