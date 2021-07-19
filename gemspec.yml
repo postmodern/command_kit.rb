@@ -13,3 +13,4 @@ required_ruby_version: ">= 2.7.0"
 
 development_dependencies:
   bundler: ~> 2.0
+  rubocop: ~> 1.18
