@@ -104,7 +104,8 @@ describe CommandKit::Inflector do
     ascii = (0..255).map(&:chr)
     alpha = ('a'..'z').to_a + ('A'..'Z').to_a
     numeric = ('0'..'9').to_a
-    (ascii - alpha - numeric - %w[_ - /]).each do |char|
+    separators = %w[_ - /]
+    (ascii - alpha - numeric - separators).each do |char|
       context "when the given String contains a #{char.inspect} character" do
         let(:string) { "foo#{char}bar" }
 
