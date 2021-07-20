@@ -73,7 +73,7 @@ module CommandKit
     #   The given under_scored string contained non-alpha-numeric characters.
     #
     def self.camelize(name)
-      scanner = StringScanner.new(name.to_s)
+      scanner    = StringScanner.new(name.to_s)
       new_string = String.new
 
       until scanner.eos?
