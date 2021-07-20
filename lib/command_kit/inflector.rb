@@ -35,16 +35,28 @@ module CommandKit
     # @return [String]
     #   The resulting under_scored name.
     #
+    # @raise [ArgumentError]
+    #   The given string contained non-alpha-numeric characters.
+    #
     def self.underscore(name)
-      # sourced from: https://github.com/dry-rb/dry-inflector/blob/c918f967ff82611da374eb0847a77b7e012d3fa8/lib/dry/inflector.rb#L286-L287
-      name = name.to_s.dup
+      scanner = StringScanner.new(name.to_s)
+      words   = []
 
-      name.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-      name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      name.tr!('-','_')
-      name.downcase!
+      until scanner.eos?
+        if (capitalized = scanner.scan(/[A-Z][a-z\d]+/))
+          words << capitalized
+        elsif (uppercase = scanner.scan(/[A-Z][A-Z\d]*(?=[A-Z]|$)/))
+          words << uppercase
+        elsif (lowercase = scanner.scan(/[a-z][a-z\d]*/))
+          words << lowercase
+        elsif scanner.scan(/[_-]+/)
+          next
+        else
+          raise(ArgumentError,"string contains invalid characters: #{scanner.string}")
+        end
+      end
 
-      name
+      words.join('_').downcase
     end
 
     #
