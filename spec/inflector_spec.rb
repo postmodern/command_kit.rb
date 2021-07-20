@@ -74,7 +74,7 @@ describe CommandKit::Inflector do
         it do
           expect {
             subject.underscore(string)
-          }.to raise_error(ArgumentError,"string contains invalid characters: #{string.inspect}")
+          }.to raise_error(ArgumentError,"cannot convert string to underscored: #{string.inspect}")
         end
       end
     end

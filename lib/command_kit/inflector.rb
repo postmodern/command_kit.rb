@@ -52,7 +52,7 @@ module CommandKit
         elsif scanner.scan(/[_-]+/)
           next
         else
-          raise(ArgumentError,"string contains invalid characters: #{scanner.string.inspect}")
+          raise(ArgumentError,"cannot convert string to underscored: #{scanner.string.inspect}")
         end
       end
 
