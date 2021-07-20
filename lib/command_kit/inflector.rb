@@ -69,6 +69,9 @@ module CommandKit
     # @return [String]
     #   The CamelCased name.
     #
+    # @raise [ArgumentError]
+    #   The given under_scored string contained non-alpha-numeric characters.
+    #
     def self.camelize(name)
       scanner = StringScanner.new(name.to_s)
       new_string = String.new
@@ -80,6 +83,8 @@ module CommandKit
           next
         elsif scanner.scan(/\//)
           new_string << '::'
+        else
+          raise(ArgumentError,"cannot convert string to CamelCase: #{scanner.string.inspect}")
         end
       end
 
