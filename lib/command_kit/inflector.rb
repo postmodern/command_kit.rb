@@ -52,7 +52,7 @@ module CommandKit
         elsif scanner.scan(/[_-]+/)
           next
         else
-          raise(ArgumentError,"string contains invalid characters: #{scanner.string}")
+          raise(ArgumentError,"string contains invalid characters: #{scanner.string.inspect}")
         end
       end
 
