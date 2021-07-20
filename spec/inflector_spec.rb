@@ -100,5 +100,22 @@ describe CommandKit::Inflector do
         expect(subject.camelize(:foo_bar)).to eq('FooBar')
       end
     end
+
+    ascii      = (0..255).map(&:chr)
+    alpha      = ('a'..'z').to_a + ('A'..'Z').to_a
+    numeric    = ('0'..'9').to_a
+    separators = %w[_ - /]
+
+    (ascii - alpha - numeric - separators).each do |char|
+      context "when the given String contains a #{char.inspect} character" do
+        let(:string) { "foo#{char}bar" }
+
+        it do
+          expect {
+            subject.camelize(string)
+          }.to raise_error(ArgumentError,"cannot convert string to CamelCase: #{string.inspect}")
+        end
+      end
+    end
   end
 end

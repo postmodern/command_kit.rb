@@ -191,7 +191,7 @@ describe CommandKit::Commands do
       it "must contain the mapping of aliases to command names" do
       expect(subject.command_aliases).to eq({
         't1' => 'test1',
-        't2' => 'test2',
+        't2' => 'test2'
       })
       end
     end

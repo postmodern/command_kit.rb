@@ -118,23 +118,21 @@ module CommandKit
       # @api semipublic
       #
       def parse_options(argv)
-        begin
-          option_parser.parse(argv)
-        rescue OptionParser::InvalidOption => error
-          on_invalid_option(error)
-        rescue OptionParser::AmbiguousOption => error
-          on_ambiguous_option(error)
-        rescue OptionParser::InvalidArgument => error
-          on_invalid_argument(error)
-        rescue OptionParser::MissingArgument => error
-          on_missing_argument(error)
-        rescue OptionParser::NeedlessArgument => error
-          on_needless_argument(error)
-        rescue OptionParser::AmbiguousArgument => error
-          on_ambiguous_argument(error)
-        rescue OptionParser::ParseError => error
-          on_parse_error(error)
-        end
+        option_parser.parse(argv)
+      rescue OptionParser::InvalidOption => error
+        on_invalid_option(error)
+      rescue OptionParser::AmbiguousOption => error
+        on_ambiguous_option(error)
+      rescue OptionParser::InvalidArgument => error
+        on_invalid_argument(error)
+      rescue OptionParser::MissingArgument => error
+        on_missing_argument(error)
+      rescue OptionParser::NeedlessArgument => error
+        on_needless_argument(error)
+      rescue OptionParser::AmbiguousArgument => error
+        on_ambiguous_argument(error)
+      rescue OptionParser::ParseError => error
+        on_parse_error(error)
       end
 
       #

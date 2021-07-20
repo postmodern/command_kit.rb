@@ -35,11 +35,6 @@ module CommandKit
       # @return [OptionValue, nil]
       attr_reader :value
 
-      # The option's description.
-      #
-      # @return [String]
-      attr_reader :desc
-
       # The optional block that will receive the parsed option value.
       #
       # @return [Proc, nil]

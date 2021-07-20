@@ -81,10 +81,10 @@ module CommandKit
       # 
       def commands
         @commands ||= if superclass.kind_of?(ClassMethods)
-                         superclass.commands.dup
-                       else
-                         {}
-                       end
+                        superclass.commands.dup
+                      else
+                        {}
+                      end
       end
 
       #

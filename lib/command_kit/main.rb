@@ -49,15 +49,13 @@ module CommandKit
       # @api public
       #
       def start(argv=ARGV, **kwargs)
-        begin
-          exit main(argv, **kwargs)
-        rescue Interrupt
-          # https://tldp.org/LDP/abs/html/exitcodes.html
-          exit 130
-        rescue Errno::EPIPE
-          # STDOUT pipe broken
-          exit 0
-        end
+        exit main(argv, **kwargs)
+      rescue Interrupt
+        # https://tldp.org/LDP/abs/html/exitcodes.html
+        exit 130
+      rescue Errno::EPIPE
+        # STDOUT pipe broken
+        exit 0
       end
 
       #

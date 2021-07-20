@@ -126,7 +126,7 @@ describe CommandKit::Arguments::Argument do
       let(:repeats) { false }
 
       it "must return the usage name unchanged" do
-        expect(subject.usage).to eq("#{usage}")
+        expect(subject.usage).to eq(usage)
       end
     end
   end
