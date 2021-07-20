@@ -28,6 +28,10 @@ describe CommandKit::Inflector do
     end
   end
 
+  ascii   = (0..255).map(&:chr)
+  alpha   = ('a'..'z').to_a + ('A'..'Z').to_a
+  numeric = ('0'..'9').to_a
+
   describe ".underscore" do
     it "must convert CamelCase to camel_case" do
       expect(subject.underscore('CamelCase')).to eq('camel_case')
@@ -58,6 +62,20 @@ describe CommandKit::Inflector do
     context "when given a non-String" do
       it "must convert it to a String" do
         expect(subject.underscore(:CamelCase)).to eq('camel_case')
+      end
+    end
+
+    separators = %w[_ -]
+
+    (ascii - alpha - numeric - separators).each do |char|
+      context "when the given String contains a #{char.inspect} character" do
+        let(:string) { "Foo#{char}Bar" }
+
+        it do
+          expect {
+            subject.underscore(string)
+          }.to raise_error(ArgumentError,"string contains invalid characters: #{string.inspect}")
+        end
       end
     end
   end
@@ -105,9 +123,6 @@ describe CommandKit::Inflector do
       end
     end
 
-    ascii      = (0..255).map(&:chr)
-    alpha      = ('a'..'z').to_a + ('A'..'Z').to_a
-    numeric    = ('0'..'9').to_a
     separators = %w[_ - /]
 
     (ascii - alpha - numeric - separators).each do |char|
