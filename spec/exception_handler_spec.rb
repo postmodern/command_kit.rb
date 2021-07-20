@@ -73,7 +73,7 @@ describe CommandKit::ExceptionHandler do
           include CommandKit::ExceptionHandler
 
           def run
-            raise(RuntimeError.new("error"))
+            raise("error")
           end
 
         end
