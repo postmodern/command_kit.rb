@@ -3,15 +3,58 @@ AllCops:
   SuggestExtensions: false
   TargetRubyVersion: 2.7
 
+#
+# our rules
+#
+
 Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
 Layout/LineLength: { Enabled: false }
 Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space }
 Lint/ConstantDefinitionInBlock: { Exclude: ['spec/**/*'] }
 Metrics: { Enabled: false }
 Style/SymbolArray: { EnforcedStyle: brackets }
-# Style/StringLiterals: { EnforcedStyle: double_quotes }
 
 #
+# rules that are in flux
+#
+
+# consider enabling these and autocorrecting?
+# Layout/SpaceAfterComma
+# Layout/SpaceAroundKeyword
+# Layout/SpaceBeforeComma
+# Layout/SpaceInsideHashLiteralBraces
+# Layout/SpaceInsideParens
+# Layout/TrailingWhitespace
+# Lint/UnreachableLoop
+# Lint/UnusedBlockArgument
+# Style/ClassCheck
+# Style/Documentation
+# Style/ExpandPathArguments
+# Style/GlobalStdStream
+# Style/HashSyntax
+# Style/KeywordParametersOrder
+# Style/MethodCallWithoutArgsParentheses
+# Style/MutableConstant
+# Style/QuotedSymbols: { EnforcedStyle: double_quotes }
+# Style/RedundantReturn
+# Style/SafeNavigation
+# Style/SpecialGlobalVars
+# Style/StringLiterals: { EnforcedStyle: double_quotes }
+# Style/WordArray
+
+# these have been fixed
+# Gemspec/DuplicatedAssignment: { Enabled: false } # Offense count: 1
+# Layout/ElseAlignment: { Enabled: false } # Offense count: 1
+# Layout/EndAlignment: { Enabled: false } # Offense count: 1
+# Lint/DuplicateMethods: { Enabled: false } # Offense count: 1
+# Lint/UselessAssignment: { Enabled: false } # Offense count: 1
+# Style/Encoding: { Enabled: false } # Offense count: 2
+# Style/RedundantBegin: { Enabled: false } # Offense count: 2
+# Style/RedundantInterpolation: { Enabled: false } # Offense count: 1
+# Style/TrailingCommaInArrayLiteral: { Enabled: false } # Offense count: 1
+
+#
+# This list was generated with:
 # bundle exec rubocop --auto-gen-config --exclude-limit 1
 #
 
@@ -59,23 +102,17 @@ Style/StringConcatenation: { Enabled: false } # Offense count: 8
 Style/WordArray: { Enabled: false } # Offense count: 4
 
 # 1 or 2 violations
-Gemspec/DuplicatedAssignment: { Enabled: false } # Offense count: 1
 Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
-Layout/ElseAlignment: { Enabled: false } # Offense count: 1
-Layout/EndAlignment: { Enabled: false } # Offense count: 1
 Layout/IndentationWidth: { Enabled: false } # Offense count: 2
 Layout/SpaceAroundOperators: { Enabled: false } # Offense count: 1
 Layout/SpaceBeforeBlockBraces: { Enabled: false } # Offense count: 1
-Lint/DuplicateMethods: { Enabled: false } # Offense count: 1
 Lint/MissingSuper: { Enabled: false } # Offense count: 2
 Lint/RescueException: { Enabled: false } # Offense count: 1
 Lint/UnreachableLoop: { Enabled: false } # Offense count: 1
 Lint/UnusedBlockArgument: { Enabled: false } # Offense count: 1
-Lint/UselessAssignment: { Enabled: false } # Offense count: 1
 Naming/MethodParameterName: { Enabled: false } # Offense count: 1
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
-Style/Encoding: { Enabled: false } # Offense count: 2
 Style/HashConversion: { Enabled: false } # Offense count: 1
 Style/MultilineMemoization: { Enabled: false } # Offense count: 1
 Style/NumericPredicate: { Enabled: false } # Offense count: 1
@@ -83,11 +120,9 @@ Style/OptionalArguments: { Enabled: false } # Offense count: 1
 Style/ParenthesesAroundCondition: { Enabled: false } # Offense count: 1
 Style/PreferredHashMethods: { Enabled: false } # Offense count: 1
 Style/QuotedSymbols: { Enabled: false } # Offense count: 1
-Style/RedundantBegin: { Enabled: false } # Offense count: 2
 Style/RedundantException: { Enabled: false } # Offense count: 1
-Style/RedundantInterpolation: { Enabled: false } # Offense count: 1
 Style/RedundantRegexpEscape: { Enabled: false } # Offense count: 1
+Style/RegexpLiteral: { Enabled: false } # Offense count: 1
 Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
-Style/TrailingCommaInArrayLiteral: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
