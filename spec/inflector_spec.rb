@@ -45,6 +45,10 @@ describe CommandKit::Inflector do
       expect(subject.underscore('CAMEL')).to eq('camel')
     end
 
+    it "must convert CAMELCase to camel" do
+      expect(subject.underscore('CAMELCase')).to eq('camel_case')
+    end
+
     context "when given a String containing '/' characters" do
       it "must replace dashes with underscores" do
         expect(subject.underscore('foo-bar')).to eq('foo_bar')
