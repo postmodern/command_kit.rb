@@ -101,10 +101,11 @@ describe CommandKit::Inflector do
       end
     end
 
-    ascii = (0..255).map(&:chr)
-    alpha = ('a'..'z').to_a + ('A'..'Z').to_a
-    numeric = ('0'..'9').to_a
+    ascii      = (0..255).map(&:chr)
+    alpha      = ('a'..'z').to_a + ('A'..'Z').to_a
+    numeric    = ('0'..'9').to_a
     separators = %w[_ - /]
+
     (ascii - alpha - numeric - separators).each do |char|
       context "when the given String contains a #{char.inspect} character" do
         let(:string) { "foo#{char}bar" }
