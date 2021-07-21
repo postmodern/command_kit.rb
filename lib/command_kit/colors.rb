@@ -79,6 +79,33 @@ module CommandKit
       # ANSI color for the default foreground color
       RESET_COLOR = "\e[39m"
 
+      # ANSI color code for bg black
+      BG_BLACK = "\e[40m"
+
+      # ANSI color code for bg red
+      BG_RED = "\e[41m"
+
+      # ANSI color code for bg green
+      BG_GREEN = "\e[42m"
+
+      # ANSI color code for bg yellow
+      BG_YELLOW = "\e[43m"
+
+      # ANSI color code for bg blue
+      BG_BLUE = "\e[44m"
+
+      # ANSI color code for bg megenta
+      BG_MAGENTA = "\e[45m"
+
+      # ANSI color code for bg cyan
+      BG_CYAN = "\e[46m"
+
+      # ANSI color code for bg white
+      BG_WHITE = "\e[47m"
+
+      # ANSI color for the default background color
+      RESET_BG = "\e[49m"
+
       module_function
 
       #
@@ -273,6 +300,158 @@ module CommandKit
         else           WHITE
         end
       end
+
+      #
+      # Sets the bg color to black.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_BLACK]
+      #   The colorized string or just {BG_BLACK} if no arguments were given.
+      #
+      # @see BG_BLACK
+      #
+      # @api public
+      #
+      def bg_black(string=nil)
+        if string then "#{BG_BLACK}#{string}#{RESET_BG}"
+        else           BG_BLACK
+        end
+      end
+
+      #
+      # Sets the bg color to red.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_RED]
+      #   The colorized string or just {BG_RED} if no arguments were given.
+      #
+      # @see BG_RED
+      #
+      # @api public
+      #
+      def bg_red(string=nil)
+        if string then "#{BG_RED}#{string}#{RESET_BG}"
+        else           BG_RED
+        end
+      end
+
+      #
+      # Sets the bg color to green.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_GREEN]
+      #   The colorized string or just {BG_GREEN} if no arguments were given.
+      #
+      # @see BG_GREEN
+      #
+      # @api public
+      #
+      def bg_green(string=nil)
+        if string then "#{BG_GREEN}#{string}#{RESET_BG}"
+        else           BG_GREEN
+        end
+      end
+
+      #
+      # Sets the bg color to yellow.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_YELLOW]
+      #   The colorized string or just {BG_YELLOW} if no arguments were given.
+      #
+      # @see BG_YELLOW
+      #
+      # @api public
+      #
+      def bg_yellow(string=nil)
+        if string then "#{BG_YELLOW}#{string}#{RESET_BG}"
+        else           BG_YELLOW
+        end
+      end
+
+      #
+      # Sets the bg color to blue.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_BLUE]
+      #   The colorized string or just {BG_BLUE} if no arguments were given.
+      #
+      # @see BG_BLUE
+      #
+      # @api public
+      #
+      def bg_blue(string=nil)
+        if string then "#{BG_BLUE}#{string}#{RESET_BG}"
+        else           BG_BLUE
+        end
+      end
+
+      #
+      # Sets the bg color to magenta.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_MAGENTA]
+      #   The colorized string or just {BG_MAGENTA} if no arguments were given.
+      #
+      # @see BG_MAGENTA
+      #
+      # @api public
+      #
+      def bg_magenta(string=nil)
+        if string then "#{BG_MAGENTA}#{string}#{RESET_BG}"
+        else           BG_MAGENTA
+        end
+      end
+
+      #
+      # Sets the bg color to cyan.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_CYAN]
+      #   The colorized string or just {BG_CYAN} if no arguments were given.
+      #
+      # @see BG_CYAN
+      #
+      # @api public
+      #
+      def bg_cyan(string=nil)
+        if string then "#{BG_CYAN}#{string}#{RESET_BG}"
+        else           BG_CYAN
+        end
+      end
+
+      #
+      # Sets the bg color to white.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BG_WHITE]
+      #   The colorized string or just {BG_WHITE} if no arguments were given.
+      #
+      # @see BG_WHITE
+      #
+      # @api public
+      #
+      def bg_white(string=nil)
+        if string then "#{BG_WHITE}#{string}#{RESET_BG}"
+        else           BG_WHITE
+        end
+      end
     end
 
     #
@@ -292,7 +471,16 @@ module CommandKit
         MAGENTA = \
         CYAN = \
         WHITE = \
-        RESET_COLOR = ''
+        RESET_COLOR = \
+        BG_BLACK = \
+        BG_RED = \
+        BG_GREEN = \
+        BG_YELLOW = \
+        BG_BLUE = \
+        BG_MAGENTA = \
+        BG_CYAN = \
+        BG_WHITE = \
+        RESET_BG = ''
 
       module_function
 
@@ -337,6 +525,38 @@ module CommandKit
       end
 
       def white(string=nil)
+        string || ''
+      end
+
+      def bg_black(string=nil)
+        string || ''
+      end
+
+      def bg_red(string=nil)
+        string || ''
+      end
+
+      def bg_green(string=nil)
+        string || ''
+      end
+
+      def bg_yellow(string=nil)
+        string || ''
+      end
+
+      def bg_blue(string=nil)
+        string || ''
+      end
+
+      def bg_magenta(string=nil)
+        string || ''
+      end
+
+      def bg_cyan(string=nil)
+        string || ''
+      end
+
+      def bg_white(string=nil)
         string || ''
       end
     end
