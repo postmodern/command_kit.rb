@@ -21,5 +21,11 @@ YARD::Rake::YardocTask.new
 task :doc => :yard
 
 task :rubocop do
-  sh 'bundle exec rubocop -A .'
+  sh 'bundle exec rubocop .'
+end
+
+namespace :rubocop do
+  task :fix do
+    sh 'bundle exec rubocop -A .'
+  end
 end
