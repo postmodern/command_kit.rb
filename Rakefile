@@ -19,3 +19,7 @@ task :default => :spec
 require 'yard'
 YARD::Rake::YardocTask.new
 task :doc => :yard
+
+task :rubocop do
+  sh 'bundle exec rubocop -A .'
+end
