@@ -3,6 +3,7 @@ name: CI
 on: [ push, pull_request ]
 
 jobs:
+  # run tests
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -27,3 +28,17 @@ jobs:
         run: bundle install --jobs 4 --retry 3
       - name: Run tests
         run: bundle exec rake test
+
+  # rubocop linting
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+      - name: Run rubocop
+        run: bundle exec rubocop --parallel
