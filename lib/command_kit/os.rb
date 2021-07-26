@@ -68,6 +68,19 @@ module CommandKit
     end
 
     #
+    # Determines if the current OS is NetBSD.
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    #
+    # @since 0.2.0
+    #
+    def netbsd?
+      RUBY_PLATFORM.include?('netbsd')
+    end
+
+    #
     # Determines if the current OS is UNIX based.
     #
     # @return [Boolean]
@@ -77,7 +90,7 @@ module CommandKit
     # @api public
     #
     def unix?
-      linux? || macos? || freebsd? || openbsd?
+      linux? || macos? || freebsd? || openbsd? || netbsd?
     end
 
     #
@@ -94,7 +107,7 @@ module CommandKit
     #
     # Identifies the current OS.
     #
-    # @return [:linux, :macos, :freebsd, :openbsd, :windows, nil]
+    # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
     #   The current OS or `nil` if the current OS cannot be identified.
     #
     # @api public
@@ -106,6 +119,7 @@ module CommandKit
       elsif macos?   then :macos
       elsif freebsd? then :freebsd
       elsif openbsd? then :openbsd
+      elsif netbsd?  then :netbsd
       elsif windows? then :windows
       end
     end
