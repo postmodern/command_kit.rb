@@ -4,18 +4,25 @@ module CommandKit
   #
   # ## Examples
   #
-  #     include CommandKit::OS
+  #     require 'command_kit/command'
+  #     require 'command_kit/os'
   #     
-  #     def main(*argv)
-  #       if linux?
-  #         # ...
-  #       elsif macos?
-  #         # ...
-  #       elsif freebsd?
-  #         # ...
-  #       elsif windows?
-  #         # ...
+  #     class Command < CommandKit::Command
+  #     
+  #       include CommandKit::OS
+  #     
+  #       def main(*argv)
+  #         if linux?
+  #           # ...
+  #         elsif macos?
+  #           # ...
+  #         elsif freebsd?
+  #           # ...
+  #         elsif windows?
+  #           # ...
+  #         end
   #       end
+  #     
   #     end
   #
   module OS
