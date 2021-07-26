@@ -132,6 +132,19 @@ module CommandKit
     end
 
     #
+    # Determines if the current OS is OpenBSD.
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    #
+    # @since 0.2.0
+    #
+    def openbsd?
+      RUBY_PLATFORM.include?('openbsd')
+    end
+
+    #
     # Determines if the current OS is UNIX based.
     #
     # @return [Boolean]
@@ -141,7 +154,7 @@ module CommandKit
     # @api public
     #
     def unix?
-      linux? || macos? || freebsd?
+      linux? || macos? || freebsd? || openbsd?
     end
 
     #
@@ -158,7 +171,7 @@ module CommandKit
     #
     # Identifies the current OS.
     #
-    # @return [:linux, :macos, :freebsd, :windows, nil]
+    # @return [:linux, :macos, :freebsd, :openbsd, :windows, nil]
     #   The current OS or `nil` if the current OS cannot be identified.
     #
     # @api public
@@ -169,6 +182,7 @@ module CommandKit
       if    linux?   then :linux
       elsif macos?   then :macos
       elsif freebsd? then :freebsd
+      elsif openbsd? then :openbsd
       elsif windows? then :windows
       end
     end
