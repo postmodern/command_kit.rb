@@ -81,6 +81,19 @@ module CommandKit
     end
 
     #
+    # Determines if the current OS is BSD based.
+    #
+    # @return [Boolean]
+    #
+    # @since 0.2.0
+    #
+    # @api public
+    #
+    def bsd?
+      freebsd? || openbsd? || netbsd?
+    end
+
+    #
     # Determines if the current OS is UNIX based.
     #
     # @return [Boolean]
@@ -90,7 +103,7 @@ module CommandKit
     # @api public
     #
     def unix?
-      linux? || macos? || freebsd? || openbsd? || netbsd?
+      linux? || macos? || bsd?
     end
 
     #

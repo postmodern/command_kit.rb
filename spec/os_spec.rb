@@ -78,6 +78,44 @@ describe CommandKit::OS do
     end
   end
 
+  describe "#bsd?" do
+    context "when RUBY_PLATFORM contains 'linux'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-linux') }
+
+      it { expect(subject.bsd?).to be(false) }
+    end
+
+    context "when RUBY_PLATFORM contains 'darwin'" do
+      before { stub_const('RUBY_PLATFORM','aarch64-darwin') }
+
+      it { expect(subject.bsd?).to be(false) }
+    end
+
+    context "when RUBY_PLATFORM contains 'freebsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
+
+      it { expect(subject.bsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM contains 'opensbd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
+
+      it { expect(subject.bsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM contains 'netsbd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-netbsd') }
+
+      it { expect(subject.bsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM contains 'mswin'" do
+      before { stub_const('RUBY_PLATFORM','mswin') }
+
+      it { expect(subject.bsd?).to be(false) }
+    end
+  end
+
   describe "#unix?" do
     context "when RUBY_PLATFORM contains 'linux'" do
       before { stub_const('RUBY_PLATFORM','x86_64-linux') }
