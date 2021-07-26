@@ -84,6 +84,24 @@ module CommandKit
       def arch_linux?
         linux? && File.file?('/etc/arch-release')
       end
+
+      #
+      # Determines the specific Linux distro.
+      #
+      # @return [:fedora, :redhat, :debian, :suse, :arch, nil]
+      #   Returns the type of Linux distro or `nil` if the Linux distro could
+      #   not be determined.
+      #
+      # @api public
+      #
+      def linux_distro
+        if    fedora_linux? then :fedora
+        elsif redhat_linux? then :redhat
+        elsif debian_linux? then :debian
+        elsif suse_linux?   then :suse
+        elsif arch_linux?   then :arch
+        end
+      end
     end
   end
 end
