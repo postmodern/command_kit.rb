@@ -8,7 +8,69 @@ module CommandKit
     # @since 0.2.0
     #
     module Linux
-      include OS
+      #
+      # @api private
+      #
+      module ModuleMethods
+        #
+        # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+        # {OS} is being included into a class or a module..
+        #
+        # @param [Class, Module] context
+        #   The class or module which is including {OS}.
+        #
+        def included(context)
+          super(context)
+
+          if context.class == Module
+            context.extend ModuleMethods
+          else
+            context.extend ClassMethods
+          end
+        end
+      end
+
+      extend ModuleMethods
+
+      module ClassMethods
+        #
+        # Determines the specific Linux distro.
+        #
+        # @return [:fedora, :redhat, :debian, :suse, :arch, nil]
+        #   Returns the type of Linux distro or `nil` if the Linux distro could
+        #   not be determined.
+        #
+        # @api semipublic
+        #
+        def linux_distro
+          if    File.file?('/etc/fedora-release') then :fedora
+          elsif File.file?('/etc/redhat-release') then :redhat
+          elsif File.file?('/etc/debian_version') then :debian
+          elsif File.file?('/etc/SuSE-release')   then :suse
+          elsif File.file?('/etc/arch-release')   then :arch
+          end
+        end
+      end
+
+      # The Linux distro.
+      #
+      # @return [:fedora, :redhat, :debian, :suse, :arch, nil]
+      attr_reader :linux_distro
+
+      #
+      # Initializes the command.
+      #
+      # @param [:fedora, :redhat, :debian, :suse, :arch, nil] linux_distro
+      #   Overrides the default detected Linux distro.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments.
+      #
+      def initialize(linux_distro: self.class.linux_distro, **kwargs)
+        super(**kwargs)
+
+        @linux_distro = linux_distro
+      end
 
       #
       # Determines if the current OS is RedHat Linux based distro.
@@ -18,7 +80,7 @@ module CommandKit
       # @api public
       #
       def redhat_linux?
-        linux? && File.file?('/etc/redhat-release')
+        @linux_distro == :redhat
       end
 
       #
@@ -29,7 +91,7 @@ module CommandKit
       # @api public
       #
       def fedora_linux?
-        linux? && File.file?('/etc/fedora-release')
+        @linux_distro == :fedora
       end
 
       #
@@ -40,7 +102,7 @@ module CommandKit
       # @api public
       #
       def debian_linux?
-        linux? && File.file?('/etc/debian_version')
+        @linux_distro == :debian
       end
 
       #
@@ -51,7 +113,7 @@ module CommandKit
       # @api public
       #
       def suse_linux?
-        linux? && File.file?('/etc/SuSE-release')
+        @linux_distro == :suse
       end
 
       #
@@ -62,25 +124,7 @@ module CommandKit
       # @api public
       #
       def arch_linux?
-        linux? && File.file?('/etc/arch-release')
-      end
-
-      #
-      # Determines the specific Linux distro.
-      #
-      # @return [:fedora, :redhat, :debian, :suse, :arch, nil]
-      #   Returns the type of Linux distro or `nil` if the Linux distro could
-      #   not be determined.
-      #
-      # @api public
-      #
-      def linux_distro
-        if    fedora_linux? then :fedora
-        elsif redhat_linux? then :redhat
-        elsif debian_linux? then :debian
-        elsif suse_linux?   then :suse
-        elsif arch_linux?   then :arch
-        end
+        @linux_distro == :arch
       end
     end
   end
