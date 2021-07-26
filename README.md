@@ -48,6 +48,7 @@ plain-old Ruby classes.
   * [CommandKit::Help::Man](https://rubydoc.info/gems/command_kit/CommandKit/Help/Man)
 * [CommandKit::Interactive](https://rubydoc.info/gems/command_kit/CommandKit/Interactive)
 * [CommandKit::Main](https://rubydoc.info/gems/command_kit/CommandKit/Main)
+* [CommandKit::OpenApp](https://rubydoc.info/gems/command_kit/CommandKit/OpenApp)
 * [CommandKit::Options](https://rubydoc.info/gems/command_kit/CommandKit/Options)
   * [CommandKit::Options::Quiet](https://rubydoc.info/gems/command_kit/CommandKit/Options/Quiet)
   * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
