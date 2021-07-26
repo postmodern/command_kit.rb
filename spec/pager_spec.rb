@@ -19,8 +19,8 @@ describe CommandKit::Pager do
 
       subject { command_class.new(env: {'PAGER' => pager}) }
 
-      it "must set @pager to the PAGER env variable" do
-        expect(subject.instance_variable_get('@pager')).to eq(pager)
+      it "must set @pager_command to the PAGER env variable" do
+        expect(subject.instance_variable_get('@pager_command')).to eq(pager)
       end
     end
 
@@ -29,7 +29,7 @@ describe CommandKit::Pager do
         subject { command_class.new(env: {'PATH' => ENV['PATH']}) }
 
         it "must search PATH for one of the pagers" do
-          expect(subject.instance_variable_get('@pager')).to eq("less -r")
+          expect(subject.instance_variable_get('@pager_command')).to eq("less -r")
         end
       end
     end
@@ -46,9 +46,9 @@ describe CommandKit::Pager do
       end
     end
 
-    context "when @pager isn't initialized" do
+    context "when @pager_command isn't initialized" do
       before do
-        subject.instance_variable_set('@pager',nil)
+        subject.instance_variable_set('@pager_command',nil)
       end
 
       it "must yield stdout" do
@@ -58,7 +58,7 @@ describe CommandKit::Pager do
       end
     end
 
-    context "when stdout is a TTY and @pager is initialized" do
+    context "when stdout is a TTY and @pager_command is initialized" do
       let(:pager) { 'less -r' }
 
       subject { command_class.new(env: {'PAGER' => pager}) }
