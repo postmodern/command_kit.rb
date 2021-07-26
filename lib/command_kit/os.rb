@@ -20,6 +20,75 @@ module CommandKit
   #
   module OS
     #
+    # @api private
+    #
+    module ModuleMethods
+      #
+      # Extends {ClassMethods} or {ModuleMethods}, depending on whether
+      # {OS} is being included into a class or a module..
+      #
+      # @param [Class, Module] context
+      #   The class or module which is including {OS}.
+      #
+      def included(context)
+        super(context)
+
+        if context.class == Module
+          context.extend ModuleMethods
+        else
+          context.extend ClassMethods
+        end
+      end
+    end
+
+    extend ModuleMethods
+
+    module ClassMethods
+      #
+      # Determines the current OS.
+      #
+      # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
+      #   The OS type or `nil` if the OS could not be determined.
+      #
+      # @since 0.2.0
+      #
+      def os
+        if    RUBY_PLATFORM.include?('linux')   then :linux
+        elsif RUBY_PLATFORM.include?('darwin')  then :macos
+        elsif RUBY_PLATFORM.include?('freebsd') then :freebsd
+        elsif RUBY_PLATFORM.include?('openbsd') then :openbsd
+        elsif RUBY_PLATFORM.include?('netbsd')  then :netbsd
+        elsif Gem.win_platform?                 then :windows
+        end
+      end
+    end
+
+    # The current OS.
+    #
+    # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
+    #
+    # @since 0.2.0
+    #
+    attr_reader :os
+
+    #
+    # Initializes the command.
+    #
+    # @param [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil] os
+    #   Overrides the default OS.
+    #   
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @since 0.2.0
+    #
+    def initialize(os: self.class.os, **kwargs)
+      super(**kwargs)
+
+      @os = os
+    end
+
+    #
     # Determines if the current OS is Linux.
     #
     # @return [Boolean]
@@ -27,7 +96,7 @@ module CommandKit
     # @api public
     #
     def linux?
-      RUBY_PLATFORM.include?('linux')
+      @os == :linux
     end
 
     #
@@ -38,7 +107,7 @@ module CommandKit
     # @api public
     #
     def macos?
-      RUBY_PLATFORM.include?('darwin')
+      @os == :macos
     end
 
     #
@@ -51,7 +120,7 @@ module CommandKit
     # @since 0.2.0
     #
     def freebsd?
-      RUBY_PLATFORM.include?('freebsd')
+      @os == :freebsd
     end
 
     #
@@ -64,7 +133,7 @@ module CommandKit
     # @since 0.2.0
     #
     def openbsd?
-      RUBY_PLATFORM.include?('openbsd')
+      @os == :openbsd
     end
 
     #
@@ -77,7 +146,7 @@ module CommandKit
     # @since 0.2.0
     #
     def netbsd?
-      RUBY_PLATFORM.include?('netbsd')
+      @os == :netbsd
     end
 
     #
@@ -114,27 +183,7 @@ module CommandKit
     # @api public
     #
     def windows?
-      Gem.win_platform?
-    end
-
-    #
-    # Identifies the current OS.
-    #
-    # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
-    #   The current OS or `nil` if the current OS cannot be identified.
-    #
-    # @api public
-    #
-    # @since 0.2.0
-    #
-    def os
-      if    linux?   then :linux
-      elsif macos?   then :macos
-      elsif freebsd? then :freebsd
-      elsif openbsd? then :openbsd
-      elsif netbsd?  then :netbsd
-      elsif windows? then :windows
-      end
+      @os == :windows
     end
   end
 end
