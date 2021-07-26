@@ -200,6 +200,20 @@ describe CommandKit::OS do
     end
   end
 
+  describe "#openbsd?" do
+    context "when RUBY_PLATFORM contains 'openbsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
+
+      it { expect(subject.openbsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM does not contain 'openbsd'" do
+      before { stub_const('RUBY_PLATFORM','mswin') }
+
+      it { expect(subject.openbsd?).to be(false) }
+    end
+  end
+
   describe "#unix?" do
     context "when RUBY_PLATFORM contains 'linux'" do
       before { stub_const('RUBY_PLATFORM','x86_64-linux') }
@@ -217,6 +231,12 @@ describe CommandKit::OS do
       before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
 
       it { expect(subject.freebsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM contains 'opensbd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
+
+      it { expect(subject.unix?).to be(true) }
     end
 
     context "when RUBY_PLATFORM contains 'mswin'" do
@@ -251,6 +271,12 @@ describe CommandKit::OS do
       before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
 
       it { expect(subject.os).to eq(:freebsd) }
+    end
+
+    context "when RUBY_PLATFORM contains 'openbsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
+
+      it { expect(subject.os).to eq(:openbsd) }
     end
 
     context "when Gem.win_platform? returns true" do
