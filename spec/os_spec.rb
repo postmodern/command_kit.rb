@@ -230,7 +230,7 @@ describe CommandKit::OS do
     context "when RUBY_PLATFORM contains 'freebsd'" do
       before { stub_const('RUBY_PLATFORM','x86_64-freebsd') }
 
-      it { expect(subject.freebsd?).to be(true) }
+      it { expect(subject.unix?).to be(true) }
     end
 
     context "when RUBY_PLATFORM contains 'opensbd'" do
