@@ -21,6 +21,7 @@
   * {CommandKit::Options}
     * {CommandKit::Options::Quiet}
     * {CommandKit::Options::Verbose}
+  * {CommandKit::OS}
   * {CommandKit::Pager}
   * {CommandKit::Printing}
     * {CommandKit::Printing::Indent}
