@@ -69,8 +69,9 @@ module CommandKit
     #
     # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
     #
-    # @since 0.2.0
+    # @api public
     #
+    # @since 0.2.0
     attr_reader :os
 
     #
@@ -81,6 +82,8 @@ module CommandKit
     #   
     # @param [Hash{Symbol => Object}] kwargs
     #   Additional keyword arguments.
+    #
+    # @api public
     #
     # @since 0.2.0
     #

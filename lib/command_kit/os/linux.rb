@@ -55,6 +55,8 @@ module CommandKit
       # The Linux distro.
       #
       # @return [:fedora, :redhat, :debian, :suse, :arch, nil]
+      #
+      # @api public
       attr_reader :linux_distro
 
       #
@@ -65,6 +67,8 @@ module CommandKit
       #
       # @param [Hash{Symbol => Object}] kwargs
       #   Additional keyword arguments.
+      #
+      # @api public
       #
       def initialize(linux_distro: self.class.linux_distro, **kwargs)
         super(**kwargs)
