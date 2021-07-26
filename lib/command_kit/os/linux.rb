@@ -5,6 +5,28 @@ module CommandKit
     #
     # Provides methods for determining the specific type of Linux.
     #
+    # ## Example
+    #
+    #     require 'command_kit/command'
+    #     require 'command_kit/os/linux'
+    #     
+    #     class Command < CommandKit::Command
+    #     
+    #       include CommandKit::OS::Linux
+    #     
+    #       def run
+    #         if debian_linux?
+    #           # ...
+    #         elsif redhat_linux?
+    #           # ...
+    #         elsif suse_linux?
+    #           # ...
+    #         elsif arch_linux?
+    #           # ...
+    #         end
+    #       end
+    #     end
+    #
     # @since 0.2.0
     #
     module Linux
