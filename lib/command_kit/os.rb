@@ -50,6 +50,8 @@ module CommandKit
       # @return [:linux, :macos, :freebsd, :openbsd, :netbsd, :windows, nil]
       #   The OS type or `nil` if the OS could not be determined.
       #
+      # @api semipublic
+      #
       # @since 0.2.0
       #
       def os
