@@ -15,11 +15,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      # @group Linux
-      #
       # @api public
-      #
-      # @since 0.2.0
       #
       def redhat_linux?
         linux? && File.file?('/etc/redhat-release')
@@ -30,11 +26,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      # @group Linux
-      #
       # @api public
-      #
-      # @since 0.2.0
       #
       def fedora_linux?
         linux? && File.file?('/etc/fedora-release')
@@ -45,11 +37,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      # @group Linux
-      #
       # @api public
-      #
-      # @since 0.2.0
       #
       def debian_linux?
         linux? && File.file?('/etc/debian_version')
@@ -60,11 +48,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      # @group Linux
-      #
       # @api public
-      #
-      # @since 0.2.0
       #
       def suse_linux?
         linux? && File.file?('/etc/SuSE-release')
@@ -75,11 +59,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      # @group Linux
-      #
       # @api public
-      #
-      # @since 0.2.0
       #
       def arch_linux?
         linux? && File.file?('/etc/arch-release')

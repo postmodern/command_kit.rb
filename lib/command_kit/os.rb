@@ -24,8 +24,6 @@ module CommandKit
     #
     # @return [Boolean]
     #
-    # @group Linux
-    #
     # @api public
     #
     def linux?
