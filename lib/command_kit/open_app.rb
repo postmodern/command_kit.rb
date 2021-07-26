@@ -20,6 +20,11 @@ module CommandKit
     #
     # Initializes the command and determines which open command to use.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @api public
+    #
     def initialize(**kwargs)
       super(**kwargs)
 
