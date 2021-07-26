@@ -58,7 +58,7 @@ module CommandKit
     def initialize(**kwargs)
       super(**kwargs)
 
-      @pager = env.fetch('PAGER') do
+      @pager_command = env.fetch('PAGER') do
         PAGERS.find do |command|
           bin = command.split(' ',2).first
 
@@ -94,14 +94,14 @@ module CommandKit
     # @api public
     #
     def pager
-      if !stdout.tty? || @pager.nil?
+      if !stdout.tty? || @pager_command.nil?
         # fallback to stdout if the process does not have a terminal or we could
         # not find a suitable pager command.
         yield stdout
         return
       end
 
-      io  = IO.popen(@pager,'w')
+      io  = IO.popen(@pager_command,'w')
       pid = io.pid
 
       begin
