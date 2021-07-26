@@ -52,6 +52,7 @@ plain-old Ruby classes.
   * [CommandKit::Options::Quiet](https://rubydoc.info/gems/command_kit/CommandKit/Options/Quiet)
   * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
 * [CommandKit::OS](https://rubydoc.info/gems/command_kit/CommandKit/OS)
+  * [CommandKit::OS::Linux](https://rubydoc.info/gems/command_kit/CommandKit/OS/Linux)
 * [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
