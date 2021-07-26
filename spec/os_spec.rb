@@ -64,6 +64,20 @@ describe CommandKit::OS do
     end
   end
 
+  describe "#netbsd?" do
+    context "when RUBY_PLATFORM contains 'netbsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-netbsd') }
+
+      it { expect(subject.netbsd?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM does not contain 'netbsd'" do
+      before { stub_const('RUBY_PLATFORM','mswin') }
+
+      it { expect(subject.netbsd?).to be(false) }
+    end
+  end
+
   describe "#unix?" do
     context "when RUBY_PLATFORM contains 'linux'" do
       before { stub_const('RUBY_PLATFORM','x86_64-linux') }
@@ -85,6 +99,12 @@ describe CommandKit::OS do
 
     context "when RUBY_PLATFORM contains 'opensbd'" do
       before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
+
+      it { expect(subject.unix?).to be(true) }
+    end
+
+    context "when RUBY_PLATFORM contains 'netsbd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-netbsd') }
 
       it { expect(subject.unix?).to be(true) }
     end
@@ -127,6 +147,12 @@ describe CommandKit::OS do
       before { stub_const('RUBY_PLATFORM','x86_64-openbsd') }
 
       it { expect(subject.os).to eq(:openbsd) }
+    end
+
+    context "when RUBY_PLATFORM contains 'netbsd'" do
+      before { stub_const('RUBY_PLATFORM','x86_64-netbsd') }
+
+      it { expect(subject.os).to eq(:netbsd) }
     end
 
     context "when Gem.win_platform? returns true" do
