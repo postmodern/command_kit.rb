@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'command_kit/os'
+
 module CommandKit
   #
   # Allows running commands with `sudo`.
@@ -7,6 +9,8 @@ module CommandKit
   # @since 0.2.0
   #
   module Sudo
+    include OS
+
     #
     # Runs the command under sudo, if the user isn't already root.
     #
@@ -22,10 +26,14 @@ module CommandKit
     # @api public
     #
     def sudo(command,*arguments)
-      if Process.uid == 0
-        system(command,*arguments)
+      if windows?
+        system('runas','/user:administrator',command,*arguments)
       else
-        system('sudo',command,*arguments)
+        if Process.uid == 0
+          system(command,*arguments)
+        else
+          system('sudo',command,*arguments)
+        end
       end
     end
   end
