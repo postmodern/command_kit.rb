@@ -126,3 +126,4 @@ Style/RegexpLiteral: { Enabled: false } # Offense count: 1
 Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
+Style/IfInsideElse: { Enabled: false } # Offense count: 1
