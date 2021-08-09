@@ -80,30 +80,48 @@ module CommandKit
       RESET_COLOR = "\e[39m"
 
       # ANSI color code for bg black
+      #
+      # @since 0.2.0
       ON_BLACK = "\e[40m"
 
       # ANSI color code for bg red
+      #
+      # @since 0.2.0
       ON_RED = "\e[41m"
 
       # ANSI color code for bg green
+      #
+      # @since 0.2.0
       ON_GREEN = "\e[42m"
 
       # ANSI color code for bg yellow
+      #
+      # @since 0.2.0
       ON_YELLOW = "\e[43m"
 
       # ANSI color code for bg blue
+      #
+      # @since 0.2.0
       ON_BLUE = "\e[44m"
 
       # ANSI color code for bg megenta
+      #
+      # @since 0.2.0
       ON_MAGENTA = "\e[45m"
 
       # ANSI color code for bg cyan
+      #
+      # @since 0.2.0
       ON_CYAN = "\e[46m"
 
       # ANSI color code for bg white
+      #
+      # @since 0.2.0
       ON_WHITE = "\e[47m"
 
       # ANSI color for the default background color
+      #
+      # @since 0.2.0
       RESET_BG = "\e[49m"
 
       module_function
@@ -314,6 +332,8 @@ module CommandKit
       #
       # @api public
       #
+      # @since 0.2.0
+      #
       def on_black(string=nil)
         if string then "#{ON_BLACK}#{string}#{RESET_BG}"
         else           ON_BLACK
@@ -332,6 +352,8 @@ module CommandKit
       # @see ON_RED
       #
       # @api public
+      #
+      # @since 0.2.0
       #
       def on_red(string=nil)
         if string then "#{ON_RED}#{string}#{RESET_BG}"
@@ -352,6 +374,8 @@ module CommandKit
       #
       # @api public
       #
+      # @since 0.2.0
+      #
       def on_green(string=nil)
         if string then "#{ON_GREEN}#{string}#{RESET_BG}"
         else           ON_GREEN
@@ -370,6 +394,8 @@ module CommandKit
       # @see ON_YELLOW
       #
       # @api public
+      #
+      # @since 0.2.0
       #
       def on_yellow(string=nil)
         if string then "#{ON_YELLOW}#{string}#{RESET_BG}"
@@ -390,6 +416,8 @@ module CommandKit
       #
       # @api public
       #
+      # @since 0.2.0
+      #
       def on_blue(string=nil)
         if string then "#{ON_BLUE}#{string}#{RESET_BG}"
         else           ON_BLUE
@@ -408,6 +436,8 @@ module CommandKit
       # @see ON_MAGENTA
       #
       # @api public
+      #
+      # @since 0.2.0
       #
       def on_magenta(string=nil)
         if string then "#{ON_MAGENTA}#{string}#{RESET_BG}"
@@ -428,6 +458,8 @@ module CommandKit
       #
       # @api public
       #
+      # @since 0.2.0
+      #
       def on_cyan(string=nil)
         if string then "#{ON_CYAN}#{string}#{RESET_BG}"
         else           ON_CYAN
@@ -447,6 +479,8 @@ module CommandKit
       #
       # @api public
       #
+      # @since 0.2.0
+      #
       def on_white(string=nil)
         if string then "#{ON_WHITE}#{string}#{RESET_BG}"
         else           ON_WHITE
@@ -459,28 +493,9 @@ module CommandKit
     # supported.
     #
     module PlainText
-      RESET = \
-        CLEAR = \
-        BOLD = \
-        RESET_INTENSITY = \
-        BLACK = \
-        RED = \
-        GREEN = \
-        YELLOW = \
-        BLUE = \
-        MAGENTA = \
-        CYAN = \
-        WHITE = \
-        RESET_COLOR = \
-        ON_BLACK = \
-        ON_RED = \
-        ON_GREEN = \
-        ON_YELLOW = \
-        ON_BLUE = \
-        ON_MAGENTA = \
-        ON_CYAN = \
-        ON_WHITE = \
-        RESET_BG = ''
+      ANSI.constants(false).each do |name|
+        const_set(name,'')
+      end
 
       module_function
 
@@ -492,72 +507,13 @@ module CommandKit
         reset
       end
 
-      def bold(string=nil)
-        string || ''
-      end
-
-      def black(string=nil)
-        string || ''
-      end
-
-      def red(string=nil)
-        string || ''
-      end
-
-      def green(string=nil)
-        string || ''
-      end
-
-      def yellow(string=nil)
-        string || ''
-      end
-
-      def blue(string=nil)
-        string || ''
-      end
-
-      def magenta(string=nil)
-        string || ''
-      end
-
-      def cyan(string=nil)
-        string || ''
-      end
-
-      def white(string=nil)
-        string || ''
-      end
-
-      def on_black(string=nil)
-        string || ''
-      end
-
-      def on_red(string=nil)
-        string || ''
-      end
-
-      def on_green(string=nil)
-        string || ''
-      end
-
-      def on_yellow(string=nil)
-        string || ''
-      end
-
-      def on_blue(string=nil)
-        string || ''
-      end
-
-      def on_magenta(string=nil)
-        string || ''
-      end
-
-      def on_cyan(string=nil)
-        string || ''
-      end
-
-      def on_white(string=nil)
-        string || ''
+      [
+        :bold, :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white,
+        :on_black, :on_red, :on_green, :on_yellow, :on_blue, :on_magenta, :on_cyan, :on_white
+      ].each do |name|
+        define_method(name) do |string=nil|
+          string || ''
+        end
       end
     end
 
