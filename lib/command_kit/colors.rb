@@ -80,28 +80,28 @@ module CommandKit
       RESET_COLOR = "\e[39m"
 
       # ANSI color code for bg black
-      BG_BLACK = "\e[40m"
+      ON_BLACK = "\e[40m"
 
       # ANSI color code for bg red
-      BG_RED = "\e[41m"
+      ON_RED = "\e[41m"
 
       # ANSI color code for bg green
-      BG_GREEN = "\e[42m"
+      ON_GREEN = "\e[42m"
 
       # ANSI color code for bg yellow
-      BG_YELLOW = "\e[43m"
+      ON_YELLOW = "\e[43m"
 
       # ANSI color code for bg blue
-      BG_BLUE = "\e[44m"
+      ON_BLUE = "\e[44m"
 
       # ANSI color code for bg megenta
-      BG_MAGENTA = "\e[45m"
+      ON_MAGENTA = "\e[45m"
 
       # ANSI color code for bg cyan
-      BG_CYAN = "\e[46m"
+      ON_CYAN = "\e[46m"
 
       # ANSI color code for bg white
-      BG_WHITE = "\e[47m"
+      ON_WHITE = "\e[47m"
 
       # ANSI color for the default background color
       RESET_BG = "\e[49m"
@@ -307,16 +307,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_BLACK]
-      #   The colorized string or just {BG_BLACK} if no arguments were given.
+      # @return [String, ON_BLACK]
+      #   The colorized string or just {ON_BLACK} if no arguments were given.
       #
-      # @see BG_BLACK
+      # @see ON_BLACK
       #
       # @api public
       #
-      def bg_black(string=nil)
-        if string then "#{BG_BLACK}#{string}#{RESET_BG}"
-        else           BG_BLACK
+      def on_black(string=nil)
+        if string then "#{ON_BLACK}#{string}#{RESET_BG}"
+        else           ON_BLACK
         end
       end
 
@@ -326,16 +326,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_RED]
-      #   The colorized string or just {BG_RED} if no arguments were given.
+      # @return [String, ON_RED]
+      #   The colorized string or just {ON_RED} if no arguments were given.
       #
-      # @see BG_RED
+      # @see ON_RED
       #
       # @api public
       #
-      def bg_red(string=nil)
-        if string then "#{BG_RED}#{string}#{RESET_BG}"
-        else           BG_RED
+      def on_red(string=nil)
+        if string then "#{ON_RED}#{string}#{RESET_BG}"
+        else           ON_RED
         end
       end
 
@@ -345,16 +345,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_GREEN]
-      #   The colorized string or just {BG_GREEN} if no arguments were given.
+      # @return [String, ON_GREEN]
+      #   The colorized string or just {ON_GREEN} if no arguments were given.
       #
-      # @see BG_GREEN
+      # @see ON_GREEN
       #
       # @api public
       #
-      def bg_green(string=nil)
-        if string then "#{BG_GREEN}#{string}#{RESET_BG}"
-        else           BG_GREEN
+      def on_green(string=nil)
+        if string then "#{ON_GREEN}#{string}#{RESET_BG}"
+        else           ON_GREEN
         end
       end
 
@@ -364,16 +364,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_YELLOW]
-      #   The colorized string or just {BG_YELLOW} if no arguments were given.
+      # @return [String, ON_YELLOW]
+      #   The colorized string or just {ON_YELLOW} if no arguments were given.
       #
-      # @see BG_YELLOW
+      # @see ON_YELLOW
       #
       # @api public
       #
-      def bg_yellow(string=nil)
-        if string then "#{BG_YELLOW}#{string}#{RESET_BG}"
-        else           BG_YELLOW
+      def on_yellow(string=nil)
+        if string then "#{ON_YELLOW}#{string}#{RESET_BG}"
+        else           ON_YELLOW
         end
       end
 
@@ -383,16 +383,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_BLUE]
-      #   The colorized string or just {BG_BLUE} if no arguments were given.
+      # @return [String, ON_BLUE]
+      #   The colorized string or just {ON_BLUE} if no arguments were given.
       #
-      # @see BG_BLUE
+      # @see ON_BLUE
       #
       # @api public
       #
-      def bg_blue(string=nil)
-        if string then "#{BG_BLUE}#{string}#{RESET_BG}"
-        else           BG_BLUE
+      def on_blue(string=nil)
+        if string then "#{ON_BLUE}#{string}#{RESET_BG}"
+        else           ON_BLUE
         end
       end
 
@@ -402,16 +402,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_MAGENTA]
-      #   The colorized string or just {BG_MAGENTA} if no arguments were given.
+      # @return [String, ON_MAGENTA]
+      #   The colorized string or just {ON_MAGENTA} if no arguments were given.
       #
-      # @see BG_MAGENTA
+      # @see ON_MAGENTA
       #
       # @api public
       #
-      def bg_magenta(string=nil)
-        if string then "#{BG_MAGENTA}#{string}#{RESET_BG}"
-        else           BG_MAGENTA
+      def on_magenta(string=nil)
+        if string then "#{ON_MAGENTA}#{string}#{RESET_BG}"
+        else           ON_MAGENTA
         end
       end
 
@@ -421,16 +421,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_CYAN]
-      #   The colorized string or just {BG_CYAN} if no arguments were given.
+      # @return [String, ON_CYAN]
+      #   The colorized string or just {ON_CYAN} if no arguments were given.
       #
-      # @see BG_CYAN
+      # @see ON_CYAN
       #
       # @api public
       #
-      def bg_cyan(string=nil)
-        if string then "#{BG_CYAN}#{string}#{RESET_BG}"
-        else           BG_CYAN
+      def on_cyan(string=nil)
+        if string then "#{ON_CYAN}#{string}#{RESET_BG}"
+        else           ON_CYAN
         end
       end
 
@@ -440,16 +440,16 @@ module CommandKit
       # @param [String, nil] string
       #   An optional string.
       #
-      # @return [String, BG_WHITE]
-      #   The colorized string or just {BG_WHITE} if no arguments were given.
+      # @return [String, ON_WHITE]
+      #   The colorized string or just {ON_WHITE} if no arguments were given.
       #
-      # @see BG_WHITE
+      # @see ON_WHITE
       #
       # @api public
       #
-      def bg_white(string=nil)
-        if string then "#{BG_WHITE}#{string}#{RESET_BG}"
-        else           BG_WHITE
+      def on_white(string=nil)
+        if string then "#{ON_WHITE}#{string}#{RESET_BG}"
+        else           ON_WHITE
         end
       end
     end
@@ -472,14 +472,14 @@ module CommandKit
         CYAN = \
         WHITE = \
         RESET_COLOR = \
-        BG_BLACK = \
-        BG_RED = \
-        BG_GREEN = \
-        BG_YELLOW = \
-        BG_BLUE = \
-        BG_MAGENTA = \
-        BG_CYAN = \
-        BG_WHITE = \
+        ON_BLACK = \
+        ON_RED = \
+        ON_GREEN = \
+        ON_YELLOW = \
+        ON_BLUE = \
+        ON_MAGENTA = \
+        ON_CYAN = \
+        ON_WHITE = \
         RESET_BG = ''
 
       module_function
@@ -528,35 +528,35 @@ module CommandKit
         string || ''
       end
 
-      def bg_black(string=nil)
+      def on_black(string=nil)
         string || ''
       end
 
-      def bg_red(string=nil)
+      def on_red(string=nil)
         string || ''
       end
 
-      def bg_green(string=nil)
+      def on_green(string=nil)
         string || ''
       end
 
-      def bg_yellow(string=nil)
+      def on_yellow(string=nil)
         string || ''
       end
 
-      def bg_blue(string=nil)
+      def on_blue(string=nil)
         string || ''
       end
 
-      def bg_magenta(string=nil)
+      def on_magenta(string=nil)
         string || ''
       end
 
-      def bg_cyan(string=nil)
+      def on_cyan(string=nil)
         string || ''
       end
 
-      def bg_white(string=nil)
+      def on_white(string=nil)
         string || ''
       end
     end
