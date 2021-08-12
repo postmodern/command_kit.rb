@@ -110,7 +110,7 @@ describe CommandKit::PackageManager do
           end
         end
 
-        context "and the Linux Distro is SuSe" do
+        context "and the Linux Distro is SUSE" do
           subject { command_class.new(os: :linux, linux_distro: :suse) }
 
           context "and the zypper command is detected" do

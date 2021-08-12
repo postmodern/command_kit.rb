@@ -132,7 +132,7 @@ module CommandKit
       end
 
       #
-      # Determines if the current OS is SuSE Linux based distro.
+      # Determines if the current OS is SUSE Linux based distro.
       #
       # @return [Boolean]
       #
