@@ -50,7 +50,7 @@ describe CommandKit::PackageManager do
       end
 
       context "and when the OS is Linux" do
-        context "and the Linux Distro is RedHat" do
+        context "and the Linux Distro is RedHat based" do
           subject { command_class.new(os: :linux, linux_distro: :redhat) }
 
           context "and the dnf command is detected" do
@@ -86,7 +86,7 @@ describe CommandKit::PackageManager do
           end
         end
 
-        context "and the Linux Distro is Debian" do
+        context "and the Linux Distro is Debian based" do
           subject { command_class.new(os: :linux, linux_distro: :debian) }
 
           context "and the apt command is detected" do
@@ -110,7 +110,7 @@ describe CommandKit::PackageManager do
           end
         end
 
-        context "and the Linux Distro is SUSE" do
+        context "and the Linux Distro is SUSE based" do
           subject { command_class.new(os: :linux, linux_distro: :suse) }
 
           context "and the zypper command is detected" do
