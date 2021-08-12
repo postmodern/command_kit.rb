@@ -1,67 +1,34 @@
+[![Build Status](https://github.com/postmodern/command_kit.rb/workflows/CI/badge.svg?branch=main)](https://github.com/postmodern/command_kit.rb/actions)
+
 # command_kit
-
-* [Homepage](https://github.com/postmodern/command_kit.rb#readme)
-* [Forum](https://github.com/postmodern/command_kit.rb/discussions)
-* [Issues](https://github.com/postmodern/command_kit.rb/issues)
-* [Documentation](http://rubydoc.info/gems/command_kit/frames)
-
-## Description
 
 A Ruby toolkit for building clean, correct, and robust CLI commands as
 plain-old Ruby classes.
 
+* [Homepage](https://github.com/postmodern/command_kit.rb#readme)
+* [Forum](https://github.com/postmodern/command_kit.rb/discussions) / [Issues](https://github.com/postmodern/command_kit.rb/issues)
+* [Documentation](http://rubydoc.info/gems/command_kit/frames)
+
+## Install
+
+```sh
+# install gem
+$ gem install command_kit
+
+# or add to your Gemfile
+gem 'command_kit', '~> 0.2'
+```
+
 ## Features
 
-* Supports defining commands as Classes.
-* Supports defining options and arguments as attributes.
-* Supports extending commands via inheritance.
-* Supports subcommands (explicit or lazy-loaded) and command aliases.
-* Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
-* Correctly handles broken pipes (aka `mycmd | head`).
-* Correctly handles when stdout or stdin is redirected to a file.
-* Uses [OptionParser][optparse] for POSIX option parsing.
-* Supports optionally displaying a man-page instead of `--help`
-  (see {CommandKit::Help::Man}).
-* Supports optional ANSI coloring.
-* Supports interactively prompting for user input.
-* Supports easily detecting the terminal size.
-* Supports paging output with `less` or `more`.
-* Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
-* Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
-
-### API
-
-* [CommandKit::Arguments](https://rubydoc.info/gems/command_kit/CommandKit/Arguments)
-* [CommandKit::Colors](https://rubydoc.info/gems/command_kit/CommandKit/Colors)
-* [CommandKit::Command](https://rubydoc.info/gems/command_kit/CommandKit/Command)
-* [CommandKit::CommandName](https://rubydoc.info/gems/command_kit/CommandKit/CommandName)
-* [CommandKit::Commands](https://rubydoc.info/gems/command_kit/CommandKit/Commands)
-  * [CommandKit::Commands::AutoLoad](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoLoad)
-  * [CommandKit::Commands::AutoRequire](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoRequire)
-* [CommandKit::Description](https://rubydoc.info/gems/command_kit/CommandKit/Description)
-* [CommandKit::Env](https://rubydoc.info/gems/command_kit/CommandKit/Env)
-  * [CommandKit::Env::Home](https://rubydoc.info/gems/command_kit/CommandKit/Env/Home)
-  * [CommandKit::Env::Path](https://rubydoc.info/gems/command_kit/CommandKit/Env/Path)
-* [CommandKit::Examples](https://rubydoc.info/gems/command_kit/CommandKit/Examples)
-* [CommandKit::ExceptionHandler](https://rubydoc.info/gems/command_kit/CommandKit/ExceptionHandler)
-* [CommandKit::Help](https://rubydoc.info/gems/command_kit/CommandKit/Help)
-  * [CommandKit::Help::Man](https://rubydoc.info/gems/command_kit/CommandKit/Help/Man)
-* [CommandKit::Interactive](https://rubydoc.info/gems/command_kit/CommandKit/Interactive)
-* [CommandKit::Main](https://rubydoc.info/gems/command_kit/CommandKit/Main)
-* [CommandKit::OpenApp](https://rubydoc.info/gems/command_kit/CommandKit/OpenApp)
-* [CommandKit::Options](https://rubydoc.info/gems/command_kit/CommandKit/Options)
-  * [CommandKit::Options::Quiet](https://rubydoc.info/gems/command_kit/CommandKit/Options/Quiet)
-  * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
-* [CommandKit::OS](https://rubydoc.info/gems/command_kit/CommandKit/OS)
-  * [CommandKit::OS::Linux](https://rubydoc.info/gems/command_kit/CommandKit/OS/Linux)
-* [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
-* [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
-  * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
-* [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
-* [CommandKit::Stdio](https://rubydoc.info/gems/command_kit/CommandKit/Stdio)
-* [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)
-* [CommandKit::Usage](https://rubydoc.info/gems/command_kit/CommandKit/Usage)
-* [CommandKit::XDG](https://rubydoc.info/gems/command_kit/CommandKit/XDG)
+* **Simplicity** - Commands are plain-old ruby classes, with options and arguments as attributes. Extend commands via inheritance. Uses [OptionParser][optparse] for POSIX option parsing.
+* **Subcommands** - Supports subcommands (explicit or lazy-loaded) and command aliases.
+* **Signals and errors** - Handles Ctrl^C and SIGINT interrupts (aka exit 130). Handles broken pipes (aka `mycmd | head`).
+* **Redirects** - Correctly handles when stdout or stdin is redirected to a file.
+* **Man** - Display a man-page instead of `--help` (see {CommandKit::Help::Man}).
+* **UX** - Optional ANSI coloring. Interactive prompt for user input. Supports easily detecting the terminal size, and paging output with `less` or `more`.
+* **XDG** - Supports [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (`~/.config/`, `~/.local/share/`, `~/.cache/`).
+* **Testability** - Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
 
 ## Anti-Features
 
@@ -69,72 +36,76 @@ plain-old Ruby classes.
 * Does not implement it's own option parser.
 * Not named after a comic-book Superhero.
 
-## Examples
+## Example
 
 ### lib/foo/cli/my_cmd.rb
 
-    require 'command_kit'
+```ruby
+require 'command_kit'
 
-    module Foo
-      module CLI
-        class MyCmd < CommandKit::Command
-    
-          usage '[OPTIONS] [-o OUTPUT] FILE'
-    
-          option :count, short: '-c',
-                         value: {
-                           type: Integer,
-                           default: 1
-                         },
-                         desc: "Number of times"
-    
-          option :output, short: '-o',
-                          value: {
-                            type: String,
-                            usage: 'FILE'
-                          },
-                          desc: "Optional output file"
-    
-          option :verbose, short: '-v', desc: "Increase verbose level" do
-            @verbose += 1
-          end
-    
-          argument :file, required: true,
-                          usage: 'FILE',
-                          desc: "Input file"
+module Foo
+  module CLI
+    class MyCmd < CommandKit::Command
 
-          examples [
-            '-o path/to/output.txt path/to/input.txt',
-            '-v -c 2 -o path/to/output.txt path/to/input.txt',
-          ]
+      usage '[OPTIONS] [-o OUTPUT] FILE'
 
-          description 'Example command'
-    
-          def initialize(**kwargs)
-            super(**kwargs)
-    
-            @verbose = 0
-          end
-    
-          def run(file)
-            puts "count=#{options[:count].inspect}"
-            puts "output=#{options[:output].inspect}"
-            puts "file=#{file.inspect}"
-            puts "verbose=#{@verbose.inspect}"
-          end
-    
-        end
+      option :count, short: '-c',
+                      value: {
+                        type: Integer,
+                        default: 1
+                      },
+                      desc: "Number of times"
+
+      option :output, short: '-o',
+                      value: {
+                        type: String,
+                        usage: 'FILE'
+                      },
+                      desc: "Optional output file"
+
+      option :verbose, short: '-v', desc: "Increase verbose level" do
+        @verbose += 1
       end
+
+      argument :file, required: true,
+                      usage: 'FILE',
+                      desc: "Input file"
+
+      examples [
+        '-o path/to/output.txt path/to/input.txt',
+        '-v -c 2 -o path/to/output.txt path/to/input.txt',
+      ]
+
+      description 'Example command'
+
+      def initialize(**kwargs)
+        super(**kwargs)
+
+        @verbose = 0
+      end
+
+      def run(file)
+        puts "count=#{options[:count].inspect}"
+        puts "output=#{options[:output].inspect}"
+        puts "file=#{file.inspect}"
+        puts "verbose=#{@verbose.inspect}"
+      end
+
     end
+  end
+end
+```
 
 ### bin/my_cmd
 
-    #!/usr/bin/env ruby
-    
-    $LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
-    require 'foo/cli/my_cmd'
-    
-    Foo::CLI::MyCmd.start
+```ruby
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
+require 'foo/cli/my_cmd'
+
+Foo::CLI::MyCmd.start
+```
 
 ### --help
 
@@ -159,14 +130,6 @@ plain-old Ruby classes.
 
 * [ruby] >= 2.7.0
 
-## Install
-
-    $ gem install command_kit
-
-### Gemfile
-
-    gem 'command_kit', '~> 0.1'
-
 ## Alternatives
 
 * [dry-cli](https://dry-rb.org/gems/dry-cli/0.6/)
@@ -176,6 +139,37 @@ plain-old Ruby classes.
 
 Special thanks to everyone who answered my questions and gave feedback on
 Twitter.
+
+### Reference
+
+* [CommandKit::Arguments](https://rubydoc.info/gems/command_kit/CommandKit/Arguments)
+* [CommandKit::Colors](https://rubydoc.info/gems/command_kit/CommandKit/Colors)
+* [CommandKit::Command](https://rubydoc.info/gems/command_kit/CommandKit/Command)
+* [CommandKit::CommandName](https://rubydoc.info/gems/command_kit/CommandKit/CommandName)
+* [CommandKit::Commands](https://rubydoc.info/gems/command_kit/CommandKit/Commands)
+  * [CommandKit::Commands::AutoLoad](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoLoad)
+  * [CommandKit::Commands::AutoRequire](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoRequire)
+* [CommandKit::Description](https://rubydoc.info/gems/command_kit/CommandKit/Description)
+* [CommandKit::Env](https://rubydoc.info/gems/command_kit/CommandKit/Env)
+  * [CommandKit::Env::Home](https://rubydoc.info/gems/command_kit/CommandKit/Env/Home)
+  * [CommandKit::Env::Path](https://rubydoc.info/gems/command_kit/CommandKit/Env/Path)
+* [CommandKit::Examples](https://rubydoc.info/gems/command_kit/CommandKit/Examples)
+* [CommandKit::ExceptionHandler](https://rubydoc.info/gems/command_kit/CommandKit/ExceptionHandler)
+* [CommandKit::Help](https://rubydoc.info/gems/command_kit/CommandKit/Help)
+  * [CommandKit::Help::Man](https://rubydoc.info/gems/command_kit/CommandKit/Help/Man)
+* [CommandKit::Interactive](https://rubydoc.info/gems/command_kit/CommandKit/Interactive)
+* [CommandKit::Main](https://rubydoc.info/gems/command_kit/CommandKit/Main)
+* [CommandKit::Options](https://rubydoc.info/gems/command_kit/CommandKit/Options)
+  * [CommandKit::Options::Quiet](https://rubydoc.info/gems/command_kit/CommandKit/Options/Quiet)
+  * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
+* [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
+* [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
+  * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
+* [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
+* [CommandKit::Stdio](https://rubydoc.info/gems/command_kit/CommandKit/Stdio)
+* [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)
+* [CommandKit::Usage](https://rubydoc.info/gems/command_kit/CommandKit/Usage)
+* [CommandKit::XDG](https://rubydoc.info/gems/command_kit/CommandKit/XDG)
 
 ## Copyright
 
