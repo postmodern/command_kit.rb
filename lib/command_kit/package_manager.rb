@@ -7,6 +7,26 @@ module CommandKit
   #
   # Allows installing packages using the system's package manager.
   #
+  # Supports the following package managers:
+  #
+  # * Linux
+  #   * Debian / Ubuntu
+  #     * `apt`
+  #   * RedHat / Fedora
+  #     * `dnf`
+  #     * `yum`
+  #   * Arch
+  #     * `pacman`
+  #   * SUSE / OpenSUSE
+  #     * `zypper`
+  # * macOS
+  #   * `brew`
+  #   * `port`
+  # * FreeBSD
+  #   * `pkg`
+  # * OpenBSD
+  #   * `pkg_add`
+  #
   # ## Examples
   #
   #     unless install_packages("nmap")
