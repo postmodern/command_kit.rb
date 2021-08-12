@@ -556,9 +556,9 @@ describe CommandKit::PackageManager do
           end
 
           it "must return true" do
-            expect(subject.install_packages(
-              pacman: pacman_packages
-            )).to be(true)
+            expect(
+              subject.install_packages(pacman: pacman_packages)
+            ).to be(true)
           end
         end
       end
@@ -609,9 +609,9 @@ describe CommandKit::PackageManager do
           end
 
           it "must return true" do
-            expect(subject.install_packages(
-              *packages, pacman: pacman_packages
-            )).to be(true)
+            expect(
+              subject.install_packages(*packages, pacman: pacman_packages)
+            ).to be(true)
           end
         end
       end

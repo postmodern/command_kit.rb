@@ -140,7 +140,7 @@ module CommandKit
                                when :yum     then yum
                                when :zypper  then zypper
                                end
-      packages = packages + Array(specific_package_names)
+      packages += Array(specific_package_names)
 
       case @package_manager
       when :apt
