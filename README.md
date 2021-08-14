@@ -1,13 +1,29 @@
-[![Build Status](https://github.com/postmodern/command_kit.rb/workflows/CI/badge.svg?branch=main)](https://github.com/postmodern/command_kit.rb/actions)
-
 # command_kit
+
+[![Build Status](https://github.com/postmodern/command_kit.rb/workflows/CI/badge.svg?branch=main)](https://github.com/postmodern/command_kit.rb/actions)
 
 A Ruby toolkit for building clean, correct, and robust CLI commands as
 plain-old Ruby classes.
 
 * [Homepage](https://github.com/postmodern/command_kit.rb#readme)
-* [Forum](https://github.com/postmodern/command_kit.rb/discussions) / [Issues](https://github.com/postmodern/command_kit.rb/issues)
+* [Forum](https://github.com/postmodern/command_kit.rb/discussions) | [Issues](https://github.com/postmodern/command_kit.rb/issues)
 * [Documentation](http://rubydoc.info/gems/command_kit/frames)
+
+## Features
+
+* **Simplicity** - Commands are plain-old ruby classes, with options and arguments as attributes. Extend commands via inheritance. Uses [OptionParser][optparse] for POSIX option parsing.
+* **Subcommands** - Supports subcommands (explicit or lazy-loaded) and command aliases.
+* **Signals and errors** - Handles Ctrl^C and SIGINT interrupts (aka exit 130). Handles broken pipes (aka `mycmd | head`).
+* **Integration** - Optional ANSI coloring. Interactive prompt for user input. Supports easily detecting the terminal size, and paging output with `less` or `more`. Supports [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (`~/.config/`, `~/.local/share/`, `~/.cache/`).
+* **Redirects** - Correctly handles when stdout or stdin is redirected to a file.
+* **Man** - Display a man-page instead of `--help` (see {CommandKit::Help::Man}).
+* **Testability** - Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
+
+## Anti-Features
+
+* No additional runtime dependencies.
+* Does not implement it's own option parser.
+* Not named after a comic-book Superhero.
 
 ## Install
 
@@ -18,23 +34,6 @@ $ gem install command_kit
 # or add to your Gemfile
 gem 'command_kit', '~> 0.2'
 ```
-
-## Features
-
-* **Simplicity** - Commands are plain-old ruby classes, with options and arguments as attributes. Extend commands via inheritance. Uses [OptionParser][optparse] for POSIX option parsing.
-* **Subcommands** - Supports subcommands (explicit or lazy-loaded) and command aliases.
-* **Signals and errors** - Handles Ctrl^C and SIGINT interrupts (aka exit 130). Handles broken pipes (aka `mycmd | head`).
-* **Redirects** - Correctly handles when stdout or stdin is redirected to a file.
-* **Man** - Display a man-page instead of `--help` (see {CommandKit::Help::Man}).
-* **UX** - Optional ANSI coloring. Interactive prompt for user input. Supports easily detecting the terminal size, and paging output with `less` or `more`.
-* **XDG** - Supports [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (`~/.config/`, `~/.local/share/`, `~/.cache/`).
-* **Testability** - Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
-
-## Anti-Features
-
-* No additional runtime dependencies.
-* Does not implement it's own option parser.
-* Not named after a comic-book Superhero.
 
 ## Example
 
@@ -110,20 +109,20 @@ Foo::CLI::MyCmd.start
 ### --help
 
     Usage: my_cmd [OPTIONS] [-o OUTPUT] FILE
-    
+
     Options:
         -c, --count INT                  Number of times (Default: 1)
         -o, --output FILE                Optional output file
         -v, --verbose                    Increase verbose level
         -h, --help                       Print help information
-    
+
     Arguments:
         FILE                             Input file
-    
+
     Examples:
         my_cmd -o path/to/output.txt path/to/input.txt
         my_cmd -v -c 2 -o path/to/output.txt path/to/input.txt
-    
+
     Example command
 
 ## Requirements
