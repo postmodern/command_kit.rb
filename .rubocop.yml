@@ -91,7 +91,7 @@ Lint/UnusedMethodArgument: { Enabled: false } # Offense count: 5
 Style/AccessorGrouping: { Enabled: false } # Offense count: 7
 Style/Documentation: { Enabled: false } # Offense count: 3
 Style/ExpandPathArguments: { Enabled: false } # Offense count: 8
-Style/HashSyntax: { Enabled: false } # Offense count: 3
+Style/HashSyntax: { Exclude: ['Rakefile'] } # Offense count: 3
 Style/KeywordParametersOrder: { Enabled: false } # Offense count: 8
 Style/Lambda: { Enabled: false } # Offense count: 3
 Style/MutableConstant: { Enabled: false } # Offense count: 4
