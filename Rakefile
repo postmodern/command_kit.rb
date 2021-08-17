@@ -20,14 +20,5 @@ require 'yard'
 YARD::Rake::YardocTask.new
 task :doc => :yard
 
-desc "Runs rubocop"
-task :rubocop do
-  sh 'bundle exec rubocop .'
-end
-
-namespace :rubocop do
-  desc "Runs rubocop and auto-corrects"
-  task :fix do
-    sh 'bundle exec rubocop -A .'
-  end
-end
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new
