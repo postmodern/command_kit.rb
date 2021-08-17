@@ -1,8 +1,10 @@
 # command_kit
 
+[![Build Status](https://github.com/postmodern/command_kit.rb/workflows/CI/badge.svg?branch=main)](https://github.com/postmodern/command_kit.rb/actions)
+
 * [Homepage](https://github.com/postmodern/command_kit.rb#readme)
-* [Forum](https://github.com/postmodern/command_kit.rb/discussions)
-* [Issues](https://github.com/postmodern/command_kit.rb/issues)
+* [Forum](https://github.com/postmodern/command_kit.rb/discussions) |
+  [Issues](https://github.com/postmodern/command_kit.rb/issues)
 * [Documentation](http://rubydoc.info/gems/command_kit/frames)
 
 ## Description
@@ -12,24 +14,140 @@ plain-old Ruby classes.
 
 ## Features
 
-* Supports defining commands as Classes.
-* Supports defining options and arguments as attributes.
-* Supports extending commands via inheritance.
-* Supports subcommands (explicit or lazy-loaded) and command aliases.
-* Correctly handles Ctrl^C and SIGINT interrupts (aka exit 130).
-* Correctly handles broken pipes (aka `mycmd | head`).
-* Correctly handles when stdout or stdin is redirected to a file.
-* Uses [OptionParser][optparse] for POSIX option parsing.
-* Supports optionally displaying a man-page instead of `--help`
-  (see {CommandKit::Help::Man}).
-* Supports optional ANSI coloring.
-* Supports interactively prompting for user input.
-* Supports easily detecting the terminal size.
-* Supports paging output with `less` or `more`.
-* Supports XDG directories (`~/.config/`, `~/.local/share/`, `~/.cache/`).
-* Easy to test (ex: `MyCmd.main(arg1, arg2, options: {foo: foo}) # => 0`)
+* **Simple** - Commands are plain-old ruby classes, with options and
+  arguments declared as attributes. All features are ruby modules that can be
+  included into command classes.
+* **Correct** - CommandKit behaves like a standard UNIX command.
+  * Safely handles Ctrl^C / SIGINT interrupts and [exits with 130](https://tldp.org/LDP/abs/html/exitcodes.html).
+  * Safely handles broken pipes (aka `mycmd | head`).
+  * Respects common environment variables (ex: `TERM=dumb`).
+  * Uses [OptionParser][optparse] for POSIX option parsing.
+  * Disables ANSI color when output is redirected to a file.
+* **Complete** - Provides many additional CLI features.
+  * OS detection.
+  * Terminal size detection.
+  * ANSI coloring support.
+  * Interactive input.
+  * Subcommands (explicit or lazy-loaded) and command aliases.
+  * Displaying man pages for `--help`/`help`.
+  * Using the pager (aka `less`).
+  * [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (aka `~/.config/`, `~/.local/share/`, `~/.cache/`).
+* **Testable** - Since commands are plain-old ruby classes, it's easy to
+  initialize them and call `#main` or `#run`.
 
-### API
+## Anti-Features
+
+* No additional runtime dependencies.
+* Does not implement it's own option parser.
+* Not named after a comic-book Superhero.
+
+## Requirements
+
+* [ruby] >= 2.7.0
+
+## Install
+
+```sh
+$ gem install command_kit
+```
+
+### Gemfile
+
+```ruby
+gem 'command_kit', '~> 0.2'
+```
+
+## Examples
+
+### lib/foo/cli/my_cmd.rb
+
+```ruby
+require 'command_kit'
+
+module Foo
+  module CLI
+    class MyCmd < CommandKit::Command
+
+      usage '[OPTIONS] [-o OUTPUT] FILE'
+
+      option :count, short: '-c',
+                     value: {
+                       type: Integer,
+                       default: 1
+                     },
+                     desc: "Number of times"
+
+      option :output, short: '-o',
+                      value: {
+                        type: String,
+                        usage: 'FILE'
+                      },
+                      desc: "Optional output file"
+
+      option :verbose, short: '-v', desc: "Increase verbose level" do
+        @verbose += 1
+      end
+
+      argument :file, required: true,
+                      usage: 'FILE',
+                      desc: "Input file"
+
+      examples [
+        '-o path/to/output.txt path/to/input.txt',
+        '-v -c 2 -o path/to/output.txt path/to/input.txt',
+      ]
+
+      description 'Example command'
+
+      def initialize(**kwargs)
+        super(**kwargs)
+
+        @verbose = 0
+      end
+
+      def run(file)
+        puts "count=#{options[:count].inspect}"
+        puts "output=#{options[:output].inspect}"
+        puts "file=#{file.inspect}"
+        puts "verbose=#{@verbose.inspect}"
+      end
+
+    end
+  end
+end
+```
+
+### bin/my_cmd
+
+```ruby
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
+require 'foo/cli/my_cmd'
+
+Foo::CLI::MyCmd.start
+```
+
+### --help
+
+    Usage: my_cmd [OPTIONS] [-o OUTPUT] FILE
+
+    Options:
+        -c, --count INT                  Number of times (Default: 1)
+        -o, --output FILE                Optional output file
+        -v, --verbose                    Increase verbose level
+        -h, --help                       Print help information
+
+    Arguments:
+        FILE                             Input file
+
+    Examples:
+        my_cmd -o path/to/output.txt path/to/input.txt
+        my_cmd -v -c 2 -o path/to/output.txt path/to/input.txt
+
+    Example command
+
+### Reference
 
 * [CommandKit::Arguments](https://rubydoc.info/gems/command_kit/CommandKit/Arguments)
 * [CommandKit::Colors](https://rubydoc.info/gems/command_kit/CommandKit/Colors)
@@ -48,13 +166,9 @@ plain-old Ruby classes.
   * [CommandKit::Help::Man](https://rubydoc.info/gems/command_kit/CommandKit/Help/Man)
 * [CommandKit::Interactive](https://rubydoc.info/gems/command_kit/CommandKit/Interactive)
 * [CommandKit::Main](https://rubydoc.info/gems/command_kit/CommandKit/Main)
-* [CommandKit::OpenApp](https://rubydoc.info/gems/command_kit/CommandKit/OpenApp)
 * [CommandKit::Options](https://rubydoc.info/gems/command_kit/CommandKit/Options)
   * [CommandKit::Options::Quiet](https://rubydoc.info/gems/command_kit/CommandKit/Options/Quiet)
   * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
-* [CommandKit::OS](https://rubydoc.info/gems/command_kit/CommandKit/OS)
-  * [CommandKit::OS::Linux](https://rubydoc.info/gems/command_kit/CommandKit/OS/Linux)
-* [CommandKit::PackageManager](https://rubydoc.info/gems/command_kit/CommandKit/PackageManager)
 * [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
@@ -63,110 +177,6 @@ plain-old Ruby classes.
 * [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)
 * [CommandKit::Usage](https://rubydoc.info/gems/command_kit/CommandKit/Usage)
 * [CommandKit::XDG](https://rubydoc.info/gems/command_kit/CommandKit/XDG)
-
-## Anti-Features
-
-* No additional runtime dependencies.
-* Does not implement it's own option parser.
-* Not named after a comic-book Superhero.
-
-## Examples
-
-### lib/foo/cli/my_cmd.rb
-
-    require 'command_kit'
-
-    module Foo
-      module CLI
-        class MyCmd < CommandKit::Command
-    
-          usage '[OPTIONS] [-o OUTPUT] FILE'
-    
-          option :count, short: '-c',
-                         value: {
-                           type: Integer,
-                           default: 1
-                         },
-                         desc: "Number of times"
-    
-          option :output, short: '-o',
-                          value: {
-                            type: String,
-                            usage: 'FILE'
-                          },
-                          desc: "Optional output file"
-    
-          option :verbose, short: '-v', desc: "Increase verbose level" do
-            @verbose += 1
-          end
-    
-          argument :file, required: true,
-                          usage: 'FILE',
-                          desc: "Input file"
-
-          examples [
-            '-o path/to/output.txt path/to/input.txt',
-            '-v -c 2 -o path/to/output.txt path/to/input.txt',
-          ]
-
-          description 'Example command'
-    
-          def initialize(**kwargs)
-            super(**kwargs)
-    
-            @verbose = 0
-          end
-    
-          def run(file)
-            puts "count=#{options[:count].inspect}"
-            puts "output=#{options[:output].inspect}"
-            puts "file=#{file.inspect}"
-            puts "verbose=#{@verbose.inspect}"
-          end
-    
-        end
-      end
-    end
-
-### bin/my_cmd
-
-    #!/usr/bin/env ruby
-    
-    $LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
-    require 'foo/cli/my_cmd'
-    
-    Foo::CLI::MyCmd.start
-
-### --help
-
-    Usage: my_cmd [OPTIONS] [-o OUTPUT] FILE
-    
-    Options:
-        -c, --count INT                  Number of times (Default: 1)
-        -o, --output FILE                Optional output file
-        -v, --verbose                    Increase verbose level
-        -h, --help                       Print help information
-    
-    Arguments:
-        FILE                             Input file
-    
-    Examples:
-        my_cmd -o path/to/output.txt path/to/input.txt
-        my_cmd -v -c 2 -o path/to/output.txt path/to/input.txt
-    
-    Example command
-
-## Requirements
-
-* [ruby] >= 2.7.0
-
-## Install
-
-    $ gem install command_kit
-
-### Gemfile
-
-    gem 'command_kit', '~> 0.1'
 
 ## Alternatives
 
