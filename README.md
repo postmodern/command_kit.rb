@@ -51,6 +51,12 @@ plain-old Ruby classes.
 $ gem install command_kit
 ```
 
+### gemspec
+
+```ruby
+gem.add_dependency 'command_kit', '~> 0.2'
+```
+
 ### Gemfile
 
 ```ruby
