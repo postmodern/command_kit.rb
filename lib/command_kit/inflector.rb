@@ -50,7 +50,7 @@ module CommandKit
         elsif (lowercase = scanner.scan(/[a-z][a-z\d]*/))
           words << lowercase
         elsif scanner.scan(/[_-]+/)
-          next
+          # skip
         else
           raise(ArgumentError,"cannot convert string to underscored: #{scanner.string.inspect}")
         end
@@ -89,10 +89,11 @@ module CommandKit
       new_string = String.new
 
       until scanner.eos?
-        if (word = scanner.scan(/[a-z\d]+/i))
-          new_string << word.capitalize
+        if (word = scanner.scan(/[A-Za-z\d]+/))
+          word.capitalize!
+          new_string << word
         elsif scanner.scan(/[_-]+/)
-          next
+          # skip
         elsif scanner.scan(/\//)
           new_string << '::'
         else
