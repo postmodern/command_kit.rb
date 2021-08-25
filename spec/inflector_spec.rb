@@ -61,10 +61,28 @@ describe CommandKit::Inflector do
       expect(subject.underscore('FooBARBaz')).to eq('foo_bar_baz')
     end
 
-    context "when given a String containing '-' characters" do
-      it "must replace dashes with underscores" do
-        expect(subject.underscore('foo-bar')).to eq('foo_bar')
-      end
+    it "must convert foo_bar_baz to foo_bar_baz" do
+      expect(subject.underscore('foo_bar_baz')).to eq('foo_bar_baz')
+    end
+
+    it "must convert foo___bar___baz to foo___bar___baz" do
+      expect(subject.underscore('foo___bar___baz')).to eq('foo___bar___baz')
+    end
+
+    it "must convert foo-bar-baz to foo_bar_baz" do
+      expect(subject.underscore('foo-bar-baz')).to eq('foo_bar_baz')
+    end
+
+    it "must convert foo---bar---baz to foo___bar___baz" do
+      expect(subject.underscore('foo---bar---baz')).to eq('foo___bar___baz')
+    end
+
+    it "must convert foo_BAR_baz to foo_bar_baz" do
+      expect(subject.underscore('foo_BAR_baz')).to eq('foo_bar_baz')
+    end
+
+    it "must convert foo-BAR-baz to foo_bar_baz" do
+      expect(subject.underscore('foo-BAR-baz')).to eq('foo_bar_baz')
     end
 
     context "when given a non-String" do
