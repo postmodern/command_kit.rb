@@ -14,6 +14,14 @@ Lint/ConstantDefinitionInBlock: { Exclude: ['spec/**/*'] }
 Metrics: { Enabled: false }
 Style/SymbolArray: { EnforcedStyle: brackets }
 Style/IfInsideElse: { Enabled: false } # Offense count: 1
+Style/PercentLiteralDelimiters:
+  Enabled: true
+  PreferredDelimiters:
+    default: '{}'
+    '%i': '[]'
+    '%I': '[]'
+    '%w': '[]'
+    '%W': '[]'
 
 #
 # rules that are in flux
@@ -127,3 +135,4 @@ Style/RegexpLiteral: { Enabled: false } # Offense count: 1
 Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
+Style/PercentLiteralDelimiters: { Enabled: false } # Offense count: 2
