@@ -9,7 +9,7 @@ module CommandKit
   module Printing
     include Stdio
 
-    # Platform independency new-line constant
+    # Platform independent new-line constant
     #
     # @return [String]
     #

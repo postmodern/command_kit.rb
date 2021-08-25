@@ -50,7 +50,7 @@ module CommandKit
     #   Keyword arguments.
     #
     # @note
-    #   Respects the `PAGER` env variable, or attemps to find `less` or
+    #   Respects the `PAGER` env variable, or attempts to find `less` or
     #   `more` by searching the `PATH` env variable.
     #
     # @api public

@@ -123,7 +123,7 @@ module CommandKit
       end
 
       #
-      # The separator characer between the option and option value.
+      # The separator character between the option and option value.
       #
       # @return ['=', ' ', nil]
       #

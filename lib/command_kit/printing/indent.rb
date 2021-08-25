@@ -20,7 +20,7 @@ module CommandKit
     #
     module Indent
       #
-      # Initializes the indententation level to zero.
+      # Initializes the indentation level to zero.
       #
       def initialize(**kwargs)
         @indent = 0
@@ -40,7 +40,7 @@ module CommandKit
       #   increased.
       #
       # @return [Integer]
-      #   If no block is given, the indententation level will be returned.
+      #   If no block is given, the indentation level will be returned.
       #
       # @example
       #   puts "values:"

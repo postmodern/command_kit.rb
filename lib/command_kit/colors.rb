@@ -67,7 +67,7 @@ module CommandKit
       # ANSI color code for blue
       BLUE = "\e[34m"
 
-      # ANSI color code for megenta
+      # ANSI color code for magenta
       MAGENTA = "\e[35m"
 
       # ANSI color code for cyan
@@ -94,7 +94,7 @@ module CommandKit
       # ANSI color code for background blue
       BG_BLUE = "\e[44m"
 
-      # ANSI color code for background megenta
+      # ANSI color code for background magenta
       BG_MAGENTA = "\e[45m"
 
       # ANSI color code for background cyan

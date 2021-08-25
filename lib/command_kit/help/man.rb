@@ -153,8 +153,8 @@ module CommandKit
       #   {ClassMethods#man_dir .man_dir} does not have a value.
       #
       # @note
-      #   if `TERM` is `dumb` or `$stdout` is not a TTY, fallsback to printing
-      #   the usual `--help` output.
+      #   if `TERM` is `dumb` or `$stdout` is not a TTY, will fall back to
+      #   printing the usual `--help` output.
       #
       # @api public
       #

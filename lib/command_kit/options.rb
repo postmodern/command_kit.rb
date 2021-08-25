@@ -22,7 +22,7 @@ module CommandKit
   #       @bar = arg.split(':')
   #     end
   #
-  # ### initialize and using ivars
+  # ### initialize and using instance variables
   #     
   #     option :number, value: {type: Integer},
   #                     desc: 'Numbers' do |num|
@@ -197,7 +197,7 @@ module CommandKit
     # {Parser#option_parser option parser}.
     #
     # @param [Hash{Symbol => Object}] options
-    #   Optional pre-populated options hash.
+    #   Optional prepopulated options hash.
     #
     # @note
     #   The {#option_parser} will populate {#options} and also call any

@@ -56,7 +56,7 @@ module CommandKit
   #       end
   #     end
   #
-  # ### initialize and using ivars
+  # ### initialize and using instance variables
   #
   #     option :verbose, short: '-v', desc: "Increase verbose level" do
   #       @verbose += 1
