@@ -39,7 +39,7 @@ module CommandKit
     #   The given string contained non-alpha-numeric characters.
     #
     def self.underscore(name)
-      scanner = StringScanner.new(name.to_s)
+      scanner    = StringScanner.new(name.to_s)
       new_string = String.new
 
       until scanner.eos?
