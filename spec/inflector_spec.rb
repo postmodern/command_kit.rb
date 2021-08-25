@@ -41,16 +41,24 @@ describe CommandKit::Inflector do
       expect(subject.underscore('camelCase')).to eq('camel_case')
     end
 
-    it "must convert Camel to camel" do
-      expect(subject.underscore('Camel')).to eq('camel')
+    it "must convert Camelcase to camelcase" do
+      expect(subject.underscore('Camelcase')).to eq('camelcase')
     end
 
-    it "must convert CAMEL to camel" do
-      expect(subject.underscore('CAMEL')).to eq('camel')
+    it "must convert CAMELCASE to camelcase" do
+      expect(subject.underscore('CAMELCASE')).to eq('camelcase')
     end
 
-    it "must convert CAMELCase to camel" do
+    it "must convert CAMELCase to camel_case" do
       expect(subject.underscore('CAMELCase')).to eq('camel_case')
+    end
+
+    it "must convert CamelCASE to camel_case" do
+      expect(subject.underscore('CAMELCase')).to eq('camel_case')
+    end
+
+    it "must convert FooBARBaz to foo_bar_baz" do
+      expect(subject.underscore('FooBARBaz')).to eq('foo_bar_baz')
     end
 
     context "when given a String containing '-' characters" do
