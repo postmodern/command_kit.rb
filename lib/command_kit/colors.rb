@@ -26,7 +26,7 @@ module CommandKit
   #
   # ## Alternatives
   #
-  # * [ansi](http://rubyworks.github.io/ansi/)
+  # * [ansi](https://rubyworks.github.io/ansi/)
   # * [colorize](https://github.com/fazibear/colorize#readme)
   #
   # @see https://en.wikipedia.org/wiki/ANSI_escape_code
