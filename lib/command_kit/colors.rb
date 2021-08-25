@@ -79,28 +79,28 @@ module CommandKit
       # ANSI color for the default foreground color
       RESET_COLOR = "\e[39m"
 
-      # ANSI color code for background black
+      # ANSI color code for background color black
       BG_BLACK = "\e[40m"
 
-      # ANSI color code for background red
+      # ANSI color code for background color red
       BG_RED = "\e[41m"
 
-      # ANSI color code for background green
+      # ANSI color code for background color green
       BG_GREEN = "\e[42m"
 
-      # ANSI color code for background yellow
+      # ANSI color code for background color yellow
       BG_YELLOW = "\e[43m"
 
-      # ANSI color code for background blue
+      # ANSI color code for background color blue
       BG_BLUE = "\e[44m"
 
-      # ANSI color code for background magenta
+      # ANSI color code for background color magenta
       BG_MAGENTA = "\e[45m"
 
-      # ANSI color code for background cyan
+      # ANSI color code for background color cyan
       BG_CYAN = "\e[46m"
 
-      # ANSI color code for background white
+      # ANSI color code for background color white
       BG_WHITE = "\e[47m"
 
       # ANSI color for the default background color
