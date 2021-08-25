@@ -79,28 +79,28 @@ module CommandKit
       # ANSI color for the default foreground color
       RESET_COLOR = "\e[39m"
 
-      # ANSI color code for bg black
+      # ANSI color code for background black
       BG_BLACK = "\e[40m"
 
-      # ANSI color code for bg red
+      # ANSI color code for background red
       BG_RED = "\e[41m"
 
-      # ANSI color code for bg green
+      # ANSI color code for background green
       BG_GREEN = "\e[42m"
 
-      # ANSI color code for bg yellow
+      # ANSI color code for background yellow
       BG_YELLOW = "\e[43m"
 
-      # ANSI color code for bg blue
+      # ANSI color code for background blue
       BG_BLUE = "\e[44m"
 
-      # ANSI color code for bg megenta
+      # ANSI color code for background megenta
       BG_MAGENTA = "\e[45m"
 
-      # ANSI color code for bg cyan
+      # ANSI color code for background cyan
       BG_CYAN = "\e[46m"
 
-      # ANSI color code for bg white
+      # ANSI color code for background white
       BG_WHITE = "\e[47m"
 
       # ANSI color for the default background color
@@ -302,7 +302,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to black.
+      # Sets the background color to black.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -321,7 +321,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to red.
+      # Sets the background color to red.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -340,7 +340,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to green.
+      # Sets the background color to green.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -359,7 +359,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to yellow.
+      # Sets the background color to yellow.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -378,7 +378,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to blue.
+      # Sets the background color to blue.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -397,7 +397,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to magenta.
+      # Sets the background color to magenta.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -416,7 +416,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to cyan.
+      # Sets the background color to cyan.
       #
       # @param [String, nil] string
       #   An optional string.
@@ -435,7 +435,7 @@ module CommandKit
       end
 
       #
-      # Sets the bg color to white.
+      # Sets the background color to white.
       #
       # @param [String, nil] string
       #   An optional string.
