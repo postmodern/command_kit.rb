@@ -13,4 +13,5 @@ group :development do
 
   gem 'kramdown'
   gem 'yard', '~> 0.9'
+  gem 'yard-spellcheck'
 end
