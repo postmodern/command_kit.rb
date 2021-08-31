@@ -18,6 +18,7 @@
 * Added {CommandKit::OS::Linux}.
 * Added {CommandKit::OpenApp}.
 * Added {CommandKit::PackageManager}.
+* Added {CommandKit::Pager#pipe_to_pager}.
 * Added {CommandKit::Sudo}.
 * Added {CommandKit::Terminal#tty?}.
 * Refactor {CommandKit::Inflector.camelize} and
