@@ -65,36 +65,36 @@ describe CommandKit::Colors do
       it { expect(subject::WHITE).to eq("\e[37m") }
     end
 
-    describe "BG_BLACK" do
-      it { expect(subject::BG_BLACK).to eq("\e[40m") }
+    describe "ON_BLACK" do
+      it { expect(subject::ON_BLACK).to eq("\e[40m") }
     end
 
-    describe "BG_RED" do
-      it { expect(subject::BG_RED).to eq("\e[41m") }
+    describe "ON_RED" do
+      it { expect(subject::ON_RED).to eq("\e[41m") }
     end
 
-    describe "BG_GREEN" do
-      it { expect(subject::BG_GREEN).to eq("\e[42m") }
+    describe "ON_GREEN" do
+      it { expect(subject::ON_GREEN).to eq("\e[42m") }
     end
 
-    describe "BG_YELLOW" do
-      it { expect(subject::BG_YELLOW).to eq("\e[43m") }
+    describe "ON_YELLOW" do
+      it { expect(subject::ON_YELLOW).to eq("\e[43m") }
     end
 
-    describe "BG_BLUE" do
-      it { expect(subject::BG_BLUE).to eq("\e[44m") }
+    describe "ON_BLUE" do
+      it { expect(subject::ON_BLUE).to eq("\e[44m") }
     end
 
-    describe "BG_MAGENTA" do
-      it { expect(subject::BG_MAGENTA).to eq("\e[45m") }
+    describe "ON_MAGENTA" do
+      it { expect(subject::ON_MAGENTA).to eq("\e[45m") }
     end
 
-    describe "BG_CYAN" do
-      it { expect(subject::BG_CYAN).to eq("\e[46m") }
+    describe "ON_CYAN" do
+      it { expect(subject::ON_CYAN).to eq("\e[46m") }
     end
 
-    describe "BG_WHITE" do
-      it { expect(subject::BG_WHITE).to eq("\e[47m") }
+    describe "ON_WHITE" do
+      it { expect(subject::ON_WHITE).to eq("\e[47m") }
     end
 
     describe "RESET_COLOR" do
@@ -219,99 +219,99 @@ describe CommandKit::Colors do
       end
     end
 
-    describe ".bg_black" do
+    describe ".on_black" do
       context "when given a string" do
         it "must wrap the string with \\e[40m and \\e[39m" do
-          expect(subject.bg_black(str)).to eq("\e[40m#{str}\e[49m")
+          expect(subject.on_black(str)).to eq("\e[40m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_black).to eq("\e[40m") }
+        it { expect(subject.on_black).to eq("\e[40m") }
       end
     end
 
-    describe ".bg_red" do
+    describe ".on_red" do
       context "when given a string" do
         it "must wrap the string with \\e[41m and \\e[39m" do
-          expect(subject.bg_red(str)).to eq("\e[41m#{str}\e[49m")
+          expect(subject.on_red(str)).to eq("\e[41m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_red).to eq("\e[41m") }
+        it { expect(subject.on_red).to eq("\e[41m") }
       end
     end
 
-    describe ".bg_green" do
+    describe ".on_green" do
       context "when given a string" do
         it "must wrap the string with \\e[42m and \\e[39m" do
-          expect(subject.bg_green(str)).to eq("\e[42m#{str}\e[49m")
+          expect(subject.on_green(str)).to eq("\e[42m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_green).to eq("\e[42m") }
+        it { expect(subject.on_green).to eq("\e[42m") }
       end
     end
 
-    describe ".bg_yellow" do
+    describe ".on_yellow" do
       context "when given a string" do
         it "must wrap the string with \\e[43m and \\e[39m" do
-          expect(subject.bg_yellow(str)).to eq("\e[43m#{str}\e[49m")
+          expect(subject.on_yellow(str)).to eq("\e[43m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_yellow).to eq("\e[43m") }
+        it { expect(subject.on_yellow).to eq("\e[43m") }
       end
     end
 
-    describe ".bg_blue" do
+    describe ".on_blue" do
       context "when given a string" do
         it "must wrap the string with \\e[44m and \\e[39m" do
-          expect(subject.bg_blue(str)).to eq("\e[44m#{str}\e[49m")
+          expect(subject.on_blue(str)).to eq("\e[44m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_blue).to eq("\e[44m") }
+        it { expect(subject.on_blue).to eq("\e[44m") }
       end
     end
 
-    describe ".bg_magenta" do
+    describe ".on_magenta" do
       context "when given a string" do
         it "must wrap the string with \\e[45m and \\e[39m" do
-          expect(subject.bg_magenta(str)).to eq("\e[45m#{str}\e[49m")
+          expect(subject.on_magenta(str)).to eq("\e[45m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_magenta).to eq("\e[45m") }
+        it { expect(subject.on_magenta).to eq("\e[45m") }
       end
     end
 
-    describe ".bg_cyan" do
+    describe ".on_cyan" do
       context "when given a string" do
         it "must wrap the string with \\e[46m and \\e[39m" do
-          expect(subject.bg_cyan(str)).to eq("\e[46m#{str}\e[49m")
+          expect(subject.on_cyan(str)).to eq("\e[46m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_cyan).to eq("\e[46m") }
+        it { expect(subject.on_cyan).to eq("\e[46m") }
       end
     end
 
-    describe ".bg_white" do
+    describe ".on_white" do
       context "when given a string" do
         it "must wrap the string with \\e[47m and \\e[39m" do
-          expect(subject.bg_white(str)).to eq("\e[47m#{str}\e[49m")
+          expect(subject.on_white(str)).to eq("\e[47m#{str}\e[49m")
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_white).to eq("\e[47m") }
+        it { expect(subject.on_white).to eq("\e[47m") }
       end
     end
   end
@@ -369,36 +369,36 @@ describe CommandKit::Colors do
       it { expect(subject::WHITE).to eq('') }
     end
 
-    describe "BG_BLACK" do
-      it { expect(subject::BG_BLACK).to eq('') }
+    describe "ON_BLACK" do
+      it { expect(subject::ON_BLACK).to eq('') }
     end
 
-    describe "BG_RED" do
-      it { expect(subject::BG_RED).to eq('') }
+    describe "ON_RED" do
+      it { expect(subject::ON_RED).to eq('') }
     end
 
-    describe "BG_GREEN" do
-      it { expect(subject::BG_GREEN).to eq('') }
+    describe "ON_GREEN" do
+      it { expect(subject::ON_GREEN).to eq('') }
     end
 
-    describe "BG_YELLOW" do
-      it { expect(subject::BG_YELLOW).to eq('') }
+    describe "ON_YELLOW" do
+      it { expect(subject::ON_YELLOW).to eq('') }
     end
 
-    describe "BG_BLUE" do
-      it { expect(subject::BG_BLUE).to eq('') }
+    describe "ON_BLUE" do
+      it { expect(subject::ON_BLUE).to eq('') }
     end
 
-    describe "BG_MAGENTA" do
-      it { expect(subject::BG_MAGENTA).to eq('') }
+    describe "ON_MAGENTA" do
+      it { expect(subject::ON_MAGENTA).to eq('') }
     end
 
-    describe "BG_CYAN" do
-      it { expect(subject::BG_CYAN).to eq('') }
+    describe "ON_CYAN" do
+      it { expect(subject::ON_CYAN).to eq('') }
     end
 
-    describe "BG_WHITE" do
-      it { expect(subject::BG_WHITE).to eq('') }
+    describe "ON_WHITE" do
+      it { expect(subject::ON_WHITE).to eq('') }
     end
 
     describe "RESET_COLOR" do
@@ -521,99 +521,99 @@ describe CommandKit::Colors do
       end
     end
 
-    describe ".bg_black" do
+    describe ".on_black" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_black(str)).to eq(str)
+          expect(subject.on_black(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_black).to eq('') }
+        it { expect(subject.on_black).to eq('') }
       end
     end
 
-    describe ".bg_red" do
+    describe ".on_red" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_red(str)).to eq(str)
+          expect(subject.on_red(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_red).to eq('') }
+        it { expect(subject.on_red).to eq('') }
       end
     end
 
-    describe ".bg_green" do
+    describe ".on_green" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_green(str)).to eq(str)
+          expect(subject.on_green(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_green).to eq('') }
+        it { expect(subject.on_green).to eq('') }
       end
     end
 
-    describe ".bg_yellow" do
+    describe ".on_yellow" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_yellow(str)).to eq(str)
+          expect(subject.on_yellow(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_yellow).to eq('') }
+        it { expect(subject.on_yellow).to eq('') }
       end
     end
 
-    describe ".bg_blue" do
+    describe ".on_blue" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_blue(str)).to eq(str)
+          expect(subject.on_blue(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_blue).to eq('') }
+        it { expect(subject.on_blue).to eq('') }
       end
     end
 
-    describe ".bg_magenta" do
+    describe ".on_magenta" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_magenta(str)).to eq(str)
+          expect(subject.on_magenta(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_magenta).to eq('') }
+        it { expect(subject.on_magenta).to eq('') }
       end
     end
 
-    describe ".bg_cyan" do
+    describe ".on_cyan" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_cyan(str)).to eq(str)
+          expect(subject.on_cyan(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_cyan).to eq('') }
+        it { expect(subject.on_cyan).to eq('') }
       end
     end
 
-    describe ".bg_white" do
+    describe ".on_white" do
       context "when given a string" do
         it "must return that string" do
-          expect(subject.bg_white(str)).to eq(str)
+          expect(subject.on_white(str)).to eq(str)
         end
       end
 
       context "when given no arguments" do
-        it { expect(subject.bg_white).to eq('') }
+        it { expect(subject.on_white).to eq('') }
       end
     end
   end

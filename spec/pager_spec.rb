@@ -19,8 +19,8 @@ describe CommandKit::Pager do
 
       subject { command_class.new(env: {'PAGER' => pager}) }
 
-      it "must set @pager to the PAGER env variable" do
-        expect(subject.instance_variable_get('@pager')).to eq(pager)
+      it "must set @pager_command to the PAGER env variable" do
+        expect(subject.instance_variable_get('@pager_command')).to eq(pager)
       end
     end
 
@@ -29,7 +29,7 @@ describe CommandKit::Pager do
         subject { command_class.new(env: {'PATH' => ENV['PATH']}) }
 
         it "must search PATH for one of the pagers" do
-          expect(subject.instance_variable_get('@pager')).to eq("less -r")
+          expect(subject.instance_variable_get('@pager_command')).to eq("less -r")
         end
       end
     end
@@ -46,9 +46,9 @@ describe CommandKit::Pager do
       end
     end
 
-    context "when @pager isn't initialized" do
+    context "when @pager_command isn't initialized" do
       before do
-        subject.instance_variable_set('@pager',nil)
+        subject.instance_variable_set('@pager_command',nil)
       end
 
       it "must yield stdout" do
@@ -58,7 +58,7 @@ describe CommandKit::Pager do
       end
     end
 
-    context "when stdout is a TTY and @pager is initialized" do
+    context "when stdout is a TTY and @pager_command is initialized" do
       let(:pager) { 'less -r' }
 
       subject { command_class.new(env: {'PAGER' => pager}) }
@@ -145,6 +145,71 @@ describe CommandKit::Pager do
           expect(pager).to receive(:puts).with(array)
 
           subject.print_or_page(array)
+        end
+      end
+    end
+  end
+
+  describe "#pipe_to_pager" do
+    context "when @pager_command is initialized" do
+      let(:pager) { 'less' }
+
+      subject do
+        command_class.new(env: {'PAGER' => pager})
+      end
+
+      context "and when given a single String" do
+        let(:command) { "find ." }
+
+        it "must run the command but piped into the pager" do
+          expect(subject).to receive(:system).with("#{command} | #{pager}")
+
+          subject.pipe_to_pager(command)
+        end
+      end
+
+      context "and when given a String and additional arguments" do
+        let(:command)   { 'find'          }
+        let(:arguments) { %[. -name *.md] }
+
+        let(:escaped_command) do
+          Shellwords.shelljoin([command,*arguments])
+        end
+
+        it "must shell escape the command and arguments" do
+          expect(subject).to receive(:system).with(
+            "#{escaped_command} | #{pager}"
+          )
+
+          subject.pipe_to_pager(command,*arguments)
+        end
+      end
+    end
+
+    context "when @pager_command is not initialized" do
+      before do
+        subject.instance_variable_set('@pager_command',nil)
+      end
+
+      let(:command)   { 'find' }
+      let(:arguments) { %[. -name *.md] }
+
+      it "must pass the command and any additional arguments to #system" do
+        expect(subject).to receive(:system).with(command,*arguments)
+
+        subject.pipe_to_pager(command,*arguments)
+      end
+
+      context "when one of the arguments is not a String" do
+        let(:command)   { :find }
+        let(:arguments) { ['.', :"-name", "*.md"] }
+
+        it "must convert the command to a String before calling #system" do
+          expect(subject).to receive(:system).with(
+            command.to_s, *arguments.map(&:to_s)
+          )
+
+          subject.pipe_to_pager(command,*arguments)
         end
       end
     end

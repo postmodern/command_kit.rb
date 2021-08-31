@@ -5,6 +5,8 @@ require 'command_kit/env/path'
 require 'command_kit/stdio'
 require 'command_kit/terminal'
 
+require 'shellwords'
+
 module CommandKit
   #
   # Allows opening a pager, such as `less` or `more`.
@@ -58,7 +60,7 @@ module CommandKit
     def initialize(**kwargs)
       super(**kwargs)
 
-      @pager = env.fetch('PAGER') do
+      @pager_command = env.fetch('PAGER') do
         PAGERS.find do |command|
           bin = command.split(' ',2).first
 
@@ -94,14 +96,14 @@ module CommandKit
     # @api public
     #
     def pager
-      if !stdout.tty? || @pager.nil?
+      if !stdout.tty? || @pager_command.nil?
         # fallback to stdout if the process does not have a terminal or we could
         # not find a suitable pager command.
         yield stdout
         return
       end
 
-      io  = IO.popen(@pager,'w')
+      io  = IO.popen(@pager_command,'w')
       pid = io.pid
 
       begin
@@ -142,6 +144,46 @@ module CommandKit
         pager { |io| io.puts(data) }
       else
         stdout.puts(data)
+      end
+    end
+
+    #
+    # Pipes a command into the pager.
+    #
+    # @param [#to_s] command
+    #   The program or command to run.
+    #
+    # @param [Array<#to_s>] arguments
+    #   Additional arguments for the program.
+    #
+    # @return [Boolean]
+    #   Indicates whether the command exited successfully or not.
+    #
+    # @note
+    #   If multiple arguments are given, they will be shell-escaped and executed
+    #   as a single command.
+    #   If a single command is given, it will not be shell-escaped to allow
+    #   executing compound shell commands.
+    #
+    # @example Pipe a single command into the pager:
+    #   run_in_pager 'find', '.', '-name', '*.md'
+    # 
+    # @example Pipe a compound command into the pager:
+    #   run_in_pager "wc -l /path/to/wordlists/*.txt | sort -n"
+    #
+    # @api public
+    #
+    # @since 0.2.0
+    #
+    def pipe_to_pager(command,*arguments)
+      if @pager_command
+        unless arguments.empty?
+          command = Shellwords.shelljoin([command, *arguments])
+        end
+
+        system("#{command} | #{@pager_command}")
+      else
+        system(command.to_s,*arguments.map(&:to_s))
       end
     end
   end

@@ -72,6 +72,11 @@ module CommandKit
     end
 
     #
+    # @since 0.2.0
+    #
+    alias tty? terminal?
+
+    #
     # Returns the terminal object, if {Stdio#stdout stdout} is connected to a
     # terminal.
     #
