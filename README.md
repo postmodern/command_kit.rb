@@ -1,6 +1,7 @@
 # command_kit
 
 [![Build Status](https://github.com/postmodern/command_kit.rb/workflows/CI/badge.svg?branch=main)](https://github.com/postmodern/command_kit.rb/actions)
+[![Gem Version](https://badge.fury.io/rb/command_kit.svg)](https://badge.fury.io/rb/command_kit)
 
 * [Homepage](https://github.com/postmodern/command_kit.rb#readme)
 * [Forum](https://github.com/postmodern/command_kit.rb/discussions) |
