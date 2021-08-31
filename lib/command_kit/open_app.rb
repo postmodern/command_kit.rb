@@ -9,7 +9,7 @@ module CommandKit
   # ## Examples
   #
   #     open_app_for "movie.avi"
-  #     open_app_for "https://github.com/postmodern/command_kit.rb"
+  #     open_app_for "https://github.com/postmodern/command_kit.rb#readme"
   #
   # @since 0.2.0
   #
