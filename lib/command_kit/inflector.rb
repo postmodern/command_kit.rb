@@ -44,7 +44,7 @@ module CommandKit
 
       until scanner.eos?
         if (separator = scanner.scan(/[_-]+/))
-          new_string << '_' * separator.length
+          new_string << ('_' * separator.length)
         else
           if (capitalized = scanner.scan(/[A-Z][a-z\d]+/))
             new_string << capitalized
@@ -57,7 +57,7 @@ module CommandKit
           end
 
           if (separator = scanner.scan(/[_-]+/))
-            new_string << '_' * separator.length
+            new_string << ('_' * separator.length)
           elsif !scanner.eos?
             new_string << '_'
           end
