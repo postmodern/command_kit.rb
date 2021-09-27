@@ -16,7 +16,7 @@ module CommandKit
 
       # The home directory.
       #
-      # @return [String]
+      # @return [Array<String>]
       #
       # @api semipublic
       attr_reader :path_dirs
