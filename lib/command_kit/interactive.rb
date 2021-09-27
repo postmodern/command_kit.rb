@@ -218,6 +218,15 @@ module CommandKit
     #
     # Asks the user for secret input.
     #
+    # @param [String] prompt
+    #   The prompt that will be printed before reading input.
+    #
+    # @param [Boolean] required
+    #   Requires non-empty input.
+    #
+    # @return [String]
+    #   The user input.
+    #
     # @example
     #   ask_secret("Password")
     #   # Password: 
