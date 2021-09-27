@@ -83,70 +83,80 @@ describe CommandKit::OS::Linux do
   end
 
   describe "#redhat_linux?" do
+    subject { command_class.new(linux_distro: linux_distro) }
+
     context "when #linux_distro is :redhat" do
-      subject { command_class.new(linux_distro: :redhat) }
+      let(:linux_distro) { :redhat }
 
       it { expect(subject.redhat_linux?).to be(true) }
     end
 
     context "when #linux_distro is not :redhat" do
-      subject { command_class.new(linux_distro: :debian) }
+      let(:linux_distro) { :debian }
 
       it { expect(subject.redhat_linux?).to be(false) }
     end
   end
 
   describe "#fedora_linux?" do
+    subject { command_class.new(linux_distro: linux_distro) }
+
     context "when #linux_distro is :fedora" do
-      subject { command_class.new(linux_distro: :fedora) }
+      let(:linux_distro) { :fedora }
 
       it { expect(subject.fedora_linux?).to be(true) }
     end
 
     context "when #linux_distro is not :fedora" do
-      subject { command_class.new(linux_distro: :debian) }
+      let(:linux_distro) { :debian }
 
       it { expect(subject.fedora_linux?).to be(false) }
     end
   end
 
   describe "#debian_linux?" do
+    subject { command_class.new(linux_distro: linux_distro) }
+
     context "when #linux_distro is :debian" do
-      subject { command_class.new(linux_distro: :debian) }
+      let(:linux_distro) { :debian }
 
       it { expect(subject.debian_linux?).to be(true) }
     end
 
     context "when #linux_distro is not :fedora" do
-      subject { command_class.new(linux_distro: :redhat) }
+      let(:linux_distro) { :redhat }
 
       it { expect(subject.debian_linux?).to be(false) }
     end
   end
 
   describe "#suse_linux?" do
+    subject { command_class.new(linux_distro: linux_distro) }
+
     context "when #linux_distro is :suse" do
-      subject { command_class.new(linux_distro: :suse) }
+      let(:linux_distro) { :suse }
 
       it { expect(subject.suse_linux?).to be(true) }
     end
 
     context "when #linux_distro is not :suse" do
-      subject { command_class.new(linux_distro: :debian) }
+      let(:linux_distro) { :debian }
 
       it { expect(subject.suse_linux?).to be(false) }
     end
   end
 
   describe "#arch_linux?" do
+    subject { command_class.new(linux_distro: linux_distro) }
+
     context "when #linux_distro is :arch" do
-      subject { command_class.new(linux_distro: :arch) }
+      let(:linux_distro) { :arch }
 
       it { expect(subject.arch_linux?).to be(true) }
     end
 
     context "when #linux_distro is not :arch" do
-      subject { command_class.new(linux_distro: :debian) }
+      let(:linux_distro) { :debian }
 
       it { expect(subject.arch_linux?).to be(false) }
     end
