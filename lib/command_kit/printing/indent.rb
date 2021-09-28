@@ -65,10 +65,10 @@ module CommandKit
       #
       def indent(n=2)
         if block_given?
-          begin
-            original_indent = @indent
-            @indent += n
+          original_indent = @indent
 
+          begin
+            @indent += n
             yield
           ensure
             @indent = original_indent
