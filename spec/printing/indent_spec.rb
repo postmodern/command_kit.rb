@@ -12,13 +12,15 @@ describe CommandKit::Printing::Indent do
   subject { command_class.new }
 
   describe "#initialize" do
-    it "must initialize @indent to 0" do
-      expect(subject.instance_variable_get('@indent')).to eq(0)
+    it "must initialize #indent to 0" do
+      expect(subject.indent).to eq(0)
     end
 
     context "when the class has a superclass" do
       module TestIndent
         class TestSuperCommand
+
+          attr_reader :var
 
           def initialize(var: 'default')
             @var = var
@@ -36,11 +38,11 @@ describe CommandKit::Printing::Indent do
       let(:command_class) { TestIndent::TestSubCommand }
 
       it "must initialize @indent to 0" do
-        expect(subject.instance_variable_get('@indent')).to eq(0)
+        expect(subject.indent).to eq(0)
       end
 
       it "must call super()" do
-        expect(subject.instance_variable_get('@var')).to eq('default')
+        expect(subject.var).to eq('default')
       end
 
       context "and additional keyword arguments are given" do
@@ -49,7 +51,7 @@ describe CommandKit::Printing::Indent do
         subject { command_class.new(var: var) }
 
         it "must call super() with the additional keyword arguments" do
-          expect(subject.instance_variable_get('@var')).to eq(var)
+          expect(subject.var).to eq(var)
         end
       end
     end
