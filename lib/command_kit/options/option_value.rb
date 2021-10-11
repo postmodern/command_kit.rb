@@ -41,7 +41,7 @@ module CommandKit
 
       # The desired type of the argument value.
       #
-      # @return [Class, Hash, Array, Regexp, nil]
+      # @return [Class, Hash, Array, Regexp]
       attr_reader :type
 
       # The default parsed value for the argument value.
