@@ -13,6 +13,12 @@ describe CommandKit::Env::Path do
   let(:command_class) { TestEnvPath::TestCommand }
   subject { command_class.new }
 
+  describe ".included" do
+    it "must include CommandKit::Env" do
+      expect(command_class).to be_include(CommandKit::Env)
+    end
+  end
+
   describe "#initialize" do
     it "must split ENV['PATH'] into an Array of directories" do
       expect(subject.path_dirs).to eq(ENV['PATH'].split(File::PATH_SEPARATOR))
