@@ -170,7 +170,7 @@ describe CommandKit::Pager do
 
       context "and when given a String and additional arguments" do
         let(:command)   { 'find'          }
-        let(:arguments) { %[. -name *.md] }
+        let(:arguments) { %w[. -name *.md] }
 
         let(:escaped_command) do
           Shellwords.shelljoin([command,*arguments])
@@ -192,7 +192,7 @@ describe CommandKit::Pager do
       end
 
       let(:command)   { 'find' }
-      let(:arguments) { %[. -name *.md] }
+      let(:arguments) { %w[. -name *.md] }
 
       it "must pass the command and any additional arguments to #system" do
         expect(subject).to receive(:system).with(command,*arguments)
