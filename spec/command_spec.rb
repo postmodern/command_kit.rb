@@ -97,7 +97,7 @@ describe CommandKit::Command do
     let(:argument1) { command_class.arguments[:file]  }
 
     it "must print the usage, options, arguments, examples, and description" do
-      expect { subject.help }.to output((
+      expect { subject.help }.to output(
         [
           "Usage: #{subject.usage}",
           '',
@@ -116,7 +116,7 @@ describe CommandKit::Command do
           '',
           command_class.description
         ].join($/)
-      )).to_stdout
+      ).to_stdout
     end
   end
 end
