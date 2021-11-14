@@ -14,7 +14,8 @@ module CommandKit
 
       include ParentCommand
 
-      argument :command, desc: 'Command name to lookup'
+      argument :command, required: false,
+                         desc: 'Command name to lookup'
 
       #
       # Prints the given commands `--help` output or lists registered commands.
