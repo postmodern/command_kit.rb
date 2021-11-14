@@ -114,7 +114,8 @@ describe CommandKit::Command do
           "    #{subject.command_name} #{command_class.examples[0]}",
           "    #{subject.command_name} #{command_class.examples[1]}",
           '',
-          command_class.description
+          command_class.description,
+          ''
         ].join($/)
       ).to_stdout
     end
