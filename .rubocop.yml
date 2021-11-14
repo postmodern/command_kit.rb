@@ -85,6 +85,7 @@ Style/IfUnlessModifier: { Enabled: false } # Offense count: 13
 Style/MethodCallWithoutArgsParentheses: { Enabled: false } # Offense count: 10
 Style/SpecialGlobalVars: { Enabled: false } # Offense count: 28
 Style/StringLiterals: { Enabled: false } # Offense count: 774
+Lint/ElseLayout: { Enabled: false } # Offense count: 22
 
 # < 10 violations
 Layout/EmptyLinesAroundModuleBody: { Enabled: false } # Offense count: 5
