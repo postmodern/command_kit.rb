@@ -70,7 +70,7 @@ module CommandKit
         #
         def man_dir(new_man_dir=nil)
           if new_man_dir
-            @man_dir = new_man_dir
+            @man_dir = File.expand_path(new_man_dir)
           else
             @man_dir || if superclass.kind_of?(ClassMethods)
                           superclass.man_dir

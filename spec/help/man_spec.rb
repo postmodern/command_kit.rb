@@ -16,6 +16,12 @@ describe CommandKit::Help::Man do
       man_page 'foo.1'
     end
 
+    class TestCommandWithRelativeManDir
+      include CommandKit::Help::Man
+
+      man_dir File.join(__dir__,'..','..','..','man')
+    end
+
     class EmptyCommand
       include CommandKit::Help::Man
     end
@@ -52,7 +58,17 @@ describe CommandKit::Help::Man do
       subject { TestHelpMan::TestCommand }
 
       it "must return the explicitly set man_dir" do
-        expect(subject.man_dir).to eq(File.expand_path('../fixtures/man',__FILE__))
+        expect(subject.man_dir).to eq(File.join(__dir__,'fixtures','man'))
+      end
+
+      context "but it's a relative path" do
+        subject { TestHelpMan::TestCommandWithRelativeManDir }
+
+        it "must expand the given man_dir path" do
+          expect(subject.man_dir).to eq(
+            File.expand_path(File.join(__dir__,'..','..','..','man'))
+          )
+        end
       end
     end
 
@@ -96,7 +112,7 @@ describe CommandKit::Help::Man do
         end
 
         it "must not change the superclass'es man_dir" do
-          expect(super_subject.man_dir).to eq('set/in/baseclass')
+          expect(super_subject.man_dir).to eq(File.expand_path('set/in/baseclass'))
         end
       end
 
@@ -115,7 +131,7 @@ describe CommandKit::Help::Man do
         subject { TestHelpMan::ExplicitInheritedCmd }
 
         it "must return the subclass'es man_dir" do
-          expect(subject.man_dir).to eq('set/in/subclass')
+          expect(subject.man_dir).to eq(File.expand_path('set/in/subclass'))
         end
 
         it "must not change the superclass'es man_dir" do
@@ -134,11 +150,11 @@ describe CommandKit::Help::Man do
         subject { TestHelpMan::ExplicitOverridingInheritedCmd }
 
         it "must return the subclass'es man_dir" do
-          expect(subject.man_dir).to eq('set/in/subclass')
+          expect(subject.man_dir).to eq(File.expand_path('set/in/subclass'))
         end
 
         it "must not change the superclass'es man_dir" do
-          expect(super_subject.man_dir).to eq('set/in/baseclass')
+          expect(super_subject.man_dir).to eq(File.expand_path('set/in/baseclass'))
         end
       end
     end
