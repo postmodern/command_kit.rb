@@ -220,7 +220,9 @@ module CommandKit
       end
 
       if command_class.include?(Env)
-        kwargs[:env] = env.dup
+        kwargs[:env] = if env.eql?(ENV) then env.to_h
+                       else                  env.dup
+                       end
       end
 
       if command_class.include?(Options)
