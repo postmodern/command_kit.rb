@@ -126,6 +126,33 @@ describe CommandKit::Commands do
       command Test2
 
     end
+
+    class TestCommandsWithCommandArguments
+
+      include CommandKit::Commands
+
+      class Test1 < CommandKit::Command
+        argument :arg1, required: false,
+                        desc: 'Argument 1'
+
+        argument :arg2, required: false,
+                        desc: 'Argument 2'
+      end
+
+      class Test2 < CommandKit::Command
+        argument :arg1, required: false,
+                        desc: 'Argument 1'
+
+        argument :arg2, required: false,
+                        desc: 'Argument 2'
+      end
+
+      p method(:command).source_location
+      command Test1
+      command Test2
+
+    end
+
   end
 
   let(:command_class) { TestCommands::TestCommands }
@@ -582,39 +609,6 @@ describe CommandKit::Commands do
     end
   end
 
-  describe "#run" do
-    context "when a command name is the first argument" do
-      let(:command) { 'test1' }
-      let(:exit_status) { 2 }
-
-      it "must invoke the command and exit with it's status" do
-        expect(subject).to receive(:invoke).with(command).and_return(exit_status)
-        expect(subject).to receive(:exit).with(exit_status)
-
-        subject.run(command)
-      end
-
-      context "when additional argv is given after the command name" do
-        let(:argv) { %w[--opt arg1 arg2] }
-
-        it "must pass the additional argv to the command" do
-          expect(subject).to receive(:invoke).with(command,*argv).and_return(exit_status)
-          expect(subject).to receive(:exit).with(exit_status)
-
-          subject.run(command,*argv)
-        end
-      end
-    end
-
-    context "when given no arguments" do
-      it "must default to calling #help" do
-        expect(subject).to receive(:help)
-
-        subject.run()
-      end
-    end
-  end
-
   describe "#option_parser" do
     let(:command_name) { 'test1'     }
     let(:command_argv) { %w[foo bar baz] }
@@ -649,6 +643,74 @@ describe CommandKit::Commands do
 
         expect(subject.options[:foo]).to be(true)
         expect(subject.options[:bar]).to eq(bar)
+      end
+    end
+  end
+
+  describe "#run" do
+    context "when a command name is the first argument" do
+      let(:command) { 'test1' }
+      let(:exit_status) { 2 }
+
+      it "must invoke the command and exit with it's status" do
+        expect(subject).to receive(:invoke).with(command).and_return(exit_status)
+        expect(subject).to receive(:exit).with(exit_status)
+
+        subject.run(command)
+      end
+
+      context "when additional argv is given after the command name" do
+        let(:argv) { %w[--opt arg1 arg2] }
+
+        it "must pass the additional argv to the command" do
+          expect(subject).to receive(:invoke).with(command,*argv).and_return(exit_status)
+          expect(subject).to receive(:exit).with(exit_status)
+
+          subject.run(command,*argv)
+        end
+      end
+    end
+
+    context "when given no arguments" do
+      let(:exit_status) { 1 }
+
+      it "must default to calling #help and exit with 1" do
+        expect(subject).to receive(:help)
+        expect(subject).to receive(:exit).with(exit_status)
+
+        subject.run()
+      end
+    end
+  end
+
+  describe "#main" do
+    let(:command_class) { TestCommands::TestCommandsWithCommandArguments }
+
+    context "when a command name is the first argument" do
+      let(:command) { 'test1'   }
+      let(:argv)    { [command] }
+
+      it "must return 0" do
+        expect(subject.main(argv)).to eq(0)
+      end
+    end
+
+    context "when given additional command arguments" do
+      let(:argv) { %w[test1 arg1 arg2] }
+
+      it "must pass them to the command" do
+        expect(subject.main(argv)).to eq(0)
+      end
+    end
+
+    context "when given no arguments" do
+      let(:exit_status) { 1 }
+      let(:argv)        { %w[] }
+
+      it "must call #help and return 1" do
+        expect(subject).to receive(:help)
+
+        expect(subject.main(argv)).to eq(exit_status)
       end
     end
   end
