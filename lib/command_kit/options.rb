@@ -213,12 +213,12 @@ module CommandKit
       super(**kwargs)
 
       self.class.options.each_value do |option|
+        default_value = option.default_value
+
+        @options[option.name] = default_value unless default_value.nil?
+
         option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
-          @options[option.name] = if arg.nil?
-                                    option.default_value
-                                  else
-                                    arg
-                                  end
+          @options[option.name] = arg
 
           if option.block
             instance_exec(*arg,*captures,&option.block)

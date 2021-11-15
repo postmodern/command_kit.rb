@@ -133,6 +133,36 @@ describe CommandKit::Options do
     it "must initialize #options" do
       expect(subject.options).to eq({})
     end
+
+    context "when options have default values" do
+      module TestOptions
+        class TestCommandWithDefaultValues
+
+          include CommandKit::Options
+
+          option :option1, value: {
+                             required: true,
+                             type: String
+                           },
+                           desc: 'Option 1'
+
+          option :option2, value: {
+                             required: false,
+                             type: String,
+                             default: "foo"
+                           },
+                           desc: 'Option 2'
+        end
+      end
+
+      let(:command_class) { TestOptions::TestCommandWithDefaultValues }
+
+      it "must pre-populate #options with the default values" do
+        expect(subject.options).to_not have_key(:option1)
+        expect(subject.options).to have_key(:option2)
+        expect(subject.options[:option2]).to eq("foo")
+      end
+    end
   end
 
   module TestOptions
@@ -164,6 +194,177 @@ describe CommandKit::Options do
                            usage:    'ARG2',
                            desc:     "Argument 2"
 
+    end
+  end
+
+  describe "#option_parser" do
+    context "when an option does not accept a value" do
+      module TestOptions
+        class TestCommandWithOptionWithoutValue
+
+          include CommandKit::Options
+
+          option :opt, desc: "Option without a value"
+
+        end
+      end
+
+      let(:command_class) { TestOptions::TestCommandWithOptionWithoutValue }
+
+      context "but the option flag was not given" do
+        let(:argv) { [] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must not populate #options with a value" do
+          expect(subject.options).to be_empty
+        end
+      end
+
+      context "and the option flag was given" do
+        let(:argv) { %w[--opt] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must set a key in #options to true" do
+          expect(subject.options[:opt]).to be(true)
+        end
+      end
+    end
+
+    context "when an option requires a value" do
+      module TestOptions
+        class TestCommandWithOptionWithRequiredValue
+
+          include CommandKit::Options
+
+          option :opt, value: {
+                         required: true,
+                         type: String
+                       },
+                       desc: "Option without a value"
+
+        end
+      end
+
+      let(:command_class) do
+        TestOptions::TestCommandWithOptionWithRequiredValue
+      end
+
+      context "but the option flag was not given" do
+        let(:argv) { [] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must not populate #options with a value" do
+          expect(subject.options).to be_empty
+        end
+      end
+
+      context "and the option flag and value were given" do
+        let(:value) { 'foo'            }
+        let(:argv)  { ['--opt', value] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must set a key in #options to the value" do
+          expect(subject.options[:opt]).to eq(value)
+        end
+      end
+    end
+
+    context "when an option does not require a value" do
+      module TestOptions
+        class TestCommandWithOptionWithOptionalValue
+
+          include CommandKit::Options
+
+          option :opt, value: {
+                         required: false,
+                         type: String
+                       },
+                       desc: "Option without a value"
+
+        end
+      end
+
+      let(:command_class) do
+        TestOptions::TestCommandWithOptionWithOptionalValue
+      end
+
+      context "but the option flag was not given" do
+        let(:argv) { [] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must not populate #options with a value" do
+          expect(subject.options).to be_empty
+        end
+      end
+
+      context "and the option flag and value were given" do
+        let(:value) { 'foo'            }
+        let(:argv)  { ['--opt', value] }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must set a key in #options to the value" do
+          expect(subject.options[:opt]).to eq(value)
+        end
+      end
+
+      context "and the option has a default value" do
+        module TestOptions
+          class TestCommandWithOptionWithOptionalValueAndDefaultValue
+
+            include CommandKit::Options
+
+            option :opt, value: {
+                           required: false,
+                           type: String,
+                           default: "bar"
+                         },
+                         desc: "Option without a value"
+
+          end
+        end
+
+        let(:command_class) do
+          TestOptions::TestCommandWithOptionWithOptionalValueAndDefaultValue
+        end
+
+        context "but the option flag was not given" do
+          let(:argv) { [] }
+
+          before { subject.option_parser.parse(argv) }
+
+          it "must set a key in #options to the default value" do
+            expect(subject.options[:opt]).to eq("bar")
+          end
+        end
+
+        context "and the option flag and value were given" do
+          let(:value) { 'foo'            }
+          let(:argv)  { ['--opt', value] }
+
+          before { subject.option_parser.parse(argv) }
+
+          it "must set a key in #options to the value" do
+            expect(subject.options[:opt]).to eq(value)
+          end
+        end
+
+        context "and the option flag but not the value are given" do
+          let(:argv)  { ['--opt'] }
+
+          before { subject.option_parser.parse(argv) }
+
+          it "must set a key in #options to nil" do
+            expect(subject.options).to have_key(:opt)
+            expect(subject.options[:opt]).to be(nil)
+          end
+        end
+      end
     end
   end
 
