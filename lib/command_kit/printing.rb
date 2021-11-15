@@ -34,8 +34,10 @@ module CommandKit
     #
     def print_error(message)
       if respond_to?(:command_name)
+        # if #command_name is available, prefix all error messages with it
         stderr.puts "#{command_name}: #{message}"
       else
+        # if #command_name is not available, just print the error message as-is
         stderr.puts message
       end
     end
