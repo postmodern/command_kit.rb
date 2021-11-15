@@ -59,6 +59,13 @@ module CommandKit
           context.extend ModuleMethods
         else
           context.usage "[options] [COMMAND [ARGS...]]"
+          context.argument :command, required: false,
+                                     desc: 'The command name to run'
+
+          context.argument :args, required: false,
+                                  repeats: true,
+                                  desc: 'Additional arguments for the command'
+
           context.extend ClassMethods
           context.command Help
         end
