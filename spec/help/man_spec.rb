@@ -22,7 +22,7 @@ describe CommandKit::Help::Man do
       man_dir File.join(__dir__,'..','..','..','man')
     end
 
-    class EmptyCommand
+    class TestCommandWithManDirNotSet
       include CommandKit::Help::Man
     end
   end
@@ -47,7 +47,7 @@ describe CommandKit::Help::Man do
 
   describe ".man_dir" do
     context "when no man_dir have been set" do
-      subject { TestHelpMan::EmptyCommand }
+      subject { TestHelpMan::TestCommandWithManDirNotSet }
 
       it "should default to nil" do
         expect(subject.man_dir).to be_nil
@@ -251,15 +251,6 @@ describe CommandKit::Help::Man do
   subject { command_class.new }
 
   describe "#help_man" do
-    context "when .man_dir is not set" do
-      let(:command_class) { TestHelpMan::EmptyCommand }
-      subject { command_class.new }
-
-      it do
-        expect { subject.help_man }.to raise_error(NotImplementedError)
-      end
-    end
-
     let(:man_page_path) do
       File.join(subject.class.man_dir,subject.class.man_page)
     end
@@ -302,21 +293,33 @@ describe CommandKit::Help::Man do
         expect(subject.stdout).to receive(:tty?).and_return(true)
       end
 
-      it "must open the command's man-page" do
-        expect(subject).to receive(:help_man).and_return(true)
+      context "and man_dir is set" do
+        it "must open the command's man-page" do
+          expect(subject).to receive(:help_man).and_return(true)
 
-        subject.help
-      end
-
-      context "but when the man command is not installed" do
-        before do
-          expect(subject).to receive(:help_man).and_return(nil)
+          subject.help
         end
 
-        it "must call the super help() method" do
+        context "but when the man command is not installed" do
+          before do
+            expect(subject).to receive(:help_man).and_return(nil)
+          end
+
+          it "must call the super help() method" do
+            subject.help
+
+            expect(subject.stdout.string).to eq(normal_help_output)
+          end
+        end
+      end
+
+      context "but the man_dir is not set" do
+        let(:command_class) { TestHelpMan::TestCommandWithManDirNotSet }
+
+        it "must call the super help() mehtod" do
           subject.help
 
-          expect(subject.stdout.string).to eq(normal_help_output)
+          expect(stdout.string).to eq(normal_help_output)
         end
       end
     end

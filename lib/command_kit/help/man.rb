@@ -115,10 +115,6 @@ module CommandKit
       # @api semipublic
       #
       def help_man(man_page=self.class.man_page)
-        unless self.class.man_dir
-          raise(NotImplementedError,"#{self.class}.man_dir not set")
-        end
-
         man_path = File.join(self.class.man_dir,man_page)
 
         man(man_path)
@@ -139,11 +135,17 @@ module CommandKit
       #
       def help
         if stdout.tty?
-          if help_man.nil?
-            # the `man` command is not installed
+          if self.class.man_dir
+            if (status = help_man).nil?
+              # the `man` command is not installed
+              super
+            end
+          else
+            # man_dir was not set
             super
           end
         else
+          # stdout is not a TTY
           super
         end
       end
