@@ -78,8 +78,8 @@ module CommandKit
     include Printing
     include Help
     include Usage
-    include Options
     include Arguments
+    include Options
     include Examples
     include Description
     include ExceptionHandler

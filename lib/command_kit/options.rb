@@ -1,3 +1,4 @@
+require 'command_kit/arguments'
 require 'command_kit/options/option'
 require 'command_kit/options/parser'
 
@@ -36,6 +37,7 @@ module CommandKit
   #     end
   #
   module Options
+    include Arguments
     include Parser
 
     #
@@ -223,6 +225,17 @@ module CommandKit
           end
         end
       end
+    end
+
+    #
+    # Overvides the default {Usage#help help} method and calls {#help_options}
+    # and {#help_arguments}.
+    #
+    # @api public
+    #
+    def help
+      help_options
+      help_arguments
     end
   end
 end

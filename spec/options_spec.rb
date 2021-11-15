@@ -134,4 +134,63 @@ describe CommandKit::Options do
       expect(subject.options).to eq({})
     end
   end
+
+  describe "#help" do
+    module TestOptions
+      class TestCommandWithOptionsAndArguments
+
+        include CommandKit::Options
+
+        usage '[OPTIONS] [-o OUTPUT] FILE'
+
+        option :option1, short: '-a',
+                         value: {
+                           type: Integer,
+                           default: 1
+                         },
+                         desc: "Option 1"
+
+        option :option2, short: '-b',
+                         value: {
+                           type: String,
+                           usage: 'FILE'
+                         },
+                         desc: "Option 2"
+
+        argument :argument1, required: true,
+                             usage:    'ARG1',
+                             desc:     "Argument 1"
+
+        argument :argument2, required: false,
+                             usage:    'ARG2',
+                             desc:     "Argument 2"
+
+      end
+    end
+
+    let(:command_class) { TestOptions::TestCommandWithOptionsAndArguments }
+
+    let(:option1)   { command_class.options[:option1]     }
+    let(:option2)   { command_class.options[:option2]     }
+    let(:argument1) { command_class.arguments[:argument1] }
+    let(:argument2) { command_class.arguments[:argument2] }
+
+    it "must print the usage, options and arguments" do
+      expect { subject.help }.to output(
+        [
+          "Usage: #{subject.usage}",
+          '',
+          'Options:',
+          "    #{option1.usage.join(', ').ljust(33 - 1)} #{option1.desc}",
+          "    #{option2.usage.join(', ').ljust(33 - 1)} #{option2.desc}",
+          '    -h, --help                       Print help information',
+          '',
+          "Arguments:",
+          "    #{argument1.usage.ljust(33)}#{argument1.desc}",
+          "    #{argument2.usage.ljust(33)}#{argument2.desc}",
+          ''
+        ].join($/)
+      ).to_stdout
+    end
+  end
 end
