@@ -136,7 +136,9 @@ module CommandKit
       def help
         if stdout.tty?
           if self.class.man_dir
-            if (status = help_man).nil?
+            status = help_man
+
+            if status.nil?
               # the `man` command is not installed
               super
             end
