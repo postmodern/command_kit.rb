@@ -145,7 +145,7 @@ module CommandKit
       #
       def on_parse_error(error)
         print_error("#{command_name}: #{error.message}")
-        print_error("Try '#{command_name} --help' for more information.")
+        stderr.puts("Try '#{command_name} --help' for more information.")
         exit(1)
       end
 
