@@ -36,7 +36,7 @@ module CommandKit
       #   Optional alias names for the subcommand.
       #
       def initialize(command, summary: self.class.summary(command),
-                                   aliases: [])
+                              aliases: [])
         @command = command
         @summary = summary
         @aliases = aliases.map(&:to_s)
