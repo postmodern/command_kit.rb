@@ -136,3 +136,6 @@ Style/RegexpLiteral: { Enabled: false } # Offense count: 1
 Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
+
+# rubocop cannot tell that rubygems_mfa_required is enabled in gemspec.yml
+Gemspec/RequireMFA: { Enabled: false }
