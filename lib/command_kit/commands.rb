@@ -311,8 +311,14 @@ module CommandKit
         puts
         puts "Commands:"
 
+        command_aliases = Hash.new { |hash,key| hash[key] = [] }
+
+        self.class.command_aliases.each do |alias_name,name|
+          command_aliases[name] << alias_name
+        end
+
         self.class.commands.sort.each do |name,subcommand|
-          names = [name, *subcommand.aliases].join(', ')
+          names = [name, *command_aliases[name]].join(', ')
 
           if subcommand.summary
             puts "    #{names}\t#{subcommand.summary}"
