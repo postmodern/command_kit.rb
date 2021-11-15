@@ -54,16 +54,27 @@ describe CommandKit::Commands::AutoLoad do
   end
 
   module TestAutoLoad
-    class CLI
+    class TestCommand
       include CommandKit::Commands
       include CommandKit::Commands::AutoLoad.new(
         dir:       File.expand_path('../fixtures/test_auto_load/cli/commands',__FILE__),
         namespace: "#{self}::Commands"
       )
     end
+
+    class TestCommandWithBlock
+      include CommandKit::Commands
+      include(CommandKit::Commands::AutoLoad.new(
+        dir:       File.expand_path('../fixtures/test_auto_load/cli/commands',__FILE__),
+        namespace: "#{self}::Commands"
+      ) { |autoload|
+        autoload.command 'test-1', 'Test1', 'test1.rb', aliases: %w[test_1]
+        autoload.command 'test-2', 'Test2', 'test2.rb', aliases: %w[test_2]
+      })
+    end
   end
 
-  let(:command_class)   { TestAutoLoad::CLI }
+  let(:command_class)   { TestAutoLoad::TestCommand }
   let(:autoload_module) { command_class.included_modules.first }
 
   describe "#included" do
@@ -75,6 +86,26 @@ describe CommandKit::Commands::AutoLoad do
 
     it "must merge the module's #commands into the class'es #commands" do
       expect(command_class.commands).to include(autoload_module.commands)
+    end
+
+    context "when CommandKit::Commands::AutoLoad has an explicit mapping" do
+      let(:command_class) { TestAutoLoad::TestCommandWithBlock }
+
+      it "must merge the module's #commands into the class'es #commands" do
+        expect(command_class.commands).to include(autoload_module.commands)
+      end
+
+      it "must also merge the any aliases into the class'es #command_aliases" do
+        expected_command_aliases = {}
+
+        autoload_module.commands.each do |name,subcommand|
+          subcommand.aliases.each do |alias_name|
+            expected_command_aliases[alias_name] = name
+          end
+        end
+
+        expect(command_class.command_aliases).to include(expected_command_aliases)
+      end
     end
   end
 

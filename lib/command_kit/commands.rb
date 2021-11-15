@@ -140,11 +140,10 @@ module CommandKit
                end
 
         subcommand = Subcommand.new(command_class,**kwargs)
-
         commands[name] = subcommand
 
-        subcommand.aliases.each do |command_alias|
-          command_aliases[command_alias] = name
+        subcommand.aliases.each do |alias_name|
+          command_aliases[alias_name] = name
         end
 
         return subcommand

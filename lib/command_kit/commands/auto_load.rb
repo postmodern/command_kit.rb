@@ -162,7 +162,14 @@ module CommandKit
       #
       def included(command)
         command.include Commands
-        command.commands.merge!(@commands)
+
+        @commands.each do |name,subcommand|
+          command.commands[name] = subcommand
+
+          subcommand.aliases.each do |alias_name|
+            command.command_aliases[alias_name] = name
+          end
+        end
       end
     end
   end
