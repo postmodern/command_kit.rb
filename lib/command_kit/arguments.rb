@@ -168,7 +168,7 @@ module CommandKit
         help_usage
         return 1
       elsif argv.length > (required_args + optional_args) && !has_repeats_arg
-        print_error("too many arguments given")
+        print_error("too many arguments given.")
         help_usage
         return 1
       end
