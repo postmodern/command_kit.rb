@@ -35,7 +35,7 @@ module CommandKit
 
             subcommand.help
           else
-            print_error "#{command_name}: unknown command: #{command}"
+            print_error "unknown command: #{command}"
             exit(1)
           end
         end

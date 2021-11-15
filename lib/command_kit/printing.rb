@@ -23,12 +23,21 @@ module CommandKit
     #   The error message.
     #
     # @example
-    #   print_error "Error: invalid input"
+    #   print_error "error: invalid input"
+    #   # error: invalid input
+    #
+    # @example When CommandKit::CommandName is included:
+    #   print_error "invalid input"
+    #   # foo: invalid input
     #
     # @api public
     #
     def print_error(message)
-      stderr.puts message
+      if respond_to?(:command_name)
+        stderr.puts "#{command_name}: #{message}"
+      else
+        stderr.puts message
+      end
     end
 
     #

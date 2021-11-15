@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'command_kit/printing'
+require 'command_kit/command_name'
 
 require 'stringio'
 
@@ -34,10 +35,31 @@ describe CommandKit::Printing do
   describe "#print_error" do
     let(:message) { "oh no!" }
 
-    it "must print a line to stderr" do
+    it "must print the error message to stderr" do
       expect {
         subject.print_error(message)
       }.to output("#{message}#{nl}").to_stderr
+    end
+
+    context "and when CommandKit::CommandName is included" do
+      module TestPrinting
+        class TestCmdWithCommandName
+
+          include CommandKit::CommandName
+          include CommandKit::Printing
+
+          command_name 'foo'
+
+        end
+      end
+
+      let(:command_class) { TestPrinting::TestCmdWithCommandName }
+
+      it "must print the command_name and the error message" do
+        expect {
+          subject.print_error(message)
+        }.to output("#{subject.command_name}: #{message}#{nl}").to_stderr
+      end
     end
   end
 

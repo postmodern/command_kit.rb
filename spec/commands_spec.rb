@@ -569,7 +569,7 @@ describe CommandKit::Commands do
       expect(subject).to receive(:exit).with(1)
 
       expect { subject.command_not_found(unknown_command) }.to output(
-        "'#{unknown_command}' is not a #{subject.command_name} command. See `#{subject.command_name} help`" + $/
+        "#{subject.command_name}: '#{unknown_command}' is not a #{subject.command_name} command. See `#{subject.command_name} help`" + $/
       ).to_stderr
     end
   end

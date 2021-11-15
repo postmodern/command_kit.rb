@@ -144,7 +144,7 @@ module CommandKit
       # @api semipublic
       #
       def on_parse_error(error)
-        print_error("#{command_name}: #{error.message}")
+        print_error(error.message)
         stderr.puts("Try '#{command_name} --help' for more information.")
         exit(1)
       end
