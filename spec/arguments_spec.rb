@@ -137,6 +137,56 @@ describe CommandKit::Arguments do
 
   subject { command_class.new }
 
+  describe "#main" do
+    module TestArguments
+      class TestCommand
+
+        include CommandKit::Arguments
+
+        argument :argument1, required: true,
+                             usage:    'ARG1',
+                             desc:     "Argument 1"
+
+        argument :argument2, required: false,
+                             usage:    'ARG2',
+                             desc:     "Argument 2"
+
+      end
+    end
+
+    let(:command_class) { TestArguments::TestCommand }
+
+    context "when given the correct number of arguments" do
+      let(:argv) { %w[arg1 arg2] }
+
+      it "must parse options before validating the number of arguments" do
+        expect {
+          expect(subject.main(argv)).to eq(0)
+        }.to_not output.to_stderr
+      end
+    end
+
+    context "when given fewer than the required number of arguments" do
+      let(:argv) { %w[] }
+
+      it "must print an error message and return 1" do
+        expect {
+          expect(subject.main(argv)).to eq(1)
+        }.to output("#{subject.command_name}: insufficient number of arguments.#{$/}").to_stderr
+      end
+    end
+
+    context "when given more than the total number of arguments" do
+      let(:argv) { %w[foo bar baz] }
+
+      it "must print an error message and return 1" do
+        expect {
+          expect(subject.main(argv)).to eq(1)
+        }.to output("#{subject.command_name}: too many arguments given.#{$/}").to_stderr
+      end
+    end
+  end
+
   describe "#help_arguments" do
     context "when #arguments returns {}" do
       module TestArguments
