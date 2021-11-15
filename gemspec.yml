@@ -15,7 +15,6 @@ metadata:
   bug_tracker_uri:   https://github.com/postmodern/command_kit.rb/issues
   changelog_uri:     https://github.com/postmodern/command_kit.rb/blob/main/ChangeLog.md
 
-
 required_ruby_version: ">= 2.7.0"
 
 development_dependencies:
