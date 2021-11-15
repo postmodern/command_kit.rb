@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'command_kit/arguments/argument'
+require 'command_kit/usage'
 require 'command_kit/main'
 require 'command_kit/help'
-require 'command_kit/arguments/argument'
+require 'command_kit/printing'
 
 module CommandKit
   #
@@ -45,8 +47,10 @@ module CommandKit
   #     end
   #
   module Arguments
+    include Usage
     include Main
     include Help
+    include Printing
 
     #
     # @api private
