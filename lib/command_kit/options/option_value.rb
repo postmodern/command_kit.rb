@@ -92,10 +92,11 @@ module CommandKit
       def self.default_usage(type)
         USAGES.fetch(type) do
           case type
-          when Class  then Inflector.underscore(type.name).upcase
           when Hash   then type.keys.join('|')
           when Array  then type.join('|')
           when Regexp then type.source
+          when Class
+            Inflector.underscore(Inflector.demodularize(type.name)).upcase
           else
             raise(TypeError,"unsupported option type: #{type.inspect}")
           end
