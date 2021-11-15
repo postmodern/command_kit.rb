@@ -304,6 +304,7 @@ module CommandKit
         exit invoke(command,*argv)
       else
         help
+        exit(1)
       end
     end
 
