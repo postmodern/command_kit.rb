@@ -135,39 +135,61 @@ describe CommandKit::Options do
     end
   end
 
-  describe "#help" do
-    module TestOptions
-      class TestCommandWithOptionsAndArguments
+  module TestOptions
+    class TestCommandWithOptionsAndArguments
 
-        include CommandKit::Options
+      include CommandKit::Options
 
-        usage '[OPTIONS] [-o OUTPUT] FILE'
+      usage '[OPTIONS] ARG1 [ARG2]'
 
-        option :option1, short: '-a',
-                         value: {
-                           type: Integer,
-                           default: 1
-                         },
-                         desc: "Option 1"
+      option :option1, short: '-a',
+                       value: {
+                         type: Integer,
+                         default: 1
+                       },
+                       desc: "Option 1"
 
-        option :option2, short: '-b',
-                         value: {
-                           type: String,
-                           usage: 'FILE'
-                         },
-                         desc: "Option 2"
+      option :option2, short: '-b',
+                       value: {
+                         type: String,
+                         usage: 'FILE'
+                       },
+                       desc: "Option 2"
 
-        argument :argument1, required: true,
-                             usage:    'ARG1',
-                             desc:     "Argument 1"
+      argument :argument1, required: true,
+                           usage:    'ARG1',
+                           desc:     "Argument 1"
 
-        argument :argument2, required: false,
-                             usage:    'ARG2',
-                             desc:     "Argument 2"
+      argument :argument2, required: false,
+                           usage:    'ARG2',
+                           desc:     "Argument 2"
 
-      end
+    end
+  end
+
+  describe "#main" do
+    let(:command_class) { TestOptions::TestCommandWithOptionsAndArguments }
+
+    let(:argv) { %w[-a 42 -b foo.txt arg1 arg2] }
+
+    it "must parse options before validating the number of arguments" do
+      expect {
+        expect(subject.main(argv)).to eq(0)
+      }.to_not output.to_stderr
     end
 
+    context "but the wrong number of arguments are given" do
+      let(:argv) { %w[-a 42 -b foo.txt] }
+
+      it "must still validate the number of arguments" do
+        expect {
+          expect(subject.main(argv)).to eq(1)
+        }.to output("#{subject.command_name}: insufficient number of arguments.#{$/}").to_stderr
+      end
+    end
+  end
+
+  describe "#help" do
     let(:command_class) { TestOptions::TestCommandWithOptionsAndArguments }
 
     let(:option1)   { command_class.options[:option1]     }
