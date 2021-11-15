@@ -53,33 +53,33 @@ describe CommandKit::Command do
   module TestCommandClass
     class TestCommand < CommandKit::Command
 
-      usage '[OPTIONS] [-o OUTPUT] FILE'
+      usage '[OPTIONS] ARG1 [ARG2]'
 
-      option :count, short: '-c',
-                     value: {
-                       type: Integer,
-                       default: 1
-                     },
-                     desc: "Number of times"
+      option :option1, short: '-a',
+                       value: {
+                         type: Integer,
+                         default: 1
+                       },
+                       desc: "Option 1"
 
-      option :output, short: '-o',
-                      value: {
-                        type: String,
-                        usage: 'FILE'
-                      },
-                      desc: "Optional output file"
+      option :option2, short: '-b',
+                       value: {
+                         type: String,
+                         usage: 'FILE'
+                       },
+                       desc: "Option 2"
 
-      option :verbose, short: '-v', desc: "Increase verbose level" do
-        @verbose += 1
-      end
+      argument :argument1, required: true,
+                           usage:    'ARG1',
+                           desc:     "Argument 1"
 
-      argument :file, required: true,
-                      usage: 'FILE',
-                      desc: "Input file"
+      argument :argument2, required: false,
+                           usage:    'ARG2',
+                           desc:     "Argument 2"
 
       examples [
-        '-o path/to/output.txt path/to/input.txt',
-        '-v -c 2 -o path/to/output.txt path/to/input.txt'
+        '-a 42 foo/bar/baz',
+        '-a 42 -b bar.txt baz qux'
       ]
 
       description 'Example command'
@@ -91,10 +91,10 @@ describe CommandKit::Command do
   subject { command_class.new }
 
   describe "#help" do
-    let(:option1)   { command_class.options[:count]   }
-    let(:option2)   { command_class.options[:output]  }
-    let(:option3)   { command_class.options[:verbose] }
-    let(:argument1) { command_class.arguments[:file]  }
+    let(:option1)   { command_class.options[:option1]     }
+    let(:option2)   { command_class.options[:option2]     }
+    let(:argument1) { command_class.arguments[:argument1] }
+    let(:argument2) { command_class.arguments[:argument2] }
 
     it "must print the usage, options, arguments, examples, and description" do
       expect { subject.help }.to output(
@@ -104,11 +104,11 @@ describe CommandKit::Command do
           'Options:',
           "    #{option1.usage.join(', ').ljust(33 - 1)} #{option1.desc}",
           "    #{option2.usage.join(', ').ljust(33 - 1)} #{option2.desc}",
-          "    #{option3.usage.join(', ').ljust(33 - 1)} #{option3.desc}",
           '    -h, --help                       Print help information',
           '',
           "Arguments:",
           "    #{argument1.usage.ljust(33)}#{argument1.desc}",
+          "    #{argument2.usage.ljust(33)}#{argument2.desc}",
           '',
           "Examples:",
           "    #{subject.command_name} #{command_class.examples[0]}",
