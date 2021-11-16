@@ -228,7 +228,7 @@ module CommandKit
     end
 
     #
-    # Overvides the default {Usage#help help} method and calls {#help_options}
+    # Overrides the default {Usage#help help} method and calls {#help_options}
     # and {#help_arguments}.
     #
     # @api public

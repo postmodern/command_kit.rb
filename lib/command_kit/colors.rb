@@ -104,7 +104,7 @@ module CommandKit
       # @since 0.2.0
       ON_BLUE = "\e[44m"
 
-      # ANSI color code for background color megenta
+      # ANSI color code for background color magenta
       #
       # @since 0.2.0
       ON_MAGENTA = "\e[45m"
