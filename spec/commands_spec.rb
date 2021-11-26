@@ -19,7 +19,6 @@ describe CommandKit::Commands do
       class Test2 < CommandKit::Command
       end
 
-      p method(:command).source_location
       command Test1
       command Test2
 
@@ -147,7 +146,6 @@ describe CommandKit::Commands do
                         desc: 'Argument 2'
       end
 
-      p method(:command).source_location
       command Test1
       command Test2
 
