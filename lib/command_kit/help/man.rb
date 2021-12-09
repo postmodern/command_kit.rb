@@ -110,11 +110,15 @@ module CommandKit
       #   Returns `nil` when the `man` command is not installed.
       #
       # @raise [NotImplementedError]
-      #   {ClassMethods#man_dir .man_dir} does not have a value.
+      #   {ClassMethods#man_dir .man_dir} was not set in the class.
       #
       # @api semipublic
       #
       def help_man(man_page=self.class.man_page)
+        unless self.class.man_dir
+          raise(NotImplementedError,"man_dir was not set in #{self.class}")
+        end
+
         man_path = File.join(self.class.man_dir,man_page)
 
         man(man_path)

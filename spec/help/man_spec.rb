@@ -271,6 +271,16 @@ describe CommandKit::Help::Man do
         subject.help_man(man_page)
       end
     end
+
+    context "but the man_dir is not set" do
+      let(:command_class) { TestHelpMan::TestCommandWithManDirNotSet }
+
+      it "must call the super help() mehtod" do
+        expect {
+          subject.help_man
+        }.to raise_error(NotImplementedError,"man_dir was not set in #{command_class}")
+      end
+    end
   end
 
   describe "#help" do
