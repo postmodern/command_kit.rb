@@ -16,7 +16,7 @@ module CommandKit
 
       # The argument's description.
       #
-      # @return [String]
+      # @return [String, Array<String>]
       attr_reader :desc
 
       #
@@ -34,7 +34,7 @@ module CommandKit
       # @param [Boolean] repeats
       #   Specifies whether the argument can be repeated multiple times.
       #
-      # @param [String] desc
+      # @param [String, Array<String>] desc
       #   The description for the argument.
       #
       # @yield [(value)]
