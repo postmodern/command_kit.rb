@@ -161,6 +161,10 @@ describe CommandKit::Colors do
       it { expect(subject::ON_BRIGHT_WHITE).to eq("\e[107m") }
     end
 
+    describe "RESET_FG" do
+      it { expect(subject::RESET_FG).to eq("\e[39m") }
+    end
+
     describe "RESET_COLOR" do
       it { expect(subject::RESET_COLOR).to eq("\e[39m") }
     end
@@ -606,7 +610,7 @@ describe CommandKit::Colors do
       :BOLD, :RESET_INTENSITY,
       :BLACK, :RED, :GREEN, :YELLOW, :BLUE, :MAGENTA, :CYAN, :WHITE,
       :BRIGHT_BLACK, :BRIGHT_RED, :BRIGHT_GREEN, :BRIGHT_YELLOW, :BRIGHT_BLUE, :BRIGHT_MAGENTA, :BRIGHT_CYAN, :BRIGHT_WHITE,
-      :RESET_COLOR,
+      :RESET_FG, :RESET_COLOR,
       :ON_BLACK, :ON_RED, :ON_GREEN, :ON_YELLOW, :ON_BLUE, :ON_MAGENTA, :ON_CYAN, :ON_WHITE,
       :ON_BRIGHT_BLACK, :ON_BRIGHT_RED, :ON_BRIGHT_GREEN, :ON_BRIGHT_YELLOW, :ON_BRIGHT_BLUE, :ON_BRIGHT_MAGENTA, :ON_BRIGHT_CYAN, :ON_BRIGHT_WHITE,
       :RESET_BG

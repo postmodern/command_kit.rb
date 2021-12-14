@@ -117,7 +117,12 @@ module CommandKit
       BRIGHT_WHITE = "\e[97m"
 
       # ANSI color for the default foreground color
-      RESET_COLOR = "\e[39m"
+      #
+      # @since 0.3.0
+      RESET_FG = "\e[39m"
+
+      # @see RESET_FG
+      RESET_COLOR = RESET_FG
 
       # ANSI color code for background color black
       #
@@ -261,7 +266,7 @@ module CommandKit
       # @api public
       #
       def black(string=nil)
-        if string then "#{BLACK}#{string}#{RESET_COLOR}"
+        if string then "#{BLACK}#{string}#{RESET_FG}"
         else           BLACK
         end
       end
@@ -280,7 +285,7 @@ module CommandKit
       # @api public
       #
       def red(string=nil)
-        if string then "#{RED}#{string}#{RESET_COLOR}"
+        if string then "#{RED}#{string}#{RESET_FG}"
         else           RED
         end
       end
@@ -299,7 +304,7 @@ module CommandKit
       # @api public
       #
       def green(string=nil)
-        if string then "#{GREEN}#{string}#{RESET_COLOR}"
+        if string then "#{GREEN}#{string}#{RESET_FG}"
         else           GREEN
         end
       end
@@ -318,7 +323,7 @@ module CommandKit
       # @api public
       #
       def yellow(string=nil)
-        if string then "#{YELLOW}#{string}#{RESET_COLOR}"
+        if string then "#{YELLOW}#{string}#{RESET_FG}"
         else           YELLOW
         end
       end
@@ -337,7 +342,7 @@ module CommandKit
       # @api public
       #
       def blue(string=nil)
-        if string then "#{BLUE}#{string}#{RESET_COLOR}"
+        if string then "#{BLUE}#{string}#{RESET_FG}"
         else           BLUE
         end
       end
@@ -356,7 +361,7 @@ module CommandKit
       # @api public
       #
       def magenta(string=nil)
-        if string then "#{MAGENTA}#{string}#{RESET_COLOR}"
+        if string then "#{MAGENTA}#{string}#{RESET_FG}"
         else           MAGENTA
         end
       end
@@ -375,7 +380,7 @@ module CommandKit
       # @api public
       #
       def cyan(string=nil)
-        if string then "#{CYAN}#{string}#{RESET_COLOR}"
+        if string then "#{CYAN}#{string}#{RESET_FG}"
         else           CYAN
         end
       end
@@ -394,7 +399,7 @@ module CommandKit
       # @api public
       #
       def white(string=nil)
-        if string then "#{WHITE}#{string}#{RESET_COLOR}"
+        if string then "#{WHITE}#{string}#{RESET_FG}"
         else           WHITE
         end
       end
@@ -416,7 +421,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_black(string=nil)
-        if string then "#{BRIGHT_BLACK}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_BLACK}#{string}#{RESET_FG}"
         else           BRIGHT_BLACK
         end
       end
@@ -450,7 +455,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_red(string=nil)
-        if string then "#{BRIGHT_RED}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_RED}#{string}#{RESET_FG}"
         else           BRIGHT_RED
         end
       end
@@ -472,7 +477,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_green(string=nil)
-        if string then "#{BRIGHT_GREEN}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_GREEN}#{string}#{RESET_FG}"
         else           BRIGHT_GREEN
         end
       end
@@ -494,7 +499,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_yellow(string=nil)
-        if string then "#{BRIGHT_YELLOW}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_YELLOW}#{string}#{RESET_FG}"
         else           BRIGHT_YELLOW
         end
       end
@@ -515,7 +520,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_blue(string=nil)
-        if string then "#{BRIGHT_BLUE}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_BLUE}#{string}#{RESET_FG}"
         else           BRIGHT_BLUE
         end
       end
@@ -537,7 +542,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_magenta(string=nil)
-        if string then "#{BRIGHT_MAGENTA}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_MAGENTA}#{string}#{RESET_FG}"
         else           BRIGHT_MAGENTA
         end
       end
@@ -558,7 +563,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_cyan(string=nil)
-        if string then "#{BRIGHT_CYAN}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_CYAN}#{string}#{RESET_FG}"
         else           BRIGHT_CYAN
         end
       end
@@ -580,7 +585,7 @@ module CommandKit
       # @since 0.3.0
       #
       def bright_white(string=nil)
-        if string then "#{BRIGHT_WHITE}#{string}#{RESET_COLOR}"
+        if string then "#{BRIGHT_WHITE}#{string}#{RESET_FG}"
         else           BRIGHT_WHITE
         end
       end
