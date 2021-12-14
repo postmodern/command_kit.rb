@@ -212,6 +212,10 @@ module CommandKit
       module_function
 
       #
+      # @group Styling Methods
+      #
+
+      #
       # Resets text formatting.
       #
       # @return [RESET]
@@ -251,6 +255,10 @@ module CommandKit
         else           BOLD
         end
       end
+
+      #
+      # @group Foreground Color Methods
+      #
 
       #
       # Sets the text color to black.
@@ -589,6 +597,10 @@ module CommandKit
         else           BRIGHT_WHITE
         end
       end
+
+      #
+      # @group Background Color Methods
+      #
 
       #
       # Sets the background color to black.
