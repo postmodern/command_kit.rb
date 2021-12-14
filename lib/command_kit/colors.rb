@@ -76,6 +76,46 @@ module CommandKit
       # ANSI color code for white
       WHITE = "\e[37m"
 
+      # ANSI color code for black
+      #
+      # @since 0.3.0
+      BRIGHT_BLACK = "\e[90m"
+
+      # ANSI color code for red
+      #
+      # @since 0.3.0
+      BRIGHT_RED = "\e[91m"
+
+      # ANSI color code for green
+      #
+      # @since 0.3.0
+      BRIGHT_GREEN = "\e[92m"
+
+      # ANSI color code for yellow
+      #
+      # @since 0.3.0
+      BRIGHT_YELLOW = "\e[93m"
+
+      # ANSI color code for blue
+      #
+      # @since 0.3.0
+      BRIGHT_BLUE = "\e[94m"
+
+      # ANSI color code for magenta
+      #
+      # @since 0.3.0
+      BRIGHT_MAGENTA = "\e[95m"
+
+      # ANSI color code for cyan
+      #
+      # @since 0.3.0
+      BRIGHT_CYAN = "\e[96m"
+
+      # ANSI color code for white
+      #
+      # @since 0.3.0
+      BRIGHT_WHITE = "\e[97m"
+
       # ANSI color for the default foreground color
       RESET_COLOR = "\e[39m"
 
@@ -118,6 +158,46 @@ module CommandKit
       #
       # @since 0.2.0
       ON_WHITE = "\e[47m"
+
+      # ANSI color code for background color bright black
+      #
+      # @since 0.3.0
+      ON_BRIGHT_BLACK = "\e[100m"
+
+      # ANSI color code for background color bright red
+      #
+      # @since 0.3.0
+      ON_BRIGHT_RED = "\e[101m"
+
+      # ANSI color code for background color bright green
+      #
+      # @since 0.3.0
+      ON_BRIGHT_GREEN = "\e[102m"
+
+      # ANSI color code for background color bright yellow
+      #
+      # @since 0.3.0
+      ON_BRIGHT_YELLOW = "\e[103m"
+
+      # ANSI color code for background color bright blue
+      #
+      # @since 0.3.0
+      ON_BRIGHT_BLUE = "\e[104m"
+
+      # ANSI color code for background color bright magenta
+      #
+      # @since 0.3.0
+      ON_BRIGHT_MAGENTA = "\e[105m"
+
+      # ANSI color code for background color bright cyan
+      #
+      # @since 0.3.0
+      ON_BRIGHT_CYAN = "\e[106m"
+
+      # ANSI color code for background color bright white
+      #
+      # @since 0.3.0
+      ON_BRIGHT_WHITE = "\e[107m"
 
       # ANSI color for the default background color
       #
@@ -320,6 +400,192 @@ module CommandKit
       end
 
       #
+      # Sets the text color to bright black (gray).
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_BLACK]
+      #   The colorized string or just {BRIGHT_BLACK} if no arguments were
+      #   given.
+      #
+      # @see BRIGHT_BLACK
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_black(string=nil)
+        if string then "#{BRIGHT_BLACK}#{string}#{RESET_COLOR}"
+        else           BRIGHT_BLACK
+        end
+      end
+
+      #
+      # Sets the text color to gray.
+      #
+      # @api public
+      #
+      # @see #bright_black
+      #
+      # @since 0.3.0
+      #
+      def gray(string=nil)
+        bright_black(string)
+      end
+
+      #
+      # Sets the text color to bright red.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_RED]
+      #   The colorized string or just {BRIGHT_RED} if no arguments were given.
+      #
+      # @see BRIGHT_RED
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_red(string=nil)
+        if string then "#{BRIGHT_RED}#{string}#{RESET_COLOR}"
+        else           BRIGHT_RED
+        end
+      end
+
+      #
+      # Sets the text color to bright green.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_GREEN]
+      #   The colorized string or just {BRIGHT_GREEN} if no arguments were
+      #   given.
+      #
+      # @see BRIGHT_GREEN
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_green(string=nil)
+        if string then "#{BRIGHT_GREEN}#{string}#{RESET_COLOR}"
+        else           BRIGHT_GREEN
+        end
+      end
+
+      #
+      # Sets the text color to bright yellow.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_YELLOW]
+      #   The colorized string or just {BRIGHT_YELLOW} if no arguments were
+      #   given.
+      #
+      # @see BRIGHT_YELLOW
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_yellow(string=nil)
+        if string then "#{BRIGHT_YELLOW}#{string}#{RESET_COLOR}"
+        else           BRIGHT_YELLOW
+        end
+      end
+
+      #
+      # Sets the text color to bright blue.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_BLUE]
+      #   The colorized string or just {BRIGHT_BLUE} if no arguments were given.
+      #
+      # @see BRIGHT_BLUE
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_blue(string=nil)
+        if string then "#{BRIGHT_BLUE}#{string}#{RESET_COLOR}"
+        else           BRIGHT_BLUE
+        end
+      end
+
+      #
+      # Sets the text color to bright magenta.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_MAGENTA]
+      #   The colorized string or just {BRIGHT_MAGENTA} if no arguments were
+      #   given.
+      #
+      # @see BRIGHT_MAGENTA
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_magenta(string=nil)
+        if string then "#{BRIGHT_MAGENTA}#{string}#{RESET_COLOR}"
+        else           BRIGHT_MAGENTA
+        end
+      end
+
+      #
+      # Sets the text color to bright cyan.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_CYAN]
+      #   The colorized string or just {BRIGHT_CYAN} if no arguments were given.
+      #
+      # @see BRIGHT_CYAN
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_cyan(string=nil)
+        if string then "#{BRIGHT_CYAN}#{string}#{RESET_COLOR}"
+        else           BRIGHT_CYAN
+        end
+      end
+
+      #
+      # Sets the text color to bright white.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, BRIGHT_WHITE]
+      #   The colorized string or just {BRIGHT_WHITE} if no arguments were
+      #   given.
+      #
+      # @see BRIGHT_WHITE
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def bright_white(string=nil)
+        if string then "#{BRIGHT_WHITE}#{string}#{RESET_COLOR}"
+        else           BRIGHT_WHITE
+        end
+      end
+
+      #
       # Sets the background color to black.
       #
       # @param [String, nil] string
@@ -486,6 +752,193 @@ module CommandKit
         else           ON_WHITE
         end
       end
+
+      #
+      # Sets the background color to bright black.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_BLACK]
+      #   The colorized string or just {ON_BRIGHT_BLACK} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_BLACK
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_black(string=nil)
+        if string then "#{ON_BRIGHT_BLACK}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_BLACK
+        end
+      end
+
+      #
+      # @see #on_bright_black
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_gray(string=nil)
+        on_bright_black(string)
+      end
+
+      #
+      # Sets the background color to bright red.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_RED]
+      #   The colorized string or just {ON_BRIGHT_RED} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_RED
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_red(string=nil)
+        if string then "#{ON_BRIGHT_RED}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_RED
+        end
+      end
+
+      #
+      # Sets the background color to bright green.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_GREEN]
+      #   The colorized string or just {ON_BRIGHT_GREEN} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_GREEN
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_green(string=nil)
+        if string then "#{ON_BRIGHT_GREEN}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_GREEN
+        end
+      end
+
+      #
+      # Sets the background color to bright yellow.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_YELLOW]
+      #   The colorized string or just {ON_BRIGHT_YELLOW} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_YELLOW
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_yellow(string=nil)
+        if string then "#{ON_BRIGHT_YELLOW}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_YELLOW
+        end
+      end
+
+      #
+      # Sets the background color to bright blue.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_BLUE]
+      #   The colorized string or just {ON_BRIGHT_BLUE} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_BLUE
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_blue(string=nil)
+        if string then "#{ON_BRIGHT_BLUE}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_BLUE
+        end
+      end
+
+      #
+      # Sets the background color to bright magenta.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_MAGENTA]
+      #   The colorized string or just {ON_BRIGHT_MAGENTA} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_MAGENTA
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_magenta(string=nil)
+        if string then "#{ON_BRIGHT_MAGENTA}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_MAGENTA
+        end
+      end
+
+      #
+      # Sets the background color to bright cyan.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_CYAN]
+      #   The colorized string or just {ON_BRIGHT_CYAN} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_CYAN
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_cyan(string=nil)
+        if string then "#{ON_BRIGHT_CYAN}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_CYAN
+        end
+      end
+
+      #
+      # Sets the background color to bright white.
+      #
+      # @param [String, nil] string
+      #   An optional string.
+      #
+      # @return [String, ON_BRIGHT_WHITE]
+      #   The colorized string or just {ON_BRIGHT_WHITE} if no arguments were
+      #   given.
+      #
+      # @see ON_BRIGHT_WHITE
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def on_bright_white(string=nil)
+        if string then "#{ON_BRIGHT_WHITE}#{string}#{RESET_BG}"
+        else           ON_BRIGHT_WHITE
+        end
+      end
     end
 
     #
@@ -508,8 +961,11 @@ module CommandKit
       end
 
       [
-        :bold, :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white,
-        :on_black, :on_red, :on_green, :on_yellow, :on_blue, :on_magenta, :on_cyan, :on_white
+        :bold,
+        :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white,
+        :bright_black, :gray, :bright_red, :bright_green, :bright_yellow, :bright_blue, :bright_magenta, :bright_cyan, :bright_white,
+        :on_black, :on_red, :on_green, :on_yellow, :on_blue, :on_magenta, :on_cyan, :on_white,
+        :on_bright_black, :on_gray, :on_bright_red, :on_bright_green, :on_bright_yellow, :on_bright_blue, :on_bright_magenta, :on_bright_cyan, :on_bright_white
       ].each do |name|
         define_method(name) do |string=nil|
           string || ''
