@@ -78,9 +78,6 @@ module CommandKit
         @option_parser = OptionParser.new do |opts|
           opts.banner = "Usage: #{usage}"
 
-          opts.separator ''
-          opts.separator 'Options:'
-
           opts.on_tail('-h','--help','Print help information') do
             help
             exit(0)

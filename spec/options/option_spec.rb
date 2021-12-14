@@ -145,6 +145,20 @@ describe CommandKit::Options::Option do
       end
     end
 
+    it "must default #category to nil" do
+      expect(subject.category).to be(nil)
+    end
+
+    context "when the category: keyword is given" do
+      let(:category) { 'Other Options' }
+
+      subject { described_class.new(name, desc: desc, category: category) }
+
+      it "must set #category" do
+        expect(subject.category).to eq(category)
+      end
+    end
+
     context "when a block is given" do
       subject { described_class.new(name, desc: desc, &block) }
 

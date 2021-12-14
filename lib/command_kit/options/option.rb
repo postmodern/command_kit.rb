@@ -40,6 +40,13 @@ module CommandKit
       # @return [Proc, nil]
       attr_reader :block
 
+      # The optional category to group the option under.
+      #
+      # @return [String, nil]
+      #
+      # @since 0.3.0
+      attr_reader :category
+
       #
       # Initializes the option.
       #
@@ -68,6 +75,9 @@ module CommandKit
       # @param [String, Array<String>] desc
       #   The description for the option.
       #
+      # @param [String, nil] category
+      #   The optional category to group the option under.
+      #
       # @yield [(value)]
       #   If a block is given, it will be called when the option is parsed.
       #
@@ -78,25 +88,27 @@ module CommandKit
       #   The `value` keyword argument was not a `Hash`, `true`, `false`, or
       #   `nil`.
       #
-      def initialize(name, short:   nil,
-                           long:    self.class.default_long_opt(name),
-                           equals:  false,
-                           value:   nil,
-                           desc:    ,
+      def initialize(name, short:    nil,
+                           long:     self.class.default_long_opt(name),
+                           equals:   false,
+                           value:    nil,
+                           desc:     ,
+                           category: nil,
                            &block)
-        @name    = name
-        @short   = short
-        @long    = long
-        @equals  = equals
-        @value   = case value
-                   when Hash       then OptionValue.new(**value)
-                   when true       then OptionValue.new()
-                   when false, nil then nil
-                   else
-                     raise(TypeError,"value: keyword must be Hash, true, false, or nil")
-                   end
-        @desc    = desc
-        @block   = block
+        @name     = name
+        @short    = short
+        @long     = long
+        @equals   = equals
+        @value    = case value
+                    when Hash       then OptionValue.new(**value)
+                    when true       then OptionValue.new()
+                    when false, nil then nil
+                    else
+                      raise(TypeError,"value: keyword must be Hash, true, false, or nil")
+                    end
+        @desc     = desc
+        @category = category
+        @block    = block
       end
 
       #
