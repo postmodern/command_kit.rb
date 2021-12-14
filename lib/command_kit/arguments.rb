@@ -124,8 +124,8 @@ module CommandKit
       #     argument :bar, desc: "Bar argument"
       #
       # @example With a custom usage string:
-      #     option :bar, usage: 'BAR',
-      #                  desc: "Bar argument"
+      #     argument :bar, usage: 'BAR',
+      #                    desc: "Bar argument"
       #
       # @example With a custom type:
       #     argument :bar, desc: "Bar argument"
