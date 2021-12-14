@@ -7,7 +7,7 @@ AllCops:
 # our rules
 #
 
-Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
+Layout/FirstArrayElementIndentation: { Exclude: ['spec/**/*'] }
 Layout/LineLength: { Enabled: false }
 Layout/SpaceAroundEqualsInParameterDefault: { EnforcedStyle: no_space }
 Lint/ConstantDefinitionInBlock: { Exclude: ['spec/**/*'] }
