@@ -60,5 +60,14 @@ module CommandKit
     def program_name
       self.class.program_name
     end
+
+    #
+    # @see #program_name
+    #
+    # @since 0.3.0
+    #
+    def command_name
+      program_name
+    end
   end
 end
