@@ -203,7 +203,7 @@ describe CommandKit::Arguments do
       end
     end
 
-    context "when #arguments returns an Array" do
+    context "when #arguments returns a Hash" do
       module TestArguments
         class MultipleArguments
           include CommandKit::Arguments
