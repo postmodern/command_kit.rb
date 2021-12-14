@@ -65,7 +65,7 @@ module CommandKit
       # @option value [String, nil] usage
       #   The usage string for the option's value.
       #
-      # @param [String] desc
+      # @param [String, Array<String>] desc
       #   The description for the option.
       #
       # @yield [(value)]
@@ -179,7 +179,7 @@ module CommandKit
       #
       # The option description.
       #
-      # @return [String]
+      # @return [String, Array<String>]
       #
       # @note
       #   If {#default_value} returns a value, the description will contain the
@@ -187,7 +187,14 @@ module CommandKit
       #
       def desc
         if (value = default_value)
-          "#{@desc} (Default: #{value})"
+          default_text = "(Default: #{value})"
+
+          case @desc
+          when Array
+            @desc + [default_text]
+          else
+            "#{@desc} #{default_text}"
+          end
         else
           @desc
         end

@@ -293,5 +293,27 @@ describe CommandKit::Options::Option do
         expect(subject.desc).to eq("#{desc} (Default: #{default})")
       end
     end
+
+    context "when #desc was initialized with an Array" do
+      let(:desc) do
+        [
+          'Line 1',
+          'Line 2'
+        ]
+      end
+
+      it "must return the desc: value" do
+        expect(subject.desc).to eq(desc)
+      end
+
+      context "when #value has been initialized with a default value" do
+        let(:default)  { "foo" }
+        let(:value) { {default: default} }
+
+        it "should append '(Default: ...)' to the desc Array" do
+          expect(subject.desc).to eq([*desc, "(Default: #{default})"])
+        end
+      end
+    end
   end
 end

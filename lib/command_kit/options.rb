@@ -111,7 +111,7 @@ module CommandKit
       # @option value [String, nil] usage
       #   The usage string for the option's value.
       #
-      # @option kwargs [String] desc
+      # @option kwargs [String, Array<String>] desc
       #   The description for the option.
       #
       # @yield [(value)]
@@ -128,6 +128,12 @@ module CommandKit
       #
       # @example Define an option:
       #     option :foo, desc: "Foo option"
+      #
+      # @example Define an option with a multi-line description:
+      #     option :foo, desc: [
+      #                          "Line 1",
+      #                          "Line 2"
+      #                        ]
       #
       # @example With a custom short option:
       #     option :foo, short: '-f',
