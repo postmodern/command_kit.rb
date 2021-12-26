@@ -46,8 +46,8 @@ describe CommandKit::Command do
     expect(described_class).to include(CommandKit::ExceptionHandler)
   end
 
-  it "must include FileUtils" do
-    expect(described_class).to include(FileUtils)
+  it "must include CommandKit::FileUtils" do
+    expect(described_class).to include(CommandKit::FileUtils)
   end
 
   module TestCommandClass

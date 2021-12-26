@@ -8,8 +8,7 @@ require 'command_kit/options'
 require 'command_kit/examples'
 require 'command_kit/description'
 require 'command_kit/exception_handler'
-
-require 'fileutils'
+require 'command_kit/file_utils'
 
 module CommandKit
   #
