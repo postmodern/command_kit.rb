@@ -1,3 +1,67 @@
+### 0.3.0 / 2021-12-26
+
+* Added {CommandKit::FileUtils}.
+
+#### CommandKit::FileUtils
+
+* Added {CommandKit::FileUtils#erb #erb}.
+
+#### CommandKit::Colors
+
+* Added {CommandKit::Colors::ANSI::RESET_FG RESET_FG}.
+* Added {CommandKit::Colors::ANSI.bright_black bright_black}.
+* Added {CommandKit::Colors::ANSI.gray gray}.
+* Added {CommandKit::Colors::ANSI.bright_red bright_red}.
+* Added {CommandKit::Colors::ANSI.bright_green bright_green}.
+* Added {CommandKit::Colors::ANSI.bright_yellow bright_yellow}.
+* Added {CommandKit::Colors::ANSI.bright_blue bright_blue}.
+* Added {CommandKit::Colors::ANSI.bright_magenta bright_magenta}.
+* Added {CommandKit::Colors::ANSI.bright_cyan bright_cyan}.
+* Added {CommandKit::Colors::ANSI.bright_white bright_white}.
+* Added {CommandKit::Colors::ANSI.on_bright_black on_bright_black}.
+* Added {CommandKit::Colors::ANSI.on_gray on_gray}.
+* Added {CommandKit::Colors::ANSI.on_bright_red on_bright_red}.
+* Added {CommandKit::Colors::ANSI.on_bright_green on_bright_green}.
+* Added {CommandKit::Colors::ANSI.on_bright_yellow on_bright_yellow}.
+* Added {CommandKit::Colors::ANSI.on_bright_blue on_bright_blue}.
+* Added {CommandKit::Colors::ANSI.on_bright_magenta on_bright_magenta}.
+* Added {CommandKit::Colors::ANSI.on_bright_cyan on_bright_cyan}.
+* Added {CommandKit::Colors::ANSI.on_bright_white on_bright_white}.
+
+#### ComandKit::Options
+
+* Allow grouping options into categories:
+
+      option :opt1, category: 'Foo Options',
+                    desc: 'Option 1'
+
+      option :opt2, category: 'Foo Options',
+                    desc: 'Option 1'
+
+* Allow options to have multi-line descriptions:
+
+      option :opt1, short: '-o',
+                    desc: [
+                            'line1',
+                            'line2',
+                            '...'
+                          ]
+
+#### CommandKit::Arguments
+
+* Allow arguments to have multi-line descriptions:
+
+      argument :arg1, desc: [
+                              'line1',
+                              'line2',
+                              '...'
+                            ]
+
+
+#### CommandKit::ProgramName
+
+* Added {CommandKit::ProgramName#command_name}.
+
 ### 0.2.2 / 2021-12-26
 
 #### CommandKit::Help::Man
