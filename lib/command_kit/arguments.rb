@@ -46,6 +46,14 @@ module CommandKit
   #     def run(*files)
   #     end
   #
+  # ### Multi-line descriptions
+  #
+  #     argument :arg, desc: [
+  #                            'line1',
+  #                            'line2',
+  #                            '...'
+  #                          ]
+  #
   module Arguments
     include Usage
     include Main

@@ -23,6 +23,25 @@ module CommandKit
   #       @bar = arg.split(':')
   #     end
   #
+  # ### Multi-line Descriptions
+  #
+  #     option :opt, value: {type: String},
+  #                  desc: [
+  #                          'line1',
+  #                          'line2',
+  #                          '...'
+  #                        ]
+  #
+  # ### Option Categories
+  #
+  #     option :opt1, value: {type: String},
+  #                   category: 'Foo Category',
+  #                   desc: 'Option 1'
+  #
+  #     option :opt2, value: {type: String},
+  #                   category: 'Foo Category',
+  #                   desc: 'Option 2'
+  #
   # ### initialize and using instance variables
   #     
   #     option :number, value: {type: Integer},
