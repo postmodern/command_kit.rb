@@ -56,13 +56,13 @@ $ gem install command_kit
 ### gemspec
 
 ```ruby
-gem.add_dependency 'command_kit', '~> 0.2'
+gem.add_dependency 'command_kit', '~> 0.3'
 ```
 
 ### Gemfile
 
 ```ruby
-gem 'command_kit', '~> 0.2'
+gem 'command_kit', '~> 0.3'
 ```
 
 ## Examples
