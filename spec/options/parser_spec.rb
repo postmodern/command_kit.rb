@@ -34,16 +34,6 @@ describe CommandKit::Options::Parser do
       expect(subject.option_parser.banner).to eq("Usage: #{subject.usage}")
     end
 
-    it "must include a 'Options:' separator" do
-      expect(subject.option_parser.to_s).to include(
-        [
-          '',
-          'Options:',
-          ''
-        ].join($/)
-      )
-    end
-
     it "must define a default --help option" do
       expect(subject.option_parser.to_s).to include(
         [

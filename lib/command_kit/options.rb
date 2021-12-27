@@ -111,8 +111,11 @@ module CommandKit
       # @option value [String, nil] usage
       #   The usage string for the option's value.
       #
-      # @option kwargs [String] desc
+      # @option kwargs [String, Array<String>] desc
       #   The description for the option.
+      #
+      # @option kwargs [String, nil] category
+      #   The optional category to group the option under.
       #
       # @yield [(value)]
       #   If a block is given, it will be passed the parsed option value.
@@ -128,6 +131,19 @@ module CommandKit
       #
       # @example Define an option:
       #     option :foo, desc: "Foo option"
+      #
+      # @example Define an option with a multi-line description:
+      #     option :foo, desc: [
+      #                          "Line 1",
+      #                          "Line 2"
+      #                        ]
+      #
+      # @example Defines multiple options within a category:
+      #     option :foo, desc: "Foo option",
+      #                  category: 'Other Options'
+      #     
+      #     option :bar, desc: "Bar option",
+      #                  category: 'Other Options'
       #
       # @example With a custom short option:
       #     option :foo, short: '-f',
@@ -212,19 +228,7 @@ module CommandKit
 
       super(**kwargs)
 
-      self.class.options.each_value do |option|
-        default_value = option.default_value
-
-        @options[option.name] = default_value unless default_value.nil?
-
-        option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
-          @options[option.name] = arg
-
-          if option.block
-            instance_exec(*arg,*captures,&option.block)
-          end
-        end
-      end
+      define_option_categories
     end
 
     #
@@ -236,6 +240,58 @@ module CommandKit
     def help
       help_options
       help_arguments
+    end
+
+    private
+
+    #
+    # Defines all of the options, grouped by category.
+    #
+    def define_option_categories
+      categories = self.class.options.values.group_by(&:category)
+
+      categories.each do |category,options|
+        if category
+          define_options_category(category,options)
+        end
+      end
+
+      define_options_category('Options',categories.fetch(nil,[]))
+    end
+
+    #
+    # Defines a new category of options with a header.
+    #
+    # @param [String] category
+    #   The category name.
+    #
+    # @param [Array<Option>, nil] options
+    #   The options to define.
+    #
+    def define_options_category(category,options)
+      option_parser.separator ''
+      option_parser.separator "#{category}:"
+
+      options.each(&method(:define_option))
+    end
+
+    #
+    # Defines an individual option.
+    #
+    # @param [Option] option
+    #
+    def define_option(option)
+      default_value = option.default_value
+
+      @options[option.name] = default_value unless default_value.nil?
+
+      option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
+        @options[option.name] = arg
+
+        if option.block
+          instance_exec(*arg,*captures,&option.block)
+        end
+      end
     end
   end
 end

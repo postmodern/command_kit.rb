@@ -40,6 +40,13 @@ module CommandKit
       # @return [Proc, nil]
       attr_reader :block
 
+      # The optional category to group the option under.
+      #
+      # @return [String, nil]
+      #
+      # @since 0.3.0
+      attr_reader :category
+
       #
       # Initializes the option.
       #
@@ -65,8 +72,11 @@ module CommandKit
       # @option value [String, nil] usage
       #   The usage string for the option's value.
       #
-      # @param [String] desc
+      # @param [String, Array<String>] desc
       #   The description for the option.
+      #
+      # @param [String, nil] category
+      #   The optional category to group the option under.
       #
       # @yield [(value)]
       #   If a block is given, it will be called when the option is parsed.
@@ -78,25 +88,27 @@ module CommandKit
       #   The `value` keyword argument was not a `Hash`, `true`, `false`, or
       #   `nil`.
       #
-      def initialize(name, short:   nil,
-                           long:    self.class.default_long_opt(name),
-                           equals:  false,
-                           value:   nil,
-                           desc:    ,
+      def initialize(name, short:    nil,
+                           long:     self.class.default_long_opt(name),
+                           equals:   false,
+                           value:    nil,
+                           desc:     ,
+                           category: nil,
                            &block)
-        @name    = name
-        @short   = short
-        @long    = long
-        @equals  = equals
-        @value   = case value
-                   when Hash       then OptionValue.new(**value)
-                   when true       then OptionValue.new()
-                   when false, nil then nil
-                   else
-                     raise(TypeError,"value: keyword must be Hash, true, false, or nil")
-                   end
-        @desc    = desc
-        @block   = block
+        @name     = name
+        @short    = short
+        @long     = long
+        @equals   = equals
+        @value    = case value
+                    when Hash       then OptionValue.new(**value)
+                    when true       then OptionValue.new()
+                    when false, nil then nil
+                    else
+                      raise(TypeError,"value: keyword must be Hash, true, false, or nil")
+                    end
+        @desc     = desc
+        @category = category
+        @block    = block
       end
 
       #
@@ -179,7 +191,7 @@ module CommandKit
       #
       # The option description.
       #
-      # @return [String]
+      # @return [String, Array<String>]
       #
       # @note
       #   If {#default_value} returns a value, the description will contain the
@@ -187,7 +199,14 @@ module CommandKit
       #
       def desc
         if (value = default_value)
-          "#{@desc} (Default: #{value})"
+          default_text = "(Default: #{value})"
+
+          case @desc
+          when Array
+            @desc + [default_text]
+          else
+            "#{@desc} #{default_text}"
+          end
         else
           @desc
         end

@@ -114,7 +114,7 @@ module CommandKit
       # @option kwargs [Boolean] repeats
       #   Specifies whether the argument can be repeated multiple times.
       #
-      # @option kwargs [String] desc
+      # @option kwargs [String, Array<String>] desc
       #   The description for the argument.
       #
       # @return [Argument]
@@ -122,6 +122,12 @@ module CommandKit
       #
       # @example Define an argument:
       #     argument :bar, desc: "Bar argument"
+      #
+      # @example Defines an argument with a multi-line description:
+      #     argument :bar, desc: [
+      #                            "Line 1 ...",
+      #                            "Line 2 ..."
+      #                          ]
       #
       # @example With a custom usage string:
       #     argument :bar, usage: 'BAR',
@@ -191,7 +197,18 @@ module CommandKit
         puts 'Arguments:'
 
         arguments.each_value do |arg|
-          puts "    #{arg.usage.ljust(33)}#{arg.desc}"
+          case arg.desc
+          when Array
+            arg.desc.each_with_index do |line,index|
+              if index == 0
+                puts "    #{arg.usage.ljust(33)}#{line}"
+              else
+                puts "    #{' '.ljust(33)}#{line}"
+              end
+            end
+          else
+            puts "    #{arg.usage.ljust(33)}#{arg.desc}"
+          end
         end
       end
     end

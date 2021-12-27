@@ -415,5 +415,51 @@ describe CommandKit::Options do
         ].join($/)
       ).to_stdout
     end
+
+    context "but when the options are have categories" do
+      module TestOptions
+        class TestCommandWithOptionsAndCategories
+
+          include CommandKit::Options
+
+          option :opt1, short: '-a',
+                        desc: "Option 1"
+          option :opt2, short: '-b',
+                        desc: "Option 2"
+
+          option :opt3, short:    '-c',
+                        desc:     "Option 3",
+                        category: 'Other Options'
+          option :opt4, short:    '-d',
+                        desc:     "Option 4",
+                        category: 'Other Options'
+        end
+      end
+
+      let(:command_class) { TestOptions::TestCommandWithOptionsAndCategories }
+
+      let(:option1)   { command_class.options[:opt1] }
+      let(:option2)   { command_class.options[:opt2] }
+      let(:option3)   { command_class.options[:opt3] }
+      let(:option4)   { command_class.options[:opt4] }
+
+      it "must group the options by category" do
+        expect { subject.help }.to output(
+          [
+            "Usage: #{subject.usage}",
+            '',
+            'Other Options:',
+            "    #{option3.usage.join(', ').ljust(33 - 1)} #{option3.desc}",
+            "    #{option4.usage.join(', ').ljust(33 - 1)} #{option4.desc}",
+            '',
+            'Options:',
+            "    #{option1.usage.join(', ').ljust(33 - 1)} #{option1.desc}",
+            "    #{option2.usage.join(', ').ljust(33 - 1)} #{option2.desc}",
+            '    -h, --help                       Print help information',
+            ''
+          ].join($/)
+        ).to_stdout
+      end
+    end
   end
 end

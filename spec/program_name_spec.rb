@@ -56,6 +56,14 @@ describe CommandKit::ProgramName do
     end
   end
 
+  describe "#command_name" do
+    subject { command_class.new }
+
+    it "should be the same as #program_name" do
+      expect(subject.command_name).to eq(subject.program_name)
+    end
+  end
+
   after do
     $PROGRAM_NAME = @original_program_name
   end

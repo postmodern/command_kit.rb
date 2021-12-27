@@ -233,6 +233,39 @@ describe CommandKit::Arguments do
           ].join($/)
         ).to_stdout
       end
+
+      context "when one the argument has an Array for a description" do
+        module TestArguments
+          class MultiLineArgumentDescription
+            include CommandKit::Arguments
+
+            argument :foo, desc: "Foo option"
+            argument :bar, desc: [
+                                   "Bar option", 
+                                   "Line 2",
+                                   "Line 3"
+                                 ]
+            argument :baz, desc: "Baz option"
+          end
+        end
+
+        let(:command_class) { TestArguments::MultiLineArgumentDescription }
+
+        it "must print out each line of a multi-line argument description" do
+          expect { subject.help_arguments }.to output(
+            [
+              '',
+              "Arguments:",
+              "    #{foo_argument.usage.ljust(33)}#{foo_argument.desc}",
+              "    #{bar_argument.usage.ljust(33)}#{bar_argument.desc[0]}",
+              "    #{' '.ljust(33)}#{bar_argument.desc[1]}",
+              "    #{' '.ljust(33)}#{bar_argument.desc[2]}",
+              "    #{baz_argument.usage.ljust(33)}#{baz_argument.desc}",
+              ''
+            ].join($/)
+          ).to_stdout
+        end
+      end
     end
   end
 

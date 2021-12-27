@@ -145,6 +145,20 @@ describe CommandKit::Options::Option do
       end
     end
 
+    it "must default #category to nil" do
+      expect(subject.category).to be(nil)
+    end
+
+    context "when the category: keyword is given" do
+      let(:category) { 'Other Options' }
+
+      subject { described_class.new(name, desc: desc, category: category) }
+
+      it "must set #category" do
+        expect(subject.category).to eq(category)
+      end
+    end
+
     context "when a block is given" do
       subject { described_class.new(name, desc: desc, &block) }
 
@@ -291,6 +305,28 @@ describe CommandKit::Options::Option do
 
       it "should reutrn the desc value and '(Default: ...)'" do
         expect(subject.desc).to eq("#{desc} (Default: #{default})")
+      end
+    end
+
+    context "when #desc was initialized with an Array" do
+      let(:desc) do
+        [
+          'Line 1',
+          'Line 2'
+        ]
+      end
+
+      it "must return the desc: value" do
+        expect(subject.desc).to eq(desc)
+      end
+
+      context "when #value has been initialized with a default value" do
+        let(:default)  { "foo" }
+        let(:value) { {default: default} }
+
+        it "should append '(Default: ...)' to the desc Array" do
+          expect(subject.desc).to eq([*desc, "(Default: #{default})"])
+        end
       end
     end
   end
