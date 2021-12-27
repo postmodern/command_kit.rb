@@ -1,3 +1,11 @@
+### 0.2.2 / 2021-12-26
+
+#### CommandKit::Help::Man
+
+* Raise a `NotImplementedError` exception in {CommandKit::Help::Man#help_man
+  #help_man} if {CommandKit::Help::Man::ClassMethods#man_dir .man_dir} was not
+  set.
+
 ### 0.2.1 / 2021-11-16
 
 * Ensure that all error messages end with a period.
