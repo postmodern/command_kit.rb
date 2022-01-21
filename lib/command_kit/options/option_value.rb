@@ -19,7 +19,7 @@ module CommandKit
     class OptionValue < Arguments::ArgumentValue
 
       # Maps OptionParser types to USAGE strings.
-      USAGES = {
+      DEFAULT_USAGES = {
         # NOTE: NilClass and Object are intentionally omitted
         Date       => 'DATE',
         DateTime   => 'DATE_TIME',
@@ -90,7 +90,7 @@ module CommandKit
       #   The given type was not a Class, Hash, Array, or Regexp.
       #
       def self.default_usage(type)
-        USAGES.fetch(type) do
+        DEFAULT_USAGES.fetch(type) do
           case type
           when Hash   then type.keys.join('|')
           when Array  then type.join('|')
