@@ -9,7 +9,7 @@ module CommandKit
     #
     #     include CommandKit::Options::Quiet
     #     
-    #     def main(*argv)
+    #     def run(*argv)
     #       # ...
     #       puts "verbose output" unless quiet?
     #       # ...

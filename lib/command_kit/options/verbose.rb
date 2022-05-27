@@ -7,9 +7,9 @@ module CommandKit
     #
     # ## Examples
     #
-    #     include Options::Verbose
+    #     include CommandKit::Options::Verbose
     #
-    #     def main(*argv)
+    #     def run(*argv)
     #       # ...
     #       puts "verbose output" if verbose?
     #       # ...
