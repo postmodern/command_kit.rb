@@ -26,7 +26,7 @@ describe CommandKit::Pager do
 
     context "when the PAGER env variable is not set" do
       context "but the PATH env variable is" do
-        subject { command_class.new(env: {'PATH' => ENV['PATH']}) }
+        subject { command_class.new(env: {'PATH' => ENV.fetch('PATH')}) }
 
         it "must search PATH for one of the pagers" do
           expect(subject.instance_variable_get('@pager_command')).to eq("less -r")
