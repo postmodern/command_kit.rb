@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - 2.7
-          - 3.0
-          - 3.1
+          - '2.7'
+          - '3.0'
+          - '3.1'
           # TODO: uncomment when jruby supports ruby >= 2.7
           # - jruby
           # TODO: uncomment when truffleruby supports splatting empty kwargs
