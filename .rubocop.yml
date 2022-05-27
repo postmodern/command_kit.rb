@@ -139,3 +139,8 @@ Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
 
 # rubocop cannot tell that rubygems_mfa_required is enabled in gemspec.yml
 Gemspec/RequireMFA: { Enabled: false }
+
+# make an exception for our gemspec code
+Gemspec/DuplicatedAssignment:
+  Exclude:
+    - 'command_kit.gemspec'
