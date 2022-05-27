@@ -19,7 +19,7 @@ describe CommandKit::CommandName do
       end
     end
 
-    context "when a command_name is explicitly set" do
+    context "when a command_name has been explicitly set" do
       module TestCommandName
         class ExplicitCmd
           include CommandKit::CommandName
