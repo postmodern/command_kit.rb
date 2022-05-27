@@ -5,6 +5,16 @@ module CommandKit
     #
     # Defines a version option.
     #
+    # ## Examples
+    #
+    #     include CommandKit::Options::Version
+    #     
+    #     version '0.1.0'
+    #     
+    #     def run(*argv)
+    #       # ...
+    #     end
+    #
     module Version
       #
       # Includes {Options}, extends {Version::ClassMethods}, and defines a
