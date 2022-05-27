@@ -15,8 +15,7 @@ jobs:
           - '3.1'
           # TODO: uncomment when jruby supports ruby >= 2.7
           # - jruby
-          # TODO: uncomment when truffleruby supports splatting empty kwargs
-          # - truffleruby
+          - truffleruby
     name: Ruby ${{ matrix.ruby }}
     steps:
       - uses: actions/checkout@v2
