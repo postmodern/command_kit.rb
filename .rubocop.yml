@@ -22,6 +22,7 @@ Style/PercentLiteralDelimiters:
     '%I': '[]'
     '%w': '[]'
     '%W': '[]'
+Style/UnlessElse: { Enabled: false }
 
 #
 # rules that are in flux
