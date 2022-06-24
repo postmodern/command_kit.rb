@@ -154,7 +154,11 @@ module CommandKit
       #   The usage strings.
       #
       def usage
-        [*@short, "#{@long}#{separator}#{@value && @value.usage}"]
+        if equals? && (@value && @value.optional?)
+          [*@short, "#{@long}[#{separator}#{@value && @value.usage}]"]
+        else
+          [*@short, "#{@long}#{separator}#{@value && @value.usage}"]
+        end
       end
 
       #

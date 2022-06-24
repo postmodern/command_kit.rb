@@ -6,10 +6,12 @@ describe CommandKit::Options::Option do
   let(:short)  { nil     }
   let(:long)   { '--foo' }
   let(:equals) { false   }
+  let(:value_usage)    { 'FOO' }
+  let(:value_required) { true  }
   let(:value) do
     {
-      usage:    'FOO',
-      required: true
+      usage:    value_usage,
+      required: value_required
     }
   end
   let(:desc)  { 'Foo option' }
@@ -227,6 +229,14 @@ describe CommandKit::Options::Option do
 
         it "must return '--option=USAGE'" do
           expect(subject.usage.last).to eq("#{long}=#{subject.value.usage}")
+        end
+
+        context "but the #value is also optional?" do
+          let(:value_required) { false }
+
+          it "must return '--option[=USAGE]'" do
+            expect(subject.usage.last).to eq("#{long}[=#{subject.value.usage}]")
+          end
         end
       end
     end
