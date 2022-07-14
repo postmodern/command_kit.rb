@@ -656,6 +656,12 @@ describe CommandKit::Colors do
       it { expect(subject.ansi?).to be(false) }
     end
 
+    context "when NO_COLOR is set" do
+      subject { command_class.new(env: {'NO_COLOR' => 'true'}) }
+
+      it { expect(subject.ansi?).to be(false) }
+    end
+
     context "when stdout is a TTY" do
       let(:stdout) { StringIO.new }
       subject { command_class.new(stdout: stdout) }

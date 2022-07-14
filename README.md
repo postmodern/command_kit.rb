@@ -22,9 +22,10 @@ plain-old Ruby classes.
 * **Correct** - CommandKit behaves like a standard UNIX command.
   * Safely handles Ctrl^C / SIGINT interrupts and [exits with 130](https://tldp.org/LDP/abs/html/exitcodes.html).
   * Safely handles broken pipes (aka `mycmd | head`).
-  * Respects common environment variables (ex: `TERM=dumb`).
+  * Respects common environment variables (ex: `TERM=dumb` and `NO_COLOR`).
   * Uses [OptionParser][optparse] for POSIX option parsing.
-  * Disables ANSI color when output is redirected to a file.
+  * Disables ANSI color when output is redirected to a file or when `NO_COLOR`
+    is set.
 * **Complete** - Provides many additional CLI features.
   * OS detection.
   * Terminal size detection.
