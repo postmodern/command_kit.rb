@@ -247,7 +247,7 @@ module CommandKit
 
       super(**kwargs)
 
-      define_option_categories
+      define_option_categories()
     end
 
     #
