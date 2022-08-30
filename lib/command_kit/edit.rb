@@ -35,8 +35,7 @@ module CommandKit
     #
     # @return [Boolean, nil]
     #   Indicates whether the editor successfully launched and exited.
-    #   If the `EDITOR` environment variable was not set or if the editor was
-    #   not installed, `nil` will be returned.
+    #   If the {#editor} command was not installed, `nil` will be returned.
     #
     # @api public
     #
