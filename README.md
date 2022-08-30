@@ -212,6 +212,7 @@ end
   * [CommandKit::Commands::AutoLoad](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoLoad)
   * [CommandKit::Commands::AutoRequire](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoRequire)
 * [CommandKit::Description](https://rubydoc.info/gems/command_kit/CommandKit/Description)
+* [CommandKit::Edit](https://rubydoc.info/gems/command_kit/CommandKit/Edit)
 * [CommandKit::Env](https://rubydoc.info/gems/command_kit/CommandKit/Env)
   * [CommandKit::Env::Home](https://rubydoc.info/gems/command_kit/CommandKit/Env/Home)
   * [CommandKit::Env::Path](https://rubydoc.info/gems/command_kit/CommandKit/Env/Path)
