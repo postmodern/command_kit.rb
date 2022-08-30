@@ -89,11 +89,12 @@ module CommandKit
         [name, value]
       }
 
-      max_length += 2
+      max_length += 1
 
       fields.each do |name,value|
-        print "#{name}:".ljust(max_length)
-        puts value
+        header = "#{name}:".ljust(max_length)
+
+        puts "#{header} #{value}"
       end
 
       return nil
