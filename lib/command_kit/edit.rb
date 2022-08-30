@@ -10,6 +10,12 @@ module CommandKit
   #
   # * `EDITOR` - The preferred editor command.
   #
+  # ## Example
+  #
+  #     if options[:edit]
+  #       edit CONFIG_FILE
+  #     end
+  #
   # @since 0.4.0
   #
   module Edit
