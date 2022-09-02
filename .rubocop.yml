@@ -142,6 +142,4 @@ Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
 Gemspec/RequireMFA: { Enabled: false }
 
 # make an exception for our gemspec code
-Gemspec/DuplicatedAssignment:
-  Exclude:
-    - 'command_kit.gemspec'
+Gemspec/DuplicatedAssignment: { Enabled: false }
