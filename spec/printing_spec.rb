@@ -104,6 +104,30 @@ describe CommandKit::Printing do
     end
   end
 
+  describe "#print_list" do
+    let(:list) { %w[foo bar baz] }
+
+    it "must print each item in the list with a '*' bullet" do
+      expect {
+        subject.print_list(list)
+      }.to output(
+        list.map { |item| "* #{item}" }.join($/) + $/
+      ).to_stdout
+    end
+    
+    context "when the bullet: keyowrd argument is given" do
+      let(:bullet) { '-' }
+
+      it "must print each item in the list with the bullet character" do
+        expect {
+          subject.print_list(list, bullet: bullet)
+        }.to output(
+          list.map { |item| "#{bullet} #{item}" }.join($/) + $/
+        ).to_stdout
+      end
+    end
+  end
+
   describe "#print_fields" do
     context "when given a Hash" do
       context "and all key values are the same length" do

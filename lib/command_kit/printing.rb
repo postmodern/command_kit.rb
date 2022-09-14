@@ -62,6 +62,35 @@ module CommandKit
     def print_exception(error)
       print_error error.full_message(highlight: stderr.tty?)
     end
+    
+    #
+    # Prints a bulleted list of items.
+    #
+    # @param [Array] list
+    #   The list of items to print.
+    #
+    # @param [String] bullet
+    #   The bullet character to use for line item.
+    #
+    # @example
+    #   print_list %w[foo bar baz]
+    #   # * foo
+    #   # * bar
+    #   # * baz
+    #
+    # @example with a custom bullet character:
+    #   print_list %w[foo bar baz], bullet: '-'
+    #   # - foo
+    #   # - bar
+    #   # - baz
+    #
+    # @since 0.4.0
+    #
+    def print_list(list, bullet: '*')
+      list.each do |item|
+        puts "#{bullet} #{item}"
+      end
+    end
 
     #
     # Prints a Hash as left-justified `:` separated fields.
