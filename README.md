@@ -229,6 +229,7 @@ end
 * [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
+  * [CommandKit::Printing::Lists](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Lists)
 * [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
 * [CommandKit::Stdio](https://rubydoc.info/gems/command_kit/CommandKit/Stdio)
 * [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)
