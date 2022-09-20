@@ -72,7 +72,17 @@ module CommandKit
           when Array
             indent { print_list(item, bullet: bullet) }
           else
-            puts "#{bullet} #{item}"
+            first_line, *rest = item.to_s.lines(chomp: true)
+
+            # print the bullet only on the first list
+            puts "#{bullet} #{first_line}"
+
+            # indent the remaining lines
+            indent(bullet.length + 1) do
+              rest.each do |line|
+                puts line
+              end
+            end
           end
         end
       end

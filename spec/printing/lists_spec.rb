@@ -24,6 +24,34 @@ describe CommandKit::Printing::Lists do
       ).to_stdout
     end
 
+    context "when the list contins multi-line Strings" do
+      let(:item1) { "foo" }
+      let(:item2) do
+        [
+          "line 1",
+          "line 2",
+          "line 3"
+        ].join($/)
+      end
+      let(:item3) { "bar" }
+      let(:list)  { [item1, item2, item3] }
+
+      it "must print the bullet with the first line and then indent the other lines" do
+        expect {
+          subject.print_list(list)
+        }.to output(
+          [
+            "* #{item1}",
+            "* #{item2.lines[0].chomp}",
+            "  #{item2.lines[1].chomp}",
+            "  #{item2.lines[2].chomp}",
+            "* #{item3}",
+            ''
+          ].join($/)
+        ).to_stdout
+      end
+    end
+
     context "when the list contains nested-lists" do
       let(:item1)     { 'item 1'     }
       let(:sub_item1) { 'sub-item 1' }
