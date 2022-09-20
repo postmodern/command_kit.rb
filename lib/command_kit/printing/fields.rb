@@ -1,3 +1,5 @@
+require 'command_kit/printing/indent'
+
 module CommandKit
   module Printing
     #
@@ -6,6 +8,8 @@ module CommandKit
     # @since 0.4.0
     #
     module Fields
+      include Indent
+
       #
       # Prints a Hash as left-justified `:` separated fields.
       #
@@ -30,12 +34,19 @@ module CommandKit
           [name, value]
         }
 
-        max_length += 1
-
         fields.each do |name,value|
-          header = "#{name}:".ljust(max_length)
+          first_line, *rest = value.to_s.lines(chomp: true)
 
-          puts "#{header} #{value}"
+          # print the first line with the header
+          header = "#{name}:".ljust(max_length + 1)
+          puts "#{header} #{first_line}"
+
+          # indent and print the rest of the lines
+          indent(max_length + 2) do
+            rest.each do |line|
+              puts line
+            end
+          end
         end
 
         return nil

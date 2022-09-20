@@ -139,5 +139,29 @@ describe CommandKit::Printing::Fields do
         end
       end
     end
+
+    context "but the values contain multiple lines" do
+      let(:name1)  { 'A'   }
+      let(:value1) { 'foo' }
+      let(:name2)  { 'Bar' }
+      let(:line1)  { 'bar' }
+      let(:line2)  { 'baz' }
+      let(:value2) do
+        [line1, line2].join($/)
+      end
+
+      let(:hash) do
+        {
+          name1 => value1,
+          name2 => value2
+        }
+      end
+
+      it "must print the header with the first line and then indent the other lines" do
+        expect {
+          subject.print_fields(hash)
+        }.to output("#{name1}:   #{value1}#{nl}#{name2}: #{line1}#{nl}     #{line2}#{nl}").to_stdout
+      end
+    end
   end
 end
