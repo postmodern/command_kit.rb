@@ -23,6 +23,38 @@ describe CommandKit::Printing::Lists do
         list.map { |item| "* #{item}" }.join($/) + $/
       ).to_stdout
     end
+
+    context "when the list contains nested-lists" do
+      let(:item1)     { 'item 1'     }
+      let(:sub_item1) { 'sub-item 1' }
+      let(:sub_item2) { 'sub-item 2' }
+      let(:item2)     { 'item 2'     }
+
+      let(:list) do
+        [
+          'item 1',
+          [
+            'sub-item 1',
+            'sub-item 2'
+          ],
+          'item 2'
+        ]
+      end
+
+      it "must indent and print each sub-list" do
+        expect {
+          subject.print_list(list)
+        }.to output(
+          [
+            "* #{item1}",
+            "  * #{sub_item1}",
+            "  * #{sub_item2}",
+            "* #{item2}",
+            ''
+          ].join($/)
+        ).to_stdout
+      end
+    end
     
     context "when the bullet: keyowrd argument is given" do
       let(:bullet) { '-' }
