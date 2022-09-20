@@ -228,6 +228,7 @@ end
   * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
 * [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
+  * [CommandKit::Printing::Fields](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Fields)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
   * [CommandKit::Printing::Lists](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Lists)
 * [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
