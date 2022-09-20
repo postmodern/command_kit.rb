@@ -15,4 +15,5 @@ group :development do
   gem 'redcarpet',       platform: :mri
   gem 'yard', '~> 0.9'
   gem 'yard-spellcheck', require: false
+  gem 'dead_end'
 end
