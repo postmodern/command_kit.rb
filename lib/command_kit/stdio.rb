@@ -7,7 +7,7 @@ module CommandKit
   #     class MyCmd
   #       include CommandKit::Stdio
   #
-  #       def main
+  #       def run
   #       end
   #     end
   #

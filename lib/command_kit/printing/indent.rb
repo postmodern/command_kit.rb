@@ -7,7 +7,7 @@ module CommandKit
     #
     #     include Printing::Indent
     #     
-    #     def main
+    #     def run
     #       puts "regular output:"
     #     
     #       indent(4) do

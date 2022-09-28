@@ -7,7 +7,7 @@ module CommandKit
   #     class MyCmd
   #       include CommandKit::Env
   #
-  #       def main
+  #       def run
   #         home = env['HOME']
   #         # ...
   #       end

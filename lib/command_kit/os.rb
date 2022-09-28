@@ -11,7 +11,7 @@ module CommandKit
   #     
   #       include CommandKit::OS
   #     
-  #       def main(*argv)
+  #       def run(*argv)
   #         if linux?
   #           # ...
   #         elsif macos?

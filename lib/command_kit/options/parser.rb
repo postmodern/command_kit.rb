@@ -22,7 +22,7 @@ module CommandKit
     #       end
     #     end
     #     
-    #     def main(*argv)
+    #     def run(*argv)
     #       if @custom
     #         puts "Custom mode enabled"
     #       end
