@@ -1144,5 +1144,37 @@ describe CommandKit::Printing::Tables::TableFormatter do
         end
       end
     end
+
+    context "when given an invalid justify_header: value" do
+      let(:justify) { :foo }
+
+      let(:table) do
+        CommandKit::Printing::Tables::TableBuilder.new(rows, header: header)
+      end
+
+      let(:style) do
+        CommandKit::Printing::Tables::Style.new(justify_header: justify)
+      end
+
+      it do
+        expect { |b|
+          subject.format(&b)
+        }.to raise_error(ArgumentError,"invalid justify value (#{justify.inspect}), must be :left, :right, or :center")
+      end
+    end
+
+    context "when given an invalid justify: value" do
+      let(:justify) { :foo }
+
+      let(:style) do
+        CommandKit::Printing::Tables::Style.new(justify: justify)
+      end
+
+      it do
+        expect { |b|
+          subject.format(&b)
+        }.to raise_error(ArgumentError,"invalid justify value (#{justify.inspect}), must be :left, :right, or :center")
+      end
+    end
   end
 end

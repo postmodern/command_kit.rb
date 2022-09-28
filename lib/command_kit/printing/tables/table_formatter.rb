@@ -165,9 +165,11 @@ module CommandKit
         #
         def format_cell(value, width: , justify: @style.justify)
           justified_value = case justify
-                            in :center then value.center(width)
-                            in :left   then value.ljust(width)
-                            in :right  then value.rjust(width)
+                            when :center then value.center(width)
+                            when :left   then value.ljust(width)
+                            when :right  then value.rjust(width)
+                            else
+                              raise(ArgumentError,"invalid justify value (#{justify.inspect}), must be :left, :right, or :center")
                             end
 
           return "#{@padding}#{justified_value}#{@padding}"
