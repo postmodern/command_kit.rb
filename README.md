@@ -31,6 +31,7 @@ plain-old Ruby classes.
   * Terminal size detection.
   * ANSI coloring support.
   * Interactive input.
+  * Rich text printing support (fields, lists, and tables).
   * Subcommands (explicit or lazy-loaded) and command aliases.
   * Displaying man pages for `--help`/`help`.
   * Using the pager (aka `less`).
