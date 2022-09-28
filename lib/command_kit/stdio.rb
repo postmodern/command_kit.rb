@@ -8,6 +8,10 @@ module CommandKit
   #       include CommandKit::Stdio
   #
   #       def run
+  #         print 'Name: '
+  #         name = gets
+  #
+  #         puts "Hello #{name}!"
   #       end
   #     end
   #
