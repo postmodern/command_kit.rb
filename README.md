@@ -231,6 +231,7 @@ end
   * [CommandKit::Printing::Fields](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Fields)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
   * [CommandKit::Printing::Lists](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Lists)
+  * [CommandKit::Printing::Tables](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Tables)
 * [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
 * [CommandKit::Stdio](https://rubydoc.info/gems/command_kit/CommandKit/Stdio)
 * [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)
