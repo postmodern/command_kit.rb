@@ -17,7 +17,7 @@ plain-old Ruby classes.
 ## Features
 
 * **Simple** - Commands are plain-old ruby classes, with options and
-  arguments declared as attributes. All features are ruby modules that can be
+  arguments declared as attributes. All features are Ruby modules that can be
   included into command classes.
 * **Correct** - CommandKit behaves like a standard UNIX command.
   * Safely handles Ctrl^C / SIGINT interrupts and [exits with 130](https://tldp.org/LDP/abs/html/exitcodes.html).
@@ -36,7 +36,7 @@ plain-old Ruby classes.
   * Displaying man pages for `--help`/`help`.
   * Using the pager (aka `less`).
   * [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (aka `~/.config/`, `~/.local/share/`, `~/.cache/`).
-* **Testable** - Since commands are plain-old ruby classes, it's easy to
+* **Testable** - Since commands are plain-old Ruby classes, it's easy to
   initialize them and call `#main` or `#run`.
 
 ## Anti-Features
