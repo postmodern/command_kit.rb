@@ -1,7 +1,7 @@
 name: command_kit
-summary: A toolkit for building Ruby CLI commands
+summary: An all-in-one modular Ruby CLI toolkit
 description:
-  A Ruby toolkit for building clean, correct, and robust CLI commands as
+  A modular Ruby toolkit for building clean, correct, and robust CLI commands as
   plain-old Ruby classes.
 
 license: MIT

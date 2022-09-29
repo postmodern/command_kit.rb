@@ -11,7 +11,7 @@
 
 ## Description
 
-A Ruby toolkit for building clean, correct, and robust CLI commands as
+A modular Ruby toolkit for building clean, correct, and robust CLI commands as
 plain-old Ruby classes.
 
 ## Features
