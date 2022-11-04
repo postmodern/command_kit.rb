@@ -36,6 +36,7 @@ plain-old Ruby classes.
   * Displaying man pages for `--help`/`help`.
   * Using the pager (aka `less`).
   * [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (aka `~/.config/`, `~/.local/share/`, `~/.cache/`).
+  * Exception handling / Bug reporting.
 * **Testable** - Since commands are plain-old Ruby classes, it's easy to
   initialize them and call `#main` or `#run`.
 
@@ -206,6 +207,7 @@ end
 ### Reference
 
 * [CommandKit::Arguments](https://rubydoc.info/gems/command_kit/CommandKit/Arguments)
+* [CommandKit::BugReport](https://rubydoc.info/gems/command_kit/CommandKit/BugReport)
 * [CommandKit::Colors](https://rubydoc.info/gems/command_kit/CommandKit/Colors)
 * [CommandKit::Command](https://rubydoc.info/gems/command_kit/CommandKit/Command)
 * [CommandKit::CommandName](https://rubydoc.info/gems/command_kit/CommandKit/CommandName)
