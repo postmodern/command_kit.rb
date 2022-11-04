@@ -145,3 +145,10 @@ Gemspec/RequireMFA: { Enabled: false }
 Gemspec/DuplicatedAssignment:
   Exclude:
     - 'command_kit.gemspec'
+
+Bundler/OrderedGems: { Enabled: false }
+
+# rubocup is not aware of vertical alignment of matrixes (Array of Arrays).
+Layout/SpaceInsideArrayLiteralBrackets: { Enabled: false }
+
+Naming/HeredocDelimiterNaming: { Enabled: false }

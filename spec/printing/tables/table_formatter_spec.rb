@@ -203,7 +203,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "",
             " DDDD  EEEE  FFFF ",
             "",
-            " GGGG  HHHH  IIII ",
+            " GGGG  HHHH  IIII "
           )
         end
       end
@@ -221,7 +221,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "",
             " AAAA  BBBB  CCCC ",
             " DDDD  EEEE  FFFF ",
-            " GGGG  HHHH  IIII ",
+            " GGGG  HHHH  IIII "
           )
         end
       end
@@ -276,7 +276,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "",
             " AAAA  BBBB  CCCC ",
             " DD    EE    FF   ",
-            " G     H     I    ",
+            " G     H     I    "
           )
         end
       end
@@ -333,7 +333,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
           "| AAAA | BBBB | CCCC |",
           "| DDDD | EEEE | FFFF |",
           "| GGGG | HHHH | IIII |",
-          "+------+------+------+",
+          "+------+------+------+"
         )
       end
 
@@ -351,7 +351,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "|      | EE   |      |",
             "| GGGG | HHHH | IIII |",
             "|      |      | II   |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -367,7 +367,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "|      | BBBB | CCCC |",
             "| DDDD |      | FFFF |",
             "| GGGG | HHHH |      |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -383,7 +383,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| AAAA |      |      |",
             "| DDDD | EEEE |      |",
             "| GGGG | HHHH | IIII |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -406,7 +406,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| DDDD | EEEE | FFFF |",
             "+------+------+------+",
             "| GGGG | HHHH | IIII |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -429,7 +429,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| AAAA | BBBB | CCCC |",
             "| DD   | EE   | FF   |",
             "| G    | H    | I    |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -452,7 +452,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| AAAA | BBBB | CCCC |",
             "|   DD |   EE |   FF |",
             "|    G |    H |    I |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -475,7 +475,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| AAAA | BBBB | CCCC |",
             "|  DD  |  EE  |  FF  |",
             "|  G   |  H   |  I   |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
       end
@@ -495,7 +495,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "| AAAA | BBBB | CCCC |",
             "| DDDD | EEEE | FFFF |",
             "| GGGG | HHHH | IIII |",
-            "+------+------+------+",
+            "+------+------+------+"
           )
         end
 
@@ -519,7 +519,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "| DDDD | EEEE | FFFF |",
               "+------+------+------+",
               "| GGGG | HHHH | IIII |",
-              "+------+------+------+",
+              "+------+------+------+"
             )
           end
         end
@@ -542,7 +542,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "| AAAA | BBBB | CCCC |",
               "| DDDD | EEEE | FFFF |",
               "| GGGG | HHHH | IIII |",
-              "+------+------+------+",
+              "+------+------+------+"
             )
           end
         end
@@ -565,7 +565,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "| AAAA | BBBB | CCCC |",
               "| DDDD | EEEE | FFFF |",
               "| GGGG | HHHH | IIII |",
-              "+------+------+------+",
+              "+------+------+------+"
             )
           end
         end
@@ -588,7 +588,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "| AAAA | BBBB | CCCC |",
               "| DDDD | EEEE | FFFF |",
               "| GGGG | HHHH | IIII |",
-              "+------+------+------+",
+              "+------+------+------+"
             )
           end
         end
@@ -626,7 +626,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│      │ EE   │      │",
             "│ GGGG │ HHHH │ IIII │",
             "│      │      │ II   │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -642,7 +642,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│      │ BBBB │ CCCC │",
             "│ DDDD │      │ FFFF │",
             "│ GGGG │ HHHH │      │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -658,7 +658,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ AAAA │      │      │",
             "│ DDDD │ EEEE │      │",
             "│ GGGG │ HHHH │ IIII │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -681,7 +681,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ DDDD │ EEEE │ FFFF │",
             "├──────┼──────┼──────┤",
             "│ GGGG │ HHHH │ IIII │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -704,7 +704,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ AAAA │ BBBB │ CCCC │",
             "│ DD   │ EE   │ FF   │",
             "│ G    │ H    │ I    │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -727,7 +727,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ AAAA │ BBBB │ CCCC │",
             "│   DD │   EE │   FF │",
             "│    G │    H │    I │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -750,7 +750,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ AAAA │ BBBB │ CCCC │",
             "│  DD  │  EE  │  FF  │",
             "│  G   │  H   │  I   │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
       end
@@ -770,7 +770,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "│ AAAA │ BBBB │ CCCC │",
             "│ DDDD │ EEEE │ FFFF │",
             "│ GGGG │ HHHH │ IIII │",
-            "└──────┴──────┴──────┘",
+            "└──────┴──────┴──────┘"
           )
         end
 
@@ -794,7 +794,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "│ DDDD │ EEEE │ FFFF │",
               "├──────┼──────┼──────┤",
               "│ GGGG │ HHHH │ IIII │",
-              "└──────┴──────┴──────┘",
+              "└──────┴──────┴──────┘"
             )
           end
         end
@@ -817,7 +817,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "│ AAAA │ BBBB │ CCCC │",
               "│ DDDD │ EEEE │ FFFF │",
               "│ GGGG │ HHHH │ IIII │",
-              "└──────┴──────┴──────┘",
+              "└──────┴──────┴──────┘"
             )
           end
         end
@@ -840,7 +840,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "│ AAAA │ BBBB │ CCCC │",
               "│ DDDD │ EEEE │ FFFF │",
               "│ GGGG │ HHHH │ IIII │",
-              "└──────┴──────┴──────┘",
+              "└──────┴──────┴──────┘"
             )
           end
         end
@@ -863,7 +863,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "│ AAAA │ BBBB │ CCCC │",
               "│ DDDD │ EEEE │ FFFF │",
               "│ GGGG │ HHHH │ IIII │",
-              "└──────┴──────┴──────┘",
+              "└──────┴──────┴──────┘"
             )
           end
         end
@@ -883,7 +883,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
           "║ AAAA ║ BBBB ║ CCCC ║",
           "║ DDDD ║ EEEE ║ FFFF ║",
           "║ GGGG ║ HHHH ║ IIII ║",
-          "╚══════╩══════╩══════╝",
+          "╚══════╩══════╩══════╝"
         )
       end
 
@@ -901,7 +901,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║      ║ EE   ║      ║",
             "║ GGGG ║ HHHH ║ IIII ║",
             "║      ║      ║ II   ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -917,7 +917,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║      ║ BBBB ║ CCCC ║",
             "║ DDDD ║      ║ FFFF ║",
             "║ GGGG ║ HHHH ║      ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -933,7 +933,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ AAAA ║      ║      ║",
             "║ DDDD ║ EEEE ║      ║",
             "║ GGGG ║ HHHH ║ IIII ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -956,7 +956,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ DDDD ║ EEEE ║ FFFF ║",
             "╠══════╬══════╬══════╣",
             "║ GGGG ║ HHHH ║ IIII ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -979,7 +979,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ AAAA ║ BBBB ║ CCCC ║",
             "║ DD   ║ EE   ║ FF   ║",
             "║ G    ║ H    ║ I    ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -1002,7 +1002,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ AAAA ║ BBBB ║ CCCC ║",
             "║   DD ║   EE ║   FF ║",
             "║    G ║    H ║    I ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -1025,7 +1025,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ AAAA ║ BBBB ║ CCCC ║",
             "║  DD  ║  EE  ║  FF  ║",
             "║  G   ║  H   ║  I   ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
       end
@@ -1045,7 +1045,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
             "║ AAAA ║ BBBB ║ CCCC ║",
             "║ DDDD ║ EEEE ║ FFFF ║",
             "║ GGGG ║ HHHH ║ IIII ║",
-            "╚══════╩══════╩══════╝",
+            "╚══════╩══════╩══════╝"
           )
         end
 
@@ -1069,7 +1069,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "║ DDDD ║ EEEE ║ FFFF ║",
               "╠══════╬══════╬══════╣",
               "║ GGGG ║ HHHH ║ IIII ║",
-              "╚══════╩══════╩══════╝",
+              "╚══════╩══════╩══════╝"
             )
           end
         end
@@ -1092,7 +1092,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "║ AAAA ║ BBBB ║ CCCC ║",
               "║ DDDD ║ EEEE ║ FFFF ║",
               "║ GGGG ║ HHHH ║ IIII ║",
-              "╚══════╩══════╩══════╝",
+              "╚══════╩══════╩══════╝"
             )
           end
         end
@@ -1115,7 +1115,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "║ AAAA ║ BBBB ║ CCCC ║",
               "║ DDDD ║ EEEE ║ FFFF ║",
               "║ GGGG ║ HHHH ║ IIII ║",
-              "╚══════╩══════╩══════╝",
+              "╚══════╩══════╩══════╝"
             )
           end
         end
@@ -1138,7 +1138,7 @@ describe CommandKit::Printing::Tables::TableFormatter do
               "║ AAAA ║ BBBB ║ CCCC ║",
               "║ DDDD ║ EEEE ║ FFFF ║",
               "║ GGGG ║ HHHH ║ IIII ║",
-              "╚══════╩══════╩══════╝",
+              "╚══════╩══════╩══════╝"
             )
           end
         end

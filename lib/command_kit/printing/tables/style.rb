@@ -169,7 +169,7 @@ module CommandKit
                       BORDER_STYLES.fetch(border) do
                         raise(ArgumentError,"unknown border style (#{border.inspect}) must be either #{BORDER_STYLES.keys.map(&:inspect).join(', ')}")
                       end
-                    when nil
+                    when nil then nil
                     else
                       raise(ArgumentError,"invalid border value (#{border.inspect}) must be either #{BORDER_STYLES.keys.map(&:inspect).join(', ')}, Hash, or nil")
                     end

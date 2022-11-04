@@ -93,7 +93,7 @@ module CommandKit
           @table.max_columns.times do |column_index|
             column_width = @table.column_widths[column_index] + @extra_padding
 
-            line << column_border * column_width
+            line << (column_border * column_width)
 
             line << if column_index < @last_column
                       joined_border
