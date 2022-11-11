@@ -1,3 +1,21 @@
+### 0.4.0 / 2022-11-11
+
+* Added {CommandKit::BugReport}.
+* Added {CommandKit::Edit}.
+* Added {CommandKit::Printing::Fields}.
+* Added {CommandKit::Printing::Lists}.
+* Added {CommandKit::Printing::Tables}.
+
+#### CommandKit::Colors
+
+* Support disabling ANSI color output if the `NO_COLOR` environment variable is
+  set.
+
+#### CommandKit::Options
+
+* Correct the option usage for long option flags that have optional values
+  (ex: `--longopt[=VALUE]`).
+
 ### 0.3.0 / 2021-12-26
 
 * Added {CommandKit::FileUtils}.
