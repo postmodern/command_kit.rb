@@ -11,30 +11,33 @@
 
 ## Description
 
-A Ruby toolkit for building clean, correct, and robust CLI commands as
+A modular Ruby toolkit for building clean, correct, and robust CLI commands as
 plain-old Ruby classes.
 
 ## Features
 
 * **Simple** - Commands are plain-old ruby classes, with options and
-  arguments declared as attributes. All features are ruby modules that can be
+  arguments declared as attributes. All features are Ruby modules that can be
   included into command classes.
 * **Correct** - CommandKit behaves like a standard UNIX command.
   * Safely handles Ctrl^C / SIGINT interrupts and [exits with 130](https://tldp.org/LDP/abs/html/exitcodes.html).
   * Safely handles broken pipes (aka `mycmd | head`).
-  * Respects common environment variables (ex: `TERM=dumb`).
+  * Respects common environment variables (ex: `TERM=dumb` and `NO_COLOR`).
   * Uses [OptionParser][optparse] for POSIX option parsing.
-  * Disables ANSI color when output is redirected to a file.
+  * Disables ANSI color when output is redirected to a file or when `NO_COLOR`
+    is set.
 * **Complete** - Provides many additional CLI features.
   * OS detection.
   * Terminal size detection.
   * ANSI coloring support.
   * Interactive input.
+  * Rich text printing support (fields, lists, and tables).
   * Subcommands (explicit or lazy-loaded) and command aliases.
   * Displaying man pages for `--help`/`help`.
   * Using the pager (aka `less`).
   * [XDG directories](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (aka `~/.config/`, `~/.local/share/`, `~/.cache/`).
-* **Testable** - Since commands are plain-old ruby classes, it's easy to
+  * Exception handling / Bug reporting.
+* **Testable** - Since commands are plain-old Ruby classes, it's easy to
   initialize them and call `#main` or `#run`.
 
 ## Anti-Features
@@ -45,7 +48,7 @@ plain-old Ruby classes.
 
 ## Requirements
 
-* [ruby] >= 2.7.0
+* [ruby] >= 3.0.0
 
 ## Install
 
@@ -204,6 +207,7 @@ end
 ### Reference
 
 * [CommandKit::Arguments](https://rubydoc.info/gems/command_kit/CommandKit/Arguments)
+* [CommandKit::BugReport](https://rubydoc.info/gems/command_kit/CommandKit/BugReport)
 * [CommandKit::Colors](https://rubydoc.info/gems/command_kit/CommandKit/Colors)
 * [CommandKit::Command](https://rubydoc.info/gems/command_kit/CommandKit/Command)
 * [CommandKit::CommandName](https://rubydoc.info/gems/command_kit/CommandKit/CommandName)
@@ -211,6 +215,7 @@ end
   * [CommandKit::Commands::AutoLoad](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoLoad)
   * [CommandKit::Commands::AutoRequire](https://rubydoc.info/gems/command_kit/CommandKit/Commands/AutoRequire)
 * [CommandKit::Description](https://rubydoc.info/gems/command_kit/CommandKit/Description)
+* [CommandKit::Edit](https://rubydoc.info/gems/command_kit/CommandKit/Edit)
 * [CommandKit::Env](https://rubydoc.info/gems/command_kit/CommandKit/Env)
   * [CommandKit::Env::Home](https://rubydoc.info/gems/command_kit/CommandKit/Env/Home)
   * [CommandKit::Env::Path](https://rubydoc.info/gems/command_kit/CommandKit/Env/Path)
@@ -226,7 +231,10 @@ end
   * [CommandKit::Options::Verbose](https://rubydoc.info/gems/command_kit/CommandKit/Options/Verbose)
 * [CommandKit::Pager](https://rubydoc.info/gems/command_kit/CommandKit/Pager)
 * [CommandKit::Printing](https://rubydoc.info/gems/command_kit/CommandKit/Printing)
+  * [CommandKit::Printing::Fields](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Fields)
   * [CommandKit::Printing::Indent](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Indent)
+  * [CommandKit::Printing::Lists](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Lists)
+  * [CommandKit::Printing::Tables](https://rubydoc.info/gems/command_kit/CommandKit/Printing/Tables)
 * [CommandKit::ProgramName](https://rubydoc.info/gems/command_kit/CommandKit/ProgramName)
 * [CommandKit::Stdio](https://rubydoc.info/gems/command_kit/CommandKit/Stdio)
 * [CommandKit::Terminal](https://rubydoc.info/gems/command_kit/CommandKit/Terminal)

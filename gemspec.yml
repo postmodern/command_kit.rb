@@ -1,7 +1,7 @@
 name: command_kit
-summary: A toolkit for building Ruby CLI commands
+summary: An all-in-one modular Ruby CLI toolkit
 description:
-  A Ruby toolkit for building clean, correct, and robust CLI commands as
+  A modular Ruby toolkit for building clean, correct, and robust CLI commands as
   plain-old Ruby classes.
 
 license: MIT
@@ -16,7 +16,7 @@ metadata:
   changelog_uri:     https://github.com/postmodern/command_kit.rb/blob/main/ChangeLog.md
   rubygems_mfa_required: 'true'
 
-required_ruby_version: ">= 2.7.0"
+required_ruby_version: ">= 3.0.0"
 
 development_dependencies:
   bundler: ~> 2.0

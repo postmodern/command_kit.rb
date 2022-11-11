@@ -998,14 +998,14 @@ module CommandKit
     # @return [Boolean]
     #
     # @note
-    #   When the env variable `TERM` is set to `dumb`, it will disable color
-    #   output. Color output will also be disabled if the given stream is not
-    #   a TTY.
+    #   When the env variable `TERM` is set to `dumb` or when the `NO_COLOR`
+    #   env variable is set, it will disable color output. Color output will
+    #   also be disabled if the given stream is not a TTY.
     #
     # @api public
     #
     def ansi?(stream=stdout)
-      env['TERM'] != 'dumb' && stream.tty?
+      env['TERM'] != 'dumb' && !env['NO_COLOR'] && stream.tty?
     end
 
     #

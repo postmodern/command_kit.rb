@@ -142,4 +142,13 @@ Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
 Gemspec/RequireMFA: { Enabled: false }
 
 # make an exception for our gemspec code
-Gemspec/DuplicatedAssignment: { Enabled: false }
+Gemspec/DuplicatedAssignment:
+  Exclude:
+    - 'command_kit.gemspec'
+
+Bundler/OrderedGems: { Enabled: false }
+
+# rubocup is not aware of vertical alignment of matrixes (Array of Arrays).
+Layout/SpaceInsideArrayLiteralBrackets: { Enabled: false }
+
+Naming/HeredocDelimiterNaming: { Enabled: false }
