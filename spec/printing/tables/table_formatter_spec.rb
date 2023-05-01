@@ -57,6 +57,16 @@ describe CommandKit::Printing::Tables::TableFormatter do
       )
     end
 
+    it "must encode the Strings as UTF-8" do
+      yielded_lines = []
+
+      subject.format do |line|
+        yielded_lines << line
+      end
+
+      expect(yielded_lines.map(&:encoding)).to all(be(Encoding::UTF_8))
+    end
+
     context "but when the table contains multi-line cells" do
       let(:rows) { multiline_rows }
 

@@ -87,7 +87,7 @@ module CommandKit
                               column_border: ,
                               joined_border: ,
                               right_border: )
-          line = String.new
+          line = String.new(encoding: Encoding::UTF_8)
           line << left_border
 
           @table.max_columns.times do |column_index|
@@ -191,7 +191,7 @@ module CommandKit
         #   The formatted row line.
         #
         def format_row_line(row,line_index, justify: @style.justify)
-          line = String.new
+          line = String.new(encoding: Encoding::UTF_8)
           line << @style.border.left_border if @style.border
 
           @table.max_columns.times do |column_index|
