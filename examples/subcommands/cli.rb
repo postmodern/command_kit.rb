@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib',__FILE__))
 
 require 'command_kit/commands'
 
+require_relative './cli/config'
 require_relative './cli/list'
 require_relative './cli/update'
 
@@ -26,6 +27,7 @@ module Foo
 
     # Commands must be explicitly registered, unless
     # CommandKit::Commands::AutoLoad.new(...) is included.
+    command Config
     command List
     command Update
 
