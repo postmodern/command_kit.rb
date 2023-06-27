@@ -50,7 +50,7 @@ module CommandKit
 
           if context.class == Module
             context.extend ModuleMethods
-          elsif !context.usage
+          elsif context.usage.nil?
             context.usage '[options]'
           end
         end
