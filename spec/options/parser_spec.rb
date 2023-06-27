@@ -19,6 +19,25 @@ describe CommandKit::Options::Parser do
     it { expect(subject).to include(CommandKit::Main) }
     it { expect(subject).to include(CommandKit::Usage) }
     it { expect(subject.usage).to eq('[options]') }
+
+    context "when the command class already defines a usage string" do
+      module TestOptionParser
+        class TestCommandWithUsage
+          include CommandKit::Usage
+
+          usage '[options] ARGS...'
+
+          include CommandKit::Options::Parser
+        end
+      end
+
+      let(:command_class) { TestOptionParser::TestCommandWithUsage }
+      subject { command_class }
+
+      it "must not override the usage" do
+        expect(subject.usage).to eq('[options] ARGS...')
+      end
+    end
   end
 
   subject { command_class.new }
