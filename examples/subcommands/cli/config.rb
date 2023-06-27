@@ -1,8 +1,8 @@
 require 'command_kit/command'
 require 'command_kit/commands'
 
-require_relative './config/get'
-require_relative './config/set'
+require_relative 'config/get'
+require_relative 'config/set'
 
 module Foo
   class CLI

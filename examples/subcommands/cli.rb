@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib',__FILE__))
 
 require 'command_kit/commands'
 
-require_relative './cli/config'
-require_relative './cli/list'
-require_relative './cli/update'
+require_relative 'cli/config'
+require_relative 'cli/list'
+require_relative 'cli/update'
 
 module Foo
   #
