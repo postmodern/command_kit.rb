@@ -103,7 +103,7 @@ module CommandKit
           new_string << word
         elsif scanner.scan(/[_-]+/)
           # skip
-        elsif scanner.scan(/\//)
+        elsif scanner.scan(%r{/})
           new_string << '::'
         else
           raise(ArgumentError,"cannot convert string to CamelCase: #{scanner.string.inspect}")
