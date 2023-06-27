@@ -155,6 +155,32 @@ describe CommandKit::Commands do
 
   let(:command_class) { TestCommands::TestCommands }
 
+  describe ".included" do
+    subject { command_class }
+
+    it "must set .usage to '[options] [COMMAND [ARGS...]]'" do
+      expect(subject.usage).to eq('[options] [COMMAND [ARGS...]]')
+    end
+
+    it "must add a 'command' argument" do
+      expect(subject.arguments[:command]).to_not be_nil
+      expect(subject.arguments[:command].required?).to be(false)
+      expect(subject.arguments[:command].desc).to eq('The command name to run')
+    end
+
+    it "must add a 'args' argument" do
+      expect(subject.arguments[:args]).to_not be_nil
+      expect(subject.arguments[:args].required?).to be(false)
+      expect(subject.arguments[:args].repeats?).to be(true)
+      expect(subject.arguments[:args].desc).to eq('Additional arguments for the command')
+    end
+
+    it "must add a 'help' command" do
+      expect(subject.commands['help']).to_not be(nil)
+      expect(subject.commands['help'].command).to be(described_class::Help)
+    end
+  end
+
   describe ".commands" do
     subject { command_class }
 
