@@ -20,7 +20,7 @@ module CommandKit
       module ModuleMethods
         #
         # Extends {ClassMethods} or {ModuleMethods}, depending on whether
-        # {Env::Home} is being included into a class or a module..
+        # {Env::Home} is being included into a class or a module.
         #
         # @param [Class, Module] context
         #   The class or module which is including {Home}.

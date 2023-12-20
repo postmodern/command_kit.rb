@@ -30,7 +30,7 @@ module CommandKit
     module ModuleMethods
       #
       # Extends {ClassMethods} or {ModuleMethods}, depending on whether {XDG} is
-      # being included into a class or a module..
+      # being included into a class or a module.
       #
       # @param [Class, Module] context
       #   The class or module which is including {XDG}.
