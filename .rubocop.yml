@@ -152,3 +152,6 @@ Bundler/OrderedGems: { Enabled: false }
 Layout/SpaceInsideArrayLiteralBrackets: { Enabled: false }
 
 Naming/HeredocDelimiterNaming: { Enabled: false }
+
+# I prefer to use explicit parenthesis for compound logical statements
+Style/RedundantParentheses: { Enabled: false }
