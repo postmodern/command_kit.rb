@@ -132,7 +132,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] is another kind of shell" do
+    context "but env['SHELL'] is another kind of shell" do
       let(:shell) { '/bin/tcsh' }
 
       it "must return nil" do
@@ -140,7 +140,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] cannot be recognized" do
+    context "but env['SHELL'] cannot be recognized" do
       let(:shell) { '/bin/foo' }
 
       it "must return nil" do
@@ -468,7 +468,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] is not set" do
+    context "but env['SHELL'] is not set" do
       subject do
         command_class.new(env: {})
       end
@@ -524,7 +524,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] is another kind of shell" do
+    context "but env['SHELL'] is another kind of shell" do
       let(:shell)      { '/bin/tcsh' }
       let(:shell_type) { :tcsh }
 
@@ -539,7 +539,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] cannot be recognized" do
+    context "but env['SHELL'] cannot be recognized" do
       let(:shell) { '/bin/foo' }
 
       it "must print an error and exit with -1" do
@@ -553,7 +553,7 @@ describe CommandKit::Completion::Install do
       end
     end
 
-    context "when env['SHELL'] is not set" do
+    context "but env['SHELL'] is not set" do
       subject do
         command_class.new(env: {})
       end
