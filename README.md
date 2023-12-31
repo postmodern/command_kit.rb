@@ -219,6 +219,7 @@ end
 * [CommandKit::Env](https://rubydoc.info/gems/command_kit/CommandKit/Env)
   * [CommandKit::Env::Home](https://rubydoc.info/gems/command_kit/CommandKit/Env/Home)
   * [CommandKit::Env::Path](https://rubydoc.info/gems/command_kit/CommandKit/Env/Path)
+  * [CommandKit::Env::Prefix](https://rubydoc.info/gems/command_kit/CommandKit/Env/Prefix)
   * [CommandKit::Env::Shell](https://rubydoc.info/gems/command_kit/CommandKit/Env/Shell)
 * [CommandKit::Examples](https://rubydoc.info/gems/command_kit/CommandKit/Examples)
 * [CommandKit::ExceptionHandler](https://rubydoc.info/gems/command_kit/CommandKit/ExceptionHandler)
