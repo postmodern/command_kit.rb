@@ -23,7 +23,7 @@ module CommandKit
 
       # The current shell type.
       #
-      # @return [:bash, :zsh, :dash, :mksh, :ksh, :tcsh, :csh, :sh, nil]
+      # @return [:bash, :zsh, :fish, :dash, :mksh, :ksh, :tcsh, :csh, :sh, nil]
       attr_reader :shell_type
 
       #
@@ -43,6 +43,7 @@ module CommandKit
                         case File.basename(@shell)
                         when /bash/ then :bash
                         when /zsh/  then :zsh
+                        when /fish/ then :fish
                         when /dash/ then :dash
                         when /mksh/ then :mksh
                         when /ksh/  then :ksh

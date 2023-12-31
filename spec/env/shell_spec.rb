@@ -66,6 +66,22 @@ describe CommandKit::Env::Shell do
         end
       end
 
+      context "when filename of the shell is 'fish'" do
+        let(:shell) { '/bin/fish' }
+
+        it "must set #shell_type to :fish" do
+          expect(subject.shell_type).to eq(:fish)
+        end
+      end
+
+      context "when filename of the shell contains 'fish'" do
+        let(:shell) { '/bin/fish-1.23' }
+
+        it "must set #shell_type to :fish" do
+          expect(subject.shell_type).to eq(:fish)
+        end
+      end
+
       context "when filename of the shell is 'dash'" do
         let(:shell) { '/bin/dash' }
 
