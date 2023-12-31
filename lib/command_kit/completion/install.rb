@@ -129,10 +129,20 @@ module CommandKit
         completion_file = normalize_completion_file(path, type: type)
         completion_path = File.join(@completions_dir,completion_file)
 
-        ::FileUtils.mkdir_p(@completions_dir)
+        begin
+          ::FileUtils.mkdir_p(@completions_dir)
+        rescue Errno::EACCES
+          print_error "cannot write to #{shell_type} completions directory: #{@completions_dir}"
+          exit(-1)
+        end
 
-        File.open(completion_path,'w') do |output|
-          write_completion_file(path,output, type: type)
+        begin
+          File.open(completion_path,'w') do |output|
+            write_completion_file(path,output, type: type)
+          end
+        rescue Errno::EACCES
+          print_error "cannot write to #{shell_type} completion file: #{completion_path}"
+          exit(-1)
         end
       end
 
@@ -151,7 +161,12 @@ module CommandKit
         completion_file = completion_file_for_command(command)
         completion_path = File.join(@completions_dir,completion_file)
 
-        ::FileUtils.rm_f(completion_path)
+        begin
+          ::FileUtils.rm_f(completion_path)
+        rescue Errno::EACCES
+          print_error "cannot remove #{shell_type} completion file: #{completion_path}"
+          exit(-1)
+        end
       end
 
       private

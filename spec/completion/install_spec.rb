@@ -485,6 +485,49 @@ describe CommandKit::Completion::Install do
         }
       end
     end
+
+    context "but the user does not have write permissions to create the #completions_dir" do
+      let(:completion_file) { File.join(fixtures_dir,'bash','foo') }
+      let(:completion_path) { File.join(subject.completions_dir,'foo') }
+
+      before do
+        expect(FileUtils).to receive(:mkdir_p).with(subject.completions_dir).and_raise(Errno::EACCES)
+      end
+
+      it "must print an error and exit with -1" do
+        expect(subject).to receive(:print_error).with(
+          "cannot write to #{subject.shell_type} completions directory: #{subject.completions_dir}"
+        )
+
+        expect {
+          subject.install_completion_file(completion_file)
+        }.to raise_error(SystemExit) { |error|
+          expect(error.status).to eq(-1)
+        }
+      end
+    end
+
+    context "but the user does not have write permissions to the completion file" do
+      let(:completion_file) { File.join(fixtures_dir,'bash','foo') }
+      let(:completion_path) { File.join(subject.completions_dir,'foo') }
+
+      before do
+        allow(FileUtils).to receive(:mkdir_p).with(subject.completions_dir)
+        expect(File).to receive(:open).with(completion_path,'w').and_raise(Errno::EACCES)
+      end
+
+      it "must print an error and exit with -1" do
+        expect(subject).to receive(:print_error).with(
+          "cannot write to #{subject.shell_type} completion file: #{completion_path}"
+        )
+
+        expect {
+          subject.install_completion_file(completion_file)
+        }.to raise_error(SystemExit) { |error|
+          expect(error.status).to eq(-1)
+        }
+      end
+    end
   end
 
   describe "#uninstall_completion_file_for" do
@@ -560,6 +603,26 @@ describe CommandKit::Completion::Install do
 
       it "must print an error and exit with -1" do
         expect(subject).to receive(:print_error).with("cannot identify shell")
+
+        expect {
+          subject.uninstall_completion_file_for(command)
+        }.to raise_error(SystemExit) { |error|
+          expect(error.status).to eq(-1)
+        }
+      end
+    end
+
+    context "but the user does not have write permissions to remove the installed completions file" do
+      let(:completion_path) { File.join(subject.completions_dir,command) }
+
+      before do
+        expect(FileUtils).to receive(:rm_f).with(completion_path).and_raise(Errno::EACCES)
+      end
+
+      it "must print an error and exit with -1" do
+        expect(subject).to receive(:print_error).with(
+          "cannot remove #{subject.shell_type} completion file: #{completion_path}"
+        )
 
         expect {
           subject.uninstall_completion_file_for(command)
