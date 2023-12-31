@@ -1,0 +1,11 @@
+#compdef foo
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for foo
+#
+# ------------------------------------------------------------------------------
+
+_arguments -s '(- *)'{-h,--help}'[display this help and exit]' \
+  '(- *)'{-v,--version}'[display version information and exit]'
