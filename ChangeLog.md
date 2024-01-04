@@ -1,4 +1,4 @@
-### 0.5.0 / 2024-01-03
+### 0.5.0 / 2024-01-04
 
 * Added {CommandKit::Env::Shell}.
 * Added {CommandKit::Env::Prefix}.
