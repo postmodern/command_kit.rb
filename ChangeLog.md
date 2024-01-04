@@ -1,3 +1,9 @@
+### 0.5.0 / 2024-01-03
+
+* Added {CommandKit::Env::Shell}.
+* Added {CommandKit::Env::Prefix}.
+* Added {CommandKit::Completion::Install}.
+
 ### 0.4.1 / 2024-01-03
 
 * Added more examples of how to define sub-commands and sub-sub-commands.
