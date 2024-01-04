@@ -26,6 +26,9 @@ Gem::Specification.new do |gem|
               else                     `git ls-files`.split($/)
               end
 
+  # exclude test files from the packages gem
+  gem.files -= glob[gemspec['test_files'] || 'spec/{**/}*']
+
   gem.executables = gemspec.fetch('executables') do
     glob['bin/*'].map { |path| File.basename(path) }
   end
