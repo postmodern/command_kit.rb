@@ -1,3 +1,15 @@
+### 0.4.1 / 2024-01-03
+
+* Added more examples of how to define sub-commands and sub-sub-commands.
+
+#### CommandKit::Options::Parser
+
+* Do not override the command's `usage` if it's already been set.
+
+#### CommandKit::Printing::Tables
+
+* Format the table output as UTF-8 to allow UTF-8 data in the formatted table.
+
 ### 0.4.0 / 2022-11-11
 
 * Added {CommandKit::BugReport}.
