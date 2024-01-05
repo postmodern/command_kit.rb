@@ -133,8 +133,7 @@ end
 ```ruby
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
-require 'foo/cli/my_cmd'
+require_relative 'lib/foo/cli/my_cmd'
 
 Foo::CLI::MyCmd.start
 ```
