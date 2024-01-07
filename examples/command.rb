@@ -1,7 +1,17 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.expand_path('../../lib',__FILE__))
-require 'command_kit/command'
+puts "Before require_relative '../lib/...':"
+p $LOAD_PATH
+require_relative '../lib/command_kit/command'
+puts "After require_relative '../lib/...':"
+p $LOAD_PATH
+
+if defined?(Bundler) || !$LOADED_FEATURES.grep(/bundler/).empty?
+  puts "Bundler was loaded!"
+else
+  puts "Bundler was not loaded"
+end
+puts
 
 class Command < CommandKit::Command
 
