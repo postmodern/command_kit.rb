@@ -1,4 +1,4 @@
-require 'command_kit/printing/indent'
+require_relative 'indent'
 
 module CommandKit
   module Printing

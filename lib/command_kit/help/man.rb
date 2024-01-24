@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'command_kit/command_name'
-require 'command_kit/help'
-require 'command_kit/stdio'
-require 'command_kit/man'
+require_relative '../command_name'
+require_relative '../help'
+require_relative '../stdio'
+require_relative '../man'
 
 module CommandKit
   module Help

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'command_kit/commands/subcommand'
-require 'command_kit/commands/parent_command'
-require 'command_kit/commands/help'
-require 'command_kit/command_name'
-require 'command_kit/usage'
-require 'command_kit/options'
-require 'command_kit/stdio'
-require 'command_kit/env'
+require_relative 'commands/subcommand'
+require_relative 'commands/parent_command'
+require_relative 'commands/help'
+require_relative 'command_name'
+require_relative 'usage'
+require_relative 'options'
+require_relative 'stdio'
+require_relative 'env'
 
 module CommandKit
   #

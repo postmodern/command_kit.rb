@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'command_kit/main'
-require 'command_kit/usage'
-require 'command_kit/printing'
+require_relative '../main'
+require_relative '../usage'
+require_relative '../printing'
 
 require 'optparse'
 

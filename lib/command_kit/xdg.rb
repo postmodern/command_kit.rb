@@ -1,5 +1,5 @@
-require 'command_kit/command_name'
-require 'command_kit/env/home'
+require_relative 'command_name'
+require_relative 'env/home'
 
 module CommandKit
   #

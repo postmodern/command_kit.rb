@@ -1,4 +1,4 @@
-require 'command_kit/commands/subcommand'
+require_relative '../subcommand'
 
 module CommandKit
   module Commands

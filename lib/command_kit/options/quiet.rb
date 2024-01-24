@@ -1,4 +1,4 @@
-require 'command_kit/options'
+require_relative '../options'
 
 module CommandKit
   module Options

@@ -1,2 +1,2 @@
-require 'command_kit/command'
-require 'command_kit/version'
+require_relative 'command_kit/command'
+require_relative 'command_kit/version'

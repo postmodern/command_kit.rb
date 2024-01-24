@@ -1,4 +1,4 @@
-require 'command_kit/help'
+require_relative 'help'
 
 module CommandKit
   #

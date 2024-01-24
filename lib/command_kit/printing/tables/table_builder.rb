@@ -1,4 +1,4 @@
-require 'command_kit/printing/tables/row_builder'
+require_relative 'row_builder'
 
 module CommandKit
   module Printing

@@ -1,5 +1,5 @@
-require 'command_kit/stdio'
-require 'command_kit/env'
+require_relative 'stdio'
+require_relative 'env'
 
 begin
   require 'io/console'

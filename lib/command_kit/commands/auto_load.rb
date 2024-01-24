@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'command_kit/commands'
-require 'command_kit/commands/auto_load/subcommand'
-require 'command_kit/inflector'
+require_relative '../commands'
+require_relative 'auto_load/subcommand'
+require_relative '../inflector'
 
 module CommandKit
   module Commands

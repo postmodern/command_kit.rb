@@ -1,6 +1,6 @@
-require 'command_kit/commands'
-require 'command_kit/commands/subcommand'
-require 'command_kit/inflector'
+require_relative '../commands'
+require_relative 'subcommand'
+require_relative '../inflector'
 
 module CommandKit
   module Commands

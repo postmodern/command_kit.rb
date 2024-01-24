@@ -1,6 +1,6 @@
-require 'command_kit/arguments'
-require 'command_kit/options/option'
-require 'command_kit/options/parser'
+require_relative 'arguments'
+require_relative 'options/option'
+require_relative 'options/parser'
 
 module CommandKit
   #

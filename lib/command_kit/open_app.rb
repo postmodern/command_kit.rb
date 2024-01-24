@@ -1,5 +1,5 @@
-require 'command_kit/os'
-require 'command_kit/env/path'
+require_relative 'os'
+require_relative 'env/path'
 
 module CommandKit
   #

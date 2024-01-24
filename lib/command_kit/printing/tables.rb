@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'command_kit/printing/indent'
-require 'command_kit/printing/tables/table_builder'
-require 'command_kit/printing/tables/style'
-require 'command_kit/printing/tables/table_formatter'
+require_relative 'indent'
+require_relative 'tables/table_builder'
+require_relative 'tables/style'
+require_relative 'tables/table_formatter'
 
 module CommandKit
   module Printing

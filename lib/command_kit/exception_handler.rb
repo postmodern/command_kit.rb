@@ -1,5 +1,5 @@
-require 'command_kit/main'
-require 'command_kit/printing'
+require_relative 'main'
+require_relative 'printing'
 
 module CommandKit
   #

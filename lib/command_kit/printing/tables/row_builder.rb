@@ -1,4 +1,4 @@
-require 'command_kit/printing/tables/cell_builder'
+require_relative 'cell_builder'
 
 module CommandKit
   module Printing

@@ -1,7 +1,7 @@
-require 'command_kit/os'
-require 'command_kit/os/linux'
-require 'command_kit/env/path'
-require 'command_kit/sudo'
+require_relative 'os'
+require_relative 'os/linux'
+require_relative 'env/path'
+require_relative 'sudo'
 
 module CommandKit
   #

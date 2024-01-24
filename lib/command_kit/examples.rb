@@ -1,5 +1,5 @@
-require 'command_kit/help'
-require 'command_kit/command_name'
+require_relative 'help'
+require_relative 'command_name'
 
 module CommandKit
   #

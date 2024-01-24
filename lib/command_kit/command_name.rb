@@ -1,4 +1,4 @@
-require 'command_kit/inflector'
+require_relative 'inflector'
 
 module CommandKit
   #

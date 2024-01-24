@@ -1,5 +1,5 @@
-require 'command_kit/exception_handler'
-require 'command_kit/printing'
+require_relative 'exception_handler'
+require_relative 'printing'
 
 module CommandKit
   #

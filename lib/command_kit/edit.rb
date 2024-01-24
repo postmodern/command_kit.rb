@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'command_kit/env'
+require_relative 'env'
 
 module CommandKit
   #

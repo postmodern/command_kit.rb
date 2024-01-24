@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'command_kit/env'
-require 'command_kit/env/path'
-require 'command_kit/stdio'
-require 'command_kit/terminal'
+require_relative 'env'
+require_relative 'env/path'
+require_relative 'stdio'
+require_relative 'terminal'
 
 require 'shellwords'
 

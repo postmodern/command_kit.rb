@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'command_kit/os'
+require_relative 'os'
 
 module CommandKit
   #

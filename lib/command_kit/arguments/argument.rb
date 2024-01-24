@@ -1,4 +1,4 @@
-require 'command_kit/arguments/argument_value'
+require_relative 'argument_value'
 
 module CommandKit
   module Arguments

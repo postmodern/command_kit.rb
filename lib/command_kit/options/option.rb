@@ -1,4 +1,4 @@
-require 'command_kit/options/option_value'
+require_relative 'option_value'
 
 require 'optparse'
 require 'date'

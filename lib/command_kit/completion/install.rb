@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-require 'command_kit/printing'
-require 'command_kit/env/home'
-require 'command_kit/env/shell'
-require 'command_kit/env/prefix'
+require_relative '../printing'
+require_relative '../env/home'
+require_relative '../env/shell'
+require_relative '../env/prefix'
+
 require 'fileutils'
 
 module CommandKit

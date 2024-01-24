@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'command_kit/arguments/argument_value'
-require 'command_kit/inflector'
+require_relative '../arguments/argument_value'
+require_relative '../inflector'
 
 require 'optparse'
 require 'date'

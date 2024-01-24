@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'command_kit/command'
-require 'command_kit/commands/parent_command'
+require_relative '../command'
+require_relative 'parent_command'
 
 module CommandKit
   module Commands

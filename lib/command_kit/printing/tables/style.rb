@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'command_kit/printing/tables/border_style'
+require_relative 'border_style'
 
 module CommandKit
   module Printing
