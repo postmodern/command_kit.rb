@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CommandKit
   #
   # Provides access to stdin, stdout, and stderr streams.

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'command_kit/command'
 
 module TestAutoRequire

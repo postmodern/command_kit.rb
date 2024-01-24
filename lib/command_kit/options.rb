@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'arguments'
 require_relative 'options/option'
 require_relative 'options/parser'

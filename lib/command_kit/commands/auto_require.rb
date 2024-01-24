@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative '../commands'
 require_relative 'subcommand'
 require_relative '../inflector'

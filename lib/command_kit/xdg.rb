@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'command_name'
 require_relative 'env/home'
 

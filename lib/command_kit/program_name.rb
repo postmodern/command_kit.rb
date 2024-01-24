@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CommandKit
   #
   # Retrieves the current program name (`$PROGRAM_NAME`).

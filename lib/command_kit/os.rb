@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CommandKit
   #
   # Provides methods for determining the current OS.
