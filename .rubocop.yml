@@ -79,7 +79,6 @@ Naming/RescuedExceptionsVariableName: { Enabled: false } # Offense count: 11
 Style/BlockDelimiters: { Enabled: false } # Offense count: 17
 Style/ClassCheck: { Enabled: false } # Offense count: 10
 Style/ClassEqualityComparison: { Enabled: false } # Offense count: 16
-Style/FrozenStringLiteralComment: { Enabled: false } # Offense count: 77
 Style/GlobalStdStream: { Enabled: false } # Offense count: 13
 Style/GuardClause: { Enabled: false } # Offense count: 10
 Style/IfUnlessModifier: { Enabled: false } # Offense count: 13
@@ -137,6 +136,12 @@ Style/RegexpLiteral: { Enabled: false } # Offense count: 1
 Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
+
+# enforce frozen_string_literal for lib/, but not examples/ or spec/.
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'examples/{**/,}*.rb'
+    - 'spec/{**/,}*_spec.rb'
 
 # rubocop cannot tell that rubygems_mfa_required is enabled in gemspec.yml
 Gemspec/RequireMFA: { Enabled: false }

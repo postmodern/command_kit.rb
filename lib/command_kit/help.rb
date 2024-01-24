@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CommandKit
   #
   # Defines a place-holder {Help#help help} method.

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'argument_value'
 
 module CommandKit

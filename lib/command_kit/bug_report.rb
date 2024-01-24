@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'exception_handler'
 require_relative 'printing'
 

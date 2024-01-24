@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'os'
 require_relative 'os/linux'
 require_relative 'env/path'

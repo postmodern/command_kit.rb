@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'help'
 require_relative 'command_name'
 
