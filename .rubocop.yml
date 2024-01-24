@@ -144,6 +144,7 @@ Layout/EmptyLineAfterMagicComment: { Enabled: false }
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'examples/{**/,}*.rb'
+    - 'spec/spec_helper.rb'
     - 'spec/{**/,}*_spec.rb'
 
 # rubocop cannot tell that rubygems_mfa_required is enabled in gemspec.yml
