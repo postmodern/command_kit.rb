@@ -1,3 +1,8 @@
+### 0.5.1 / 2024-01-24
+
+* Switched to using `require_relative` to improve load-times.
+* Added `# frozen_string_literal: true` to all files.
+
 ### 0.5.0 / 2024-01-04
 
 * Added {CommandKit::Env::Shell}.
