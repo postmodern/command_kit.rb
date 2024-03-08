@@ -1,3 +1,10 @@
+### 0.5.2 / 2024-03-07
+
+#### CommandKit::Options
+
+* Fixed the `--help` output for options with multi-line descriptions
+  (ex: `desc: ['Line 1', 'Line 2', ...]`).
+
 ### 0.5.1 / 2024-01-24
 
 * Switched to using `require_relative` to improve load-times.
