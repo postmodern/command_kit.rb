@@ -306,7 +306,7 @@ module CommandKit
 
       @options[option.name] = default_value unless default_value.nil?
 
-      option_parser.on(*option.usage,option.type,option.desc) do |arg,*captures|
+      option_parser.on(*option.usage,option.type,*option.desc) do |arg,*captures|
         @options[option.name] = arg
 
         if option.block

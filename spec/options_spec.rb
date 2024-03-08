@@ -416,6 +416,50 @@ describe CommandKit::Options do
       ).to_stdout
     end
 
+    context "when one of the options has a multi-line description" do
+      module TestOptions
+        class TestCommandWithMultilineOptionDescription
+
+          include CommandKit::Options
+
+          option :opt1, short: '-a',
+                        desc: "Option 1"
+          option :opt2, short: '-b',
+                        desc: [
+                          'Line 1',
+                          'Line 2',
+                          'Line 3'
+                        ]
+          option :opt3, short: '-c',
+                        desc: "Option 3"
+
+        end
+      end
+
+      let(:command_class) { TestOptions::TestCommandWithMultilineOptionDescription }
+
+      let(:option1) { command_class.options[:opt1] }
+      let(:option2) { command_class.options[:opt2] }
+      let(:option3) { command_class.options[:opt3] }
+
+      it "must indent the multi-line option description" do
+        expect { subject.help }.to output(
+          [
+            "Usage: #{subject.usage}",
+            '',
+            'Options:',
+            "    #{option1.usage.join(', ').ljust(33 - 1)} #{option1.desc}",
+            "    #{option2.usage.join(', ').ljust(33 - 1)} #{option2.desc[0]}",
+            "    #{option2.desc[1].rjust(39)}",
+            "    #{option2.desc[2].rjust(39)}",
+            "    #{option3.usage.join(', ').ljust(33 - 1)} #{option3.desc}",
+            '    -h, --help                       Print help information',
+            ''
+          ].join($/)
+        ).to_stdout
+      end
+    end
+
     context "but when the options are have categories" do
       module TestOptions
         class TestCommandWithOptionsAndCategories
