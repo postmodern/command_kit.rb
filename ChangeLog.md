@@ -1,3 +1,10 @@
+### 0.5.3 / 2024-03-12
+
+#### CommandKit::Interactive
+
+* Fixed {CommandKit::Interactive#ask} to remove the newline from the read user
+  input.
+
 ### 0.5.2 / 2024-03-07
 
 #### CommandKit::Options
