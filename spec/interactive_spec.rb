@@ -31,20 +31,21 @@ describe CommandKit::Interactive do
 
     it "must print a prompt, read input, and return the input" do
       expect(stdout).to receive(:print).with("#{prompt}: ")
-      expect(stdin).to receive(:gets).and_return(input)
+      expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
       expect(subject.ask(prompt)).to eq(input)
     end
 
     it "must accept empty user input by default" do
-      expect(stdin).to receive(:gets).and_return("")
+      expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
       expect(subject.ask(prompt)).to eq("")
     end
 
     context "when Ctrl^C is entered" do
       it "must return \"\"" do
-        expect(stdin).to receive(:gets).and_return(nil) # simulate Ctrl^C
+        # simulate Ctrl^C
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(nil)
 
         expect(subject.ask(prompt)).to eq("")
       end
@@ -55,14 +56,14 @@ describe CommandKit::Interactive do
 
       it "must include the default: value in the prompt" do
         expect(stdout).to receive(:print).with("#{prompt} [#{default}]: ")
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask(prompt, default: default)).to eq(input)
       end
 
       context "and non-empty user input is given" do
         it "must return the non-empty user input" do
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, default: default)).to eq(input)
         end
@@ -70,7 +71,7 @@ describe CommandKit::Interactive do
 
       context "and empty user input is given" do
         it "must return the default value" do
-          expect(stdin).to receive(:gets).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
           expect(subject.ask(prompt, default: default)).to eq(default)
         end
@@ -80,9 +81,9 @@ describe CommandKit::Interactive do
     context "when required: is given" do
       context "and empty user input is given" do
         it "must ask for input again, until non-empty input is given" do
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, required: true)).to eq(input)
         end
@@ -90,7 +91,7 @@ describe CommandKit::Interactive do
 
       context "and non-empty user input is given" do
         it "must return the non-empty user input" do
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, required: true)).to eq(input)
         end
@@ -103,7 +104,7 @@ describe CommandKit::Interactive do
 
     it "must print a prompt indicating Y/N, and then accept input" do
       expect(stdout).to receive(:print).with("#{prompt} (Y/N): ")
-      expect(stdin).to receive(:gets).and_return(input)
+      expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
       subject.ask_yes_or_no(prompt)
     end
@@ -112,7 +113,7 @@ describe CommandKit::Interactive do
       let(:input) { 'Y' }
 
       it "must return true" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(true)
       end
@@ -122,7 +123,7 @@ describe CommandKit::Interactive do
       let(:input) { 'y' }
 
       it "must return true" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(true)
       end
@@ -132,7 +133,7 @@ describe CommandKit::Interactive do
       let(:input) { 'YES' }
 
       it "must return true" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(true)
       end
@@ -142,7 +143,7 @@ describe CommandKit::Interactive do
       let(:input) { 'Yes' }
 
       it "must return true" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(true)
       end
@@ -152,7 +153,7 @@ describe CommandKit::Interactive do
       let(:input) { 'yes' }
 
       it "must return true" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(true)
       end
@@ -162,7 +163,7 @@ describe CommandKit::Interactive do
       let(:input) { 'N' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -172,7 +173,7 @@ describe CommandKit::Interactive do
       let(:input) { 'n' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -182,7 +183,7 @@ describe CommandKit::Interactive do
       let(:input) { 'NO' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -192,7 +193,7 @@ describe CommandKit::Interactive do
       let(:input) { 'No' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -202,7 +203,7 @@ describe CommandKit::Interactive do
       let(:input) { 'no' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -212,7 +213,7 @@ describe CommandKit::Interactive do
       let(:input) { 'jflksjfls' }
 
       it "must return false" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_yes_or_no(prompt)).to eq(false)
       end
@@ -224,7 +225,7 @@ describe CommandKit::Interactive do
 
         it "must include [Y] in the prompt" do
           expect(stdout).to receive(:print).with("#{prompt} (Y/N) [Y]: ")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           subject.ask_yes_or_no(prompt, default: default)
         end
@@ -234,7 +235,7 @@ describe CommandKit::Interactive do
 
           it "must return true" do
             expect(stdout).to receive(:print).with("#{prompt} (Y/N) [Y]: ")
-            expect(stdin).to receive(:gets).and_return(input)
+            expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
             expect(subject.ask_yes_or_no(prompt, default: default)).to eq(default)
           end
@@ -246,7 +247,7 @@ describe CommandKit::Interactive do
 
         it "must include [N] in the prompt" do
           expect(stdout).to receive(:print).with("#{prompt} (Y/N) [N]: ")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           subject.ask_yes_or_no(prompt, default: default)
         end
@@ -256,7 +257,7 @@ describe CommandKit::Interactive do
 
           it "must return false" do
             expect(stdout).to receive(:print).with("#{prompt} (Y/N) [N]: ")
-            expect(stdin).to receive(:gets).and_return(input)
+            expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
             expect(subject.ask_yes_or_no(prompt, default: default)).to eq(default)
           end
@@ -283,16 +284,16 @@ describe CommandKit::Interactive do
         expect(stdout).to receive(:puts).with("  3) #{choices[2]}")
         expect(stdout).to receive(:puts).with(no_args)
         expect(stdout).to receive(:print).with("#{prompt} (1, 2, 3): ")
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_multiple_choice(prompt,choices)).to eq(choices[input.to_i - 1])
       end
 
       context "when empty user-input is given" do
         it "must ask for input again, until non-empty input is given" do
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask_multiple_choice(prompt,choices)).to eq(choices[input.to_i - 1])
         end
@@ -303,14 +304,14 @@ describe CommandKit::Interactive do
 
         it "must include the default: choice in the prompt" do
           expect(stdout).to receive(:print).with("#{prompt} (1, 2, 3) [#{default}]: ")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           subject.ask_multiple_choice(prompt,choices, default: default)
         end
 
         context "and empty user-input is given" do
           it "must return the value for the default choice" do
-            expect(stdin).to receive(:gets).and_return("")
+            expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
             expect(subject.ask_multiple_choice(prompt,choices, default: default)).to eq(choices[default.to_i - 1])
           end
@@ -335,16 +336,16 @@ describe CommandKit::Interactive do
         expect(stdout).to receive(:puts).with("  #{choices.keys[2]}) #{choices.values[2]}")
         expect(stdout).to receive(:puts).with(no_args)
         expect(stdout).to receive(:print).with("#{prompt} (#{choices.keys[0]}, #{choices.keys[1]}, #{choices.keys[2]}): ")
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_multiple_choice(prompt,choices)).to eq(choices[input])
       end
 
       context "when empty user-input is given" do
         it "must ask for input again, until non-empty input is given" do
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return("")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask_multiple_choice(prompt,choices)).to eq(choices[input])
         end
@@ -355,14 +356,14 @@ describe CommandKit::Interactive do
 
         it "must include the default: choice in the prompt" do
           expect(stdout).to receive(:print).with("#{prompt} (#{choices.keys[0]}, #{choices.keys[1]}, #{choices.keys[2]}) [#{default}]: ")
-          expect(stdin).to receive(:gets).and_return(input)
+          expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           subject.ask_multiple_choice(prompt,choices, default: default)
         end
 
         context "and empty user-input is given" do
           it "must return the value for the default choice" do
-            expect(stdin).to receive(:gets).and_return("")
+            expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
             expect(subject.ask_multiple_choice(prompt,choices, default: default)).to eq(choices[default])
           end
@@ -377,7 +378,7 @@ describe CommandKit::Interactive do
     context "when stdin supports to #noecho" do
       it "must call #noecho, read input, then return the input" do
         allow(stdin).to receive(:noecho).and_yield
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_secret(prompt)).to eq(input)
       end
@@ -385,7 +386,7 @@ describe CommandKit::Interactive do
 
     context "when stdin does not support #noecho" do
       it "must fallback to reading input" do
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_secret(prompt)).to eq(input)
       end
@@ -393,10 +394,10 @@ describe CommandKit::Interactive do
 
     context "when empty user-input is given" do
       it "must ask for input again, until non-empty input is given" do
-        expect(stdin).to receive(:gets).and_return("")
-        expect(stdin).to receive(:gets).and_return("")
-        expect(stdin).to receive(:gets).and_return("")
-        expect(stdin).to receive(:gets).and_return(input)
+        expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+        expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+        expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+        expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
         expect(subject.ask_secret(prompt)).to eq(input)
       end
@@ -405,7 +406,7 @@ describe CommandKit::Interactive do
     context "when required: is false" do
       context "and empty user-input is given" do
         it "must return the empty user-input" do
-          expect(stdin).to receive(:gets).and_return("")
+          expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
           expect(subject.ask_secret(prompt, required: false)).to eq("")
         end

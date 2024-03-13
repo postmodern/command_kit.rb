@@ -77,7 +77,7 @@ module CommandKit
       stdout.print(prompt)
 
       loop do
-        value = stdin.gets
+        value = stdin.gets(chomp: true)
         value ||= '' # convert nil values (ctrl^D) to an empty String
 
         if value.empty?
