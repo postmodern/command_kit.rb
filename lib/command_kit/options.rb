@@ -302,9 +302,9 @@ module CommandKit
     # @param [Option] option
     #
     def define_option(option)
-      default_value = option.default_value
-
-      @options[option.name] = default_value unless default_value.nil?
+      unless (default_value = option.default_value).nil?
+        @options[option.name] = default_value
+      end
 
       option_parser.on(*option.usage,option.type,*option.desc) do |value|
         @options[option.name] = if option.type.is_a?(Regexp) &&
@@ -314,9 +314,7 @@ module CommandKit
                                   value
                                 end
 
-        if option.block
-          instance_exec(value,&option.block)
-        end
+        instance_exec(value,&option.block) if option.block
       end
     end
   end
