@@ -306,11 +306,16 @@ module CommandKit
 
       @options[option.name] = default_value unless default_value.nil?
 
-      option_parser.on(*option.usage,option.type,*option.desc) do |arg,*captures|
-        @options[option.name] = arg
+      option_parser.on(*option.usage,option.type,*option.desc) do |value|
+        @options[option.name] = if option.type.is_a?(Regexp) &&
+                                   value.is_a?(Array)
+                                  value.first
+                                else
+                                  value
+                                end
 
         if option.block
-          instance_exec(*arg,*captures,&option.block)
+          instance_exec(value,&option.block)
         end
       end
     end

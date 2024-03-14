@@ -270,6 +270,77 @@ describe CommandKit::Options do
         it "must set a key in #options to the value" do
           expect(subject.options[:opt]).to eq(value)
         end
+
+        context "and when the option value's type is an Array" do
+          module TestOptions
+            class TestCommandWithOptionWithArrayType
+
+              include CommandKit::Options
+
+              option :opt, value: {
+                             required: true,
+                             type: Array
+                           },
+                           desc: "Option an Array type"
+
+            end
+          end
+
+          let(:command_class) { TestOptions::TestCommandWithOptionWithArrayType }
+
+          let(:list)  { %w[a b c] }
+          let(:value) { list.join(',') }
+
+          it "must set a key in #options to the parsed list comma separated list of values" do
+            expect(subject.options[:opt]).to eq(list)
+          end
+        end
+
+        context "and when the option value's type is a Regexp" do
+          module TestOptions
+            class TestCommandWithOptionWithRegexpType
+
+              include CommandKit::Options
+
+              option :opt, value: {
+                             required: true,
+                             type: /[^=]+=[^=]+/ 
+                           },
+                           desc: "Option a Regexp type"
+
+            end
+          end
+
+          let(:command_class) { TestOptions::TestCommandWithOptionWithRegexpType }
+
+          let(:value) { 'foo=bar' }
+
+          it "must set a key in #options to the matched value" do
+            expect(subject.options[:opt]).to eq(value)
+          end
+
+          context "and the Regexp contains captures" do
+            module TestOptions
+              class TestCommandWithOptionWithRegexpTypeWithCaptures
+
+                include CommandKit::Options
+
+                option :opt, value: {
+                               required: true,
+                               type: /([^=]+)=([^=]+)/ 
+                             },
+                             desc: "Option a Regexp type and with captures"
+
+              end
+            end
+
+            let(:command_class) { TestOptions::TestCommandWithOptionWithRegexpTypeWithCaptures }
+
+            it "must set a key in #options to the matched value, but not the captures" do
+              expect(subject.options[:opt]).to eq(value)
+            end
+          end
+        end
       end
     end
 
