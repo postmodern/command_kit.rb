@@ -242,7 +242,7 @@ describe CommandKit::Options do
                          required: true,
                          type: String
                        },
-                       desc: "Option without a value"
+                       desc: "Option with a value"
 
         end
       end
@@ -354,7 +354,7 @@ describe CommandKit::Options do
                          required: false,
                          type: String
                        },
-                       desc: "Option without a value"
+                       desc: "Option with an optional value"
 
         end
       end
@@ -395,7 +395,7 @@ describe CommandKit::Options do
                            type: String,
                            default: "bar"
                          },
-                         desc: "Option without a value"
+                         desc: "Option with a default value"
 
           end
         end
