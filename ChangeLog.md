@@ -1,3 +1,10 @@
+### 0.5.4 / 2024-03-14
+
+#### CommandKit::Options
+
+* Fixed a bug where `Array` option values were only setting the option's value
+  to the first element of the parsed `Array` value.
+
 ### 0.5.3 / 2024-03-12
 
 #### CommandKit::Interactive
