@@ -420,4 +420,118 @@ describe CommandKit::Interactive do
       end
     end
   end
+
+  describe "#ask_multiline" do
+    let(:line1)      { 'foo bar' }
+    let(:line2)      { 'baz qux' }
+    let(:input)      { [line1, line2].join($/) }
+    let(:terminator) { nil }
+
+    it "must print a prompt, read multiple lines, and return the input on Ctrl^D" do
+      expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+      expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+      expect(subject.ask_multiline(prompt)).to eq(input)
+    end
+
+    it "must accept empty user input by default" do
+      expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+      expect(stdin).to receive(:gets).with(terminator).and_return(nil)
+
+      expect(subject.ask_multiline(prompt)).to eq("")
+    end
+
+    context "when Ctrl^C is entered" do
+      it "must return \"\"" do
+        # simulate Ctrl^C
+        expect(stdin).to receive(:gets).with(terminator).and_return(nil)
+
+        expect(subject.ask_multiline(prompt)).to eq("")
+      end
+    end
+
+    context "when terminator: is given" do
+      context "and it's :double_newline" do
+        let(:terminator) { $/ * 2 }
+
+        it "must change the help message in the prompt" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Enter twice to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return("#{input}#{terminator}")
+
+          subject.ask_multiline(prompt, terminator: :double_newline)
+        end
+
+        it "must return the entered input ending with the double newline terminator" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Enter twice to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return("#{input}#{terminator}")
+
+          expect(subject.ask_multiline(prompt, terminator: :double_newline)).to eq("#{input}#{terminator}")
+        end
+      end
+    end
+
+    context "when help: is given" do
+      let(:help) { 'hit Enter twice to exit' }
+
+      it "must override the default help message in the prompt" do
+        expect(stdout).to receive(:puts).with("#{prompt} (#{help}): ")
+        expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+        expect(subject.ask_multiline(prompt, help: help)).to eq(input)
+      end
+    end
+
+    context "when default: is given" do
+      let(:default) { 'bar' }
+
+      it "must include the default: value in the prompt" do
+        expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit) [#{default}]: ")
+        expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+        expect(subject.ask_multiline(prompt, default: default)).to eq(input)
+      end
+
+      context "and non-empty user input is given" do
+        it "must return the non-empty user input" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit) [#{default}]: ")
+          expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+          expect(subject.ask_multiline(prompt, default: default)).to eq(input)
+        end
+      end
+
+      context "and empty user input is given" do
+        it "must return the default value" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit) [#{default}]: ")
+          expect(stdin).to receive(:gets).with(terminator).and_return("")
+
+          expect(subject.ask_multiline(prompt, default: default)).to eq(default)
+        end
+      end
+    end
+
+    context "when required: is given" do
+      context "and empty user input is given" do
+        it "must ask for input again, until non-empty input is given" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return("")
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return("")
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+          expect(subject.ask_multiline(prompt, required: true)).to eq(input)
+        end
+      end
+
+      context "and non-empty user input is given" do
+        it "must return the non-empty user input" do
+          expect(stdout).to receive(:puts).with("#{prompt} (Press Ctrl^D to exit): ")
+          expect(stdin).to receive(:gets).with(terminator).and_return(input)
+
+          expect(subject.ask_multiline(prompt, required: true)).to eq(input)
+        end
+      end
+    end
+  end
 end

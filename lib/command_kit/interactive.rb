@@ -34,6 +34,15 @@ module CommandKit
   #     #
   #     # => "Lime"
   #
+  # ### Prompt for multi-line input
+  #
+  #     ask_multiline('Comment')
+  #     # Comment (Press Ctrl^D to exit):
+  #     # foo bar
+  #     # baz qux
+  #     # Ctrl^D
+  #     # => "foo bar\nbaz qux\n"
+  #
   module Interactive
     include Stdio
 
@@ -244,5 +253,83 @@ module CommandKit
       end
     end
 
+    #
+    # Asks the user for multi-line text input.
+    #
+    # @param [String] prompt
+    #   The prompt that will be printed before reading input.
+    #
+    # @param [String, nil] help
+    #   Optional help instructions on how to exit from reading.
+    #
+    # @param [String, nil] default
+    #   The default value to return if no input is given.
+    #
+    # @param [Boolean] required
+    #   Requires non-empty input.
+    #
+    # @param [:double_newline, :ctrl_d] terminator
+    #   Indicates how the input should be terminated.
+    #   Defaults to `:ctrl_d` which indicates `Ctrl^D`.
+    #
+    # @return [String]
+    #   The user input.
+    #
+    # @example
+    #   ask_multiline('Comment')
+    #   # Comment (Press Ctrl^D to exit):
+    #   # foo bar
+    #   # baz qux
+    #   # Ctrl^D
+    #   # => "foo bar\nbaz qux\n"
+    #
+    # @example Terminate input on a double newline:
+    #   ask_multiline('Comment', terminator: :double_newline)
+    #   # Comment (Enter two empty lines to exit):
+    #   # foo bar
+    #   # baz qux
+    #   #
+    #   # => "foo bar\nbaz qux\n"
+    #
+    # @api public
+    #
+    # @since 0.6.0
+    #
+    def ask_multiline(prompt, help:       nil,
+                              default:    nil,
+                              required:   false,
+                              terminator: :ctrl_d)
+      case terminator
+      when :ctrl_d
+        eos    = nil
+        help ||= 'Press Ctrl^D to exit'
+      when :double_newline
+        eos    = "#{$/}#{$/}"
+        help ||= 'Press Enter twice to exit'
+      else
+        raise(ArgumentError,"invalid terminator: #{terminator.inspect}")
+      end
+
+      prompt = "#{prompt.chomp} (#{help})"
+      prompt << " [#{default}]" if default
+      prompt << ": "
+
+      loop do
+        stdout.puts(prompt)
+
+        value = stdin.gets(eos)
+        value ||= '' # convert nil values (ctrl^D) to an empty String
+
+        if value.empty?
+          if required
+            next
+          else
+            return (default || value)
+          end
+        else
+          return value
+        end
+      end
+    end
   end
 end
