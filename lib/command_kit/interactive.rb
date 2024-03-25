@@ -244,5 +244,78 @@ module CommandKit
       end
     end
 
+    #
+    # Asks the user for multi-line text input.
+    #
+    # @param [String] prompt
+    #   The prompt that will be printed before reading input.
+    #
+    # @param [String, nil] default
+    #   The default value to return if no input is given.
+    #
+    # @param [Boolean] required
+    #   Requires non-empty input.
+    #
+    # @param [String, nil] terminator
+    #   The terminator character that represents end-of-input.
+    #   Defaults to `nil` which indicates `Ctrl^D`.
+    #
+    # @return [String]
+    #   The user input.
+    #
+    # @example
+    #   ask_multiline('Comment')
+    #   # Comment (Press Ctrl^D to exit):
+    #   # foo bar
+    #   # baz qux
+    #   # Ctrl^D
+    #   # => "foo bar\nbaz qux\n"
+    #
+    # @example Terminate input on a double newline:
+    #   ask_multiline('Comment', terminator: $/ * 2)
+    #   # Comment (Enter two empty lines to exit):
+    #   # foo bar
+    #   # baz qux
+    #   #
+    #   # => "foo bar\nbaz qux\n"
+    #
+    # @api public
+    #
+    # @since 0.6.0
+    #
+    def ask_multiline(prompt, default:    nil,
+                              required:   false,
+                              terminator: nil)
+      help = case terminator
+             when nil # Ctrl^D
+               'Press Ctrl^D to exit'
+             when "#{$/}#{$/}"
+               'Enter two empty lines to exit'
+             else
+               "Enter '#{terminator}' to exit"
+             end
+
+      prompt = "#{prompt.chomp} (#{help})"
+      prompt << " [#{default}]" if default
+      prompt << ": "
+
+      loop do
+        stdout.puts(prompt)
+
+        value = stdin.gets(terminator)
+        value ||= '' # convert nil values (ctrl^D) to an empty String
+
+        if value.empty?
+          if required
+            next
+          else
+            return (default || value)
+          end
+        else
+          return value
+        end
+      end
+    end
+
   end
 end
