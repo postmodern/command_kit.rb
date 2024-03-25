@@ -37,6 +37,7 @@ describe CommandKit::Interactive do
     end
 
     it "must accept empty user input by default" do
+      expect(stdout).to receive(:print).with("#{prompt}: ")
       expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
       expect(subject.ask(prompt)).to eq("")
@@ -63,6 +64,7 @@ describe CommandKit::Interactive do
 
       context "and non-empty user input is given" do
         it "must return the non-empty user input" do
+          expect(stdout).to receive(:print).with("#{prompt} [#{default}]: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, default: default)).to eq(input)
@@ -71,6 +73,7 @@ describe CommandKit::Interactive do
 
       context "and empty user input is given" do
         it "must return the default value" do
+          expect(stdout).to receive(:print).with("#{prompt} [#{default}]: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return("")
 
           expect(subject.ask(prompt, default: default)).to eq(default)
@@ -81,8 +84,11 @@ describe CommandKit::Interactive do
     context "when required: is given" do
       context "and empty user input is given" do
         it "must ask for input again, until non-empty input is given" do
+          expect(stdout).to receive(:print).with("#{prompt}: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdout).to receive(:print).with("#{prompt}: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return("")
+          expect(stdout).to receive(:print).with("#{prompt}: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, required: true)).to eq(input)
@@ -91,6 +97,7 @@ describe CommandKit::Interactive do
 
       context "and non-empty user input is given" do
         it "must return the non-empty user input" do
+          expect(stdout).to receive(:print).with("#{prompt}: ")
           expect(stdin).to receive(:gets).with(chomp: true).and_return(input)
 
           expect(subject.ask(prompt, required: true)).to eq(input)

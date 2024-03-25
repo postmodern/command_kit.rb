@@ -74,9 +74,9 @@ module CommandKit
       prompt << " [#{default}]" if default
       prompt << ": "
 
-      stdout.print(prompt)
-
       loop do
+        stdout.print(prompt)
+
         value = stdin.gets(chomp: true)
         value ||= '' # convert nil values (ctrl^D) to an empty String
 
