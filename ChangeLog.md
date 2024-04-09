@@ -1,3 +1,16 @@
+### 0.5.5 / 2024-04-08
+
+#### CommandKit::Interactive
+
+* Ensure that the interactive prompt is re-printed when no input is entered
+  and input is required from the user.
+
+#### CommandKit::Options
+
+* Do not pass an Array of Regexp captures for an option's value Regexp type
+  into an option's block, if the option's block only accepts one argument.
+  Instead, only pass the option's value as a String.
+
 ### 0.5.4 / 2024-03-14
 
 #### CommandKit::Options
