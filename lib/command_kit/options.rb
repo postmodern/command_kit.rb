@@ -307,15 +307,16 @@ module CommandKit
       end
 
       option_parser.on(*option.usage,option.type,*option.desc) do |value|
-        @options[option.name] = if option.type.is_a?(Regexp) &&
-                                   value.is_a?(Array)
-                                  value.first
-                                else
-                                  value
-                                end
+        if option.type.is_a?(Regexp) && value.is_a?(Array)
+          # separate the optiona value from the additional Regexp captures
+          value, *args = value
+        else
+          args = nil
+        end
 
-        instance_exec(value,&option.block) if option.block
-      end
+        @options[option.name] = value
+        instance_exec(value,*args,&option.block) if option.block
+     end
     end
   end
 end
