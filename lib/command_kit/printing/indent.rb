@@ -26,6 +26,7 @@ module CommandKit
       #
       def initialize(**kwargs)
         @indent = 0
+        @indent_padding = String.new
 
         super(**kwargs)
       end
@@ -71,8 +72,10 @@ module CommandKit
 
           begin
             @indent += n
+            @indent_padding << (' ' * n)
             yield
           ensure
+            @indent_padding.slice!(0,original_indent)
             @indent = original_indent
           end
         else
@@ -90,9 +93,7 @@ module CommandKit
       #
       def puts(*lines)
         if (@indent > 0 && !lines.empty?)
-          padding = " " * @indent
-
-          super(*lines.map { |line| "#{padding}#{line}" })
+          super(*lines.map { |line| "#{@indent_padding}#{line}" })
         else
           super(*lines)
         end
