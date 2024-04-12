@@ -75,7 +75,7 @@ module CommandKit
             @indent_padding << (' ' * n)
             yield
           ensure
-            @indent_padding.slice!(0,original_indent)
+            @indent_padding.slice!(original_indent,n)
             @indent = original_indent
           end
         else
