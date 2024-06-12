@@ -161,3 +161,6 @@ Naming/HeredocDelimiterNaming: { Enabled: false }
 
 # I prefer to use explicit parenthesis for compound logical statements
 Style/RedundantParentheses: { Enabled: false }
+
+# I prefer to call `super()` with explicit arguments
+Style/SuperArguments: { Enabled: false }
