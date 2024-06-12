@@ -129,11 +129,23 @@ describe CommandKit::Inflector do
       it "must capitalize each word and remove all underscores" do
         expect(subject.camelize('foo_bar')).to eq('FooBar')
       end
+
+      context "and it contains numbers separated by underscores" do
+        it "must separate the numbers with underscores" do
+          expect(subject.camelize('foo_12_34')).to eq('Foo_12_34')
+        end
+      end
     end
 
     context "when given a string with dashes" do
       it "must capitalize each word and remove all dashes" do
         expect(subject.camelize('foo-bar')).to eq('FooBar')
+      end
+
+      context "and it contains numbers separated by dashes" do
+        it "must separate the numbers with underscores" do
+          expect(subject.camelize('foo-12-34')).to eq('Foo_12_34')
+        end
       end
     end
 

@@ -101,6 +101,8 @@ module CommandKit
         if (word = scanner.scan(/[A-Za-z\d]+/))
           word.capitalize!
           new_string << word
+        elsif (numbers = scanner.scan(/[_-]\d+/))
+          new_string << "_#{numbers[1..]}"
         elsif scanner.scan(/[_-]+/)
           # skip
         elsif scanner.scan(%r{/})
