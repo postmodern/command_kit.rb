@@ -1,3 +1,14 @@
+### 0.5.6 / 2024-06-19
+
+#### CommandKit::Inflector
+
+* Fixed {CommandKit::Inflector.camelize} to convert `foo-1234-5678` to
+  `Foo_1234_5678`.
+
+#### CommandKit::Printing::Indent
+
+* Micro-optimization to {CommandKit::Printing::Indent#puts}.
+
 ### 0.5.5 / 2024-04-08
 
 #### CommandKit::Interactive
