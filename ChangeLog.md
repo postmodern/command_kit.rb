@@ -1,3 +1,9 @@
+### 0.6.0 / 2024-06-19
+
+* Added {CommandKit::Interactive#ask_multiline}.
+* Added {CommandKit::Open}.
+* Added {CommandKit::Options::VerboseLevel}.
+
 ### 0.5.6 / 2024-06-19
 
 #### CommandKit::Inflector
