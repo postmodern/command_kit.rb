@@ -60,6 +60,24 @@ describe CommandKit::Open do
           }
         end
       end
+
+      context "but when opening the file causes a permission error" do
+        let(:path) { '/etc/shadow' }
+
+        before do
+          expect(File).to receive(:open).and_raise(Errno::EACCES)
+        end
+
+        it "must print an error message and exit with 1" do
+          expect {
+            subject.open(path)
+          }.to output(
+            "#{subject.command_name}: Permission denied: #{path}#{$/}"
+          ).to_stderr.and raise_error(SystemExit) { |error|
+            expect(error.status).to eq(1)
+          }
+        end
+      end
     end
 
     context "when the given path is '-'" do

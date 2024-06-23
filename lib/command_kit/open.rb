@@ -98,6 +98,9 @@ module CommandKit
       rescue Errno::ENOENT
         print_error "No such file or directory: #{path}"
         exit(1)
+      rescue Errno::EACCES
+        print_error "Permission denied: #{path}"
+        exit(1)
       end
     end
   end
