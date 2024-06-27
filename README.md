@@ -245,6 +245,11 @@ end
 * [CommandKit::Usage](https://rubydoc.info/gems/command_kit/CommandKit/Usage)
 * [CommandKit::XDG](https://rubydoc.info/gems/command_kit/CommandKit/XDG)
 
+## Real-World Examples
+
+* [configure_trusted_publisher](https://github.com/rubygems/configure_trusted_publisher#usage)
+* [ronin](https://github.com/ronin-rb/ronin#readme)
+
 ## Alternatives
 
 * [dry-cli](https://dry-rb.org/gems/dry-cli/0.6/)
