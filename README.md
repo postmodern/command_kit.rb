@@ -252,7 +252,7 @@ end
 
 ## Alternatives
 
-* [dry-cli](https://dry-rb.org/gems/dry-cli/0.6/)
+* [dry-cli](https://dry-rb.org/gems/dry-cli)
 * [cmdparse](https://cmdparse.gettalong.org/)
 
 ## Special Thanks
