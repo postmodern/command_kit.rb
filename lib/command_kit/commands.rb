@@ -287,7 +287,7 @@ module CommandKit
     #
     # @abstract
     #
-    # @see command_not_found
+    # @see #command_not_found
     #
     # @api semipublic
     #
