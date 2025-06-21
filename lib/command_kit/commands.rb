@@ -252,6 +252,9 @@ module CommandKit
     #
     # @api semipublic
     #
+    # @see #command
+    # @see #on_unknown_command
+    #
     def invoke(name,*argv)
       if (command = command(name))
         command.main(argv)
