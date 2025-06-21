@@ -34,6 +34,8 @@ module CommandKit
     #
     module ClassMethods
       # List of `$PROGRAM_NAME`s that should be ignored.
+      #
+      # @api private
       IGNORED_PROGRAM_NAMES = [
         '-e',   # ruby -e "..."
         'irb',  # running in irb
