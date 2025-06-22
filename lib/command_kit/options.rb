@@ -316,7 +316,7 @@ module CommandKit
 
         @options[option.name] = value
         instance_exec(value,*args,&option.block) if option.block
-     end
+      end
     end
   end
 end
