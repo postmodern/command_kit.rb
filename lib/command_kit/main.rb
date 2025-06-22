@@ -75,9 +75,7 @@ module CommandKit
       #
       # @api public
       #
-      def main(argv=[], **kwargs)
-        new(**kwargs).main(argv)
-      end
+      def main(argv=[],**kwargs) = new(**kwargs).main(argv)
     end
 
     #

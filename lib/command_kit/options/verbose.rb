@@ -54,9 +54,7 @@ module CommandKit
       #
       # @api public
       #
-      def verbose?
-        @verbose
-      end
+      def verbose? = @verbose
     end
   end
 end

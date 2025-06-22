@@ -79,9 +79,7 @@ module CommandKit
         # @return [Boolean]
         #   Indicates whether the first row of the table is a header row.
         #
-        def header?
-          @header
-        end
+        def header? = @header
 
         #
         # Appends a row to the table.
@@ -121,9 +119,7 @@ module CommandKit
         # @return [RowBuilder, nil]
         #   The row or `nil` if no row exists at the given row index.
         #
-        def [](row_index)
-          @rows[row_index]
-        end
+        def [](row_index) = @rows[row_index]
 
         #
         # Enumerates over each row in the table.
@@ -137,9 +133,7 @@ module CommandKit
         # @return [Enumerator]
         #   If no block is given, an Enumerator will be returned.
         #
-        def each(&block)
-          @rows.each(&block)
-        end
+        def each(&block) = @rows.each(&block)
 
       end
     end

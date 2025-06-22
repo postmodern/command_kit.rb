@@ -70,9 +70,7 @@ module CommandKit
     #
     # @return [String, nil]
     #
-    def bug_report_url
-      self.class.bug_report_url
-    end
+    def bug_report_url = self.class.bug_report_url
 
     #
     # Overrides {#on_exception} to print a bug report for unhandled exceptions

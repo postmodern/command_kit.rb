@@ -53,9 +53,7 @@ module CommandKit
         #
         # @return [Boolean]
         #
-        def require!
-          require(@path)
-        end
+        def require! = require(@path)
 
         #
         # Resolves the {#constant} for the command class.
@@ -66,9 +64,7 @@ module CommandKit
         # @raise [NameError]
         #   The command class could not be found.
         #
-        def const_get
-          Object.const_get("::#{@constant}",false)
-        end
+        def const_get = Object.const_get("::#{@constant}",false)
 
         #
         # Lazy-loads the command class.

@@ -190,18 +190,14 @@ module CommandKit
       #
       # @api public
       #
-      def reset
-        RESET
-      end
+      def reset = RESET
 
       #
       # @see reset
       #
       # @api public
       #
-      def clear
-        reset
-      end
+      def clear = reset
 
       #
       # Bolds the text.
@@ -409,9 +405,7 @@ module CommandKit
       #
       # @since 0.3.0
       #
-      def gray(string=nil)
-        bright_black(string)
-      end
+      def gray(string=nil) = bright_black(string)
 
       #
       # Sets the text color to bright red.
@@ -765,9 +759,7 @@ module CommandKit
       #
       # @since 0.3.0
       #
-      def on_gray(string=nil)
-        on_bright_black(string)
-      end
+      def on_gray(string=nil) = on_bright_black(string)
 
       #
       # Sets the background color to bright red.

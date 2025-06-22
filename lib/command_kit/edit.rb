@@ -29,9 +29,7 @@ module CommandKit
     #
     # @api semipublic
     #
-    def editor
-      env['EDITOR'] || 'nano'
-    end
+    def editor = env['EDITOR'] || 'nano'
 
     #
     # Invokes the preferred editor with the additional arguments.

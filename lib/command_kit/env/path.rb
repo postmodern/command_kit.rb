@@ -78,9 +78,7 @@ module CommandKit
       #
       # @api public
       #
-      def command_installed?(name)
-        !find_command(name).nil?
-      end
+      def command_installed?(name) = !find_command(name).nil?
     end
   end
 end

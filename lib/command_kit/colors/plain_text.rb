@@ -15,13 +15,9 @@ module CommandKit
 
       module_function
 
-      def reset
-        RESET
-      end
+      def reset = RESET
 
-      def clear
-        reset
-      end
+      def clear = reset
 
       [
         :bold,

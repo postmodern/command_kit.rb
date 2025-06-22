@@ -63,18 +63,14 @@ module CommandKit
       #
       # @api public
       #
-      def version
-        self.class.version
-      end
+      def version = self.class.version
 
       #
       # Prints the version.
       #
       # @api public
       #
-      def print_version
-        puts "#{command_name} #{version}"
-      end
+      def print_version = puts("#{command_name} #{version}")
     end
   end
 end

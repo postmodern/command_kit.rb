@@ -67,9 +67,7 @@ module CommandKit
       #
       # @api private
       #
-      def join(name)
-        File.join(@dir,name)
-      end
+      def join(name) = File.join(@dir,name)
 
       #
       # Requires a file within the {#dir}.
@@ -82,9 +80,7 @@ module CommandKit
       #
       # @api private
       #
-      def require(file_name)
-        super(join(file_name))
-      end
+      def require(file_name) = super(join(file_name))
 
       #
       # Resolves the constant for the command class within the {#namespace}.

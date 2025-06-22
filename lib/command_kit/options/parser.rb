@@ -155,9 +155,7 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_invalid_option(error)
-        on_parse_error(error)
-      end
+      def on_invalid_option(error) = on_parse_error(error)
 
       #
       # Place-holder method for handling `OptionParser::AmbiguousOption`
@@ -169,9 +167,7 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_ambiguous_option(error)
-        on_parse_error(error)
-      end
+      def on_ambiguous_option(error) = on_parse_error(error)
 
       #
       # Place-holder method for handling `OptionParser::InvalidArgument`
@@ -183,9 +179,7 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_invalid_argument(error)
-        on_parse_error(error)
-      end
+      def on_invalid_argument(error) = on_parse_error(error)
 
       #
       # Place-holder method for handling `OptionParser::MissingArgument`
@@ -197,9 +191,7 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_missing_argument(error)
-        on_parse_error(error)
-      end
+      def on_missing_argument(error) = on_parse_error(error)
 
       #
       # Place-holder method for handling `OptionParser::NeedlessArgument`
@@ -211,9 +203,7 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_needless_argument(error)
-        on_parse_error(error)
-      end
+      def on_needless_argument(error) = on_parse_error(error)
 
       #
       # Place-holder method for handling `OptionParser::AmbiguousArgument`
@@ -225,27 +215,21 @@ module CommandKit
       #
       # @api semipublic
       #
-      def on_ambiguous_argument(error)
-        on_parse_error(error)
-      end
+      def on_ambiguous_argument(error) = on_parse_error(error)
 
       #
       # Prints the `--help` output.
       #
       # @api semipublic
       #
-      def help_options
-        puts option_parser
-      end
+      def help_options = puts(option_parser)
 
       #
       # @see #help_options
       #
       # @api public
       #
-      def help
-        help_options
-      end
+      def help = help_options
     end
   end
 end

@@ -58,9 +58,7 @@ module CommandKit
     #
     # @api public
     #
-    def stdin
-      @stdin || $stdin
-    end
+    def stdin = @stdin || $stdin
 
     #
     # Returns the stdout output stream.
@@ -70,9 +68,7 @@ module CommandKit
     #
     # @api public
     #
-    def stdout
-      @stdout || $stdout
-    end
+    def stdout = @stdout || $stdout
 
     #
     # Returns the stderr error output stream.
@@ -82,36 +78,28 @@ module CommandKit
     #
     # @api public
     #
-    def stderr
-      @stderr || $stderr
-    end
+    def stderr = @stderr || $stderr
 
     #
     # Calls `stdin.gets`.
     #
     # @api public
     #
-    def gets(*arguments)
-      stdin.gets(*arguments)
-    end
+    def gets(*arguments) = stdin.gets(*arguments)
 
     #
     # Calls `stdin.readline`.
     #
     # @api public
     #
-    def readline(*arguments)
-      stdin.readline(*arguments)
-    end
+    def readline(*arguments) = stdin.readline(*arguments)
 
     #
     # Calls `stdin.readlines`.
     #
     # @api public
     #
-    def readlines(*arguments)
-      stdin.readlines(*arguments)
-    end
+    def readlines(*arguments) = stdin.readlines(*arguments)
 
     # NOTE: intentionally do not override `Kenrel#p` or `Kernel#pp` to not
     # hijack echo-debugging.
@@ -121,36 +109,28 @@ module CommandKit
     #
     # @api public
     #
-    def putc(*arguments)
-      stdout.putc(*arguments)
-    end
+    def putc(*arguments) = stdout.putc(*arguments)
 
     #
     # Calls `stdout.puts`.
     #
     # @api public
     #
-    def puts(*arguments)
-      stdout.puts(*arguments)
-    end
+    def puts(*arguments) = stdout.puts(*arguments)
 
     #
     # Calls `stdout.print`.
     #
     # @api public
     #
-    def print(*arguments)
-      stdout.print(*arguments)
-    end
+    def print(*arguments) = stdout.print(*arguments)
 
     #
     # Calls `stdout.printf`.
     #
     # @api public
     #
-    def printf(*arguments)
-      stdout.printf(*arguments)
-    end
+    def printf(*arguments) = stdout.printf(*arguments)
 
     #
     # Overrides `Kernel.abort` to print to {#stderr}.

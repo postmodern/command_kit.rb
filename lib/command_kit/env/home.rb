@@ -49,9 +49,7 @@ module CommandKit
         #
         # @api semipublic
         #
-        def home_dir
-          Gem.user_home
-        end
+        def home_dir = Gem.user_home
       end
 
       # The home directory.

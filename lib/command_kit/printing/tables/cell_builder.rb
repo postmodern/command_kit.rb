@@ -52,9 +52,7 @@ module CommandKit
         # @return [Integer]
         #   The display width of the string.
         #
-        def self.line_width(string)
-          string.gsub(/\e\[\d+m/,'').length
-        end
+        def self.line_width(string) = string.gsub(/\e\[\d+m/,'').length
 
         #
         # Adds a line to the cell.
@@ -83,9 +81,7 @@ module CommandKit
         # @return [String]
         #   The line at the line index or an empty String if the cell is empty.
         #
-        def [](line_index)
-          @lines.fetch(line_index,'')
-        end
+        def [](line_index) = @lines.fetch(line_index,'')
 
       end
     end

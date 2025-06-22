@@ -61,17 +61,13 @@ module CommandKit
     #
     # @api public
     #
-    def program_name
-      self.class.program_name
-    end
+    def program_name = self.class.program_name
 
     #
     # @see #program_name
     #
     # @since 0.3.0
     #
-    def command_name
-      program_name
-    end
+    def command_name = program_name
   end
 end

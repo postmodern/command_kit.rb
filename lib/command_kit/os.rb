@@ -172,9 +172,7 @@ module CommandKit
     #
     # @api public
     #
-    def bsd?
-      freebsd? || openbsd? || netbsd?
-    end
+    def bsd? = freebsd? || openbsd? || netbsd?
 
     #
     # Determines if the current OS is UNIX based.
@@ -185,9 +183,7 @@ module CommandKit
     #
     # @api public
     #
-    def unix?
-      linux? || macos? || bsd?
-    end
+    def unix? = linux? || macos? || bsd?
 
     #
     # Determines if the current OS is Windows.

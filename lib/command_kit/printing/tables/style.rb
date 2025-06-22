@@ -188,9 +188,7 @@ module CommandKit
         # @return [Boolean]
         #   Specifies whether each row should be separated with a separator row.
         #
-        def separate_rows?
-          @separate_rows
-        end
+        def separate_rows? = @separate_rows
 
       end
     end

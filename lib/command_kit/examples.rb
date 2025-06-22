@@ -80,9 +80,7 @@ module CommandKit
     #
     # @api semipublic
     #
-    def examples
-      self.class.examples
-    end
+    def examples = self.class.examples
 
     #
     # Prints the command class'es example commands.

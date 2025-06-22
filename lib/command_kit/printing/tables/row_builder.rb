@@ -87,9 +87,7 @@ module CommandKit
         #   The cell at the given column index or an empty cell if the row
         #   does not have a cell at the given column index.
         #
-        def [](column_index)
-          @cells.fetch(column_index,EMPTY_CELL)
-        end
+        def [](column_index) = @cells.fetch(column_index,EMPTY_CELL)
 
         #
         # Enumerates over each cell in the row.
@@ -103,9 +101,7 @@ module CommandKit
         # @return [Enumerator]
         #   If no block is given, an Enumerator will be returned.
         #
-        def each(&block)
-          @cells.each(&block)
-        end
+        def each(&block) = @cells.each(&block)
 
       end
     end

@@ -291,9 +291,7 @@ module CommandKit
     #
     # @api semipublic
     #
-    def on_unknown_command(name,argv=[])
-      command_not_found(name)
-    end
+    def on_unknown_command(name,argv=[]) = command_not_found(name)
 
     #
     # Runs the command or specified subcommand.

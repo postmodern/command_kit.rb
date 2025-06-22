@@ -50,9 +50,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      def quiet?
-        @quiet
-      end
+      def quiet? = @quiet
     end
   end
 end

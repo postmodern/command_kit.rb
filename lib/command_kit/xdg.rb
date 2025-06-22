@@ -153,8 +153,6 @@ module CommandKit
     #
     # @api semipublic
     #
-    def xdg_namespace
-      self.class.xdg_namespace
-    end
+    def xdg_namespace = self.class.xdg_namespace
   end
 end

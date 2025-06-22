@@ -22,9 +22,7 @@ module CommandKit
     # @return [String]
     #   The class or module's name, without the namespace.
     #
-    def self.demodularize(name)
-      name.to_s.split('::').last
-    end
+    def self.demodularize(name) = name.to_s.split('::').last
 
     #
     # Converts a CamelCased name to an under_scored name.
@@ -77,9 +75,7 @@ module CommandKit
     # @return [String]
     #   The dasherized name.
     #
-    def self.dasherize(name)
-      name.to_s.tr('_','-')
-    end
+    def self.dasherize(name) = name.to_s.tr('_','-')
 
     #
     # Converts an under_scored name to a CamelCased name.

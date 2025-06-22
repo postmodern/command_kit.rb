@@ -69,9 +69,7 @@ module CommandKit
     #
     # @api public
     #
-    def terminal?
-      IO.respond_to?(:console) && stdout.tty?
-    end
+    def terminal? = IO.respond_to?(:console) && stdout.tty?
 
     #
     # @since 0.2.0

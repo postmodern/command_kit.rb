@@ -38,18 +38,14 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      def required?
-        @required
-      end
+      def required? = @required
 
       #
       # Determines whether the argument can be omitted.
       #
       # @return [Boolean]
       #
-      def optional?
-        !@required
-      end
+      def optional? = !@required
 
     end
   end

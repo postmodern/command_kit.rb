@@ -73,9 +73,7 @@ module CommandKit
     #
     # @api semipublic
     #
-    def description
-      self.class.description
-    end
+    def description = self.class.description
 
     #
     # Prints the {ClassMethods#description description}, if set.

@@ -135,9 +135,7 @@ module CommandKit
       #
       # @api private
       #
-      def join(path)
-        File.join(@dir,path)
-      end
+      def join(path) = File.join(@dir,path)
 
       #
       # Returns the files within given directory.
@@ -147,9 +145,7 @@ module CommandKit
       #
       # @api private
       #
-      def files
-        Dir.glob(join('*.rb'))
-      end
+      def files = Dir.glob(join('*.rb'))
 
       #
       # Includes {Commands} and registers all files within the namespace

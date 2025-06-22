@@ -123,18 +123,14 @@ module CommandKit
       # @return [String]
       #   The long-flag for the option.
       #
-      def self.default_long_opt(name)
-        "--#{Inflector.dasherize(name)}"
-      end
+      def self.default_long_opt(name) = "--#{Inflector.dasherize(name)}"
 
       #
       # Specifies if the option is of the form `--opt=VALUE`.
       #
       # @return [Boolean]
       #
-      def equals?
-        @equals
-      end
+      def equals? = @equals
 
       #
       # The separator character between the option and option value.
@@ -168,9 +164,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      def value?
-        !@value.nil?
-      end
+      def value? = !@value.nil?
 
       #
       # The option value's type.
@@ -179,9 +173,7 @@ module CommandKit
       #
       # @see OptionValue#type
       #
-      def type
-        @value && @value.type
-      end
+      def type = @value && @value.type
 
       #
       # The option value's default value.
@@ -190,9 +182,7 @@ module CommandKit
       #
       # @see OptionValue#default_value
       #
-      def default_value
-        @value && @value.default_value
-      end
+      def default_value = @value && @value.default_value
 
       #
       # The option description.

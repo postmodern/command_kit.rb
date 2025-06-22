@@ -64,9 +64,7 @@ module CommandKit
       #
       # @return [Boolean]
       #
-      def repeats?
-        @repeats
-      end
+      def repeats? = @repeats
 
       #
       # The usage string for the argument.

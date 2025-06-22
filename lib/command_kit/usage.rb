@@ -111,8 +111,6 @@ module CommandKit
     #
     # @api public
     #
-    def help
-      help_usage
-    end
+    def help = help_usage
   end
 end
