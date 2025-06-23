@@ -35,8 +35,8 @@ module CommandKit
       # Increases the indentation level by two, yields, then restores the
       # indentation level.
       #
-      # @param [Integer] n
-      #   How much to increase the indentation level by.
+      # @param [Integer] spaces
+      #   How many spaces to increase the indentation level by.
       #
       # @yield []
       #   The given block will be called after the indentation level has been
@@ -66,16 +66,16 @@ module CommandKit
       #
       # @api public
       #
-      def indent(n=2)
+      def indent(spaces=2)
         if block_given?
           original_indent = @indent
 
           begin
-            @indent += n
-            @indent_padding << (' ' * n)
+            @indent += spaces
+            @indent_padding << (' ' * spaces)
             yield
           ensure
-            @indent_padding.slice!(original_indent,n)
+            @indent_padding.slice!(original_indent,spaces)
             @indent = original_indent
           end
         else
