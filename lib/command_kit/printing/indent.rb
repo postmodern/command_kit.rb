@@ -98,7 +98,6 @@ module CommandKit
           super(*lines)
         end
       end
-
     end
   end
 end
