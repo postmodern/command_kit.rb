@@ -16,28 +16,28 @@ describe CommandKit::Printing::Tables::CellBuilder do
     end
 
     context "when an initial value is given" do
-     subject { described_class.new(value) }
+      subject { described_class.new(value) }
 
-     context "and it's a String" do
-       let(:value) do
-         <<~EOS
-           foo bar
-           baz qux
-         EOS
-       end
+      context "and it's a String" do
+        let(:value) do
+          <<~EOS
+            foo bar
+            baz qux
+          EOS
+        end
 
-       it "must split the value into separate lines and populate #lines" do
-         expect(subject.lines).to eq(value.lines(chomp: true))
-       end
-     end
+        it "must split the value into separate lines and populate #lines" do
+          expect(subject.lines).to eq(value.lines(chomp: true))
+        end
+      end
 
-     context "but it's not a String" do
-       let(:value) { 42 }
+      context "but it's not a String" do
+        let(:value) { 42 }
 
-       it "must convert it to a String before adding it to #lines" do
-         expect(subject.lines).to eq([value.to_s])
-       end
-     end
+        it "must convert it to a String before adding it to #lines" do
+          expect(subject.lines).to eq([value.to_s])
+        end
+      end
     end
   end
 
