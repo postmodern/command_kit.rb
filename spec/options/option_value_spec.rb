@@ -148,7 +148,7 @@ describe CommandKit::Options::OptionValue do
   describe "#default_value" do
     context "when initialized with a default: that responded to #call" do
       let(:default) do
-        ->{ [] }
+        -> { [] }
       end
 
       it "must call the default #call method" do

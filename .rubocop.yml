@@ -114,7 +114,6 @@ Style/WordArray: { Enabled: false } # Offense count: 4
 # 1 or 2 violations
 Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
-Layout/SpaceBeforeBlockBraces: { Enabled: false } # Offense count: 1
 Lint/MissingSuper: { Enabled: false } # Offense count: 2
 Lint/RescueException: { Enabled: false } # Offense count: 1
 Lint/UnreachableLoop: { Enabled: false } # Offense count: 1
