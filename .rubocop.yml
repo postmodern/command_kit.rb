@@ -116,7 +116,6 @@ Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Lint/MissingSuper: { Enabled: false } # Offense count: 2
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
-Style/MultilineMemoization: { Enabled: false } # Offense count: 1
 Style/NumericPredicate: { Enabled: false } # Offense count: 1
 Style/OptionalArguments: { Enabled: false } # Offense count: 1
 Style/ParenthesesAroundCondition: { Enabled: false } # Offense count: 1

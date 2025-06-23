@@ -79,10 +79,10 @@ module CommandKit
         #   Could not resolve the {#constant} for the command class.
         #
         def command
-          @command ||= (
+          @command ||= begin
             require!
             const_get
-          )
+          end
         end
 
       end
