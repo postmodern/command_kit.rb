@@ -100,7 +100,7 @@ describe CommandKit::Printing::Indent do
               expect(subject.indent).to eq(2)
               raise("error")
             end
-          rescue
+          rescue RuntimeError
           end
 
           expect(subject.indent).to eq(0)
