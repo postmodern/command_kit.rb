@@ -115,7 +115,6 @@ Style/WordArray: { Enabled: false } # Offense count: 4
 Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Lint/MissingSuper: { Enabled: false } # Offense count: 2
-Naming/MethodParameterName: { Enabled: false } # Offense count: 1
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
 Style/HashConversion: { Enabled: false } # Offense count: 1
 Style/MultilineMemoization: { Enabled: false } # Offense count: 1
