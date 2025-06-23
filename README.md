@@ -262,7 +262,7 @@ Twitter.
 
 ## Copyright
 
-Copyright (c) 2021-2024 Hal Brodigan
+Copyright (c) 2021-2025 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
