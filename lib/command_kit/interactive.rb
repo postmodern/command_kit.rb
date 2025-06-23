@@ -134,16 +134,13 @@ module CommandKit
                 end
 
       prompt = "#{prompt} (Y/N)"
+      answer = ask(prompt, **kwargs, default: default)
 
-      loop do
-        answer = ask(prompt, **kwargs, default: default)
-
-        case answer.downcase
-        when 'y', 'yes'
-          return true
-        else
-          return false
-        end
+      case answer.downcase
+      when 'y', 'yes'
+        return true
+      else
+        return false
       end
     end
 
