@@ -115,7 +115,6 @@ Style/WordArray: { Enabled: false } # Offense count: 4
 Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Lint/MissingSuper: { Enabled: false } # Offense count: 2
-Lint/RescueException: { Enabled: false } # Offense count: 1
 Lint/UnreachableLoop: { Enabled: false } # Offense count: 1
 Lint/UnusedBlockArgument: { Enabled: false } # Offense count: 1
 Naming/MethodParameterName: { Enabled: false } # Offense count: 1
@@ -161,3 +160,9 @@ Style/RedundantParentheses: { Enabled: false }
 
 # I prefer to call `super()` with explicit arguments
 Style/SuperArguments: { Enabled: false }
+
+# `CommandKit::ExceptionHandler` must `rescue Exception` as not all Ruby
+# exceptions inherit from StandardError.
+Lint/RescueException:
+  Exclude:
+    - 'lib/command_kit/exception_handler.rb'
