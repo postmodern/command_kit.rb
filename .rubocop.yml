@@ -25,6 +25,7 @@ Style/PercentLiteralDelimiters:
 Style/UnlessElse: { Enabled: false }
 Style/NumericPredicate: { Enabled: false }
 Style/ParenthesesAroundCondition: { Enabled: false }
+Style/PreferredHashMethods: { Enabled: false }
 
 # it is not necessary to call `super()` when inheriting from `Module`.
 Lint/MissingSuper:
@@ -123,7 +124,6 @@ Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
 Style/OptionalArguments: { Enabled: false } # Offense count: 1
-Style/PreferredHashMethods: { Enabled: false } # Offense count: 1
 Style/QuotedSymbols: { Enabled: false } # Offense count: 1
 Style/RedundantException: { Enabled: false } # Offense count: 1
 Style/RedundantRegexpEscape: { Enabled: false } # Offense count: 1
