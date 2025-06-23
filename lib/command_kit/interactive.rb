@@ -195,7 +195,7 @@ module CommandKit
       choices = case choices
                 when Array
                   Hash[choices.each_with_index.map { |value,i|
-                    [(i+1).to_s, value]
+                    [(i + 1).to_s, value]
                   }]
                 when Hash
                   choices
