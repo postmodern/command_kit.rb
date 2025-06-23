@@ -25,6 +25,11 @@ Style/PercentLiteralDelimiters:
 Style/UnlessElse: { Enabled: false }
 Style/NumericPredicate: { Enabled: false }
 
+# it is not necessary to call `super()` when inheriting from `Module`.
+Lint/MissingSuper:
+  AllowedParentClasses:
+    - Module
+
 #
 # rules that are in flux
 #
@@ -115,7 +120,6 @@ Style/WordArray: { Enabled: false } # Offense count: 4
 # 1 or 2 violations
 Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
-Lint/MissingSuper: { Enabled: false } # Offense count: 2
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
 Style/OptionalArguments: { Enabled: false } # Offense count: 1
 Style/ParenthesesAroundCondition: { Enabled: false } # Offense count: 1
