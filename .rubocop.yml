@@ -125,7 +125,6 @@ Layout/ArgumentAlignment: { Enabled: false } # Offense count: 1
 Layout/BlockAlignment: { Enabled: false } # Offense count: 1
 Style/EmptyMethod: { Enabled: false } # Offense count: 2
 Style/OptionalArguments: { Enabled: false } # Offense count: 1
-Style/RescueStandardError: { Enabled: false } # Offense count: 1
 Style/SoleNestedConditional: { Enabled: false } # Offense count: 1
 Style/TrailingCommaInHashLiteral: { Enabled: false } # Offense count: 2
 
