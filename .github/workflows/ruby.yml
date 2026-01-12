@@ -15,6 +15,7 @@ jobs:
           - '3.2'
           - '3.3'
           - '3.4'
+          - '4.0'
           # TODO: uncomment when jruby supports ruby >= 2.7
           # - jruby
           - truffleruby
